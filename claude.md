@@ -1,4 +1,4 @@
-﻿# 🧠 TypeScript Notes — Transcript-to-HTML Prompt
+# 🧠 TypeScript Notes — Transcript-to-HTML Prompt
 
 > **Structure:** Separate HTML file per topic + shared `styles.css` + `pages/index.html` landing page.
 > **Purpose:** Convert YouTube transcript CC text into structured, beginner-friendly TypeScript learning notes.
@@ -51,6 +51,7 @@ Topics should follow this sequence. When a new transcript is pasted, match its c
 | 21 | **Async/Await & Promises** | `pages/async-await.html` | ✅ Done |
 | 22 | **Error Handling** | `pages/error-handling.html` | ✅ Done |
 | ★ | **Key Comparisons** | `pages/comparisons.html` | ✅ Done |
+| ★ | **TypeScript Glossary** | `pages/glossary.html` | ✅ Done |
 
 > **Note:** If a transcript covers a topic not listed, add it at the most logical position based on prerequisites.
 
