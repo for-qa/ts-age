@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Higher-Order Array Methods â€” TypeScript Learning Path</title>
+<meta name="description" content="Master TypeScript higher-order array methods â€” forEach, map, filter, reduce, some, every. Understand when to use each with real-life analogies and code examples.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tb-brand">
+    <div class="tb-brand-icon">TS</div>
+    <div>
+      <div class="tb-brand-name">TypeScript Learning Path</div>
+      <div class="tb-brand-sub">Session Notes</div>
+    </div>
+  </div>
+  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <div class="tb-topic-title">Higher-Order Array Methods</div>
+</div>
+
+<div class="page-wrap">
+<div class="wrap">
+
+<nav id="nav-hoam">
+  <div class="nav-logo">
+    <div class="v">Arrays â€” Advanced</div>
+    <h2>HO Methods</h2>
+  </div>
+  <div class="nav-group">Common Behavior</div>
+  <a href="#ho-overview">Overview</a>
+  <div class="nav-group">The Big Six</div>
+  <a href="#ho-foreach">forEach</a>
+  <a href="#ho-map">map</a>
+  <a href="#ho-filter">filter</a>
+  <a href="#ho-reduce">reduce</a>
+  <a href="#ho-some">some</a>
+  <a href="#ho-every">every</a>
+  <div class="nav-group">Reference</div>
+  <a href="#ho-compare">Comparison Table</a>
+  <a href="#ho-cheatsheet">Cheatsheet</a>
+</nav>
+
+<div class="content">
+
+<div class="hero" id="ho-top">
+  <div class="hero-tags">
+    <span class="hero-tag">TypeScript</span>
+    <span class="hero-tag">Arrays</span>
+    <span class="hero-tag">Higher-Order Methods</span>
+    <span class="hero-tag">Session Notes</span>
+  </div>
+  <h1>Higher-Order <span>Array Methods</span></h1>
+  <p>Six powerful methods that accept a function as a parameter and apply it to every element in an array â€” forEach, map, filter, reduce, some, every.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">6</div><div class="stat-l">Methods</div></div>
+    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Common Behavior</div></div>
+    <div class="stat"><div class="stat-n">12+</div><div class="stat-l">Examples</div></div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="sec" id="ho-overview">
+  <div class="sec-label">Common Behavior</div>
+  <h2>One Rule They ALL Share</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> All six methods work like a <strong>factory assembly line</strong>. Items (array elements) move down a conveyor belt one by one, and a worker (the function you pass) does something to each item. The difference is what happens to the output.</p></div>
+
+  <p>Every method takes a <strong>function as a parameter</strong> (callback). That function runs <strong>once per element</strong>. You can pass any function type â€” named, anonymous, or arrow.</p>
+
+  <h3>Standard callback parameters</h3>
+  <pre><code>array.method(function(element, index, array) {
+  // element â†’ current value being processed (MANDATORY)
+  // index   â†’ position in the array (optional)
+  // array   â†’ the original array itself (optional)
+});</code></pre>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Method</th><th>Returns</th><th>Key behavior</th></tr></thead>
+    <tbody>
+      <tr><td><span class="p p-blue">forEach</span></td><td>Nothing (<code>void</code>)</td><td>Just runs the function â€” no output</td></tr>
+      <tr><td><span class="p p-green">map</span></td><td>New array (same size)</td><td>Transforms each element</td></tr>
+      <tr><td><span class="p p-amber">filter</span></td><td>New array (same or fewer)</td><td>Keeps only elements that pass a test</td></tr>
+      <tr><td><span class="p p-violet">reduce</span></td><td>Single value</td><td>Accumulates all elements into one result</td></tr>
+      <tr><td><span class="p p-teal">some</span></td><td><code>boolean</code></td><td>At least ONE element passes?</td></tr>
+      <tr><td><span class="p p-red">every</span></td><td><code>boolean</code></td><td>ALL elements pass?</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- forEach -->
+<div class="sec" id="ho-foreach">
+  <div class="sec-label">Method 1</div>
+  <h2>forEach â€” "Do something for each item"</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>forEach</code> is like a <strong>teacher taking attendance</strong>. She goes through each student name, calls it out loud, and moves to the next. She doesn't write a new list â€” she just performs an action for each name.</p></div>
+
+  <p><strong>Definition:</strong> Executes a function <strong>once for each array element</strong>. It does NOT return anything.</p>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Print fruits with index</div><span class="card-badge">forEach</span></div>
+    <div class="card-body">
+      <pre><code>let fruits: string[] = ["apple", "banana", "orange", "mango", "grape"];
+
+// Using anonymous function
+fruits.forEach(function(element, index) {
+  console.log(`${index}: ${element}`);
+});
+
+// Using arrow function (same result, shorter!)
+fruits.forEach((element, index) => {
+  console.log(`${index}: ${element}`);
+});
+
+// Output:
+// 0: apple
+// 1: banana
+// 2: orange
+// 3: mango
+// 4: grape</code></pre>
+    </div>
+  </div>
+
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Convert each fruit to uppercase</div><span class="card-badge">forEach</span></div>
+    <div class="card-body">
+      <pre><code>fruits.forEach((element) => {
+  console.log(element.toUpperCase());
+});
+
+// Output: APPLE, BANANA, ORANGE, MANGO, GRAPE
+// forEach just DOES something â€” it doesn't create a new array</code></pre>
+      <p class="fn">If <code>index</code> isn't needed, just pass the element parameter alone.</p>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>When to use forEach:</strong> When you want to <strong>perform a side effect</strong> (print, log, update DOM) for each element â€” and you do NOT need a new array back.</p></div>
+</div>
+
+<!-- map -->
+<div class="sec" id="ho-map">
+  <div class="sec-label">Method 2</div>
+  <h2>map â€” "Transform and collect"</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>map</code> is like a <strong>photo filter app</strong>. You give it 10 photos, it applies a filter to EACH one, and gives back 10 new filtered photos. Same count in, same count out â€” but every item is transformed.</p></div>
+
+  <p><strong>Definition:</strong> Creates a <strong>new array</strong> with the result of calling a function on <strong>every element</strong>. Always returns the <strong>same number of elements</strong> as the original.</p>
+
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Square each number</div><span class="card-badge">map</span></div>
+    <div class="card-body">
+      <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
+
+let squaredNumbers = numbers.map(function(element) {
+  return element * element;
+});
+
+console.log(squaredNumbers);  // [1, 4, 9, 16, 25]
+console.log(numbers);         // [1, 2, 3, 4, 5] â† original unchanged!</code></pre>
+      <p class="fn"><code>map</code> never modifies the original array. It always returns a brand new one.</p>
+    </div>
+  </div>
+
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Double each number (arrow function)</div><span class="card-badge">map + implicit return</span></div>
+    <div class="card-body">
+      <pre><code>// Full arrow function
+let doubled = numbers.map((element) => {
+  return element * 2;
+});
+
+// Simplified â€” single return = no { } and no 'return' keyword!
+let doubled = numbers.map(element => element * 2);
+
+console.log(doubled);  // [2, 4, 6, 8, 10]</code></pre>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Arrow function shortcut:</strong> If your callback has <strong>only one return statement</strong>, you can remove <code>{ }</code> and the <code>return</code> keyword entirely. This is called <strong>implicit return</strong>.</p></div>
+</div>
+
+<!-- filter -->
+<div class="sec" id="ho-filter">
+  <div class="sec-label">Method 3</div>
+  <h2>filter â€” "Keep only what passes the test"</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>filter</code> is like a <strong>bouncer at a club</strong>. Everyone in the line (array) is checked against a condition (age â‰¥ 21). Only those who pass get into the new array. The rest are turned away.</p></div>
+
+  <p><strong>Definition:</strong> Creates a new array with <strong>only the elements that satisfy</strong> the condition. Returns the <strong>same or fewer</strong> elements.</p>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Get only even numbers</div><span class="card-badge">filter</span></div>
+    <div class="card-body">
+      <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
+
+// Full version
+let evenNumbers = numbers.filter(function(number) {
+  return number % 2 === 0;
+});
+
+// Simplified arrow version
+let evenNumbers = numbers.filter(num => num % 2 === 0);
+
+console.log(evenNumbers);  // [2, 4]
+// Only 2 and 4 passed the "is even?" test</code></pre>
+    </div>
+  </div>
+
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Numbers greater than 3</div><span class="card-badge">filter</span></div>
+    <div class="card-body">
+      <pre><code>let filtered = numbers.filter(num => num > 3);
+
+console.log(filtered);  // [4, 5]</code></pre>
+    </div>
+  </div>
+
+  <div class="note note-warn"><span class="note-i">âš </span><p><strong>map vs filter:</strong> <code>map</code> transforms every element and always returns the same count. <code>filter</code> tests every element and may return fewer items. map = transform, filter = select.</p></div>
+</div>
+
+<!-- reduce -->
+<div class="sec" id="ho-reduce">
+  <div class="sec-label">Method 4</div>
+  <h2>reduce â€” "Boil everything down to one value"</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>reduce</code> is like a <strong>snowball rolling downhill</strong>. It starts small (initial value = 0), picks up snow (adds each element) as it rolls, and at the bottom you have ONE big snowball (single result). The snowball IS the accumulator.</p></div>
+
+  <p><strong>Definition:</strong> Applies a function on every element and returns a <strong>single value</strong>. Uses an <strong>accumulator</strong> â€” a running total that builds up with each iteration.</p>
+
+  <h3>Syntax (slightly different!)</h3>
+  <pre><code>array.reduce((accumulator, element, index, array) => {
+  return accumulator + element;
+}, initialValue);  // â† initial value of accumulator (default: 0)</code></pre>
+
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Sum all numbers</div><span class="card-badge">reduce</span></div>
+    <div class="card-body">
+      <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
+
+// Full version
+let total = numbers.reduce(function(total, element) {
+  return total + element;
+}, 0);
+
+// Simplified arrow version
+let total = numbers.reduce((total, element) => total + element, 0);
+
+console.log(total);  // 15</code></pre>
+    </div>
+  </div>
+
+  <h3>How the accumulator works step-by-step</h3>
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Round</th><th>Accumulator (before)</th><th>Element</th><th>Accumulator (after)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>0</td><td>1</td><td>0 + 1 = <strong>1</strong></td></tr>
+      <tr><td>2</td><td>1</td><td>2</td><td>1 + 2 = <strong>3</strong></td></tr>
+      <tr><td>3</td><td>3</td><td>3</td><td>3 + 3 = <strong>6</strong></td></tr>
+      <tr><td>4</td><td>6</td><td>4</td><td>6 + 4 = <strong>10</strong></td></tr>
+      <tr><td>5</td><td>10</td><td>5</td><td>10 + 5 = <strong>15</strong> âœ…</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Initial value:</strong> The <code>, 0</code> after the function sets the accumulator's starting value. If omitted, it defaults to 0. You can set it to 1, 100, or any value your logic needs.</p></div>
+</div>
+
+<!-- some -->
+<div class="sec" id="ho-some">
+  <div class="sec-label">Method 5</div>
+  <h2>some â€” "Is at least ONE element passing?"</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>some</code> is like asking a classroom: <strong>"Has ANYONE finished the homework?"</strong> If even ONE student raises their hand â†’ <code>true</code>. If nobody raises their hand â†’ <code>false</code>.</p></div>
+
+  <p><strong>Definition:</strong> Returns <code>true</code> if <strong>at least one element</strong> satisfies the condition. Otherwise <code>false</code>.</p>
+
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Does array contain any negatives?</div><span class="card-badge">some</span></div>
+    <div class="card-body">
+      <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
+
+let hasNegative = numbers.some(element => element < 0);
+console.log(hasNegative);  // false â€” no negatives!
+
+let hasPositive = numbers.some(element => element > 0);
+console.log(hasPositive);  // true â€” at least one positive!</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- every -->
+<div class="sec" id="ho-every">
+  <div class="sec-label">Method 6</div>
+  <h2>every â€” "Do ALL elements pass?"</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>every</code> is like a <strong>fire safety inspector</strong> checking every room. If ALL rooms pass inspection â†’ <code>true</code>. If even ONE room fails â†’ the whole building gets <code>false</code>.</p></div>
+
+  <p><strong>Definition:</strong> Returns <code>true</code> <strong>only if ALL elements</strong> satisfy the condition. Even one failure â†’ <code>false</code>.</p>
+
+  <div class="card ph5-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Are all numbers even?</div><span class="card-badge">every</span></div>
+    <div class="card-body">
+      <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
+
+let allEven = numbers.every(element => element % 2 === 0);
+console.log(allEven);  // false â€” 1, 3, 5 are odd!
+
+let allPositive = numbers.every(element => element > 0);
+console.log(allPositive);  // true â€” all are positive!
+
+let allGTE1 = numbers.every(element => element >= 1);
+console.log(allGTE1);  // true â€” all are â‰¥ 1</code></pre>
+    </div>
+  </div>
+
+  <div class="note note-warn"><span class="note-i">âš </span><p><strong>some vs every:</strong><br>
+  <code>some</code> = "At least ONE?" (like logical OR) â†’ returns <code>true</code> if ANY element matches.<br>
+  <code>every</code> = "ALL of them?" (like logical AND) â†’ returns <code>true</code> only if EVERY element matches.</p></div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec" id="ho-compare">
+  <div class="sec-label">Reference</div>
+  <h2>The Big Comparison</h2>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Feature</th><th>forEach</th><th>map</th><th>filter</th><th>reduce</th><th>some</th><th>every</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Returns</strong></td><td>void</td><td>Array</td><td>Array</td><td>Single value</td><td>boolean</td><td>boolean</td></tr>
+      <tr><td><strong>Output size</strong></td><td>â€”</td><td>Same</td><td>Same or less</td><td>1 value</td><td>1 value</td><td>1 value</td></tr>
+      <tr><td><strong>Modifies original?</strong></td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+      <tr><td><strong>Needs return?</strong></td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td><strong>Extra param?</strong></td><td>â€”</td><td>â€”</td><td>â€”</td><td>accumulator</td><td>â€”</td><td>â€”</td></tr>
+      <tr><td><strong>Use case</strong></td><td>Side effects</td><td>Transform</td><td>Select</td><td>Aggregate</td><td>Any match?</td><td>All match?</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Interview favorites:</strong> "What's the difference between map and filter?" â†’ map transforms, filter selects. "map vs forEach?" â†’ map returns new array, forEach returns nothing. "some vs every?" â†’ some = at least one, every = all.</p></div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="ho-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Quick Reference Cheatsheet</h2>
+
+  <h3>forEach â€” do something, return nothing</h3>
+  <pre><code>fruits.forEach(item => console.log(item));</code></pre>
+
+  <h3>map â€” transform each element, get new array</h3>
+  <pre><code>let doubled = nums.map(n => n * 2);        // [2,4,6,8,10]</code></pre>
+
+  <h3>filter â€” keep elements that pass the test</h3>
+  <pre><code>let evens = nums.filter(n => n % 2 === 0);  // [2,4]</code></pre>
+
+  <h3>reduce â€” accumulate into single value</h3>
+  <pre><code>let sum = nums.reduce((acc, n) => acc + n, 0);  // 15</code></pre>
+
+  <h3>some â€” at least one passes?</h3>
+  <pre><code>let hasNeg = nums.some(n => n < 0);        // false</code></pre>
+
+  <h3>every â€” do ALL pass?</h3>
+  <pre><code>let allPos = nums.every(n => n > 0);       // true</code></pre>
+
+  <h3>Arrow function shortcut</h3>
+  <pre><code>// If only ONE return statement inside arrow function:
+// âŒ Verbose
+nums.map((n) => { return n * 2; });
+// âœ… Concise â€” remove { } and 'return'
+nums.map(n => n * 2);</code></pre>
+
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Higher-Order Array Methods &nbsp;Â·&nbsp; forEach Â· map Â· filter Â· reduce Â· some Â· every</p>
+</div>
+
+</div></div></div>
+
+<script>
+(function() {
+  const nav = document.getElementById('nav-hoam');
+  if (!nav) return;
+  const links = nav.querySelectorAll('a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('on'));
+        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TypeScript Learning Path</title>
+<meta name="description" content="Session-by-session TypeScript learning notes with real-life examples. Master variables, arrays, functions, and more.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand">
+    <div class="tb-brand-icon">TS</div>
+    <div>
+      <div class="tb-brand-name">TypeScript Learning Path</div>
+      <div class="tb-brand-sub">Session Notes</div>
+    </div>
+  </div>
+</div>
+<div class="page-wrap">
+  <div class="home-wrap">
+    <h1>TypeScript <em style="font-weight:400;color:var(--ink3)">Learning Path</em></h1>
+    <p>Beginner-friendly notes with real-life examples. Each topic builds on the previous one — start from the top and work your way down. Click any topic to open its full notes.</p>
+    <div class="topic-grid">
+
+      <a class="topic-card" href="pages/variables-keywords.html">
+        <div class="tc-num"><span class="tc-num-badge">1</span> Fundamentals</div>
+        <div class="tc-title">Variables &amp; Keywords</div>
+        <div class="tc-desc">What is a variable, var vs let vs const, scope, declaration, redeclaration, reassignment, hoisting — with real-life analogies.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">var</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">let</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">const</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">Scope</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">Hoisting</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/data-types.html">
+        <div class="tc-num"><span class="tc-num-badge">2</span> Fundamentals</div>
+        <div class="tc-title">Data Types</div>
+        <div class="tc-desc">Dynamic vs static typing, type safety, annotation vs inference, and all primitive types — number, string, boolean, null, undefined, any, union, void.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">number</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">string</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">boolean</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">any</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">union</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/strings.html">
+        <div class="tc-num"><span class="tc-num-badge">3</span> Data Type</div>
+        <div class="tc-title">Strings &amp; String Methods</div>
+        <div class="tc-desc">Declaration, template literals, 10+ essential methods (split, includes, substring, replace…), immutability, and multi-line strings.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">split</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">includes</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">substring</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">trim</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">immutable</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/arrays-tuples.html">
+        <div class="tc-num"><span class="tc-num-badge">4</span> Data Structures</div>
+        <div class="tc-title">Arrays &amp; Tuples</div>
+        <div class="tc-desc">Declaration, initialisation, indexing, three loop types, passing arrays to functions, and fixed-size tuples.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">Arrays</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">Tuples</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">Loops</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">Functions</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/array-methods.html">
+        <div class="tc-num"><span class="tc-num-badge">5</span> Data Structures</div>
+        <div class="tc-title">Array Methods</div>
+        <div class="tc-desc">push, pop, shift, unshift, concat, slice, splice, indexOf, includes, toString — with examples and interview comparisons.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">push/pop</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">slice/splice</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">indexOf</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">includes</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/operators.html">
+        <div class="tc-num"><span class="tc-num-badge">6</span> Fundamentals</div>
+        <div class="tc-title">Operators</div>
+        <div class="tc-desc">Arithmetic, assignment shortcuts, comparison, logical (AND/OR/NOT), increment/decrement, ternary — and the == vs === interview question.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">Arithmetic</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">Logical</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">== vs ===</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">Ternary</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">++/--</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/conditionals.html">
+        <div class="tc-num"><span class="tc-num-badge">7</span> Control Flow</div>
+        <div class="tc-title">Conditional Statements</div>
+        <div class="tc-desc">if, if-else, nested if-else, switch-case — making decisions in code with real-world examples and break keyword.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">if-else</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">nested</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">switch</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">break</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/loops.html">
+        <div class="tc-num"><span class="tc-num-badge">8</span> Control Flow</div>
+        <div class="tc-title">Loops</div>
+        <div class="tc-desc">while, do-while, for loops — repeat actions, filter even/odd, descending order. Plus break &amp; continue jumping statements.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">while</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">for</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">do-while</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">break</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">continue</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/functions.html">
+        <div class="tc-num"><span class="tc-num-badge">9</span> Core Concept</div>
+        <div class="tc-title">Functions</div>
+        <div class="tc-desc">Named, anonymous, and arrow/lambda functions. Covers rest, optional, default parameters, implicit return, and when to use which.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">Named</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">Arrow =&gt;</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">...rest</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">optional?</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">default=</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/functions-advanced.html">
+        <div class="tc-num"><span class="tc-num-badge">10</span> Advanced</div>
+        <div class="tc-title">Callback &amp; Overloaded Functions</div>
+        <div class="tc-desc">Passing functions as arguments (callbacks), sync vs async, and function overloading — signatures, implementation rules, and common mistakes.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">Callback</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">Overloading</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">typeof</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">Signatures</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/higher-order-methods.html">
+        <div class="tc-num"><span class="tc-num-badge">11</span> Arrays — Advanced</div>
+        <div class="tc-title">Higher-Order Array Methods</div>
+        <div class="tc-desc">forEach, map, filter, reduce, some, every — six powerful methods that accept functions as parameters and process entire arrays.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">forEach</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">map</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">filter</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">reduce</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">some/every</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/type-aliases.html">
+        <div class="tc-num"><span class="tc-num-badge">12</span> Types</div>
+        <div class="tc-title">Type Aliases &amp; Union Types</div>
+        <div class="tc-desc">Custom types with the type keyword, union with |, intersection with &amp;, literal types, and discriminated unions.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">type</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">union |</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">intersection &amp;</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">literal</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/enums.html">
+        <div class="tc-num"><span class="tc-num-badge">13</span> Types</div>
+        <div class="tc-title">Enums</div>
+        <div class="tc-desc">Numeric enums, string enums, const enums, reverse mapping, and enum vs union literal types.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">enum</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">numeric</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">string</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">const</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/type-narrowing.html">
+        <div class="tc-num"><span class="tc-num-badge">14</span> Advanced</div>
+        <div class="tc-title">Type Narrowing</div>
+        <div class="tc-desc">typeof, instanceof, in operator, truthiness, discriminated unions, custom type predicates, and exhaustive checks.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">typeof</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">instanceof</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">in</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">is</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/objects.html">
+        <div class="tc-num"><span class="tc-num-badge">15</span> OOP Foundation</div>
+        <div class="tc-title">Objects &amp; Object Types</div>
+        <div class="tc-desc">4 ways to create objects — direct, inline type, type aliases, and classes. Dot/bracket notation, intersection types, and constructors.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">Objects</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">Type Alias</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">Class</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">Intersection</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">Constructor</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/classes-basics.html">
+        <div class="tc-num"><span class="tc-num-badge">16</span> OOP</div>
+        <div class="tc-title">Classes (Basics)</div>
+        <div class="tc-desc">readonly, optional, and static properties/methods. Constructor &amp; method overloading with real-world analogies.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">readonly</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">static</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">optional</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">overloading</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/classes-inheritance.html">
+        <div class="tc-num"><span class="tc-num-badge">17</span> OOP</div>
+        <div class="tc-title">Classes (Inheritance)</div>
+        <div class="tc-desc">extends keyword, method overriding, super for constructors &amp; methods, access modifiers (public, protected, private).</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">extends</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">super</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">override</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">private</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">protected</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/interfaces.html">
+        <div class="tc-num"><span class="tc-num-badge">18</span> OOP</div>
+        <div class="tc-title">Interfaces</div>
+        <div class="tc-desc">Object structure contracts, optional &amp; readonly properties, abstract methods, extends &amp; implements, class vs interface.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">interface</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">implements</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">abstract</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">extends</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/generics.html">
+        <div class="tc-num"><span class="tc-num-badge">19</span> Advanced</div>
+        <div class="tc-title">Generics</div>
+        <div class="tc-desc">Type parameters &lt;T&gt;, generic functions/interfaces/classes, constraints with extends, and built-in utility types.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">&lt;T&gt;</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">constraints</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">Partial</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">Record</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/modules.html">
+        <div class="tc-num"><span class="tc-num-badge">20</span> Architecture</div>
+        <div class="tc-title">Modules</div>
+        <div class="tc-desc">export &amp; import keywords — create reusable utility files with shared variables, functions, and classes.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">export</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">import</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">reusability</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/async-await.html">
+        <div class="tc-num"><span class="tc-num-badge">21</span> Async</div>
+        <div class="tc-title">Async/Await &amp; Promises</div>
+        <div class="tc-desc">Callbacks, Promise states, async/await syntax, try/catch, Promise.all, Promise.race, and real-world API patterns.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">async</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">await</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">Promise</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">try/catch</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/error-handling.html">
+        <div class="tc-num"><span class="tc-num-badge">22</span> Patterns</div>
+        <div class="tc-title">Error Handling</div>
+        <div class="tc-desc">try/catch/finally, throw, custom error classes, unknown vs any, type guards, Result pattern, and best practices.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">try/catch</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">throw</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">custom errors</span>
+          <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">unknown</span>
+        </div>
+      </a>
+
+      <a class="topic-card" href="pages/comparisons.html">
+        <div class="tc-num"><span class="tc-num-badge" style="background:var(--amber);color:#000">★</span> Bonus</div>
+        <div class="tc-title">Key Comparisons</div>
+        <div class="tc-desc">14 essential A-vs-B comparisons — primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, and more.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">vs tables</span>
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">analogies</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">interview prep</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

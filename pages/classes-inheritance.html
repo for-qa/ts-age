@@ -1,0 +1,472 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Classes (Inheritance) â€” TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript inheritance â€” extends keyword, method overriding, super keyword for constructors and methods, access modifiers (public, protected, private), and parent-child class relationships.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tb-brand">
+    <div class="tb-brand-icon">TS</div>
+    <div>
+      <div class="tb-brand-name">TypeScript Learning Path</div>
+      <div class="tb-brand-sub">Session Notes</div>
+    </div>
+  </div>
+  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <div class="tb-topic-title">Classes (Inheritance)</div>
+</div>
+
+<div class="page-wrap">
+<div class="wrap">
+
+<nav id="nav-inherit">
+  <div class="nav-logo">
+    <div class="v">OOP</div>
+    <h2>Inheritance</h2>
+  </div>
+  <div class="nav-group">Core Concept</div>
+  <a href="#inh-what">What is Inheritance?</a>
+  <a href="#inh-extends">extends Keyword</a>
+  <div class="nav-group">Overriding</div>
+  <a href="#inh-override">Method Overriding</a>
+  <a href="#inh-constructor">Constructor in Child</a>
+  <div class="nav-group">super Keyword</div>
+  <a href="#inh-super-ctor">super() â€” Constructor</a>
+  <a href="#inh-super-method">super.method()</a>
+  <a href="#inh-super-prop">super.property âŒ</a>
+  <div class="nav-group">Access Modifiers</div>
+  <a href="#inh-access">public Â· protected Â· private</a>
+  <a href="#inh-access-demo">Demo &amp; Errors</a>
+  <div class="nav-group">Special Case</div>
+  <a href="#inh-parent-var">Parent Variable â†’ Child Object</a>
+  <div class="nav-group">Reference</div>
+  <a href="#inh-cheatsheet">Cheatsheet</a>
+</nav>
+
+<div class="content">
+
+<div class="hero" id="inh-top">
+  <div class="hero-tags">
+    <span class="hero-tag">TypeScript</span>
+    <span class="hero-tag">Inheritance</span>
+    <span class="hero-tag">OOP</span>
+    <span class="hero-tag">Access Modifiers</span>
+  </div>
+  <h1>Classes <span>(Inheritance)</span></h1>
+  <p>Reuse code across classes with extends, override methods, use the super keyword, and control access with public, protected, and private.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Keyword: extends</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Access Modifiers</div></div>
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">super Uses</div></div>
+  </div>
+</div>
+
+<!-- WHAT IS INHERITANCE -->
+<div class="sec" id="inh-what">
+  <div class="sec-label">Core Concept</div>
+  <h2>What is Inheritance?</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Inheritance is like a <strong>family business</strong>. The parent builds a restaurant with recipes, equipment, and staff. The child inherits ALL of that â€” and can add new dishes or change existing recipes. They don't start from scratch.</p></div>
+
+  <p>Inheritance lets a class <strong>reuse</strong> the properties and methods of another class. Instead of rewriting the same code, the child class <strong>acquires everything</strong> from the parent.</p>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Term</th><th>Also Called</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Parent class</strong></td><td>Base class, Super class</td><td>The original class with existing code</td></tr>
+      <tr><td><strong>Child class</strong></td><td>Derived class, Sub class</td><td>The new class that inherits + extends</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <pre><code>// Parent: has properties + methods
+// Child:  GETS everything from parent
+//         + can ADD new properties/methods
+//         + can OVERRIDE existing methods</code></pre>
+</div>
+
+<!-- EXTENDS -->
+<div class="sec" id="inh-extends">
+  <div class="sec-label">Syntax</div>
+  <h2>The <code>extends</code> Keyword</h2>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Car (parent) â†’ Honda (child)</div><span class="card-badge">extends</span></div>
+    <div class="card-body">
+      <pre><code>// PARENT CLASS
+class Car {
+  name: string;
+  color: string;
+  model: string;
+
+  constructor(name: string, color: string, model: string) {
+    this.name = name;
+    this.color = color;
+    this.model = model;
+  }
+
+  start(): void { console.log("Car started"); }
+  stop(): void { console.log("Car stopped"); }
+
+  displayInfo(): void {
+    console.log(`${this.name} | ${this.color} | ${this.model}`);
+  }
+}
+
+// CHILD CLASS â€” inherits everything from Car
+class Honda extends Car {
+  year: number;  // additional property
+
+  constructor(name: string, color: string, model: string, year: number) {
+    super(name, color, model);  // invoke parent constructor
+    this.year = year;           // assign child's own property
+  }
+
+  // Override: same name, different implementation
+  start(): void { console.log("Honda started"); }
+
+  // New method (only in Honda)
+  yom(): void {
+    console.log(`${this.name} | ${this.color} | ${this.model} | ${this.year}`);
+  }
+}</code></pre>
+      <p class="fn">Without <code>extends Car</code>, Honda and Car are unrelated. The keyword creates the parent-child bond.</p>
+    </div>
+  </div>
+</div>
+
+<!-- METHOD OVERRIDING -->
+<div class="sec" id="inh-override">
+  <div class="sec-label">Overriding</div>
+  <h2>Method Overriding â€” New Implementation, Same Name</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Your parents built a house (old design). You <strong>renovate</strong> it â€” same house, same address, but a new interior. That's overriding: same method name, new body.</p></div>
+
+  <p>When a child class has a method with the <strong>same name, same parameters, and same return type</strong> as the parent â€” the child's version <strong>replaces</strong> the parent's. The overridden (child) version is always called by default.</p>
+
+  <pre><code>// Parent
+class Car {
+  start(): void { console.log("Car started"); }  // original
+}
+
+// Child
+class Honda extends Car {
+  start(): void { console.log("Honda started"); } // overridden!
+}
+
+let h = new Honda("Honda", "Red", "City", 2024);
+
+h.start();          // "Honda started" â† child version called!
+h.stop();           // "Car stopped"   â† no override, parent version
+h.displayInfo();    // parent method â€” works from child object</code></pre>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Condition</th><th>Which version runs?</th></tr></thead>
+    <tbody>
+      <tr><td>Method exists <strong>only in parent</strong></td><td>Parent's version</td></tr>
+      <tr><td>Method exists <strong>in both</strong> (overridden)</td><td>Child's version (latest)</td></tr>
+      <tr><td>Method exists <strong>only in child</strong></td><td>Child's version</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- CONSTRUCTOR IN CHILD -->
+<div class="sec" id="inh-constructor">
+  <div class="sec-label">Constructor</div>
+  <h2>Child Class Constructor â€” The super() Rule</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> When a new branch office opens (child), the first thing they do is <strong>call headquarters</strong> (parent constructor) to set up the shared systems. Only THEN do they set up their own local equipment.</p></div>
+
+  <p>When both parent and child have constructors, the child MUST call <code>super()</code> first to invoke the parent's constructor. This is <strong>mandatory</strong> â€” TypeScript will throw an error if you skip it.</p>
+
+  <pre><code>class Honda extends Car {
+  year: number;
+
+  constructor(name: string, color: string, model: string, year: number) {
+    // Step 1: Call parent constructor FIRST (mandatory!)
+    super(name, color, model);
+
+    // Step 2: Then assign child's own properties
+    this.year = year;
+  }
+}</code></pre>
+
+  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Mandatory rule:</strong> <code>super()</code> must be the <strong>FIRST line</strong> in the child constructor. Write any other code AFTER the super call. Skipping it = compile error: "Constructors for derived class must contain a super call."</p></div>
+</div>
+
+<!-- SUPER â€” CONSTRUCTOR -->
+<div class="sec" id="inh-super-ctor">
+  <div class="sec-label">super Keyword</div>
+  <h2>super() â€” Invoke Parent Constructor</h2>
+
+  <pre><code>class Parent {
+  num: number = 10;
+
+  constructor() {
+    console.log("Parent constructor");
+  }
+
+  display(): void {
+    console.log("Display from Parent");
+  }
+}
+
+class Child extends Parent {
+  num: number = 20;  // overrides parent value
+
+  constructor() {
+    super();  // â† MUST call parent constructor first!
+    console.log("Child constructor");
+  }
+}
+
+let c = new Child();
+// Output:
+// "Parent constructor"  â† super() triggers this first
+// "Child constructor"   â† then child's own code runs</code></pre>
+</div>
+
+<!-- SUPER â€” METHOD -->
+<div class="sec" id="inh-super-method">
+  <div class="sec-label">super Keyword</div>
+  <h2>super.method() â€” Invoke Parent Method</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> You've redecorated the living room (overridden method). But sometimes a guest wants to see a <strong>photo of the original design</strong>. <code>super.display()</code> is that photo â€” it lets you call the parent's original version.</p></div>
+
+  <p>When a method is overridden, the child version runs by default. But you can <strong>still call the parent's version</strong> using <code>super.methodName()</code>.</p>
+
+  <pre><code>class Child extends Parent {
+  // Overridden method
+  display(): void {
+    super.display();  // â† calls PARENT's display()
+    console.log("Display from Child");
+  }
+
+  show(): void {
+    console.log(this.num);   // 20 (child's overridden value)
+  }
+}
+
+let c = new Child();
+c.display();
+// "Display from Parent"  â† super.display() triggered this
+// "Display from Child"   â† child's own code</code></pre>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Order doesn't matter for methods:</strong> Unlike <code>super()</code> in constructors (must be first line), <code>super.method()</code> can be called anywhere in the method body.</p></div>
+</div>
+
+<!-- SUPER â€” PROPERTY LIMITATION -->
+<div class="sec" id="inh-super-prop">
+  <div class="sec-label">super Keyword</div>
+  <h2>super.property âŒ â€” Not Supported in TypeScript</h2>
+
+  <pre><code>class Child extends Parent {
+  show(): void {
+    console.log(this.num);    // âœ… 20 â€” gets child's (latest) value
+    console.log(super.num);   // âŒ ERROR â€” cannot access parent property!
+  }
+}</code></pre>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>super Usage</th><th>Purpose</th><th>Supported?</th></tr></thead>
+    <tbody>
+      <tr><td><code>super()</code></td><td>Invoke parent constructor</td><td>âœ… Yes (mandatory in child constructor)</td></tr>
+      <tr><td><code>super.method()</code></td><td>Invoke parent method</td><td>âœ… Yes</td></tr>
+      <tr><td><code>super.property</code></td><td>Access parent property</td><td>âŒ No (works in Java, not in TS/JS)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note note-warn"><span class="note-i">âš </span><p><strong>TS vs Java:</strong> In Java, <code>super.variable</code> works. In TypeScript and JavaScript, it does NOT. You can only use <code>this.variable</code> (which gives the overridden/latest value).</p></div>
+</div>
+
+<!-- ACCESS MODIFIERS -->
+<div class="sec" id="inh-access">
+  <div class="sec-label">Access Control</div>
+  <h2>Access Modifiers â€” public Â· protected Â· private</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong><br>
+  <strong>public</strong> = Your <strong>name</strong> â€” anyone can know it, anywhere.<br>
+  <strong>protected</strong> = Your <strong>family recipes</strong> â€” shared within the family (parent + children), but not with outsiders.<br>
+  <strong>private</strong> = Your <strong>diary</strong> â€” only YOU can read it. Not even your children.</p></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Modifier</th><th>Within Class</th><th>In Child Class</th><th>Outside (via object)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>public</strong> (default)</td><td>âœ…</td><td>âœ…</td><td>âœ…</td></tr>
+      <tr><td><strong>protected</strong></td><td>âœ…</td><td>âœ…</td><td>âŒ</td></tr>
+      <tr><td><strong>private</strong></td><td>âœ…</td><td>âŒ</td><td>âŒ</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <pre><code>class Person {
+  public name: string;       // accessible EVERYWHERE
+  protected age: number;     // accessible in class + child class
+  private ssn: number;       // accessible ONLY in this class
+
+  constructor(name: string, age: number, ssn: number) {
+    this.name = name;
+    this.age = age;
+    this.ssn = ssn;
+  }
+
+  displayInfo(): void {
+    console.log(this.name);  // âœ… public â€” no problem
+    console.log(this.age);   // âœ… protected â€” same class, OK
+    console.log(this.ssn);   // âœ… private â€” same class, OK
+  }
+}</code></pre>
+</div>
+
+<!-- ACCESS MODIFIER DEMO -->
+<div class="sec" id="inh-access-demo">
+  <div class="sec-label">Demo</div>
+  <h2>Access Modifiers in Action</h2>
+
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Child class + outside access</div><span class="card-badge">Errors</span></div>
+    <div class="card-body">
+      <pre><code>class Employee extends Person {
+  private empId: number;
+
+  constructor(name: string, age: number, ssn: number, empId: number) {
+    super(name, age, ssn);
+    this.empId = empId;
+  }
+
+  showDetails(): void {
+    console.log(this.name);   // âœ… public â€” accessible anywhere
+    console.log(this.age);    // âœ… protected â€” child class, OK
+    console.log(this.ssn);    // âŒ ERROR: private â€” parent only!
+    console.log(this.empId);  // âœ… private â€” but same class, OK
+  }
+}
+
+// Outside both classes
+let emp = new Employee("John", 30, 12345, 101);
+
+console.log(emp.name);   // âœ… public â€” works everywhere
+console.log(emp.age);    // âŒ protected â€” only class + child
+console.log(emp.ssn);    // âŒ private â€” only within Person
+console.log(emp.empId);  // âŒ private â€” only within Employee</code></pre>
+      <p class="fn"><code>private</code> is the strictest â€” locked to one class. <code>protected</code> extends to children. <code>public</code> has no limits.</p>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Default is public.</strong> If you don't write any modifier, the property/method is <code>public</code>. In automation/testing, everything is usually left as public. Access modifiers matter more for application development and interview questions.</p></div>
+</div>
+
+<!-- PARENT VAR CHILD OBJ -->
+<div class="sec" id="inh-parent-var">
+  <div class="sec-label">Special Case</div>
+  <h2>Parent Variable Holding Child Object</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> You have a <strong>"Car" parking spot</strong> (parent-type variable). You park a Honda (child object) in it. You can do anything a generic "Car" can do â€” but you can't use Honda-specific features like the sunroof control.</p></div>
+
+  <p>A parent-type variable CAN hold a child-class object. But you can only access what the <strong>parent type knows about</strong>.</p>
+
+  <pre><code>// Parent-type variable, child-class object
+let car: Car = new Honda("Honda", "Red", "City", 2024);
+
+car.displayInfo();  // âœ… exists in BOTH classes â€” works
+car.start();        // âœ… overridden â€” child version runs ("Honda started")
+car.stop();         // âœ… exists in parent â€” works
+
+car.yom();          // âŒ ERROR: only in Honda, not in Car!
+car.year;           // âŒ ERROR: only in Honda, not in Car!</code></pre>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Method/Property</th><th>In Parent?</th><th>In Child?</th><th>Accessible?</th></tr></thead>
+    <tbody>
+      <tr><td><code>displayInfo()</code></td><td>âœ…</td><td>âœ… (inherited)</td><td>âœ… Yes</td></tr>
+      <tr><td><code>start()</code></td><td>âœ…</td><td>âœ… (overridden)</td><td>âœ… Yes (child version)</td></tr>
+      <tr><td><code>stop()</code></td><td>âœ…</td><td>âœ… (inherited)</td><td>âœ… Yes</td></tr>
+      <tr><td><code>yom()</code></td><td>âŒ</td><td>âœ…</td><td>âŒ Error</td></tr>
+      <tr><td><code>year</code></td><td>âŒ</td><td>âœ…</td><td>âŒ Error</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Rule:</strong> Inheritance flows <strong>parent â†’ child</strong> (top-down). Storing a child in a parent variable is going <strong>reverse</strong> â€” so child-only features become inaccessible. You can access anything that exists in BOTH classes or the parent class.</p></div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="inh-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Quick Reference Cheatsheet</h2>
+
+  <h3>Inheritance syntax</h3>
+  <pre><code>class Child extends Parent {
+  // gets ALL parent properties + methods
+  // can ADD new ones
+  // can OVERRIDE existing ones
+}</code></pre>
+
+  <h3>Constructor rule</h3>
+  <pre><code>constructor(parentParams..., childParams...) {
+  super(parentParams...);    // MUST be first line!
+  this.childProp = childParam;
+}</code></pre>
+
+  <h3>super keyword</h3>
+  <pre><code>super();              // âœ… invoke parent constructor (mandatory)
+super.methodName();   // âœ… invoke parent method
+super.propertyName;   // âŒ NOT supported in TypeScript!</code></pre>
+
+  <h3>Access modifiers</h3>
+  <pre><code>public name: string;     // everywhere
+protected age: number;   // class + child classes
+private ssn: number;     // this class ONLY</code></pre>
+
+  <h3>Method overriding</h3>
+  <pre><code>// Same name + same params + same return type = override
+// Child version ALWAYS runs by default
+// Use super.method() to call parent version</code></pre>
+
+  <h3>Parent variable â† child object</h3>
+  <pre><code>let car: Car = new Honda(...);
+// Can access: methods in parent OR both classes
+// Cannot access: child-only methods/properties</code></pre>
+
+  <h3>Key rules</h3>
+  <pre><code>// âœ… extends = creates parent-child relationship
+// âœ… Child gets ALL parent properties + methods
+// âœ… super() in constructor = FIRST LINE, mandatory
+// âœ… Overridden method = child version runs by default
+// âœ… Default access modifier = public
+// âœ… private = strictest, protected = family, public = everyone
+// âŒ super.property = NOT supported in TS (works in Java)
+// âŒ Child-only features inaccessible from parent-type variable</code></pre>
+
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Classes (Inheritance) &nbsp;Â·&nbsp; extends Â· super Â· access modifiers</p>
+</div>
+
+</div></div></div>
+
+<script>
+(function() {
+  const nav = document.getElementById('nav-inherit');
+  if (!nav) return;
+  const links = nav.querySelectorAll('a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('on'));
+        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
+})();
+</script>
+</body>
+</html>

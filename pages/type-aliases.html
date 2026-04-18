@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Type Aliases & Union Types â€” TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript type aliases and union types â€” creating custom types with the type keyword, union types with the pipe operator, literal types, intersection types, and discriminated unions.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div id="topbar">
+  <div class="tb-brand">
+    <div class="tb-brand-icon">TS</div>
+    <div>
+      <div class="tb-brand-name">TypeScript Learning Path</div>
+      <div class="tb-brand-sub">Session Notes</div>
+    </div>
+  </div>
+  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <div class="tb-topic-title">Type Aliases &amp; Union Types</div>
+</div>
+
+<div class="page-wrap">
+<div class="wrap">
+
+<nav id="nav-types">
+  <div class="nav-logo">
+    <div class="v">TS</div>
+    <h2>Types</h2>
+  </div>
+  <div class="nav-group">Type Aliases</div>
+  <a href="#ta-what">What is a Type Alias?</a>
+  <a href="#ta-object">Object Type Alias</a>
+  <a href="#ta-function">Function Type Alias</a>
+  <div class="nav-group">Union Types</div>
+  <a href="#ut-what">What is a Union Type?</a>
+  <a href="#ut-narrowing">Narrowing Unions</a>
+  <a href="#ut-literal">Literal Types</a>
+  <div class="nav-group">Advanced</div>
+  <a href="#it-inter">Intersection Types</a>
+  <a href="#dt-discrim">Discriminated Unions</a>
+  <div class="nav-group">Reference</div>
+  <a href="#ta-compare">Alias vs Interface</a>
+  <a href="#ta-cheatsheet">Cheatsheet</a>
+</nav>
+
+<div class="content">
+
+<div class="hero" id="ta-top">
+  <div class="hero-tags">
+    <span class="hero-tag">TypeScript</span>
+    <span class="hero-tag">Type Aliases</span>
+    <span class="hero-tag">Union Types</span>
+    <span class="hero-tag">Session Notes</span>
+  </div>
+  <h1>Type Aliases <span>&amp; Union Types</span></h1>
+  <p>Create reusable custom types, combine types with union and intersection operators, and use literal types for precise control.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Alias Patterns</div></div>
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Combining Operators</div></div>
+    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Key Concepts</div></div>
+  </div>
+</div>
+
+<!-- WHAT IS A TYPE ALIAS -->
+<div class="sec" id="ta-what">
+  <div class="sec-label">Core Concept</div>
+  <h2>What is a Type Alias?</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A type alias is like a <strong>nickname</strong>. Instead of saying "the tall guy with glasses who sits in the third row" every time, you just say "Raj." The nickname is shorter and reusable, but it refers to the exact same person.</p></div>
+
+  <p>A <strong>type alias</strong> gives a new name to an existing type using the <code>type</code> keyword. It makes complex types reusable and readable.</p>
+
+  <pre><code>// Without alias â€” repeating the type everywhere
+let age: number = 25;
+let price: number = 99.99;
+let score: number = 85;
+
+// With alias â€” give it a meaningful name
+type Age = number;
+type Price = number;
+type Score = number;
+
+let age: Age = 25;
+let price: Price = 99.99;
+let score: Score = 85;</code></pre>
+
+  <pre><code>// More useful â€” alias for complex types
+type StringOrNumber = string | number;
+
+let value1: StringOrNumber = "hello";  // âœ…
+let value2: StringOrNumber = 42;       // âœ…
+let value3: StringOrNumber = true;     // âŒ ERROR</code></pre>
+
+  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Syntax:</strong> <code>type AliasName = existingType;</code> â€” always starts with uppercase by convention. The alias is just a shortcut â€” it doesn't create a new type, just a new name.</p></div>
+</div>
+
+<!-- OBJECT TYPE ALIAS -->
+<div class="sec" id="ta-object">
+  <div class="sec-label">Object Aliases</div>
+  <h2>Object Type Alias â€” Reusable Object Shapes</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>standard order form</strong> at a restaurant. Every order must have: customer name, items, and total. The form template (type alias) is defined once and used for every order.</p></div>
+
+  <pre><code>// Define the shape once
+type Employee = {
+  id: number;
+  name: string;
+  department: string;
+  salary?: number;       // optional
+};
+
+// Reuse it for multiple objects
+let emp1: Employee = {
+  id: 101,
+  name: "John",
+  department: "Engineering"
+};
+
+let emp2: Employee = {
+  id: 102,
+  name: "Alice",
+  department: "Marketing",
+  salary: 75000           // optional â€” included here
+};
+
+console.log(emp1.name);         // "John"
+console.log(emp2.salary);       // 75000
+console.log(emp1.salary);       // undefined (not provided)</code></pre>
+
+  <div class="note note-warn"><span class="note-i">âš </span><p><strong>type vs interface for objects:</strong> Both can define object shapes. Use <code>type</code> when you need unions, intersections, or primitive aliases. Use <code>interface</code> when you need <code>extends</code> or <code>implements</code> with classes.</p></div>
+</div>
+
+<!-- FUNCTION TYPE ALIAS -->
+<div class="sec" id="ta-function">
+  <div class="sec-label">Function Aliases</div>
+  <h2>Function Type Alias â€” Reusable Function Signatures</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>job description</strong> â€” "Must accept two numbers and return one number." Multiple people (functions) can fit this description, but they all follow the same contract.</p></div>
+
+  <pre><code>// Define the function shape
+type MathOperation = (a: number, b: number) => number;
+
+// Multiple functions matching the shape
+let add: MathOperation = (a, b) => a + b;
+let subtract: MathOperation = (a, b) => a - b;
+let multiply: MathOperation = (a, b) => a * b;
+
+console.log(add(10, 5));       // 15
+console.log(subtract(10, 5));  // 5
+console.log(multiply(10, 5));  // 50</code></pre>
+
+  <pre><code>// Callback parameter using type alias
+type Logger = (message: string) => void;
+
+function processData(data: string, log: Logger): void {
+  log(`Processing: ${data}`);
+}
+
+processData("user-info", (msg) => console.log(msg));
+// "Processing: user-info"</code></pre>
+</div>
+
+<!-- WHAT IS A UNION TYPE -->
+<div class="sec" id="ut-what">
+  <div class="sec-label">Union Types</div>
+  <h2>What is a Union Type?</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A union type is like a <strong>parking spot that accepts cars OR bikes</strong>. The spot doesn't care which one you park â€” but you can only park one at a time, and you must check which one is there before interacting with it.</p></div>
+
+  <p>A <strong>union type</strong> lets a variable hold values of <strong>multiple types</strong> using the pipe <code>|</code> operator.</p>
+
+  <pre><code>// Variable can be string OR number
+let id: string | number;
+
+id = "ABC123";  // âœ… string
+id = 42;        // âœ… number
+id = true;      // âŒ ERROR â€” boolean not allowed
+
+// Function accepting union type
+function printId(id: string | number): void {
+  console.log(`Your ID: ${id}`);
+}
+
+printId("ABC");   // âœ…
+printId(101);     // âœ…
+printId(true);    // âŒ ERROR</code></pre>
+
+  <pre><code>// Combine with type alias for reusability
+type Status = "active" | "inactive" | "suspended";
+type Response = { data: string } | { error: string };
+
+let userStatus: Status = "active";     // âœ…
+let userStatus2: Status = "deleted";   // âŒ ERROR</code></pre>
+</div>
+
+<!-- NARROWING UNIONS -->
+<div class="sec" id="ut-narrowing">
+  <div class="sec-label">Working with Unions</div>
+  <h2>Narrowing Unions â€” Checking Types at Runtime</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like opening a <strong>mystery gift box</strong>. You know it's either a book or a toy inside. Before you can READ it (book) or PLAY with it (toy), you must OPEN the box and check what's inside. That check = narrowing.</p></div>
+
+  <p>When a variable can be multiple types, you must <strong>narrow</strong> (check) the type before using type-specific methods.</p>
+
+  <pre><code>function processValue(value: string | number): void {
+  // âŒ Cannot call .toUpperCase() directly â€” might be a number!
+
+  if (typeof value === "string") {
+    // TypeScript KNOWS it's a string here
+    console.log(value.toUpperCase());  // âœ… string methods work
+  } else {
+    // TypeScript KNOWS it's a number here
+    console.log(value.toFixed(2));     // âœ… number methods work
+  }
+}
+
+processValue("hello");  // "HELLO"
+processValue(42.567);   // "42.57"</code></pre>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Narrowing Method</th><th>Works For</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><code>typeof</code></td><td>Primitives</td><td><code>typeof x === "string"</code></td></tr>
+      <tr><td><code>instanceof</code></td><td>Classes</td><td><code>x instanceof Date</code></td></tr>
+      <tr><td><code>in</code></td><td>Object properties</td><td><code>"name" in x</code></td></tr>
+      <tr><td>Truthiness</td><td>null/undefined</td><td><code>if (x) { ... }</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- LITERAL TYPES -->
+<div class="sec" id="ut-literal">
+  <div class="sec-label">Literal Types</div>
+  <h2>Literal Types â€” Exact Values Only</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>traffic signal</strong> â€” it can ONLY be "red", "yellow", or "green". Not "blue", not "purple". Literal types restrict a variable to specific exact values.</p></div>
+
+  <pre><code>// Only these exact values are allowed
+type Direction = "up" | "down" | "left" | "right";
+type DiceRoll = 1 | 2 | 3 | 4 | 5 | 6;
+type Toggle = true | false;
+
+let move: Direction = "up";     // âœ…
+let move2: Direction = "back";  // âŒ ERROR
+
+let roll: DiceRoll = 3;        // âœ…
+let roll2: DiceRoll = 7;       // âŒ ERROR
+
+// Perfect for function parameters
+function setTheme(theme: "light" | "dark"): void {
+  console.log(`Theme set to: ${theme}`);
+}
+
+setTheme("dark");     // âœ…
+setTheme("blue");     // âŒ ERROR</code></pre>
+</div>
+
+<!-- INTERSECTION TYPES -->
+<div class="sec" id="it-inter">
+  <div class="sec-label">Advanced</div>
+  <h2>Intersection Types â€” Combine Multiple Types</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Union (<code>|</code>) = "I want tea OR coffee" (one of them). Intersection (<code>&amp;</code>) = "I want a person who is BOTH a developer AND a designer" (must be everything combined).</p></div>
+
+  <p>The <code>&amp;</code> operator <strong>merges</strong> multiple types â€” the result must satisfy ALL types.</p>
+
+  <pre><code>type Person = {
+  name: string;
+  age: number;
+};
+
+type Employee = {
+  employeeId: number;
+  department: string;
+};
+
+// Must have ALL properties from BOTH types
+type Staff = Person & Employee;
+
+let member: Staff = {
+  name: "Alice",
+  age: 30,
+  employeeId: 101,
+  department: "Engineering"
+};
+// Missing any property â†’ ERROR!</code></pre>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Operator</th><th>Symbol</th><th>Meaning</th><th>Result must satisfy</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Union</strong></td><td><code>|</code></td><td>OR</td><td>ONE of the types</td></tr>
+      <tr><td><strong>Intersection</strong></td><td><code>&amp;</code></td><td>AND</td><td>ALL of the types</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- DISCRIMINATED UNIONS -->
+<div class="sec" id="dt-discrim">
+  <div class="sec-label">Advanced</div>
+  <h2>Discriminated Unions â€” Tagged Choices</h2>
+  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>delivery package</strong> with a label. If the label says "fragile" â†’ handle with care. If it says "heavy" â†’ use a forklift. The label (discriminant) tells you how to handle it.</p></div>
+
+  <pre><code>type Success = { status: "success"; data: string };
+type Failure = { status: "error"; message: string };
+type Response = Success | Failure;
+
+function handleResponse(res: Response): void {
+  // The 'status' field is the discriminant
+  if (res.status === "success") {
+    console.log(`Data: ${res.data}`);      // âœ… TS knows 'data' exists
+  } else {
+    console.log(`Error: ${res.message}`);  // âœ… TS knows 'message' exists
+  }
+}
+
+handleResponse({ status: "success", data: "User loaded" });
+handleResponse({ status: "error", message: "Not found" });</code></pre>
+</div>
+
+<!-- TYPE ALIAS VS INTERFACE -->
+<div class="sec" id="ta-compare">
+  <div class="sec-label">Comparison</div>
+  <h2>Type Alias vs Interface</h2>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Feature</th><th>Type Alias</th><th>Interface</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Object shapes</strong></td><td>âœ…</td><td>âœ…</td></tr>
+      <tr><td><strong>Primitives</strong></td><td>âœ… <code>type Age = number</code></td><td>âŒ</td></tr>
+      <tr><td><strong>Unions</strong></td><td>âœ… <code>type X = A | B</code></td><td>âŒ</td></tr>
+      <tr><td><strong>Intersections</strong></td><td>âœ… <code>type X = A & B</code></td><td>âŒ</td></tr>
+      <tr><td><strong>Literal types</strong></td><td>âœ…</td><td>âŒ</td></tr>
+      <tr><td><strong>extends</strong></td><td>âŒ (use <code>&amp;</code>)</td><td>âœ…</td></tr>
+      <tr><td><strong>implements</strong></td><td>âœ…</td><td>âœ…</td></tr>
+      <tr><td><strong>Declaration merging</strong></td><td>âŒ</td><td>âœ…</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <pre><code>// Rule of thumb:
+// Use 'interface' for objects that may be extended/implemented
+// Use 'type' for unions, intersections, primitives, and complex types</code></pre>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="ta-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Quick Reference Cheatsheet</h2>
+
+  <h3>Type aliases</h3>
+  <pre><code>type Age = number;                          // primitive alias
+type Point = { x: number; y: number };      // object alias
+type Callback = (msg: string) => void;      // function alias</code></pre>
+
+  <h3>Union types</h3>
+  <pre><code>type ID = string | number;                  // accept either type
+type Status = "active" | "inactive";        // literal union
+type Result = Success | Failure;            // object union</code></pre>
+
+  <h3>Intersection types</h3>
+  <pre><code>type Staff = Person & Employee;             // must be BOTH</code></pre>
+
+  <h3>Narrowing</h3>
+  <pre><code>if (typeof x === "string") { }              // primitive check
+if (x instanceof MyClass) { }              // class check
+if ("prop" in x) { }                       // property check</code></pre>
+
+  <h3>Key rules</h3>
+  <pre><code>// âœ… type = gives a new NAME to any type
+// âœ… | (union) = value can be ONE of the listed types
+// âœ… & (intersection) = value must satisfy ALL types
+// âœ… Literal types = restrict to exact values
+// âœ… Always narrow union types before using type-specific methods
+// âœ… Use type for unions/intersections, interface for class contracts</code></pre>
+
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Type Aliases & Union Types &nbsp;Â·&nbsp; type Â· union Â· intersection Â· literal</p>
+</div>
+
+</div></div></div>
+
+<script>
+(function() {
+  const nav = document.getElementById('nav-types');
+  if (!nav) return;
+  const links = nav.querySelectorAll('a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('on'));
+        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
+})();
+</script>
+</body>
+</html>
