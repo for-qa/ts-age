@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Conditional Statements â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript conditional statements â€” if, if-else, nested if-else, switch-case with real-life examples and interview tips.">
+<title>Conditional Statements — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript conditional statements — if, if-else, nested if-else, switch-case with real-life examples and interview tips.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Conditional Statements</div>
 </div>
 
@@ -34,9 +34,9 @@
   <a href="#cs-intro">What are Statements?</a>
   <div class="nav-group">Types</div>
   <a href="#cs-if">if Statement</a>
-  <a href="#cs-ifelse">if â€¦ else</a>
-  <a href="#cs-nested">Nested if â€¦ else if</a>
-  <a href="#cs-switch">switch â€¦ case</a>
+  <a href="#cs-ifelse">if … else</a>
+  <a href="#cs-nested">Nested if … else if</a>
+  <a href="#cs-switch">switch … case</a>
   <a href="#cs-break">Why break Matters</a>
   <div class="nav-group">Reference</div>
   <a href="#cs-compare">Comparison Table</a>
@@ -53,7 +53,7 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Conditional <span>Statements</span></h1>
-  <p>How to make decisions in code â€” execute different blocks based on conditions. Covers if, if-else, nested if-else, and switch-case with practical examples.</p>
+  <p>How to make decisions in code — execute different blocks based on conditions. Covers if, if-else, nested if-else, and switch-case with practical examples.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">4</div><div class="stat-l">Statement Types</div></div>
     <div class="stat"><div class="stat-n">6</div><div class="stat-l">Examples</div></div>
@@ -65,9 +65,9 @@
 <div class="sec" id="cs-intro">
   <div class="sec-label">Concepts</div>
   <h2>Two Types of Statements</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Think of statements as <strong>road signs</strong>:<br>
-  ðŸš¦ <strong>Conditional</strong> = A <strong>fork in the road</strong> â€” "If it's raining, take the tunnel. Otherwise, take the bridge." You choose ONE path based on a condition.<br>
-  ðŸ”„ <strong>Looping</strong> = A <strong>roundabout</strong> â€” you keep going around until you find your exit. You repeat the same action multiple times.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Think of statements as <strong>road signs</strong>:<br>
+  ✓ <strong>Conditional</strong> = A <strong>fork in the road</strong> — "If it's raining, take the tunnel. Otherwise, take the bridge." You choose ONE path based on a condition.<br>
+  ✓ <strong>Looping</strong> = A <strong>roundabout</strong> — you keep going around until you find your exit. You repeat the same action multiple times.</p></div>
 
   <div class="pipe">
     <div class="pipe-step"><div class="pipe-ph ph1-c">Type 1</div><div class="pipe-name">Conditional / Decision-Making</div><div class="pipe-pts">if, if-else, nested if-else, switch-case</div></div>
@@ -78,17 +78,17 @@
 <!-- IF ONLY -->
 <div class="sec" id="cs-if">
   <div class="sec-label">Type 1</div>
-  <h2>if Statement â€” "Do this IF true"</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> An <code>if</code> statement is like a <strong>bouncer at a club</strong> â€” "IF you have an ID, you can enter." No ID? Nothing happens â€” you just walk away. There's no "else" â€” the bouncer doesn't say anything to people who don't qualify.</p></div>
+  <h2>if Statement — "Do this IF true"</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> An <code>if</code> statement is like a <strong>bouncer at a club</strong> — "IF you have an ID, you can enter." No ID? Nothing happens — you just walk away. There's no "else" — the bouncer doesn't say anything to people who don't qualify.</p></div>
 
   <h3>Syntax</h3>
   <pre><code>if (condition) {
   // runs ONLY if condition is true
-  // if false â†’ this entire block is skipped
+  // if false → this entire block is skipped
 }</code></pre>
 
   <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">Example â€” voting eligibility</div><span class="card-badge">if only</span></div>
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Example — voting eligibility</div><span class="card-badge">if only</span></div>
     <div class="card-body">
       <pre><code>let age: number = 20;
 
@@ -97,7 +97,7 @@ if (age >= 18) {
 }
 // Output: "You are eligible to vote!"
 
-// Change age to 15 â†’ NO output at all (condition is false)</code></pre>
+// Change age to 15 → NO output at all (condition is false)</code></pre>
       <p class="fn">The condition inside <code>()</code> must return <strong>true or false</strong>. Use relational operators (<code>&gt; &lt; &gt;= &lt;= == !=</code>) or logical operators (<code>&& || !</code>).</p>
     </div>
   </div>
@@ -106,8 +106,8 @@ if (age >= 18) {
 <!-- IF-ELSE -->
 <div class="sec" id="cs-ifelse">
   <div class="sec-label">Type 2</div>
-  <h2>if â€¦ else â€” "Do this OR that"</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>if-else</code> is like a <strong>traffic light</strong> â€” green means GO (if block runs), red means STOP (else block runs). One of the two ALWAYS happens. You never just stand at the intersection doing nothing.</p></div>
+  <h2>if … else — "Do this OR that"</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>if-else</code> is like a <strong>traffic light</strong> — green means GO (if block runs), red means STOP (else block runs). One of the two ALWAYS happens. You never just stand at the intersection doing nothing.</p></div>
 
   <h3>Syntax</h3>
   <pre><code>if (condition) {
@@ -115,10 +115,10 @@ if (age >= 18) {
 } else {
   // runs if condition is FALSE
 }
-// Only ONE block executes â€” never both!</code></pre>
+// Only ONE block executes — never both!</code></pre>
 
   <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">Example â€” even or odd number</div><span class="card-badge">if-else</span></div>
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Example — even or odd number</div><span class="card-badge">if-else</span></div>
     <div class="card-body">
       <pre><code>let num: number = 10;
 
@@ -129,24 +129,24 @@ if (num % 2 === 0) {
 }
 // Output: "10 is an Even number"
 
-// num = 15 â†’ Output: "15 is an Odd number"</code></pre>
-      <p class="fn"><code>%</code> is the modular operator â€” it returns the <strong>remainder</strong>. If <code>num % 2</code> is 0, the number divides evenly by 2 â†’ it's even!</p>
+// num = 15 → Output: "15 is an Odd number"</code></pre>
+      <p class="fn"><code>%</code> is the modular operator — it returns the <strong>remainder</strong>. If <code>num % 2</code> is 0, the number divides evenly by 2 → it's even!</p>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Template literals reminder:</strong> Use backticks <code>`</code> with <code>${variable}</code> to insert variable values into strings. Single/double quotes won't work for this â€” use <code>+</code> concatenation instead.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Template literals reminder:</strong> Use backticks <code>`</code> with <code>${variable}</code> to insert variable values into strings. Single/double quotes won't work for this — use <code>+</code> concatenation instead.</p></div>
 </div>
 
 <!-- NESTED IF-ELSE -->
 <div class="sec" id="cs-nested">
   <div class="sec-label">Type 3</div>
-  <h2>Nested if â€¦ else if â€” Multiple Conditions</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Nested if-else is like a <strong>restaurant menu with price tiers</strong>:<br>
-  ðŸ’Ž Budget â‰¥ $100? â†’ Fine dining<br>
-  ðŸ’° Budget â‰¥ $50? â†’ Casual restaurant<br>
-  ðŸª™ Budget â‰¥ $20? â†’ Fast food<br>
-  ðŸ†“ Otherwise â†’ Cook at home<br>
-  The waiter checks from top to bottom. The FIRST match wins â€” no need to check further.</p></div>
+  <h2>Nested if … else if — Multiple Conditions</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Nested if-else is like a <strong>restaurant menu with price tiers</strong>:<br>
+  ✓ Budget ≥ $100? → Fine dining<br>
+  ✓ Budget ≥ $50? → Casual restaurant<br>
+  ✓ Budget ≥ $20? → Fast food<br>
+  ✓ Otherwise → Cook at home<br>
+  The waiter checks from top to bottom. The FIRST match wins — no need to check further.</p></div>
 
   <h3>Syntax</h3>
   <pre><code>if (condition1) {
@@ -160,7 +160,7 @@ if (num % 2 === 0) {
 }</code></pre>
 
   <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">3</div><div class="card-title">Example â€” grade calculator</div><span class="card-badge">Nested</span></div>
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Example — grade calculator</div><span class="card-badge">Nested</span></div>
     <div class="card-body">
       <pre><code>let marks: number = 85;
 
@@ -173,15 +173,15 @@ if (marks >= 90 && marks <= 100) {
 } else {
   console.log("Grade D");
 }
-// marks = 85 â†’ "Grade B"
-// marks = 95 â†’ "Grade A"
-// marks = 50 â†’ "Grade D"</code></pre>
-      <p class="fn">Use <code>&&</code> (AND) to combine conditions for ranges. The first matching condition executes â€” the rest are skipped.</p>
+// marks = 85 → "Grade B"
+// marks = 95 → "Grade A"
+// marks = 50 → "Grade D"</code></pre>
+      <p class="fn">Use <code>&&</code> (AND) to combine conditions for ranges. The first matching condition executes — the rest are skipped.</p>
     </div>
   </div>
 
   <div class="card ph4-card">
-    <div class="card-head"><div class="card-num">4</div><div class="card-title">Example â€” browser selection (with strict equality)</div><span class="card-badge">Automation</span></div>
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Example — browser selection (with strict equality)</div><span class="card-badge">Automation</span></div>
     <div class="card-body">
       <pre><code>let browser: string = "Chrome";
 
@@ -196,19 +196,19 @@ if (browser === "Chrome") {
 }
 // Output: "Browser is Chrome"
 
-// ðŸ‘† Using === (strict equality) to compare value AND type.
+// ✓ Using === (strict equality) to compare value AND type.
 // This is a common pattern in test automation!</code></pre>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Top-to-bottom:</strong> Conditions are checked from first to last. The moment ONE matches, its block runs and the rest are <strong>completely skipped</strong>. Only one block ever executes.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Top-to-bottom:</strong> Conditions are checked from first to last. The moment ONE matches, its block runs and the rest are <strong>completely skipped</strong>. Only one block ever executes.</p></div>
 </div>
 
 <!-- SWITCH CASE -->
 <div class="sec" id="cs-switch">
   <div class="sec-label">Type 4</div>
-  <h2>switch â€¦ case â€” Match a Value</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A <code>switch</code> statement is like a <strong>vending machine</strong>. You press a button (the expression), and the machine checks which slot matches your button: A1 â†’ chips, A2 â†’ soda, A3 â†’ candy. If no slot matches â†’ "invalid selection" (default). One button, one product.</p></div>
+  <h2>switch … case — Match a Value</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A <code>switch</code> statement is like a <strong>vending machine</strong>. You press a button (the expression), and the machine checks which slot matches your button: A1 → chips, A2 → soda, A3 → candy. If no slot matches → "invalid selection" (default). One button, one product.</p></div>
 
   <h3>Syntax</h3>
   <pre><code>switch (expression) {
@@ -234,7 +234,7 @@ if (browser === "Chrome") {
   </div>
 
   <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">5</div><div class="card-title">Example â€” day of the week</div><span class="card-badge">switch</span></div>
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Example — day of the week</div><span class="card-badge">switch</span></div>
     <div class="card-body">
       <pre><code>let day: number = 3;
 
@@ -248,14 +248,14 @@ switch (day) {
   case 7: console.log("Sunday");    break;
   default: console.log("Invalid day");
 }
-// day = 3 â†’ "Wednesday"
-// day = 7 â†’ "Sunday"
-// day = 10 â†’ "Invalid day"</code></pre>
+// day = 3 → "Wednesday"
+// day = 7 → "Sunday"
+// day = 10 → "Invalid day"</code></pre>
     </div>
   </div>
 
   <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">6</div><div class="card-title">Example â€” expression in switch (not just a variable)</div><span class="card-badge">Expression</span></div>
+    <div class="card-head"><div class="card-num">6</div><div class="card-title">Example — expression in switch (not just a variable)</div><span class="card-badge">Expression</span></div>
     <div class="card-body">
       <pre><code>let x: number = 20, y: number = 10;
 
@@ -267,12 +267,12 @@ switch (x - y) {       // expression returns 10
     console.log("Result is five");
     break;
   case 10:
-    console.log("Result is ten");   // â† this runs!
+    console.log("Result is ten");   // ← this runs!
     break;
   default:
     console.log("Result is something else");
 }
-// x - y = 10 â†’ matches case 10 â†’ "Result is ten"</code></pre>
+// x - y = 10 → matches case 10 → "Result is ten"</code></pre>
     </div>
   </div>
 </div>
@@ -281,25 +281,25 @@ switch (x - y) {       // expression returns 10
 <div class="sec" id="cs-break">
   <div class="sec-label">Important!</div>
   <h2>Why <code>break</code> is Mandatory</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>break</code> is like an <strong>exit door</strong> in a building. If you find your room on floor 3, you go in and leave through the exit. Without the exit door, you'd keep walking through floor 4, floor 5, floor 6 â€” visiting rooms you never needed!</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>break</code> is like an <strong>exit door</strong> in a building. If you find your room on floor 3, you go in and leave through the exit. Without the exit door, you'd keep walking through floor 4, floor 5, floor 6 — visiting rooms you never needed!</p></div>
 
   <div class="card ph5-card">
-    <div class="card-head"><div class="card-num">!</div><div class="card-title">Without break â€” fall-through bug!</div><span class="card-badge">âš  Bug</span></div>
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Without break — fall-through bug!</div><span class="card-badge">⚠ Bug</span></div>
     <div class="card-body">
       <pre><code>let day: number = 1;
 
 switch (day) {
-  case 1: console.log("Monday");     // â† matches here
+  case 1: console.log("Monday");     // ← matches here
   // NO break! Falls through to case 2...
-  case 2: console.log("Tuesday");    // â† also runs!
+  case 2: console.log("Tuesday");    // ← also runs!
   // NO break! Falls through to case 3...
-  case 3: console.log("Wednesday");  // â† also runs!
-    break;                            // â† finally stops here
+  case 3: console.log("Wednesday");  // ← also runs!
+    break;                            // ← finally stops here
 }
 // Output:
 // Monday
 // Tuesday
-// Wednesday   â† only wanted Monday!</code></pre>
+// Wednesday   ← only wanted Monday!</code></pre>
       <p class="fn">Without <code>break</code>, execution "falls through" to the next case regardless of whether it matches. Always use <code>break</code> after each case!</p>
     </div>
   </div>
@@ -327,8 +327,8 @@ switch (day) {
     <tbody>
       <tr><td>Best for</td><td>Ranges (<code>&gt;= 90</code>), complex logic</td><td>Exact values (<code>1, 2, 3</code>)</td></tr>
       <tr><td>Code length</td><td>Longer with many conditions</td><td>Shorter, cleaner</td></tr>
-      <tr><td>Uses conditions?</td><td>Yes (true/false)</td><td>No â€” uses expressions (any value)</td></tr>
-      <tr><td>Needs <code>break</code>?</td><td>No</td><td><span class="p p-red">Yes â€” mandatory!</span></td></tr>
+      <tr><td>Uses conditions?</td><td>Yes (true/false)</td><td>No — uses expressions (any value)</td></tr>
+      <tr><td>Needs <code>break</code>?</td><td>No</td><td><span class="p p-red">Yes — mandatory!</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -339,19 +339,19 @@ switch (day) {
   <div class="sec-label">Reference</div>
   <h2>Quick Reference Cheatsheet</h2>
 
-  <h3>if â€” single check</h3>
+  <h3>if — single check</h3>
   <pre><code>if (age >= 18) {
   console.log("Adult");
 }</code></pre>
 
-  <h3>if-else â€” two paths</h3>
+  <h3>if-else — two paths</h3>
   <pre><code>if (num % 2 === 0) {
   console.log("Even");
 } else {
   console.log("Odd");
 }</code></pre>
 
-  <h3>Nested if-else â€” multiple conditions</h3>
+  <h3>Nested if-else — multiple conditions</h3>
   <pre><code>if (marks >= 90) {
   console.log("Grade A");
 } else if (marks >= 75) {
@@ -362,7 +362,7 @@ switch (day) {
   console.log("Grade D");
 }</code></pre>
 
-  <h3>switch-case â€” exact value matching</h3>
+  <h3>switch-case — exact value matching</h3>
   <pre><code>switch (day) {
   case 1: console.log("Monday");  break;
   case 2: console.log("Tuesday"); break;
@@ -371,15 +371,15 @@ switch (day) {
 }</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… Conditions return true/false (for if-else)
-// âœ… Expressions return any value (for switch)
-// âœ… Always use break in switch-case
-// âœ… default is optional but recommended
-// âœ… Use === (strict equality) for string comparisons
-// âœ… Only ONE block executes â€” the first match wins</code></pre>
+  <pre><code>// ✅ Conditions return true/false (for if-else)
+// ✅ Expressions return any value (for switch)
+// ✅ Always use break in switch-case
+// ✅ default is optional but recommended
+// ✅ Use === (strict equality) for string comparisons
+// ✅ Only ONE block executes — the first match wins</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Conditional Statements &nbsp;Â·&nbsp; Next: Loops</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Conditional Statements &nbsp;·&nbsp; Next: Loops</p>
 </div>
 
 </div></div></div>

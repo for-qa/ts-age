@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Modules â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript modules â€” export variables, functions, and classes from one file and import them into another for reusability. Understand the module concept for utility files.">
+<title>Modules — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript modules — export variables, functions, and classes from one file and import them into another for reusability. Understand the module concept for utility files.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Modules</div>
 </div>
 
@@ -52,11 +52,11 @@
     <span class="hero-tag">import</span>
   </div>
   <h1>Modules</h1>
-  <p>Create reusable files with export and import â€” the foundation of utility files in automation and development.</p>
+  <p>Create reusable files with export and import — the foundation of utility files in automation and development.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Keywords</div></div>
     <div class="stat"><div class="stat-n">3</div><div class="stat-l">Exportable Types</div></div>
-    <div class="stat"><div class="stat-n">âˆž</div><div class="stat-l">Reusability</div></div>
+    <div class="stat"><div class="stat-n">↾</div><div class="stat-l">Reusability</div></div>
   </div>
 </div>
 
@@ -64,9 +64,9 @@
 <div class="sec" id="mod-what">
   <div class="sec-label">Core Concept</div>
   <h2>What is a Module?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A module is like a <strong>toolbox in a workshop</strong>. Instead of carrying a hammer, screwdriver, and wrench everywhere, you keep them in ONE toolbox. Any worker (file) who needs a tool just opens the toolbox (imports) and uses what they need.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A module is like a <strong>toolbox in a workshop</strong>. Instead of carrying a hammer, screwdriver, and wrench everywhere, you keep them in ONE toolbox. Any worker (file) who needs a tool just opens the toolbox (imports) and uses what they need.</p></div>
 
-  <p>A module is a <strong>file that contains reusable components</strong> â€” variables, functions, classes â€” that can be shared across multiple files using <code>export</code> and <code>import</code>.</p>
+  <p>A module is a <strong>file that contains reusable components</strong> — variables, functions, classes — that can be shared across multiple files using <code>export</code> and <code>import</code>.</p>
 
   <div class="bordered">
   <table>
@@ -80,16 +80,16 @@
   </table>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Module â‰  Class.</strong> Don't compare them. A module is a FILE containing reusable code. A class is a blueprint for objects. A module can CONTAIN classes, functions, variables â€” anything.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Module ≠ Class.</strong> Don't compare them. A module is a FILE containing reusable code. A class is a blueprint for objects. A module can CONTAIN classes, functions, variables — anything.</p></div>
 </div>
 
 <!-- THE PROBLEM -->
 <div class="sec" id="mod-problem">
   <div class="sec-label">Why Modules?</div>
   <h2>The Problem Without Modules</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Imagine 3 classrooms all need the same math formulas. Without modules, each teacher writes the formulas on their own board (duplication!). With modules, there's ONE reference sheet that all classrooms share.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Imagine 3 classrooms all need the same math formulas. Without modules, each teacher writes the formulas on their own board (duplication!). With modules, there's ONE reference sheet that all classrooms share.</p></div>
 
-  <pre><code>// âŒ WITHOUT modules â€” duplication everywhere!
+  <pre><code>// ❌ WITHOUT modules — duplication everywhere!
 
 // test1.ts
 function add(a: number, b: number) { return a + b; }  // duplicated!
@@ -105,7 +105,7 @@ console.log(add(100, 200));</code></pre>
 
   <p><strong>Problems:</strong> No reusability, code duplication, increased file length, harder to maintain.</p>
 
-  <pre><code>// âŒ Without export, other files CANNOT access your code!
+  <pre><code>// ❌ Without export, other files CANNOT access your code!
 
 // module.ts
 let appName = "Calculator";
@@ -117,12 +117,12 @@ console.log(appName);  // ERROR: appName is not defined!</code></pre>
 <!-- EXPORT -->
 <div class="sec" id="mod-export">
   <div class="sec-label">Step 1</div>
-  <h2><code>export</code> â€” Make Code Available to Other Files</h2>
+  <h2><code>export</code> — Make Code Available to Other Files</h2>
 
   <p>Add the <code>export</code> keyword in front of any variable, function, or class you want to share.</p>
 
   <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">module.ts â€” the reusable file</div><span class="card-badge">export</span></div>
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">module.ts — the reusable file</div><span class="card-badge">export</span></div>
     <div class="card-body">
       <pre><code>// Export a variable
 export let appName: string = "Calculator";
@@ -142,13 +142,13 @@ export class Formatter {
     </div>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Every item needs <code>export</code>.</strong> You must write <code>export</code> in front of EACH variable, function, or class you want to share. There's no single "export all" shortcut at the top.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Every item needs <code>export</code>.</strong> You must write <code>export</code> in front of EACH variable, function, or class you want to share. There's no single "export all" shortcut at the top.</p></div>
 </div>
 
 <!-- IMPORT -->
 <div class="sec" id="mod-import">
   <div class="sec-label">Step 2</div>
-  <h2><code>import</code> â€” Use Code from Another File</h2>
+  <h2><code>import</code> — Use Code from Another File</h2>
 
   <p>In the file where you want to USE the module's code, write an <code>import</code> statement at the top.</p>
 
@@ -157,9 +157,9 @@ import { appName } from "./module";
 import { add } from "./module";
 import { Formatter } from "./module";
 
-// OR â€” import everything in ONE line!
+// OR — import everything in ONE line!
 import { appName, add, Formatter } from "./module";
-//                                       â†‘ no .ts extension!</code></pre>
+//                                       → no .ts extension!</code></pre>
 
   <div class="bordered">
   <table>
@@ -167,7 +167,7 @@ import { appName, add, Formatter } from "./module";
     <tbody>
       <tr><td>Syntax</td><td><code>import { name } from "./path"</code></td></tr>
       <tr><td>Path</td><td>Relative path: <code>./</code> = same folder</td></tr>
-      <tr><td>Extension</td><td>Do NOT include <code>.ts</code> â€” just the filename</td></tr>
+      <tr><td>Extension</td><td>Do NOT include <code>.ts</code> — just the filename</td></tr>
       <tr><td>Multiple items</td><td>Comma-separated inside <code>{ }</code></td></tr>
       <tr><td>Position</td><td>Must be at the TOP of the file</td></tr>
     </tbody>
@@ -181,7 +181,7 @@ import { appName, add, Formatter } from "./module";
   <h2>Full Module Workflow</h2>
 
   <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">A</div><div class="card-title">module.ts â€” the reusable file</div><span class="card-badge">export</span></div>
+    <div class="card-head"><div class="card-num">A</div><div class="card-title">module.ts — the reusable file</div><span class="card-badge">export</span></div>
     <div class="card-body">
       <pre><code>export let appName: string = "Calculator";
 
@@ -198,18 +198,18 @@ export class Formatter {
   </div>
 
   <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">B</div><div class="card-title">main.ts â€” uses the module</div><span class="card-badge">import</span></div>
+    <div class="card-head"><div class="card-num">B</div><div class="card-title">main.ts — uses the module</div><span class="card-badge">import</span></div>
     <div class="card-body">
       <pre><code>import { appName, add, Formatter } from "./module";
 
 console.log(appName);               // "Calculator"
 console.log(add(10, 20));            // 30
 console.log(Formatter.toUpper("welcome"));  // "WELCOME"</code></pre>
-      <p class="fn">Run <code>main.ts</code>, NOT <code>module.ts</code>. The module is a utility file â€” it's not meant to be executed directly.</p>
+      <p class="fn">Run <code>main.ts</code>, NOT <code>module.ts</code>. The module is a utility file — it's not meant to be executed directly.</p>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Execution rule:</strong> You execute the file that IMPORTS (main.ts), not the file that exports (module.ts). The module is just a library of reusable code.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Execution rule:</strong> You execute the file that IMPORTS (main.ts), not the file that exports (module.ts). The module is just a library of reusable code.</p></div>
 </div>
 
 <!-- KEY RULES -->
@@ -227,7 +227,7 @@ console.log(Formatter.toUpper("welcome"));  // "WELCOME"</code></pre>
       <tr><td>4</td><td>Without <code>export</code>, code stays private to its file</td></tr>
       <tr><td>5</td><td>Without <code>import</code>, you cannot use exported code</td></tr>
       <tr><td>6</td><td>Execute the importing file, not the module file</td></tr>
-      <tr><td>7</td><td>A module can contain variables, functions, classes, interfaces â€” anything</td></tr>
+      <tr><td>7</td><td>A module can contain variables, functions, classes, interfaces — anything</td></tr>
     </tbody>
   </table>
   </div>
@@ -252,7 +252,7 @@ import { doStuff } from "./module";
 // Multiple in one line
 import { x, doStuff, Helper } from "./module";</code></pre>
 
-  <h3>Use case â€” Automation utility</h3>
+  <h3>Use case — Automation utility</h3>
   <pre><code>// utils.ts (module)
 export function waitForElement(selector: string) { ... }
 export function takeScreenshot(name: string) { ... }
@@ -264,16 +264,16 @@ login("admin", "pass123");
 takeScreenshot("dashboard");</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… export = make available to other files
-// âœ… import = bring in from another file
-// âœ… No .ts extension in import path
-// âœ… Module can contain anything (vars, functions, classes)
-// âœ… Execute the importing file, NOT the module
-// âŒ Without export â†’ code is private to that file
-// âŒ Without import â†’ cannot use exported code</code></pre>
+  <pre><code>// ✅ export = make available to other files
+// ✅ import = bring in from another file
+// ✅ No .ts extension in import path
+// ✅ Module can contain anything (vars, functions, classes)
+// ✅ Execute the importing file, NOT the module
+// ❌ Without export → code is private to that file
+// ❌ Without import → cannot use exported code</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Modules &nbsp;Â·&nbsp; export Â· import Â· reusability</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Modules &nbsp;·&nbsp; export · import · reusability</p>
 </div>
 
 </div></div></div>

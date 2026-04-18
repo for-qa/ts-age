@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Error Handling â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript error handling â€” try/catch/finally, Error objects, custom error classes, throwing errors, type-safe error handling, and best practices for robust applications.">
+<title>Error Handling — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript error handling — try/catch/finally, Error objects, custom error classes, throwing errors, type-safe error handling, and best practices for robust applications.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Error Handling</div>
 </div>
 
@@ -58,7 +58,7 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Error Handling</h1>
-  <p>Write robust code that gracefully handles failures â€” try/catch, custom errors, type-safe patterns, and production-ready strategies.</p>
+  <p>Write robust code that gracefully handles failures — try/catch, custom errors, type-safe patterns, and production-ready strategies.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">3</div><div class="stat-l">Keywords</div></div>
     <div class="stat"><div class="stat-n">5</div><div class="stat-l">Error Types</div></div>
@@ -70,21 +70,21 @@
 <div class="sec" id="eh-what">
   <div class="sec-label">Core Concept</div>
   <h2>Why Error Handling?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Error handling is like a <strong>seatbelt in a car</strong>. You hope you never need it, but when something goes wrong (a crash/bug), it saves you from total disaster. Without it, one small problem can crash your entire application.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Error handling is like a <strong>seatbelt in a car</strong>. You hope you never need it, but when something goes wrong (a crash/bug), it saves you from total disaster. Without it, one small problem can crash your entire application.</p></div>
 
-  <p>Errors happen â€” network fails, users enter bad data, files don't exist. <strong>Error handling</strong> lets your code deal with failures gracefully instead of crashing.</p>
+  <p>Errors happen — network fails, users enter bad data, files don't exist. <strong>Error handling</strong> lets your code deal with failures gracefully instead of crashing.</p>
 
-  <pre><code>// âŒ Without error handling â€” app CRASHES
-let data = JSON.parse("invalid json");  // ðŸ’¥ SyntaxError!
+  <pre><code>// ❌ Without error handling — app CRASHES
+let data = JSON.parse("invalid json");  // ✓ SyntaxError!
 console.log("This line never runs");    // never reached
 
-// âœ… With error handling â€” app RECOVERS
+// ✅ With error handling — app RECOVERS
 try {
   let data = JSON.parse("invalid json");
 } catch (error) {
   console.log("Bad JSON, using default data");
 }
-console.log("App continues running!");  // âœ… This runs!</code></pre>
+console.log("App continues running!");  // ✅ This runs!</code></pre>
 
   <div class="bordered">
   <table>
@@ -104,7 +104,7 @@ console.log("App continues running!");  // âœ… This runs!</code></pre>
 <div class="sec" id="eh-trycatch">
   <div class="sec-label">Core Syntax</div>
   <h2><code>try</code> / <code>catch</code> / <code>finally</code></h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>try</code> = attempting a cooking recipe. <code>catch</code> = the fire extinguisher if something burns. <code>finally</code> = cleaning the kitchen regardless of whether the dish was good or burnt.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>try</code> = attempting a cooking recipe. <code>catch</code> = the fire extinguisher if something burns. <code>finally</code> = cleaning the kitchen regardless of whether the dish was good or burnt.</p></div>
 
   <pre><code>try {
   // Code that MIGHT throw an error
@@ -114,7 +114,7 @@ console.log("App continues running!");  // âœ… This runs!</code></pre>
   // Runs ONLY if an error occurs in try block
   console.log("Something went wrong:", error);
 } finally {
-  // Runs ALWAYS â€” whether error occurred or not
+  // Runs ALWAYS — whether error occurred or not
   console.log("Cleanup complete");
 }</code></pre>
 
@@ -122,9 +122,9 @@ console.log("App continues running!");  // âœ… This runs!</code></pre>
   <table>
     <thead><tr><th>Block</th><th>When it runs</th><th>Required?</th></tr></thead>
     <tbody>
-      <tr><td><code>try</code></td><td>Always â€” contains risky code</td><td>âœ… Yes</td></tr>
+      <tr><td><code>try</code></td><td>Always — contains risky code</td><td>✅ Yes</td></tr>
       <tr><td><code>catch</code></td><td>Only when an error occurs</td><td>Need at least one of catch/finally</td></tr>
-      <tr><td><code>finally</code></td><td>Always â€” regardless of error</td><td>Need at least one of catch/finally</td></tr>
+      <tr><td><code>finally</code></td><td>Always — regardless of error</td><td>Need at least one of catch/finally</td></tr>
     </tbody>
   </table>
   </div>
@@ -151,7 +151,7 @@ console.log(divide(10, 0));   // 0 (caught error, returned fallback)</code></pre
 <!-- THE ERROR OBJECT -->
 <div class="sec" id="eh-error">
   <div class="sec-label">Error Object</div>
-  <h2>The Error Object â€” Built-in Properties</h2>
+  <h2>The Error Object — Built-in Properties</h2>
 
   <pre><code>try {
   throw new Error("Something broke!");
@@ -180,8 +180,8 @@ console.log(divide(10, 0));   // 0 (caught error, returned fallback)</code></pre
 <!-- THROW -->
 <div class="sec" id="eh-throw">
   <div class="sec-label">Throwing</div>
-  <h2><code>throw</code> â€” Create Your Own Errors</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>quality inspector on a factory line</strong>. If a product doesn't meet standards, the inspector THROWS it off the line (rejects it). Your code can do the same â€” throw errors when data doesn't meet your requirements.</p></div>
+  <h2><code>throw</code> — Create Your Own Errors</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>quality inspector on a factory line</strong>. If a product doesn't meet standards, the inspector THROWS it off the line (rejects it). Your code can do the same — throw errors when data doesn't meet your requirements.</p></div>
 
   <pre><code>function withdraw(balance: number, amount: number): number {
   if (amount <= 0) {
@@ -194,8 +194,8 @@ console.log(divide(10, 0));   // 0 (caught error, returned fallback)</code></pre
 }
 
 try {
-  console.log(withdraw(1000, 500));   // 500 âœ…
-  console.log(withdraw(1000, 2000));  // throws! âŒ
+  console.log(withdraw(1000, 500));   // 500 ✅
+  console.log(withdraw(1000, 2000));  // throws! ❌
 } catch (error) {
   if (error instanceof Error) {
     console.log(error.message);  // "Insufficient funds!"
@@ -210,17 +210,17 @@ function setAge(age: number): void {
   console.log(`Age set to ${age}`);
 }
 
-setAge(25);   // âœ… "Age set to 25"
-setAge(-5);   // âŒ RangeError: Invalid age: -5</code></pre>
+setAge(25);   // ✅ "Age set to 25"
+setAge(-5);   // ❌ RangeError: Invalid age: -5</code></pre>
 </div>
 
 <!-- CUSTOM ERROR CLASSES -->
 <div class="sec" id="eh-custom">
   <div class="sec-label">Custom Errors</div>
   <h2>Custom Error Classes</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like different types of <strong>hospital alerts</strong>. A "Code Blue" (cardiac) is different from a "Code Red" (fire). Custom errors let you create specific error types so you can handle each one differently.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like different types of <strong>hospital alerts</strong>. A "Code Blue" (cardiac) is different from a "Code Red" (fire). Custom errors let you create specific error types so you can handle each one differently.</p></div>
 
-  <pre><code>// Custom error class â€” extends built-in Error
+  <pre><code>// Custom error class — extends built-in Error
 class ValidationError extends Error {
   field: string;
 
@@ -270,20 +270,20 @@ processUser(9999);   // "Missing: User"</code></pre>
 
   <p>In TypeScript, the <code>catch</code> parameter is <code>unknown</code> by default (since TS 4.4). This is safer than <code>any</code>.</p>
 
-  <pre><code>// âŒ Unsafe â€” 'any' lets you do anything without checks
+  <pre><code>// ❌ Unsafe — 'any' lets you do anything without checks
 try { /* ... */ } catch (error: any) {
   console.log(error.message);  // No error, but risky!
   // What if 'error' is a string? It won't have .message!
 }
 
-// âœ… Safe â€” 'unknown' forces you to check first
+// ✅ Safe — 'unknown' forces you to check first
 try { /* ... */ } catch (error: unknown) {
-  // error.message;  // âŒ ERROR â€” must narrow first!
+  // error.message;  // ❌ ERROR — must narrow first!
 
   if (error instanceof Error) {
-    console.log(error.message);  // âœ… Safe â€” checked!
+    console.log(error.message);  // ✅ Safe — checked!
   } else if (typeof error === "string") {
-    console.log(error);           // âœ… Safe â€” it's a string
+    console.log(error);           // ✅ Safe — it's a string
   } else {
     console.log("Unknown error");
   }
@@ -293,8 +293,8 @@ try { /* ... */ } catch (error: unknown) {
   <table>
     <thead><tr><th>Approach</th><th>Type Safety</th><th>Usage</th></tr></thead>
     <tbody>
-      <tr><td><code>catch (error: any)</code></td><td>âŒ None</td><td>Quick scripts only</td></tr>
-      <tr><td><code>catch (error: unknown)</code></td><td>âœ… Full</td><td>Production code (recommended)</td></tr>
+      <tr><td><code>catch (error: any)</code></td><td>❌ None</td><td>Quick scripts only</td></tr>
+      <tr><td><code>catch (error: unknown)</code></td><td>✅ Full</td><td>Production code (recommended)</td></tr>
       <tr><td><code>catch (error)</code></td><td>Depends on TS config</td><td>Default behavior</td></tr>
     </tbody>
   </table>
@@ -304,14 +304,14 @@ try { /* ... */ } catch (error: unknown) {
 <!-- ERROR TYPE GUARDS -->
 <div class="sec" id="eh-type-guard">
   <div class="sec-label">TypeScript-Specific</div>
-  <h2>Error Type Guard â€” Reusable Helper</h2>
+  <h2>Error Type Guard — Reusable Helper</h2>
 
   <pre><code>// Reusable type guard for errors
 function isError(value: unknown): value is Error {
   return value instanceof Error;
 }
 
-// Even better â€” handle non-Error throws
+// Even better — handle non-Error throws
 function getErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message;
   if (typeof error === "string") return error;
@@ -360,14 +360,14 @@ fetch("/api/users")
   .then(res => res.json())
   .catch(err => console.log(`Error: ${err}`));</code></pre>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Tip:</strong> For async functions, <code>try/catch</code> (with await) and <code>.catch()</code> (with promises) are two sides of the same coin. Use whichever reads cleaner for your use case.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Tip:</strong> For async functions, <code>try/catch</code> (with await) and <code>.catch()</code> (with promises) are two sides of the same coin. Use whichever reads cleaner for your use case.</p></div>
 </div>
 
 <!-- RESULT PATTERN -->
 <div class="sec" id="eh-result">
   <div class="sec-label">Advanced</div>
-  <h2>Result Pattern â€” Type-Safe Alternative</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>medical test result</strong>. Instead of the doctor suddenly fainting (throwing an error), they calmly hand you a report: "Result: Positive" or "Result: Negative." The result is always returned â€” you decide how to handle it.</p></div>
+  <h2>Result Pattern — Type-Safe Alternative</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>medical test result</strong>. Instead of the doctor suddenly fainting (throwing an error), they calmly hand you a report: "Result: Positive" or "Result: Negative." The result is always returned — you decide how to handle it.</p></div>
 
   <pre><code>// Define a Result type
 type Result&lt;T&gt; =
@@ -388,7 +388,7 @@ function parseAge(input: string): Result&lt;number&gt; {
   return { success: true, data: age };
 }
 
-// Usage â€” no try/catch needed!
+// Usage — no try/catch needed!
 const result = parseAge("25");
 
 if (result.success) {
@@ -411,7 +411,7 @@ parseAge("30");    // { success: true, data: 30 }</code></pre>
   <table>
     <thead><tr><th>#</th><th>Practice</th><th>Why</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>Use <code>unknown</code> not <code>any</code> in catch</td><td>Forces type checking â€” safer</td></tr>
+      <tr><td>1</td><td>Use <code>unknown</code> not <code>any</code> in catch</td><td>Forces type checking — safer</td></tr>
       <tr><td>2</td><td>Always check <code>instanceof Error</code></td><td>Not all thrown values are Error objects</td></tr>
       <tr><td>3</td><td>Create custom error classes</td><td>Handle different failures differently</td></tr>
       <tr><td>4</td><td>Use <code>finally</code> for cleanup</td><td>Close connections, release resources</td></tr>
@@ -421,20 +421,20 @@ parseAge("30");    // { success: true, data: 30 }</code></pre>
   </table>
   </div>
 
-  <pre><code>// âŒ DON'T â€” catch and ignore
-try { riskyOp(); } catch (e) { }  // silent failure! ðŸ˜±
+  <pre><code>// ❌ DON'T — catch and ignore
+try { riskyOp(); } catch (e) { }  // silent failure! ✓
 
-// âœ… DO â€” at minimum, log the error
+// ✅ DO — at minimum, log the error
 try { riskyOp(); } catch (e) {
   console.error("Operation failed:", e);
 }
 
-// âŒ DON'T â€” catch too broadly
+// ❌ DON'T — catch too broadly
 try {
   // 100 lines of code
 } catch (e) { /* which line failed? */ }
 
-// âœ… DO â€” wrap only the risky part
+// ✅ DO — wrap only the risky part
 const data = prepareData();  // not risky
 try {
   await sendToServer(data);  // risky!
@@ -477,15 +477,15 @@ throw new RangeError("out of range");</code></pre>
 }</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… Use unknown in catch blocks, not any
-// âœ… Always check instanceof Error before accessing .message
-// âœ… Create custom errors for different failure types
-// âœ… Use finally for cleanup (close files, connections)
-// âœ… Throw early (validate inputs), catch late (top level)
-// âŒ Never catch and silently ignore errors</code></pre>
+  <pre><code>// ✅ Use unknown in catch blocks, not any
+// ✅ Always check instanceof Error before accessing .message
+// ✅ Create custom errors for different failure types
+// ✅ Use finally for cleanup (close files, connections)
+// ✅ Throw early (validate inputs), catch late (top level)
+// ❌ Never catch and silently ignore errors</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Error Handling &nbsp;Â·&nbsp; try/catch Â· throw Â· custom errors Â· unknown</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Error Handling &nbsp;·&nbsp; try/catch · throw · custom errors · unknown</p>
 </div>
 
 </div></div></div>

@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Callback &amp; Overloaded Functions â€” TypeScript Learning Path</title>
+<title>Callback &amp; Overloaded Functions — TypeScript Learning Path</title>
 <meta name="description" content="Learn TypeScript callback functions and function overloading. Understand sync vs async, signatures, implementation rules, and interview-ready examples.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Callback &amp; Overloaded Functions</div>
 </div>
 
@@ -56,7 +56,7 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Callback &amp; Overloaded <span>Functions</span></h1>
-  <p>Advanced function concepts â€” passing functions as arguments (callbacks) and creating multiple versions of the same function (overloading).</p>
+  <p>Advanced function concepts — passing functions as arguments (callbacks) and creating multiple versions of the same function (overloading).</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Concepts</div></div>
     <div class="stat"><div class="stat-n">3</div><div class="stat-l">Overload Rules</div></div>
@@ -68,15 +68,15 @@
 <div class="sec" id="cb-what">
   <div class="sec-label">Callbacks</div>
   <h2>What is a Callback Function?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A callback is like <strong>leaving your phone number with a restaurant</strong>. You say "Call me when my table is ready." You don't wait at the door â€” you go do other things, and THEY call YOU back when it's time. The restaurant (main function) calls your number (callback) when it's ready.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A callback is like <strong>leaving your phone number with a restaurant</strong>. You say "Call me when my table is ready." You don't wait at the door — you go do other things, and THEY call YOU back when it's time. The restaurant (main function) calls your number (callback) when it's ready.</p></div>
 
-  <p>A callback function is a <strong>function passed as an argument</strong> to another function, which gets <strong>executed later</strong> â€” not immediately.</p>
+  <p>A callback function is a <strong>function passed as an argument</strong> to another function, which gets <strong>executed later</strong> — not immediately.</p>
 
   <h3>Normal call vs callback</h3>
-  <pre><code>// âŒ Normal â€” calling directly (immediate)
+  <pre><code>// ❌ Normal — calling directly (immediate)
 showMessage("Hello!");  // executes RIGHT NOW
 
-// âœ… Callback â€” passing the function to someone else
+// ✅ Callback — passing the function to someone else
 greet("John", showMessage);  // greet decides WHEN to call showMessage</code></pre>
 
   <div class="bordered">
@@ -94,7 +94,7 @@ greet("John", showMessage);  // greet decides WHEN to call showMessage</code></p
 <!-- CALLBACK EXAMPLE 1 -->
 <div class="sec" id="cb-ex1">
   <div class="sec-label">Example</div>
-  <h2>Callback Example â€” Greeting</h2>
+  <h2>Callback Example — Greeting</h2>
 
   <div class="card ph1-card">
     <div class="card-head"><div class="card-num">1</div><div class="card-title">Pass a function as an argument</div><span class="card-badge">Callback</span></div>
@@ -107,7 +107,7 @@ function showMessage(message: string) {
 // Step 2: Create a function that ACCEPTS a callback
 function greet(
   name: string,
-  callback: (msg: string) => void   // â† callback type definition
+  callback: (msg: string) => void   // ← callback type definition
 ) {
   console.log(name);        // do something first
   callback("Hello!");       // THEN call the callback
@@ -119,27 +119,27 @@ greet("John", showMessage);
 // Output:
 // John
 // Hello!</code></pre>
-      <p class="fn">We didn't call <code>showMessage</code> directly â€” we passed it INTO <code>greet</code>, and <code>greet</code> decided when to call it.</p>
+      <p class="fn">We didn't call <code>showMessage</code> directly — we passed it INTO <code>greet</code>, and <code>greet</code> decided when to call it.</p>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Callback type syntax:</strong> <code>callback: (param: type) =&gt; returnType</code><br>This tells TypeScript: "this parameter is a function that takes <code>param</code> and returns <code>returnType</code>."</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Callback type syntax:</strong> <code>callback: (param: type) =&gt; returnType</code><br>This tells TypeScript: "this parameter is a function that takes <code>param</code> and returns <code>returnType</code>."</p></div>
 </div>
 
 <!-- CALLBACK EXAMPLE 2 -->
 <div class="sec" id="cb-ex2">
   <div class="sec-label">Example</div>
-  <h2>Callback Example â€” Sum with Display</h2>
+  <h2>Callback Example — Sum with Display</h2>
 
   <div class="card ph2-card">
     <div class="card-head"><div class="card-num">2</div><div class="card-title">Compute, then pass result to callback</div><span class="card-badge">Callback</span></div>
     <div class="card-body">
-      <pre><code>// Callback function â€” just displays the result
+      <pre><code>// Callback function — just displays the result
 function displayResult(result: number) {
   console.log("Result:", result);
 }
 
-// Main function â€” does calculation, then calls the callback
+// Main function — does calculation, then calls the callback
 function sum(
   a: number,
   b: number,
@@ -149,7 +149,7 @@ function sum(
   callback(result);          // THEN pass result to callback
 }
 
-// Call it â€” passing displayResult as the callback
+// Call it — passing displayResult as the callback
 sum(10, 20, displayResult);
 
 // Output: Result: 30</code></pre>
@@ -162,30 +162,30 @@ sum(10, 20, displayResult);
 <div class="sec" id="cb-sync">
   <div class="sec-label">Why Callbacks?</div>
   <h2>Synchronous vs Asynchronous</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong><br>
-  ðŸ”„ <strong>Synchronous</strong> = A <strong>single checkout line</strong> â€” each person waits for the one in front. Everything happens in order.<br>
-  âš¡ <strong>Asynchronous</strong> = A <strong>food court</strong> â€” you order, walk away, do other things, and they call your number when food is ready. Tasks run in parallel.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong><br>
+  ✓ <strong>Synchronous</strong> = A <strong>single checkout line</strong> — each person waits for the one in front. Everything happens in order.<br>
+  ⚡ <strong>Asynchronous</strong> = A <strong>food court</strong> — you order, walk away, do other things, and they call your number when food is ready. Tasks run in parallel.</p></div>
 
   <div class="bordered">
   <table>
     <thead><tr><th>Feature</th><th>Synchronous</th><th>Asynchronous</th></tr></thead>
     <tbody>
       <tr><td>Execution</td><td>One after another (sequential)</td><td>Tasks run in parallel</td></tr>
-      <tr><td>Waiting</td><td>Each step waits for the previous</td><td>Doesn't wait â€” moves to next task</td></tr>
+      <tr><td>Waiting</td><td>Each step waits for the previous</td><td>Doesn't wait — moves to next task</td></tr>
       <tr><td>Problem</td><td>Slow if one step takes long</td><td>Order of completion is unpredictable</td></tr>
-      <tr><td>Solution</td><td>â€”</td><td>Callbacks, async/await, Promises</td></tr>
+      <tr><td>Solution</td><td>—</td><td>Callbacks, async/await, Promises</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>JavaScript/TypeScript is asynchronous by nature</strong> â€” this is its biggest challenge compared to languages like Java. Callbacks help enforce execution order when needed. In automation (Playwright), we use <code>async/await</code> instead â€” a cleaner alternative covered later.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>JavaScript/TypeScript is asynchronous by nature</strong> — this is its biggest challenge compared to languages like Java. Callbacks help enforce execution order when needed. In automation (Playwright), we use <code>async/await</code> instead — a cleaner alternative covered later.</p></div>
 </div>
 
 <!-- WHAT IS OVERLOADING -->
 <div class="sec" id="ol-what">
   <div class="sec-label">Overloading</div>
   <h2>What is Function Overloading?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Overloading is like a <strong>Swiss Army knife</strong> â€” ONE tool with MANY versions. The same knife (function name) can be a blade, scissors, or screwdriver depending on what you pull out (parameters). One name, multiple behaviors.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Overloading is like a <strong>Swiss Army knife</strong> — ONE tool with MANY versions. The same knife (function name) can be a blade, scissors, or screwdriver depending on what you pull out (parameters). One name, multiple behaviors.</p></div>
 
   <p>Function overloading lets you define <strong>multiple versions</strong> of a function with the <strong>same name</strong> but different parameters or return types.</p>
 
@@ -193,11 +193,11 @@ sum(10, 20, displayResult);
   <table>
     <thead><tr><th>What can be different?</th><th>Allowed?</th></tr></thead>
     <tbody>
-      <tr><td>Parameter <strong>types</strong> (number vs string)</td><td><span class="p p-green">âœ… Yes</span></td></tr>
-      <tr><td><strong>Number</strong> of parameters (2 vs 3)</td><td><span class="p p-green">âœ… Yes</span></td></tr>
-      <tr><td><strong>Return types</strong> (string vs number)</td><td><span class="p p-green">âœ… Yes</span></td></tr>
-      <tr><td>Function <strong>name</strong></td><td><span class="p p-red">âŒ Must be same!</span></td></tr>
-      <tr><td>Identical parameter types</td><td><span class="p p-red">âŒ Not allowed</span></td></tr>
+      <tr><td>Parameter <strong>types</strong> (number vs string)</td><td><span class="p p-green">✅ Yes</span></td></tr>
+      <tr><td><strong>Number</strong> of parameters (2 vs 3)</td><td><span class="p p-green">✅ Yes</span></td></tr>
+      <tr><td><strong>Return types</strong> (string vs number)</td><td><span class="p p-green">✅ Yes</span></td></tr>
+      <tr><td>Function <strong>name</strong></td><td><span class="p p-red">❌ Must be same!</span></td></tr>
+      <tr><td>Identical parameter types</td><td><span class="p p-red">❌ Not allowed</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -209,23 +209,23 @@ sum(10, 20, displayResult);
   <h2>The 3-Step Process</h2>
 
   <div class="pipe">
-    <div class="pipe-step"><div class="pipe-ph ph1-c">â‘ </div><div class="pipe-name">Write Signatures</div><div class="pipe-pts">Function declarations without body (just semicolons)</div></div>
-    <div class="pipe-step"><div class="pipe-ph ph2-c">â‘¡</div><div class="pipe-name">Implement ONE Function</div><div class="pipe-pts">Single implementation that satisfies ALL signatures</div></div>
-    <div class="pipe-step"><div class="pipe-ph ph3-c">â‘¢</div><div class="pipe-name">Call the Function</div><div class="pipe-pts">Pass different params â€” the matching signature activates</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph1-c">①</div><div class="pipe-name">Write Signatures</div><div class="pipe-pts">Function declarations without body (just semicolons)</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph2-c">②</div><div class="pipe-name">Implement ONE Function</div><div class="pipe-pts">Single implementation that satisfies ALL signatures</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph3-c">③</div><div class="pipe-name">Call the Function</div><div class="pipe-pts">Pass different params — the matching signature activates</div></div>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Critical Rule:</strong> No matter how many signatures you write, there must be <strong>only ONE implementation</strong> that handles ALL of them. You don't write separate bodies for each signature!</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Critical Rule:</strong> No matter how many signatures you write, there must be <strong>only ONE implementation</strong> that handles ALL of them. You don't write separate bodies for each signature!</p></div>
 </div>
 
 <!-- DIFFERENT TYPES -->
 <div class="sec" id="ol-types">
   <div class="sec-label">Example 1</div>
-  <h2>Overloading â€” Different Parameter Types</h2>
+  <h2>Overloading — Different Parameter Types</h2>
 
   <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">getInfo â€” accepts number OR string</div><span class="card-badge">Overload</span></div>
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">getInfo — accepts number OR string</div><span class="card-badge">Overload</span></div>
     <div class="card-body">
-      <pre><code>// Step 1: SIGNATURES (no body â€” just semicolons!)
+      <pre><code>// Step 1: SIGNATURES (no body — just semicolons!)
 function getInfo(id: number): string;
 function getInfo(name: string): string;
 
@@ -249,16 +249,16 @@ console.log(getInfo("John"));  // "Username is John"</code></pre>
 <!-- DIFFERENT # OF PARAMS -->
 <div class="sec" id="ol-params">
   <div class="sec-label">Example 2</div>
-  <h2>Overloading â€” Different Number of Parameters</h2>
+  <h2>Overloading — Different Number of Parameters</h2>
 
   <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">add â€” 2 or 3 numbers</div><span class="card-badge">Optional param</span></div>
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">add — 2 or 3 numbers</div><span class="card-badge">Optional param</span></div>
     <div class="card-body">
       <pre><code>// Signatures
 function add(a: number, b: number): number;
 function add(a: number, b: number, c: number): number;
 
-// Implementation â€” c is OPTIONAL to satisfy both
+// Implementation — c is OPTIONAL to satisfy both
 function add(a: number, b: number, c?: number): number {
   if (c !== undefined) {
     return a + b + c;    // 3 params passed
@@ -276,21 +276,21 @@ console.log(add(10, 20, 30));   // 60</code></pre>
 <!-- DIFFERENT RETURN TYPES -->
 <div class="sec" id="ol-return">
   <div class="sec-label">Example 3</div>
-  <h2>Overloading â€” Different Return Types</h2>
+  <h2>Overloading — Different Return Types</h2>
 
   <div class="card ph4-card">
-    <div class="card-head"><div class="card-num">3</div><div class="card-title">processInput â€” returns string OR number</div><span class="card-badge">Union return</span></div>
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">processInput — returns string OR number</div><span class="card-badge">Union return</span></div>
     <div class="card-body">
-      <pre><code>// Signatures â€” different param types AND return types!
+      <pre><code>// Signatures — different param types AND return types!
 function processInput(str: string): string;
 function processInput(num: number): number;
 
-// Implementation â€” union for both param and return
+// Implementation — union for both param and return
 function processInput(input: string | number): string | number {
   if (typeof input === "string") {
-    return input.toUpperCase();  // string â†’ uppercase
+    return input.toUpperCase();  // string → uppercase
   } else {
-    return input * input;        // number â†’ square
+    return input * input;        // number → square
   }
 }
 
@@ -300,7 +300,7 @@ console.log(processInput(5));        // 25</code></pre>
   </div>
 
   <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">4</div><div class="card-title">greet â€” string, number, or boolean!</div><span class="card-badge">3 signatures</span></div>
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">greet — string, number, or boolean!</div><span class="card-badge">3 signatures</span></div>
     <div class="card-body">
       <pre><code>// 3 signatures!
 function greet(name: string): string;
@@ -330,30 +330,30 @@ console.log(greet(false));     // "You are Single"</code></pre>
 <!-- INVALID SCENARIOS -->
 <div class="sec" id="ol-invalid">
   <div class="sec-label">Watch Out!</div>
-  <h2>Invalid Overloading â€” Common Mistakes</h2>
+  <h2>Invalid Overloading — Common Mistakes</h2>
 
   <div class="card ph5-card">
-    <div class="card-head"><div class="card-num">âŒ</div><div class="card-title">These will NOT work!</div><span class="card-badge">Errors</span></div>
+    <div class="card-head"><div class="card-num">❌</div><div class="card-title">These will NOT work!</div><span class="card-badge">Errors</span></div>
     <div class="card-body">
-      <pre><code>// âŒ 1. No implementation â€” just signatures
+      <pre><code>// ❌ 1. No implementation — just signatures
 function test(a: number): string;
 function test(a: string): string;
 // ERROR: no function body!
 
-// âŒ 2. Wrong return type in implementation
+// ❌ 2. Wrong return type in implementation
 function calc(a: number): number;
 function calc(a: string): string;
-function calc(a: number | string): boolean { } // â† boolean â‰  number|string
+function calc(a: number | string): boolean { } // ← boolean ≠ number|string
 
-// âŒ 3. Identical parameter types
+// ❌ 3. Identical parameter types
 function fn(a: number): number;
-function fn(a: number): string;   // â† same param type!
+function fn(a: number): string;   // ← same param type!
 // ERROR: "Cannot overload identical signatures"
 
-// âŒ 4. Incompatible return type
+// ❌ 4. Incompatible return type
 function fetchData(url: string): string;
 function fetchData(id: number): string;
-function fetchData(url: string | number): number { } // â† should be string!</code></pre>
+function fetchData(url: string | number): number { } // ← should be string!</code></pre>
     </div>
   </div>
 
@@ -361,12 +361,12 @@ function fetchData(url: string | number): number { } // â† should be string
   <table>
     <thead><tr><th>Rule</th><th>Valid?</th></tr></thead>
     <tbody>
-      <tr><td>Same name, different param <strong>types</strong></td><td><span class="p p-green">âœ…</span></td></tr>
-      <tr><td>Same name, different <strong>number</strong> of params</td><td><span class="p p-green">âœ…</span></td></tr>
-      <tr><td>Same name, different <strong>return types</strong></td><td><span class="p p-green">âœ…</span></td></tr>
-      <tr><td>Same name, <strong>identical</strong> param types</td><td><span class="p p-red">âŒ Error</span></td></tr>
-      <tr><td>Missing implementation body</td><td><span class="p p-red">âŒ Error</span></td></tr>
-      <tr><td>Implementation return type doesn't match</td><td><span class="p p-red">âŒ Error</span></td></tr>
+      <tr><td>Same name, different param <strong>types</strong></td><td><span class="p p-green">✅</span></td></tr>
+      <tr><td>Same name, different <strong>number</strong> of params</td><td><span class="p p-green">✅</span></td></tr>
+      <tr><td>Same name, different <strong>return types</strong></td><td><span class="p p-green">✅</span></td></tr>
+      <tr><td>Same name, <strong>identical</strong> param types</td><td><span class="p p-red">❌ Error</span></td></tr>
+      <tr><td>Missing implementation body</td><td><span class="p p-red">❌ Error</span></td></tr>
+      <tr><td>Implementation return type doesn't match</td><td><span class="p p-red">❌ Error</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -406,16 +406,16 @@ fn(5);       // 10
 fn("hello"); // "HELLO"</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… Callbacks = pass function as argument, executed later
-// âœ… Callback type: (param: type) => returnType
-// âœ… Overloading = same name, different params/returns
-// âœ… Only ONE implementation for ALL signatures
-// âœ… Use typeof to check param types in implementation
-// âœ… Use union types (|) in implementation to match all signatures
-// âš  In automation: prefer async/await over callbacks</code></pre>
+  <pre><code>// ✅ Callbacks = pass function as argument, executed later
+// ✅ Callback type: (param: type) => returnType
+// ✅ Overloading = same name, different params/returns
+// ✅ Only ONE implementation for ALL signatures
+// ✅ Use typeof to check param types in implementation
+// ✅ Use union types (|) in implementation to match all signatures
+// ⚠ In automation: prefer async/await over callbacks</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Callback &amp; Overloaded Functions</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Callback &amp; Overloaded Functions</p>
 </div>
 
 </div></div></div>

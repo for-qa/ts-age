@@ -1,17 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Key Comparisons â€” TypeScript Learning Path</title>
-<meta name="description" content="Essential TypeScript comparisons â€” primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, any vs unknown, and more with real-life analogies.">
+<title>Key Comparisons — TypeScript Learning Path</title>
+<meta name="description" content="Essential TypeScript comparisons — primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, any vs unknown, and more with real-life analogies.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <div id="topbar">
   <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Key Comparisons</div>
 </div>
 <div class="page-wrap"><div class="wrap">
@@ -45,7 +45,7 @@
 <div class="hero" id="c-top">
   <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Comparisons</span><span class="hero-tag">Interview Prep</span></div>
   <h1>Key Comparisons</h1>
-  <p>16 essential "A vs B" comparisons every TypeScript developer must know â€” with real-life analogies, code snippets, and clear tables.</p>
+  <p>16 essential "A vs B" comparisons every TypeScript developer must know — with real-life analogies, code snippets, and clear tables.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">16</div><div class="stat-l">Comparisons</div></div>
     <div class="stat"><div class="stat-n">6</div><div class="stat-l">Categories</div></div>
@@ -56,7 +56,7 @@
 <div class="sec" id="c-prim">
   <div class="sec-label">Data Types</div>
   <h2>Primitive vs Non-Primitive</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Primitive</strong> = a single coin (one value). <strong>Non-primitive</strong> = a wallet (holds many things inside).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Primitive</strong> = a single coin (one value). <strong>Non-primitive</strong> = a wallet (holds many things inside).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Primitive</th><th>Non-Primitive</th></tr></thead>
     <tbody>
@@ -64,16 +64,16 @@
       <tr><td>Types</td><td>string, number, boolean, null, undefined, bigint, symbol</td><td>object, array, function, class, interface</td></tr>
       <tr><td>Stored in</td><td>Stack (fast)</td><td>Heap (reference)</td></tr>
       <tr><td>Comparison</td><td>By value</td><td>By reference</td></tr>
-      <tr><td>Mutable?</td><td>âŒ Immutable</td><td>âœ… Mutable</td></tr>
+      <tr><td>Mutable?</td><td>❌ Immutable</td><td>✅ Mutable</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Primitive â€” copied by VALUE
+  <pre><code>// Primitive — copied by VALUE
 let a = 10;
 let b = a;
 b = 20;
 console.log(a); // 10 (unchanged!)
 
-// Non-Primitive â€” copied by REFERENCE
+// Non-Primitive — copied by REFERENCE
 let arr1 = [1, 2, 3];
 let arr2 = arr1;
 arr2.push(4);
@@ -84,24 +84,24 @@ console.log(arr1); // [1, 2, 3, 4] (changed! same reference)</code></pre>
 <div class="sec" id="c-mut">
   <div class="sec-label">Data Types</div>
   <h2>Immutable vs Mutable</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Immutable</strong> = a <strong>printed book</strong> â€” once printed, you can't change the words on the page. You can only buy a new edition (create a new value). <strong>Mutable</strong> = a <strong>whiteboard</strong> â€” you can erase and rewrite content anytime.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Immutable</strong> = a <strong>printed book</strong> — once printed, you can't change the words on the page. You can only buy a new edition (create a new value). <strong>Mutable</strong> = a <strong>whiteboard</strong> — you can erase and rewrite content anytime.</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Immutable</th><th>Mutable</th></tr></thead>
     <tbody>
-      <tr><td>Can be changed?</td><td>âŒ No â€” creates a new value</td><td>âœ… Yes â€” modifies in place</td></tr>
+      <tr><td>Can be changed?</td><td>❌ No — creates a new value</td><td>✅ Yes — modifies in place</td></tr>
       <tr><td>Examples</td><td>string, number, boolean, tuple (TS)</td><td>array, object</td></tr>
       <tr><td>Methods return</td><td>New value (original unchanged)</td><td>Modified original</td></tr>
       <tr><td>Keywords</td><td><code>const</code>, <code>readonly</code>, <code>Readonly&lt;T&gt;</code></td><td>Default behavior for objects/arrays</td></tr>
-      <tr><td>Safety</td><td>âœ… Predictable, no side effects</td><td>âš  Can cause unexpected changes</td></tr>
+      <tr><td>Safety</td><td>✅ Predictable, no side effects</td><td>⚠ Can cause unexpected changes</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// IMMUTABLE â€” strings cannot be changed in place
+  <pre><code>// IMMUTABLE — strings cannot be changed in place
 let name = "hello";
 let upper = name.toUpperCase();  // returns NEW string
 console.log(name);   // "hello"  (original unchanged!)
 console.log(upper);  // "HELLO"  (new value)
 
-// MUTABLE â€” arrays CAN be changed in place
+// MUTABLE — arrays CAN be changed in place
 let nums = [1, 2, 3];
 nums.push(4);         // modifies the ORIGINAL array
 console.log(nums);    // [1, 2, 3, 4] (changed!)
@@ -111,58 +111,58 @@ const config: Readonly<{ port: number; host: string }> = {
   port: 3000,
   host: "localhost"
 };
-// config.port = 8080;  // âŒ ERROR â€” readonly!
+// config.port = 8080;  // ❌ ERROR — readonly!
 
 // Immutable array
 const colors: readonly string[] = ["red", "green"];
-// colors.push("blue");  // âŒ ERROR â€” readonly array!</code></pre>
+// colors.push("blue");  // ❌ ERROR — readonly array!</code></pre>
 </div>
 
 <!-- 2. NULL VS UNDEFINED -->
 <div class="sec" id="c-null">
   <div class="sec-label">Data Types</div>
   <h2>null vs undefined</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>undefined</strong> = an empty parking spot (nobody parked yet). <strong>null</strong> = a parking spot with a "Reserved" sign (intentionally empty).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>undefined</strong> = an empty parking spot (nobody parked yet). <strong>null</strong> = a parking spot with a "Reserved" sign (intentionally empty).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>undefined</th><th>null</th></tr></thead>
     <tbody>
       <tr><td>Meaning</td><td>Not yet assigned</td><td>Intentionally empty</td></tr>
       <tr><td>Set by</td><td>JavaScript automatically</td><td>Developer manually</td></tr>
       <tr><td>typeof</td><td><code>"undefined"</code></td><td><code>"object"</code> (JS bug!)</td></tr>
-      <tr><td><code>==</code> each other?</td><td colspan="2">âœ… <code>null == undefined</code> is true</td></tr>
-      <tr><td><code>===</code> each other?</td><td colspan="2">âŒ <code>null === undefined</code> is false</td></tr>
+      <tr><td><code>==</code> each other?</td><td colspan="2">✅ <code>null == undefined</code> is true</td></tr>
+      <tr><td><code>===</code> each other?</td><td colspan="2">❌ <code>null === undefined</code> is false</td></tr>
     </tbody>
   </table></div>
   <pre><code>let x;                 // undefined (never assigned)
 let y: string | null = null;  // null (intentionally empty)
 
 console.log(x == y);   // true  (loose equality)
-console.log(x === y);  // false (strict â€” different types)</code></pre>
+console.log(x === y);  // false (strict — different types)</code></pre>
 </div>
 
 <!-- 3. ANY VS UNKNOWN -->
 <div class="sec" id="c-any">
   <div class="sec-label">Data Types</div>
   <h2>any vs unknown</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>any</strong> = a wild kid who does whatever they want (no rules). <strong>unknown</strong> = a new employee who must show ID before accessing anything (rules enforced).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>any</strong> = a wild kid who does whatever they want (no rules). <strong>unknown</strong> = a new employee who must show ID before accessing anything (rules enforced).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>any</th><th>unknown</th></tr></thead>
     <tbody>
-      <tr><td>Type safety</td><td>âŒ None</td><td>âœ… Full</td></tr>
-      <tr><td>Access properties</td><td>âœ… No checks needed</td><td>âŒ Must narrow first</td></tr>
-      <tr><td>Assign to other types</td><td>âœ… Freely</td><td>âŒ Must check first</td></tr>
+      <tr><td>Type safety</td><td>❌ None</td><td>✅ Full</td></tr>
+      <tr><td>Access properties</td><td>✅ No checks needed</td><td>❌ Must narrow first</td></tr>
+      <tr><td>Assign to other types</td><td>✅ Freely</td><td>❌ Must check first</td></tr>
       <tr><td>Use case</td><td>Quick prototyping</td><td>Production code</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// any â€” no safety (dangerous!)
+  <pre><code>// any — no safety (dangerous!)
 let a: any = "hello";
-a.toFixed(2);  // No error at compile, CRASHES at runtime! ðŸ’¥
+a.toFixed(2);  // No error at compile, CRASHES at runtime! ✓
 
-// unknown â€” must check first (safe!)
+// unknown — must check first (safe!)
 let b: unknown = "hello";
-// b.toUpperCase();  // âŒ ERROR â€” must narrow!
+// b.toUpperCase();  // ❌ ERROR — must narrow!
 if (typeof b === "string") {
-  b.toUpperCase();   // âœ… Safe after check
+  b.toUpperCase();   // ✅ Safe after check
 }</code></pre>
 </div>
 
@@ -170,107 +170,107 @@ if (typeof b === "string") {
 <div class="sec" id="c-let">
   <div class="sec-label">Variables</div>
   <h2>let vs const vs var</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>var</strong> = a whiteboard anyone can erase (old style). <strong>let</strong> = a notebook page you can update. <strong>const</strong> = a carved stone tablet (permanent).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>var</strong> = a whiteboard anyone can erase (old style). <strong>let</strong> = a notebook page you can update. <strong>const</strong> = a carved stone tablet (permanent).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>var</th><th>let</th><th>const</th></tr></thead>
     <tbody>
       <tr><td>Scope</td><td>Function</td><td>Block { }</td><td>Block { }</td></tr>
-      <tr><td>Reassign</td><td>âœ…</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Redeclare</td><td>âœ…</td><td>âŒ</td><td>âŒ</td></tr>
-      <tr><td>Hoisted</td><td>âœ… (undefined)</td><td>âŒ (TDZ)</td><td>âŒ (TDZ)</td></tr>
-      <tr><td>Recommended</td><td>âŒ Never</td><td>âœ… When value changes</td><td>âœ… Default choice</td></tr>
+      <tr><td>Reassign</td><td>✅</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Redeclare</td><td>✅</td><td>❌</td><td>❌</td></tr>
+      <tr><td>Hoisted</td><td>✅ (undefined)</td><td>❌ (TDZ)</td><td>❌ (TDZ)</td></tr>
+      <tr><td>Recommended</td><td>❌ Never</td><td>✅ When value changes</td><td>✅ Default choice</td></tr>
     </tbody>
   </table></div>
-  <pre><code>var x = 1; var x = 2;     // âœ… No error (bad!)
-let y = 1; // let y = 2;  // âŒ Cannot redeclare
-const z = 1; // z = 2;    // âŒ Cannot reassign
+  <pre><code>var x = 1; var x = 2;     // ✅ No error (bad!)
+let y = 1; // let y = 2;  // ❌ Cannot redeclare
+const z = 1; // z = 2;    // ❌ Cannot reassign
 
 // Block scope difference
 if (true) { var a = 10; }
 console.log(a);  // 10 (var leaks out!)
 
 if (true) { let b = 10; }
-// console.log(b); // âŒ ERROR (let stays in block)</code></pre>
+// console.log(b); // ❌ ERROR (let stays in block)</code></pre>
 </div>
 
 <!-- 5. == VS === -->
 <div class="sec" id="c-eq">
   <div class="sec-label">Variables</div>
   <h2>== vs === (Loose vs Strict)</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>==</strong> = "Do these look similar?" (a photo vs painting of same person). <strong>===</strong> = "Are these the EXACT same thing?" (same person, same ID card).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>==</strong> = "Do these look similar?" (a photo vs painting of same person). <strong>===</strong> = "Are these the EXACT same thing?" (same person, same ID card).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>== (Loose)</th><th>=== (Strict)</th></tr></thead>
     <tbody>
-      <tr><td>Type conversion</td><td>âœ… Yes (coerces)</td><td>âŒ No</td></tr>
+      <tr><td>Type conversion</td><td>✅ Yes (coerces)</td><td>❌ No</td></tr>
       <tr><td><code>5 == "5"</code></td><td>true</td><td>false</td></tr>
       <tr><td><code>0 == false</code></td><td>true</td><td>false</td></tr>
       <tr><td><code>null == undefined</code></td><td>true</td><td>false</td></tr>
-      <tr><td>Recommended</td><td>âŒ Avoid</td><td>âœ… Always use</td></tr>
+      <tr><td>Recommended</td><td>❌ Avoid</td><td>✅ Always use</td></tr>
     </tbody>
   </table></div>
-  <pre><code>console.log(5 == "5");    // true  (string â†’ number)
+  <pre><code>console.log(5 == "5");    // true  (string → number)
 console.log(5 === "5");   // false (different types!)
-console.log(0 == false);  // true  (false â†’ 0)
-console.log(0 === false); // false (number â‰  boolean)</code></pre>
+console.log(0 == false);  // true  (false → 0)
+console.log(0 === false); // false (number ≠ boolean)</code></pre>
 </div>
 
 <!-- HOISTED VS NON-HOISTED -->
 <div class="sec" id="c-hoist">
   <div class="sec-label">Variables</div>
   <h2>Hoisted vs Non-Hoisted</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Hoisted</strong> = a student who <strong>raises their hand before the teacher asks</strong> â€” JavaScript moves the declaration to the top automatically. <strong>Non-hoisted</strong> = a student who waits to be called â€” you must declare it before using it.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Hoisted</strong> = a student who <strong>raises their hand before the teacher asks</strong> — JavaScript moves the declaration to the top automatically. <strong>Non-hoisted</strong> = a student who waits to be called — you must declare it before using it.</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Hoisted</th><th>Non-Hoisted</th></tr></thead>
     <tbody>
-      <tr><td>Moved to top?</td><td>âœ… Declaration moved to top</td><td>âŒ Stays where written</td></tr>
-      <tr><td>Use before declare?</td><td>âœ… (but value is <code>undefined</code>)</td><td>âŒ ReferenceError (TDZ)</td></tr>
+      <tr><td>Moved to top?</td><td>✅ Declaration moved to top</td><td>❌ Stays where written</td></tr>
+      <tr><td>Use before declare?</td><td>✅ (but value is <code>undefined</code>)</td><td>❌ ReferenceError (TDZ)</td></tr>
       <tr><td>Variables</td><td><code>var</code></td><td><code>let</code>, <code>const</code></td></tr>
       <tr><td>Functions</td><td><code>function</code> declarations</td><td>Arrow functions, function expressions</td></tr>
-      <tr><td>Classes</td><td colspan="2">âŒ Classes are NEVER hoisted</td></tr>
+      <tr><td>Classes</td><td colspan="2">❌ Classes are NEVER hoisted</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// âœ… HOISTED â€” var declaration is moved to the top
+  <pre><code>// ✅ HOISTED — var declaration is moved to the top
 console.log(x);  // undefined (not an error!)
 var x = 10;
 console.log(x);  // 10
 
-// âŒ NON-HOISTED â€” let/const stay in place (TDZ)
-// console.log(y);  // ðŸ’¥ ReferenceError: Cannot access 'y' before initialization
+// ❌ NON-HOISTED — let/const stay in place (TDZ)
+// console.log(y);  // ✓ ReferenceError: Cannot access 'y' before initialization
 let y = 20;
 console.log(y);  // 20
 
-// âœ… Function declarations ARE hoisted
-greet();  // "Hello!" â€” works even before definition!
+// ✅ Function declarations ARE hoisted
+greet();  // "Hello!" — works even before definition!
 function greet() { console.log("Hello!"); }
 
-// âŒ Arrow functions are NOT hoisted
-// sayBye();  // ðŸ’¥ ReferenceError
+// ❌ Arrow functions are NOT hoisted
+// sayBye();  // ✓ ReferenceError
 const sayBye = () => console.log("Bye!");</code></pre>
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>TDZ (Temporal Dead Zone):</strong> The space between the start of a block and where <code>let</code>/<code>const</code> is declared. Accessing the variable in the TDZ causes a ReferenceError â€” this is by design to catch bugs early.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>TDZ (Temporal Dead Zone):</strong> The space between the start of a block and where <code>let</code>/<code>const</code> is declared. Accessing the variable in the TDZ causes a ReferenceError — this is by design to catch bugs early.</p></div>
 </div>
 
 <!-- 6. TYPE VS INTERFACE -->
 <div class="sec" id="c-ti">
   <div class="sec-label">Types</div>
   <h2>type vs interface</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>interface</strong> = a formal contract (can be extended). <strong>type</strong> = a nickname (can be anything â€” unions, primitives, combos).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>interface</strong> = a formal contract (can be extended). <strong>type</strong> = a nickname (can be anything — unions, primitives, combos).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>type</th><th>interface</th></tr></thead>
     <tbody>
-      <tr><td>Object shapes</td><td>âœ…</td><td>âœ…</td></tr>
-      <tr><td>Primitives</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Unions <code>A | B</code></td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Intersections <code>A &amp; B</code></td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td><code>extends</code></td><td>âŒ (use &amp;)</td><td>âœ…</td></tr>
-      <tr><td><code>implements</code></td><td>âœ…</td><td>âœ…</td></tr>
-      <tr><td>Declaration merging</td><td>âŒ</td><td>âœ…</td></tr>
+      <tr><td>Object shapes</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Primitives</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Unions <code>A | B</code></td><td>✅</td><td>❌</td></tr>
+      <tr><td>Intersections <code>A &amp; B</code></td><td>✅</td><td>❌</td></tr>
+      <tr><td><code>extends</code></td><td>❌ (use &amp;)</td><td>✅</td></tr>
+      <tr><td><code>implements</code></td><td>✅</td><td>✅</td></tr>
+      <tr><td>Declaration merging</td><td>❌</td><td>✅</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// type â€” flexible (unions, primitives)
+  <pre><code>// type — flexible (unions, primitives)
 type ID = string | number;
 type Point = { x: number; y: number };
 
-// interface â€” extendable (OOP contracts)
+// interface — extendable (OOP contracts)
 interface Animal { name: string; }
 interface Dog extends Animal { breed: string; }</code></pre>
 </div>
@@ -279,7 +279,7 @@ interface Dog extends Animal { breed: string; }</code></pre>
 <div class="sec" id="c-ut">
   <div class="sec-label">Types</div>
   <h2>Union vs Tuple</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Union</strong> = "this gift can be a book OR a toy" (one value, many possible types). <strong>Tuple</strong> = "this box has exactly: 1 book, 1 pen, 1 eraser" (fixed positions, fixed types).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Union</strong> = "this gift can be a book OR a toy" (one value, many possible types). <strong>Tuple</strong> = "this box has exactly: 1 book, 1 pen, 1 eraser" (fixed positions, fixed types).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Union</th><th>Tuple</th></tr></thead>
     <tbody>
@@ -289,11 +289,11 @@ interface Dog extends Animal { breed: string; }</code></pre>
       <tr><td>Access</td><td>Narrow then use</td><td>By index</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Union â€” ONE value can be string OR number
+  <pre><code>// Union — ONE value can be string OR number
 let id: string | number = "ABC";
-id = 123;  // âœ… also valid
+id = 123;  // ✅ also valid
 
-// Tuple â€” FIXED structure: [string, number, boolean]
+// Tuple — FIXED structure: [string, number, boolean]
 let record: [string, number, boolean] = ["Alice", 25, true];
 console.log(record[0]); // "Alice" (string)
 console.log(record[1]); // 25 (number)</code></pre>
@@ -303,21 +303,21 @@ console.log(record[1]); // 25 (number)</code></pre>
 <div class="sec" id="c-eu">
   <div class="sec-label">Types</div>
   <h2>Enum vs Union Literal</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Enum</strong> = a physical menu card on the table (exists at runtime). <strong>Union literal</strong> = the waiter reads options aloud (exists only at order time, no card left).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Enum</strong> = a physical menu card on the table (exists at runtime). <strong>Union literal</strong> = the waiter reads options aloud (exists only at order time, no card left).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Enum</th><th>Union Literal</th></tr></thead>
     <tbody>
-      <tr><td>Runtime value</td><td>âœ… Exists in JS</td><td>âŒ Erased after compile</td></tr>
-      <tr><td>Reverse mapping</td><td>âœ… (numeric)</td><td>âŒ</td></tr>
+      <tr><td>Runtime value</td><td>✅ Exists in JS</td><td>❌ Erased after compile</td></tr>
+      <tr><td>Reverse mapping</td><td>✅ (numeric)</td><td>❌</td></tr>
       <tr><td>Bundle size</td><td>Larger</td><td>Zero</td></tr>
-      <tr><td>Iterate values</td><td>âœ…</td><td>âŒ</td></tr>
+      <tr><td>Iterate values</td><td>✅</td><td>❌</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Enum â€” generates runtime JS object
+  <pre><code>// Enum — generates runtime JS object
 enum Direction { Up, Down, Left, Right }
 let d = Direction.Up;  // 0
 
-// Union literal â€” zero runtime cost
+// Union literal — zero runtime cost
 type Direction2 = "up" | "down" | "left" | "right";
 let d2: Direction2 = "up";</code></pre>
 </div>
@@ -326,7 +326,7 @@ let d2: Direction2 = "up";</code></pre>
 <div class="sec" id="c-lg">
   <div class="sec-label">Types</div>
   <h2>Literal Types vs Generics</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Literal</strong> = a vending machine with 3 fixed buttons (Coke, Pepsi, Water). <strong>Generic</strong> = a universal dispenser â€” you load ANY drink brand and it adapts.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Literal</strong> = a vending machine with 3 fixed buttons (Coke, Pepsi, Water). <strong>Generic</strong> = a universal dispenser — you load ANY drink brand and it adapts.</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Literal Types</th><th>Generics &lt;T&gt;</th></tr></thead>
     <tbody>
@@ -335,12 +335,12 @@ let d2: Direction2 = "up";</code></pre>
       <tr><td>Use case</td><td>Config options, status codes</td><td>Reusable functions, containers</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Literal â€” ONLY these exact values
+  <pre><code>// Literal — ONLY these exact values
 type Theme = "light" | "dark";
-let t: Theme = "light";   // âœ…
-// let t2: Theme = "blue"; // âŒ
+let t: Theme = "light";   // ✅
+// let t2: Theme = "blue"; // ❌
 
-// Generic â€” works with ANY type
+// Generic — works with ANY type
 function wrap&lt;T&gt;(val: T): T[] { return [val]; }
 wrap("hello");  // string[]
 wrap(42);       // number[]</code></pre>
@@ -350,29 +350,29 @@ wrap(42);       // number[]</code></pre>
 <div class="sec" id="c-fn">
   <div class="sec-label">Functions</div>
   <h2>function vs Arrow Function</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Regular function</strong> = a formal letter (has its own "I"/this). <strong>Arrow function</strong> = a sticky note (borrows the "I"/this from its parent).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Regular function</strong> = a formal letter (has its own "I"/this). <strong>Arrow function</strong> = a sticky note (borrows the "I"/this from its parent).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>function</th><th>Arrow =&gt;</th></tr></thead>
     <tbody>
       <tr><td>Syntax</td><td><code>function name() {}</code></td><td><code>const name = () =&gt; {}</code></td></tr>
       <tr><td><code>this</code> binding</td><td>Own <code>this</code></td><td>Inherits parent's <code>this</code></td></tr>
-      <tr><td>Hoisted</td><td>âœ… Yes</td><td>âŒ No</td></tr>
-      <tr><td>As method</td><td>âœ… Preferred</td><td>âš  Careful with <code>this</code></td></tr>
-      <tr><td>Callbacks</td><td>Works</td><td>âœ… Preferred (shorter)</td></tr>
+      <tr><td>Hoisted</td><td>✅ Yes</td><td>❌ No</td></tr>
+      <tr><td>As method</td><td>✅ Preferred</td><td>⚠ Careful with <code>this</code></td></tr>
+      <tr><td>Callbacks</td><td>Works</td><td>✅ Preferred (shorter)</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Regular â€” hoisted, own 'this'
+  <pre><code>// Regular — hoisted, own 'this'
 function greet(name: string) { return `Hi ${name}`; }
 
-// Arrow â€” shorter, inherits 'this'
+// Arrow — shorter, inherits 'this'
 const greet2 = (name: string) => `Hi ${name}`;
 
 // 'this' difference matters in classes
 class Timer {
   seconds = 0;
   start() {
-    setInterval(() => { this.seconds++; }, 1000);  // âœ… arrow inherits 'this'
-    // setInterval(function() { this.seconds++; }, 1000); // âŒ 'this' is wrong!
+    setInterval(() => { this.seconds++; }, 1000);  // ✅ arrow inherits 'this'
+    // setInterval(function() { this.seconds++; }, 1000); // ❌ 'this' is wrong!
   }
 }</code></pre>
 </div>
@@ -381,14 +381,14 @@ class Timer {
 <div class="sec" id="c-forin">
   <div class="sec-label">Functions</div>
   <h2>for...in vs for...of</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>for...in</strong> = reading the INDEX labels on library shelves (shelf 0, shelf 1...). <strong>for...of</strong> = reading the actual BOOKS on those shelves.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>for...in</strong> = reading the INDEX labels on library shelves (shelf 0, shelf 1...). <strong>for...of</strong> = reading the actual BOOKS on those shelves.</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>for...in</th><th>for...of</th></tr></thead>
     <tbody>
       <tr><td>Iterates over</td><td>Keys / indexes</td><td>Values</td></tr>
       <tr><td>Arrays</td><td>Returns index (string!)</td><td>Returns value</td></tr>
-      <tr><td>Objects</td><td>âœ… Returns keys</td><td>âŒ Not iterable</td></tr>
-      <tr><td>Recommended for arrays</td><td>âŒ</td><td>âœ…</td></tr>
+      <tr><td>Objects</td><td>✅ Returns keys</td><td>❌ Not iterable</td></tr>
+      <tr><td>Recommended for arrays</td><td>❌</td><td>✅</td></tr>
     </tbody>
   </table></div>
   <pre><code>let fruits = ["apple", "banana", "cherry"];
@@ -398,29 +398,29 @@ for (let f of fruits) console.log(f);      // "apple", "banana", "cherry" (value
 
 let obj = { a: 1, b: 2 };
 for (let key in obj) console.log(key);     // "a", "b"
-// for (let val of obj) { } // âŒ ERROR â€” objects not iterable!</code></pre>
+// for (let val of obj) { } // ❌ ERROR — objects not iterable!</code></pre>
 </div>
 
 <!-- 12. CLASS VS INTERFACE -->
 <div class="sec" id="c-ci">
   <div class="sec-label">OOP</div>
   <h2>Class vs Interface</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Class</strong> = a factory that builds cars (has blueprints AND machines). <strong>Interface</strong> = just the blueprint (no machines â€” someone else builds it).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Class</strong> = a factory that builds cars (has blueprints AND machines). <strong>Interface</strong> = just the blueprint (no machines — someone else builds it).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Class</th><th>Interface</th></tr></thead>
     <tbody>
-      <tr><td>Implementation</td><td>âœ… Full</td><td>âŒ Abstract only</td></tr>
-      <tr><td>Constructor</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td><code>new</code> keyword</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Access modifiers</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Multiple inheritance</td><td>âŒ Single only</td><td>âœ… Multiple</td></tr>
-      <tr><td>Runtime existence</td><td>âœ… In JS</td><td>âŒ Erased</td></tr>
+      <tr><td>Implementation</td><td>✅ Full</td><td>❌ Abstract only</td></tr>
+      <tr><td>Constructor</td><td>✅</td><td>❌</td></tr>
+      <tr><td><code>new</code> keyword</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Access modifiers</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Multiple inheritance</td><td>❌ Single only</td><td>✅ Multiple</td></tr>
+      <tr><td>Runtime existence</td><td>✅ In JS</td><td>❌ Erased</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Interface â€” structure only
+  <pre><code>// Interface — structure only
 interface Shape { area(): number; }
 
-// Class â€” full implementation
+// Class — full implementation
 class Circle implements Shape {
   constructor(public radius: number) {}
   area() { return Math.PI * this.radius ** 2; }
@@ -431,21 +431,21 @@ class Circle implements Shape {
 <div class="sec" id="c-ei">
   <div class="sec-label">OOP</div>
   <h2>extends vs implements</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>extends</strong> = inheriting your parent's house (you GET everything). <strong>implements</strong> = signing a contract (you PROMISE to provide everything yourself).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>extends</strong> = inheriting your parent's house (you GET everything). <strong>implements</strong> = signing a contract (you PROMISE to provide everything yourself).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>extends</th><th>implements</th></tr></thead>
     <tbody>
-      <tr><td>Used with</td><td>Class â†’ Class, Interface â†’ Interface</td><td>Class â†’ Interface</td></tr>
+      <tr><td>Used with</td><td>Class → Class, Interface → Interface</td><td>Class → Interface</td></tr>
       <tr><td>Properties</td><td>Auto-inherited</td><td>Must re-declare</td></tr>
       <tr><td>Methods</td><td>Auto-inherited (can override)</td><td>Must implement</td></tr>
-      <tr><td>Multiple</td><td>âŒ Single only</td><td>âœ… Multiple OK</td></tr>
+      <tr><td>Multiple</td><td>❌ Single only</td><td>✅ Multiple OK</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// extends â€” auto-inherits everything
+  <pre><code>// extends — auto-inherits everything
 class Animal { move() { console.log("moving"); } }
 class Dog extends Animal { }  // Dog already has move()!
 
-// implements â€” must provide everything
+// implements — must provide everything
 interface Flyable { fly(): void; }
 class Bird implements Flyable {
   fly() { console.log("flying"); }  // MUST implement!
@@ -456,23 +456,23 @@ class Bird implements Flyable {
 <div class="sec" id="c-sa">
   <div class="sec-label">Async</div>
   <h2>Synchronous vs Asynchronous</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Analogy:</strong> <strong>Sync</strong> = bank queue (wait for each person). <strong>Async</strong> = restaurant (order food, chat while kitchen cooks, food arrives later).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Sync</strong> = bank queue (wait for each person). <strong>Async</strong> = restaurant (order food, chat while kitchen cooks, food arrives later).</p></div>
   <div class="bordered"><table>
     <thead><tr><th>Feature</th><th>Synchronous</th><th>Asynchronous</th></tr></thead>
     <tbody>
       <tr><td>Execution</td><td>Line by line, in order</td><td>Non-blocking, background</td></tr>
-      <tr><td>Blocking</td><td>âœ… Waits for each line</td><td>âŒ Continues executing</td></tr>
+      <tr><td>Blocking</td><td>✅ Waits for each line</td><td>❌ Continues executing</td></tr>
       <tr><td>Speed for I/O</td><td>Slow (waits idle)</td><td>Fast (does other work)</td></tr>
       <tr><td>Keywords</td><td>Normal functions</td><td><code>async</code>, <code>await</code>, <code>Promise</code></td></tr>
       <tr><td>Use cases</td><td>Math, string ops</td><td>API calls, file I/O, timers</td></tr>
     </tbody>
   </table></div>
-  <pre><code>// Sync â€” blocks until done
+  <pre><code>// Sync — blocks until done
 console.log("1");
 console.log("2");
 console.log("3");  // Output: 1, 2, 3
 
-// Async â€” doesn't block
+// Async — doesn't block
 console.log("1");
 setTimeout(() => console.log("2"), 1000);
 console.log("3");  // Output: 1, 3, 2</code></pre>

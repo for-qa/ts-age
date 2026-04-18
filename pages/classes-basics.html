@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Classes (Basics) â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript classes â€” readonly properties, optional properties, static variables and methods, constructor overloading, and method overloading with real-life analogies.">
+<title>Classes (Basics) — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript classes — readonly properties, optional properties, static variables and methods, constructor overloading, and method overloading with real-life analogies.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Classes (Basics)</div>
 </div>
 
@@ -55,7 +55,7 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Classes <span>(Basics)</span></h1>
-  <p>Deep dive into class properties â€” readonly, optional, and static â€” plus constructor and method overloading inside classes.</p>
+  <p>Deep dive into class properties — readonly, optional, and static — plus constructor and method overloading inside classes.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">3</div><div class="stat-l">Property Types</div></div>
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Overloading Types</div></div>
@@ -66,34 +66,34 @@
 <!-- READONLY -->
 <div class="sec" id="cls-readonly">
   <div class="sec-label">Property Modifier</div>
-  <h2>readonly â€” Assign Once, Read Forever</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A <code>readonly</code> property is like your <strong>Aadhaar number</strong>. It's assigned to you once at birth (constructor), and you can show it to anyone (read), but you can NEVER change it.</p></div>
+  <h2>readonly — Assign Once, Read Forever</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A <code>readonly</code> property is like your <strong>Aadhaar number</strong>. It's assigned to you once at birth (constructor), and you can show it to anyone (read), but you can NEVER change it.</p></div>
 
-  <p>A <code>readonly</code> property can be assigned a value <strong>only once</strong> â€” inside the constructor. After that, it can be read but never modified.</p>
+  <p>A <code>readonly</code> property can be assigned a value <strong>only once</strong> — inside the constructor. After that, it can be read but never modified.</p>
 
   <pre><code>class Student {
-  readonly studentID: number;  // â† readonly keyword
+  readonly studentID: number;  // ← readonly keyword
   name: string;
 
   constructor(id: number, name: string) {
-    this.studentID = id;   // âœ… Assigning ONCE in constructor â€” allowed
+    this.studentID = id;   // ✅ Assigning ONCE in constructor — allowed
     this.name = name;
   }
 }
 
 let s1 = new Student(101, "John");
 
-console.log(s1.studentID);  // âœ… Reading â€” allowed (101)
-s1.studentID = 999;         // âŒ ERROR: Cannot assign â€” it's readonly!
-s1.name = "Jane";           // âœ… Regular property â€” can be changed</code></pre>
+console.log(s1.studentID);  // ✅ Reading — allowed (101)
+s1.studentID = 999;         // ❌ ERROR: Cannot assign — it's readonly!
+s1.name = "Jane";           // ✅ Regular property — can be changed</code></pre>
 
   <div class="bordered">
   <table>
     <thead><tr><th>Action</th><th>readonly</th><th>Regular</th></tr></thead>
     <tbody>
-      <tr><td>Assign in constructor</td><td>âœ… Once only</td><td>âœ… Anytime</td></tr>
-      <tr><td>Read from object</td><td>âœ… Unlimited</td><td>âœ… Unlimited</td></tr>
-      <tr><td>Modify after creation</td><td>âŒ Never</td><td>âœ… Anytime</td></tr>
+      <tr><td>Assign in constructor</td><td>✅ Once only</td><td>✅ Anytime</td></tr>
+      <tr><td>Read from object</td><td>✅ Unlimited</td><td>✅ Unlimited</td></tr>
+      <tr><td>Modify after creation</td><td>❌ Never</td><td>✅ Anytime</td></tr>
     </tbody>
   </table>
   </div>
@@ -102,38 +102,38 @@ s1.name = "Jane";           // âœ… Regular property â€” can be changed<
 <!-- OPTIONAL -->
 <div class="sec" id="cls-optional">
   <div class="sec-label">Property Modifier</div>
-  <h2>Optional (?) â€” Value Not Required</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> An optional property is like the <strong>"Middle Name" field</strong> on a form. Some people have one, some don't. If left blank, it's just <code>undefined</code> â€” and that's perfectly fine.</p></div>
+  <h2>Optional (?) — Value Not Required</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> An optional property is like the <strong>"Middle Name" field</strong> on a form. Some people have one, some don't. If left blank, it's just <code>undefined</code> — and that's perfectly fine.</p></div>
 
   <p>Add <code>?</code> after the property name. If no value is passed, it defaults to <code>undefined</code>.</p>
 
   <pre><code>class Student {
   readonly studentID: number;
   name: string;
-  email?: string;  // â† optional (question mark)
+  email?: string;  // ← optional (question mark)
 
   constructor(id: number, name: string, email?: string) {
-    //                                    â†‘ must also be optional here!
+    //                                    → must also be optional here!
     this.studentID = id;
     this.name = name;
     this.email = email;
   }
 }
 
-let s1 = new Student(101, "John");              // no email â€” OK!
-let s2 = new Student(102, "Bob", "b@mail.com"); // with email â€” OK!
+let s1 = new Student(101, "John");              // no email — OK!
+let s2 = new Student(102, "Bob", "b@mail.com"); // with email — OK!
 
 console.log(s1.email);  // undefined
 console.log(s2.email);  // "b@mail.com"</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Two places!</strong> You must add <code>?</code> in BOTH the property declaration AND the constructor parameter. Otherwise, the constructor will still demand a value.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Two places!</strong> You must add <code>?</code> in BOTH the property declaration AND the constructor parameter. Otherwise, the constructor will still demand a value.</p></div>
 </div>
 
 <!-- STATIC -->
 <div class="sec" id="cls-static">
   <div class="sec-label">Property &amp; Method Modifier</div>
-  <h2>static â€” Shared Across ALL Objects</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>static</code> is like the <strong>school name on a student ID card</strong>. Every student at "Greenwood High" has the SAME school name. If the school changes its name, EVERY student's card reflects the new name. The school name isn't personal to one student â€” it's shared.</p></div>
+  <h2>static — Shared Across ALL Objects</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>static</code> is like the <strong>school name on a student ID card</strong>. Every student at "Greenwood High" has the SAME school name. If the school changes its name, EVERY student's card reflects the new name. The school name isn't personal to one student — it's shared.</p></div>
 
   <p>A <code>static</code> property or method belongs to the <strong>class itself</strong>, not to individual objects. It's shared across ALL objects.</p>
 
@@ -148,14 +148,14 @@ console.log(s2.email);  // "b@mail.com"</code></pre>
     this.name = name;
   }
 
-  // Static method â€” changes the shared property
+  // Static method — changes the shared property
   static changeSchoolName(newName: string): void {
     Student.schoolName = newName;  // use CLASS name, not 'this'
   }
 
   displayInfo(): void {
     console.log(`${this.name} - ${Student.schoolName}`);
-    //                          â†‘ access static via CLASS name
+    //                          → access static via CLASS name
   }
 }
 
@@ -165,11 +165,11 @@ let s2 = new Student("Bob");
 s1.displayInfo();  // "John - Greenwood High"
 s2.displayInfo();  // "Bob - Greenwood High"
 
-// Change school name â€” affects ALL objects!
+// Change school name — affects ALL objects!
 Student.changeSchoolName("Sunrise Academy");
 
-s1.displayInfo();  // "John - Sunrise Academy" â† changed!
-s2.displayInfo();  // "Bob - Sunrise Academy"  â† changed!</code></pre>
+s1.displayInfo();  // "John - Sunrise Academy" ← changed!
+s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
     </div>
   </div>
 
@@ -180,22 +180,22 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  â† changed!</code></pre>
     <tbody>
       <tr><td>1</td><td>Static properties/methods are <strong>shared across all objects</strong></td></tr>
       <tr><td>2</td><td>Access using <strong>class name</strong> directly: <code>Student.schoolName</code></td></tr>
-      <tr><td>3</td><td><strong>Cannot</strong> use <code>this</code> keyword for static â€” use class name instead</td></tr>
-      <tr><td>4</td><td><strong>Cannot</strong> access via object: <code>s1.schoolName</code> â†’ âŒ Error in TypeScript</td></tr>
+      <tr><td>3</td><td><strong>Cannot</strong> use <code>this</code> keyword for static — use class name instead</td></tr>
+      <tr><td>4</td><td><strong>Cannot</strong> access via object: <code>s1.schoolName</code> → ❌ Error in TypeScript</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>TypeScript vs Java:</strong> In Java, you CAN access static members via objects. In TypeScript, you can ONLY access them via the class name. <code>s1.schoolName</code> will throw an error!</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>TypeScript vs Java:</strong> In Java, you CAN access static members via objects. In TypeScript, you can ONLY access them via the class name. <code>s1.schoolName</code> will throw an error!</p></div>
 </div>
 
 <!-- FULL STUDENT CLASS -->
 <div class="sec" id="cls-student">
   <div class="sec-label">Complete Example</div>
-  <h2>Student Class â€” All Property Types</h2>
+  <h2>Student Class — All Property Types</h2>
 
   <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">â˜…</div><div class="card-title">Full class with readonly, optional, static</div><span class="card-badge">Complete</span></div>
+    <div class="card-head"><div class="card-num">☑</div><div class="card-title">Full class with readonly, optional, static</div><span class="card-badge">Complete</span></div>
     <div class="card-body">
       <pre><code>class Student {
   readonly studentID: number;        // assign once only
@@ -237,10 +237,10 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  â† changed!</code></pre>
   <div class="sec-label">Using the Class</div>
   <h2>Creating Objects &amp; Testing Behavior</h2>
 
-  <pre><code>// Object 1 â€” no email (optional skipped)
+  <pre><code>// Object 1 — no email (optional skipped)
 let s1 = new Student(101, "John");
 
-// Object 2 â€” email provided
+// Object 2 — email provided
 let s2 = new Student(102, "Bob", "bob@gmail.com");
 
 s1.displayInfo();
@@ -255,13 +255,13 @@ s2.displayInfo();
 // Email: bob@gmail.com
 // School: Greenwood High
 
-// âŒ Try to modify readonly
+// ❌ Try to modify readonly
 s1.studentID = 999;  // ERROR: Cannot assign to readonly
 
-// âœ… Modify regular property
+// ✅ Modify regular property
 s1.name = "Jane";    // Works fine
 
-// âœ… Change static â€” affects BOTH objects
+// ✅ Change static — affects BOTH objects
 Student.changeSchoolName("Sunrise Academy");
 
 s1.displayInfo();  // School: Sunrise Academy
@@ -272,7 +272,7 @@ s2.displayInfo();  // School: Sunrise Academy</code></pre>
 <div class="sec" id="cls-ctor-overload">
   <div class="sec-label">Overloading</div>
   <h2>Constructor Overloading</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>vending machine</strong> that accepts different inputs. Insert 2 coins â†’ get a small drink. Insert 3 coins â†’ get a large drink. Same machine (class), different inputs (constructor signatures), one mechanism (implementation).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>vending machine</strong> that accepts different inputs. Insert 2 coins → get a small drink. Insert 3 coins → get a large drink. Same machine (class), different inputs (constructor signatures), one mechanism (implementation).</p></div>
 
   <p>Multiple constructor <strong>signatures</strong>, but only <strong>ONE implementation</strong>. The implementation must satisfy all signatures using optional parameters.</p>
 
@@ -286,9 +286,9 @@ s2.displayInfo();  // School: Sunrise Academy</code></pre>
   // Signature 2: two parameters
   constructor(a: number, b: number);
 
-  // ONE implementation â€” must match BOTH signatures
+  // ONE implementation — must match BOTH signatures
   constructor(a?: number, b?: number) {
-    //         â†‘ optional    â†‘ optional
+    //         → optional    → optional
     if (a !== undefined && b !== undefined) {
       console.log(`Sum: ${a + b}`);
     } else {
@@ -303,16 +303,16 @@ let calc2 = new Calculator(10, 20);  // "Sum: 30"</code></pre>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>How it works:</strong> Signature 1 has 0 params â†’ implementation's optional params match. Signature 2 has 2 params â†’ implementation accepts 2 params. ONE body handles both cases with an <code>if</code> check.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>How it works:</strong> Signature 1 has 0 params → implementation's optional params match. Signature 2 has 2 params → implementation accepts 2 params. ONE body handles both cases with an <code>if</code> check.</p></div>
 </div>
 
 <!-- METHOD OVERLOADING -->
 <div class="sec" id="cls-method-overload">
   <div class="sec-label">Overloading</div>
   <h2>Method Overloading</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>calculator's add button</strong>. Press it with 2 numbers â†’ adds 2. Press it with 3 numbers â†’ adds 3. Same button name, different number of inputs, one mechanism.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>calculator's add button</strong>. Press it with 2 numbers → adds 2. Press it with 3 numbers → adds 3. Same button name, different number of inputs, one mechanism.</p></div>
 
-  <p>Same concept as function overloading â€” multiple <strong>method signatures</strong>, one <strong>implementation</strong>. Inside a class, it's called method overloading instead of function overloading.</p>
+  <p>Same concept as function overloading — multiple <strong>method signatures</strong>, one <strong>implementation</strong>. Inside a class, it's called method overloading instead of function overloading.</p>
 
   <div class="card ph4-card">
     <div class="card-head"><div class="card-num">M</div><div class="card-title">add() with 2 or 3 parameters</div><span class="card-badge">Overloading</span></div>
@@ -326,12 +326,12 @@ let calc2 = new Calculator(10, 20);  // "Sum: 30"</code></pre>
   // Signature 2: three numbers
   add(a: number, b: number, c: number): number;
 
-  // ONE implementation â€” satisfies both
+  // ONE implementation — satisfies both
   add(a: number, b: number, c?: number): number {
     if (c !== undefined) {
-      return a + b + c;  // 3 params â†’ Signature 2
+      return a + b + c;  // 3 params → Signature 2
     }
-    return a + b;          // 2 params â†’ Signature 1
+    return a + b;          // 2 params → Signature 1
   }
 }
 
@@ -353,22 +353,22 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
   </table>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>TS vs Java overloading:</strong> In Java, each overloaded method has its OWN body. In TypeScript, multiple signatures share ONE implementation. The implementation uses optional params + <code>if</code> checks to handle all cases.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>TS vs Java overloading:</strong> In Java, each overloaded method has its OWN body. In TypeScript, multiple signatures share ONE implementation. The implementation uses optional params + <code>if</code> checks to handle all cases.</p></div>
 </div>
 
 <!-- COMPARISON TABLE -->
 <div class="sec" id="cls-compare">
   <div class="sec-label">Reference</div>
-  <h2>Property Modifiers â€” Compared</h2>
+  <h2>Property Modifiers — Compared</h2>
 
   <div class="bordered">
   <table>
     <thead><tr><th>Modifier</th><th>Keyword</th><th>Assign</th><th>Read</th><th>Modify</th><th>Shared?</th></tr></thead>
     <tbody>
-      <tr><td><strong>Regular</strong></td><td>(none)</td><td>Anytime</td><td>âœ…</td><td>âœ…</td><td>No â€” per object</td></tr>
-      <tr><td><strong>readonly</strong></td><td><code>readonly</code></td><td>Once (constructor)</td><td>âœ…</td><td>âŒ</td><td>No â€” per object</td></tr>
-      <tr><td><strong>Optional</strong></td><td><code>?</code></td><td>Optional</td><td>âœ…</td><td>âœ…</td><td>No â€” per object</td></tr>
-      <tr><td><strong>Static</strong></td><td><code>static</code></td><td>Default or class</td><td>âœ… (via class)</td><td>âœ… (via class)</td><td>Yes â€” ALL objects</td></tr>
+      <tr><td><strong>Regular</strong></td><td>(none)</td><td>Anytime</td><td>✅</td><td>✅</td><td>No — per object</td></tr>
+      <tr><td><strong>readonly</strong></td><td><code>readonly</code></td><td>Once (constructor)</td><td>✅</td><td>❌</td><td>No — per object</td></tr>
+      <tr><td><strong>Optional</strong></td><td><code>?</code></td><td>Optional</td><td>✅</td><td>✅</td><td>No — per object</td></tr>
+      <tr><td><strong>Static</strong></td><td><code>static</code></td><td>Default or class</td><td>✅ (via class)</td><td>✅ (via class)</td><td>Yes — ALL objects</td></tr>
     </tbody>
   </table>
   </div>
@@ -382,21 +382,21 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
   <h3>Property modifiers</h3>
   <pre><code>class Example {
   readonly id: number;          // assign once in constructor
-  name: string;                 // regular â€” read/write anytime
-  email?: string;               // optional â€” can be undefined
+  name: string;                 // regular — read/write anytime
+  email?: string;               // optional — can be undefined
   static company: string = "X"; // shared across all objects
 }</code></pre>
 
   <h3>Accessing static members</h3>
-  <pre><code>// âœ… Correct â€” use CLASS name
+  <pre><code>// ✅ Correct — use CLASS name
 Example.company;
 Example.staticMethod();
 
-// âŒ Wrong â€” cannot use object
+// ❌ Wrong — cannot use object
 let obj = new Example();
 obj.company;          // ERROR in TypeScript!
 
-// âŒ Wrong â€” cannot use 'this'
+// ❌ Wrong — cannot use 'this'
 this.company;         // ERROR for static!</code></pre>
 
   <h3>Constructor overloading</h3>
@@ -414,15 +414,15 @@ add(a: number, b: number, c?: number): number {  // Impl
 }</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… readonly = assign once in constructor, read forever
-// âœ… optional (?) = add in BOTH declaration AND constructor param
-// âœ… static = access via ClassName.prop, NOT this.prop
-// âœ… static = shared across all objects, change reflects everywhere
-// âœ… Overloading = multiple signatures, ONE implementation
-// âœ… Constructor keyword in TS (not class name like Java)</code></pre>
+  <pre><code>// ✅ readonly = assign once in constructor, read forever
+// ✅ optional (?) = add in BOTH declaration AND constructor param
+// ✅ static = access via ClassName.prop, NOT this.prop
+// ✅ static = shared across all objects, change reflects everywhere
+// ✅ Overloading = multiple signatures, ONE implementation
+// ✅ Constructor keyword in TS (not class name like Java)</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Classes (Basics) &nbsp;Â·&nbsp; readonly Â· optional Â· static Â· overloading</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Classes (Basics) &nbsp;·&nbsp; readonly · optional · static · overloading</p>
 </div>
 
 </div></div></div>

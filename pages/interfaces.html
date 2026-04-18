@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Interfaces â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript interfaces â€” creating objects, optional and readonly properties, extending interfaces, implementing with classes, abstract methods, and class vs interface comparison.">
+<title>Interfaces — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript interfaces — creating objects, optional and readonly properties, extending interfaces, implementing with classes, abstract methods, and class vs interface comparison.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Interfaces</div>
 </div>
 
@@ -70,19 +70,19 @@
 <div class="sec" id="if-what">
   <div class="sec-label">Core Concept</div>
   <h2>What is an Interface?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> An interface is like a <strong>job application form template</strong>. It says "fill in: Name, Age, Email" â€” it defines the STRUCTURE (what fields exist), but it doesn't fill in any data or do any work. A class is like the actual employee who fills in the form and starts working.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> An interface is like a <strong>job application form template</strong>. It says "fill in: Name, Age, Email" — it defines the STRUCTURE (what fields exist), but it doesn't fill in any data or do any work. A class is like the actual employee who fills in the form and starts working.</p></div>
 
-  <p>An interface defines the <strong>structure</strong> of an object â€” what properties and methods it should have. It's a blueprint, just like a class, but with key differences:</p>
+  <p>An interface defines the <strong>structure</strong> of an object — what properties and methods it should have. It's a blueprint, just like a class, but with key differences:</p>
 
   <div class="bordered">
   <table>
     <thead><tr><th>Feature</th><th>Class</th><th>Interface</th></tr></thead>
     <tbody>
-      <tr><td>Properties</td><td>âœ…</td><td>âœ…</td></tr>
-      <tr><td>Constructor</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Methods with body</td><td>âœ…</td><td>âŒ (abstract only)</td></tr>
-      <tr><td>Create objects</td><td>âœ… <code>new</code></td><td>âœ… (no <code>new</code>)</td></tr>
-      <tr><td>Access modifiers</td><td>âœ…</td><td>âŒ</td></tr>
+      <tr><td>Properties</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Constructor</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Methods with body</td><td>✅</td><td>❌ (abstract only)</td></tr>
+      <tr><td>Create objects</td><td>✅ <code>new</code></td><td>✅ (no <code>new</code>)</td></tr>
+      <tr><td>Access modifiers</td><td>✅</td><td>❌</td></tr>
     </tbody>
   </table>
   </div>
@@ -91,21 +91,21 @@
 interface InterfaceName {
   property1: type;
   property2: type;
-  methodName(): returnType;  // abstract â€” signature only, no body!
+  methodName(): returnType;  // abstract — signature only, no body!
 }</code></pre>
 </div>
 
 <!-- BASIC INTERFACE -->
 <div class="sec" id="if-basic">
   <div class="sec-label">Example 1</div>
-  <h2>Basic Interface â€” Creating Objects</h2>
+  <h2>Basic Interface — Creating Objects</h2>
 
   <pre><code>interface Person {
   name: string;
   age: number;
 }
 
-// Create object â€” NO 'new' keyword needed!
+// Create object — NO 'new' keyword needed!
 let student: Person = {
   name: "John",
   age: 25
@@ -115,26 +115,26 @@ console.log(student.name);  // "John"
 console.log(student.age);   // 25
 console.log(student);       // { name: "John", age: 25 }</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>No <code>new</code> keyword!</strong> Unlike classes, interfaces cannot be instantiated with <code>new</code>. You create objects by directly assigning data that matches the structure.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>No <code>new</code> keyword!</strong> Unlike classes, interfaces cannot be instantiated with <code>new</code>. You create objects by directly assigning data that matches the structure.</p></div>
 </div>
 
 <!-- OPTIONAL PROPERTIES -->
 <div class="sec" id="if-optional">
   <div class="sec-label">Example 2</div>
-  <h2>Optional Properties â€” Value Not Required</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a registration form where "Department" is optional. Some employees have one, some don't. If left blank â†’ <code>undefined</code>.</p></div>
+  <h2>Optional Properties — Value Not Required</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a registration form where "Department" is optional. Some employees have one, some don't. If left blank → <code>undefined</code>.</p></div>
 
   <pre><code>interface Employee {
   eid: number;
   ename: string;
-  edepartment?: string;  // â† optional (question mark)
+  edepartment?: string;  // ← optional (question mark)
 }
 
-// Object 1 â€” skip optional field
+// Object 1 — skip optional field
 let emp: Employee = { eid: 101, ename: "John" };
 console.log(emp.edepartment);  // undefined
 
-// Object 2 â€” include optional field
+// Object 2 — include optional field
 let emp1: Employee = {
   eid: 102,
   ename: "Smith",
@@ -146,12 +146,12 @@ console.log(emp1.edepartment);  // "Accounts"</code></pre>
 <!-- READONLY PROPERTIES -->
 <div class="sec" id="if-readonly">
   <div class="sec-label">Example 3</div>
-  <h2>Readonly Properties â€” Assign Once, Never Change</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A book's <strong>ISBN number</strong> â€” once printed, it can NEVER be changed. You can read it, but you can't modify it.</p></div>
+  <h2>Readonly Properties — Assign Once, Never Change</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A book's <strong>ISBN number</strong> — once printed, it can NEVER be changed. You can read it, but you can't modify it.</p></div>
 
   <pre><code>interface Book {
   title: string;
-  readonly isbn: string;  // â† readonly keyword
+  readonly isbn: string;  // ← readonly keyword
 }
 
 let b1: Book = {
@@ -159,11 +159,11 @@ let b1: Book = {
   isbn: "123ABC"
 };
 
-// âœ… Regular property â€” can be changed
+// ✅ Regular property — can be changed
 b1.title = "Learn TypeScript";
 console.log(b1.title);  // "Learn TypeScript"
 
-// âŒ Readonly â€” cannot change!
+// ❌ Readonly — cannot change!
 b1.isbn = "123XYZ";
 // ERROR: Cannot assign to 'isbn' because it is a read-only property</code></pre>
 </div>
@@ -171,15 +171,15 @@ b1.isbn = "123XYZ";
 <!-- ABSTRACT METHODS -->
 <div class="sec" id="if-abstract">
   <div class="sec-label">Methods</div>
-  <h2>Abstract Methods â€” Signature Only, No Body</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> An abstract method is like a <strong>blank check</strong>. The check template says "Amount: ___" (signature), but the actual value (implementation) is filled in later by whoever uses it.</p></div>
+  <h2>Abstract Methods — Signature Only, No Body</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> An abstract method is like a <strong>blank check</strong>. The check template says "Amount: ___" (signature), but the actual value (implementation) is filled in later by whoever uses it.</p></div>
 
-  <p>Interface methods are <strong>abstract by default</strong> â€” they have only a signature (name + params + return type). The body is implemented when creating the object or in a class.</p>
+  <p>Interface methods are <strong>abstract by default</strong> — they have only a signature (name + params + return type). The body is implemented when creating the object or in a class.</p>
 
   <pre><code>interface Book {
   title: string;
   readonly isbn: string;
-  display(): void;  // â† abstract method (no body!)
+  display(): void;  // ← abstract method (no body!)
 }
 
 let b1: Book = {
@@ -194,16 +194,16 @@ let b1: Book = {
 
 b1.display();  // "Learn Playwright | 123ABC"</code></pre>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>No <code>abstract</code> keyword needed!</strong> In interfaces, methods are abstract by default. In abstract classes, you must use the <code>abstract</code> keyword explicitly.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>No <code>abstract</code> keyword needed!</strong> In interfaces, methods are abstract by default. In abstract classes, you must use the <code>abstract</code> keyword explicitly.</p></div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>No <code>this</code> keyword!</strong> Inside interface object methods, you cannot use <code>this</code> to access properties. Use the object name directly: <code>b1.title</code> instead of <code>this.title</code>. The <code>this</code> keyword only works inside classes.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>No <code>this</code> keyword!</strong> Inside interface object methods, you cannot use <code>this</code> to access properties. Use the object name directly: <code>b1.title</code> instead of <code>this.title</code>. The <code>this</code> keyword only works inside classes.</p></div>
 </div>
 
 <!-- EXTENDING INTERFACES -->
 <div class="sec" id="if-extend">
   <div class="sec-label">Inheritance</div>
-  <h2>Extending Interfaces â€” Parent &amp; Child</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A generic "Animal" form has a name field. A "Dog" form <strong>extends</strong> it by adding a color field. The dog form inherits the name field AND adds its own.</p></div>
+  <h2>Extending Interfaces — Parent &amp; Child</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A generic "Animal" form has a name field. A "Dog" form <strong>extends</strong> it by adding a color field. The dog form inherits the name field AND adds its own.</p></div>
 
   <p>Just like classes, interfaces can extend other interfaces using <code>extends</code>.</p>
 
@@ -212,7 +212,7 @@ interface Animal {
   name: string;
 }
 
-// Child interface â€” inherits 'name', adds 'color'
+// Child interface — inherits 'name', adds 'color'
 interface Dog extends Animal {
   color: string;
 }
@@ -226,14 +226,14 @@ let myDog: Dog = {
 console.log(myDog.name);   // "Buddy"
 console.log(myDog.color);  // "Black"</code></pre>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Multiple inheritance!</strong> Unlike classes (single inheritance only), interfaces support extending MULTIPLE parent interfaces: <code>interface C extends A, B { }</code></p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Multiple inheritance!</strong> Unlike classes (single inheritance only), interfaces support extending MULTIPLE parent interfaces: <code>interface C extends A, B { }</code></p></div>
 </div>
 
 <!-- CLASS IMPLEMENTS INTERFACE -->
 <div class="sec" id="if-implement">
   <div class="sec-label">Inheritance</div>
   <h2>Class <code>implements</code> Interface</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> An interface is like a <strong>contract</strong>: "You MUST have a name and MUST implement the sound() method." A class that implements it says: "OK, I'll fulfill the contract and provide the actual code."</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> An interface is like a <strong>contract</strong>: "You MUST have a name and MUST implement the sound() method." A class that implements it says: "OK, I'll fulfill the contract and provide the actual code."</p></div>
 
   <p>A class can <strong>implement</strong> an interface. This means the class MUST:</p>
   <ol>
@@ -242,7 +242,7 @@ console.log(myDog.color);  // "Black"</code></pre>
   </ol>
 
   <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">â˜…</div><div class="card-title">Interface â†’ Class implementation</div><span class="card-badge">implements</span></div>
+    <div class="card-head"><div class="card-num">☑</div><div class="card-title">Interface → Class implementation</div><span class="card-badge">implements</span></div>
     <div class="card-body">
       <pre><code>interface Animal {
   name: string;
@@ -268,7 +268,7 @@ let pet = new Dog("Buddy", "Black");
 console.log(pet.name);   // "Buddy"
 console.log(pet.color);  // "Black"
 pet.sound();              // "Bark!"</code></pre>
-      <p class="fn">The class can add extra properties (like <code>color</code>) and a constructor â€” things the interface cannot have.</p>
+      <p class="fn">The class can add extra properties (like <code>color</code>) and a constructor — things the interface cannot have.</p>
     </div>
   </div>
 
@@ -276,15 +276,15 @@ pet.sound();              // "Bark!"</code></pre>
   <table>
     <thead><tr><th>When implementing an interface</th><th>Required?</th></tr></thead>
     <tbody>
-      <tr><td>Re-declare ALL interface properties in the class</td><td>âœ… Mandatory</td></tr>
-      <tr><td>Implement ALL abstract methods</td><td>âœ… Mandatory</td></tr>
+      <tr><td>Re-declare ALL interface properties in the class</td><td>✅ Mandatory</td></tr>
+      <tr><td>Implement ALL abstract methods</td><td>✅ Mandatory</td></tr>
       <tr><td>Add a constructor</td><td>Optional (but recommended)</td></tr>
       <tr><td>Add extra properties/methods</td><td>Optional</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>extends vs implements:</strong> Class <code>extends</code> Class (properties auto-inherited). Class <code>implements</code> Interface (properties must be re-declared). Don't mix them up!</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>extends vs implements:</strong> Class <code>extends</code> Class (properties auto-inherited). Class <code>implements</code> Interface (properties must be re-declared). Don't mix them up!</p></div>
 </div>
 
 <!-- ABSTRACT CLASS -->
@@ -296,52 +296,52 @@ pet.sound();              // "Bark!"</code></pre>
   <table>
     <thead><tr><th>Feature</th><th>Normal Class</th><th>Abstract Class</th><th>Interface</th></tr></thead>
     <tbody>
-      <tr><td>Properties</td><td>âœ…</td><td>âœ…</td><td>âœ…</td></tr>
-      <tr><td>Normal methods (with body)</td><td>âœ…</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Abstract methods (no body)</td><td>âŒ</td><td>âœ… (needs <code>abstract</code> keyword)</td><td>âœ… (default)</td></tr>
-      <tr><td>Constructor</td><td>âœ…</td><td>âœ…</td><td>âŒ</td></tr>
-      <tr><td>Instantiation (<code>new</code>)</td><td>âœ…</td><td>âŒ</td><td>âŒ (direct)</td></tr>
+      <tr><td>Properties</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Normal methods (with body)</td><td>✅</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Abstract methods (no body)</td><td>❌</td><td>✅ (needs <code>abstract</code> keyword)</td><td>✅ (default)</td></tr>
+      <tr><td>Constructor</td><td>✅</td><td>✅</td><td>❌</td></tr>
+      <tr><td>Instantiation (<code>new</code>)</td><td>✅</td><td>❌</td><td>❌ (direct)</td></tr>
     </tbody>
   </table>
   </div>
 
-  <p>Interface is the most "strict" â€” only abstract methods, no implementation. Abstract class is in between. Normal class requires full implementation.</p>
+  <p>Interface is the most "strict" — only abstract methods, no implementation. Abstract class is in between. Normal class requires full implementation.</p>
 </div>
 
 <!-- INHERITANCE RULES -->
 <div class="sec" id="if-rules">
   <div class="sec-label">Theory</div>
-  <h2>Inheritance Rules â€” What Can Extend/Implement What?</h2>
+  <h2>Inheritance Rules — What Can Extend/Implement What?</h2>
 
   <div class="bordered">
   <table>
     <thead><tr><th>Combination</th><th>Keyword</th><th>Possible?</th></tr></thead>
     <tbody>
-      <tr><td>Class â†’ Class</td><td><code>extends</code></td><td>âœ… (single only)</td></tr>
-      <tr><td>Interface â†’ Interface</td><td><code>extends</code></td><td>âœ… (multiple OK)</td></tr>
-      <tr><td>Class â†’ Interface</td><td><code>implements</code></td><td>âœ… (multiple OK)</td></tr>
-      <tr><td>Interface â†’ Class</td><td>â€”</td><td>âŒ Not possible</td></tr>
+      <tr><td>Class → Class</td><td><code>extends</code></td><td>✅ (single only)</td></tr>
+      <tr><td>Interface → Interface</td><td><code>extends</code></td><td>✅ (multiple OK)</td></tr>
+      <tr><td>Class → Interface</td><td><code>implements</code></td><td>✅ (multiple OK)</td></tr>
+      <tr><td>Interface → Class</td><td>—</td><td>❌ Not possible</td></tr>
     </tbody>
   </table>
   </div>
 
-  <pre><code>// âœ… Class extends Class (single)
+  <pre><code>// ✅ Class extends Class (single)
 class Honda extends Car { }
 
-// âœ… Interface extends Interface (multiple OK)
+// ✅ Interface extends Interface (multiple OK)
 interface Dog extends Animal, Pet { }
 
-// âœ… Class implements Interface (multiple OK)
+// ✅ Class implements Interface (multiple OK)
 class Dog implements Animal, Pet { }
 
-// âŒ Interface cannot implement/extend a Class
-// Why? Class has implementation â€” interface doesn't allow it</code></pre>
+// ❌ Interface cannot implement/extend a Class
+// Why? Class has implementation — interface doesn't allow it</code></pre>
 </div>
 
 <!-- CLASS VS INTERFACE -->
 <div class="sec" id="if-compare">
   <div class="sec-label">Comparison</div>
-  <h2>Class vs Interface â€” Full Comparison</h2>
+  <h2>Class vs Interface — Full Comparison</h2>
 
   <div class="bordered">
   <table>
@@ -349,13 +349,13 @@ class Dog implements Animal, Pet { }
     <tbody>
       <tr><td><strong>Definition</strong></td><td>Blueprint with implementation</td><td>Structure/type with NO implementation</td></tr>
       <tr><td><strong>Contains</strong></td><td>Properties + Constructor + Methods</td><td>Properties + Abstract methods only</td></tr>
-      <tr><td><strong>Instantiation</strong></td><td>âœ… <code>new ClassName()</code></td><td>âŒ Cannot use <code>new</code></td></tr>
+      <tr><td><strong>Instantiation</strong></td><td>✅ <code>new ClassName()</code></td><td>❌ Cannot use <code>new</code></td></tr>
       <tr><td><strong>Inheritance</strong></td><td>Single only (<code>extends</code>)</td><td>Multiple OK (<code>extends</code>)</td></tr>
       <tr><td><strong>Implementation</strong></td><td>Can implement interfaces</td><td>Cannot implement classes</td></tr>
-      <tr><td><strong>Access Modifiers</strong></td><td>âœ… public, protected, private</td><td>âŒ Not supported</td></tr>
-      <tr><td><strong>Static</strong></td><td>âœ… Supported</td><td>âŒ Not supported</td></tr>
-      <tr><td><strong>Constructor</strong></td><td>âœ… Supported</td><td>âŒ Not supported</td></tr>
-      <tr><td><strong><code>this</code> keyword</strong></td><td>âœ… Works</td><td>âŒ Not inside object</td></tr>
+      <tr><td><strong>Access Modifiers</strong></td><td>✅ public, protected, private</td><td>❌ Not supported</td></tr>
+      <tr><td><strong>Static</strong></td><td>✅ Supported</td><td>❌ Not supported</td></tr>
+      <tr><td><strong>Constructor</strong></td><td>✅ Supported</td><td>❌ Not supported</td></tr>
+      <tr><td><strong><code>this</code> keyword</strong></td><td>✅ Works</td><td>❌ Not inside object</td></tr>
     </tbody>
   </table>
   </div>
@@ -392,17 +392,17 @@ class Dog implements Animal, Pet { }
 }</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… Interface = structure only, no implementation
-// âœ… Methods are abstract by default (no 'abstract' keyword needed)
-// âœ… No constructor, no access modifiers, no static
-// âœ… Cannot use 'new' to create objects
-// âœ… Cannot use 'this' inside interface objects
-// âœ… Interface extends Interface = OK (multiple OK)
-// âœ… Class implements Interface = OK (must re-declare + implement)
-// âŒ Interface cannot implement/extend a Class</code></pre>
+  <pre><code>// ✅ Interface = structure only, no implementation
+// ✅ Methods are abstract by default (no 'abstract' keyword needed)
+// ✅ No constructor, no access modifiers, no static
+// ✅ Cannot use 'new' to create objects
+// ✅ Cannot use 'this' inside interface objects
+// ✅ Interface extends Interface = OK (multiple OK)
+// ✅ Class implements Interface = OK (must re-declare + implement)
+// ❌ Interface cannot implement/extend a Class</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Interfaces &nbsp;Â·&nbsp; abstract methods Â· extends Â· implements</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Interfaces &nbsp;·&nbsp; abstract methods · extends · implements</p>
 </div>
 
 </div></div></div>

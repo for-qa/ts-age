@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Objects &amp; Object Types â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript objects â€” 4 ways to create objects, dot and bracket notation, type aliases, intersection types, and intro to classes with constructors.">
+<title>Objects &amp; Object Types — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript objects — 4 ways to create objects, dot and bracket notation, type aliases, intersection types, and intro to classes with constructors.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Objects &amp; Object Types</div>
 </div>
 
@@ -33,10 +33,10 @@
   <div class="nav-group">Concept</div>
   <a href="#obj-what">What is an Object?</a>
   <div class="nav-group">4 Ways to Create</div>
-  <a href="#obj-direct">1 Â· Direct (Object Type)</a>
-  <a href="#obj-inline">2 Â· Inline Type</a>
-  <a href="#obj-alias">3 Â· Type Alias</a>
-  <a href="#obj-class">4 Â· Class (Preferred)</a>
+  <a href="#obj-direct">1 · Direct (Object Type)</a>
+  <a href="#obj-inline">2 · Inline Type</a>
+  <a href="#obj-alias">3 · Type Alias</a>
+  <a href="#obj-class">4 · Class (Preferred)</a>
   <div class="nav-group">Access &amp; Modify</div>
   <a href="#obj-access">Dot &amp; Bracket Notation</a>
   <a href="#obj-modify">Modify Values</a>
@@ -58,7 +58,7 @@
     <span class="hero-tag">Classes</span>
   </div>
   <h1>Objects &amp; Object <span>Types</span></h1>
-  <p>Everything is an object â€” learn 4 ways to create them, how to access data, type aliases, intersection types, and the class-based approach.</p>
+  <p>Everything is an object — learn 4 ways to create them, how to access data, type aliases, intersection types, and the class-based approach.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">4</div><div class="stat-l">Creation Methods</div></div>
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Access Notations</div></div>
@@ -70,7 +70,7 @@
 <div class="sec" id="obj-what">
   <div class="sec-label">Concept</div>
   <h2>What is an Object?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Every real-world thing is an object. A <strong>car</strong> has properties (color, brand, speed) and behavior (drive, brake, honk). An <strong>employee</strong> has properties (name, salary, department) and behavior (calculateBonus, getDetails).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Every real-world thing is an object. A <strong>car</strong> has properties (color, brand, speed) and behavior (drive, brake, honk). An <strong>employee</strong> has properties (name, salary, department) and behavior (calculateBonus, getDetails).</p></div>
 
   <p>An object is a <strong>group of properties</strong> (data) and <strong>behavior</strong> (methods/functions).</p>
 
@@ -91,14 +91,14 @@
 // Behavior  = methods (functions inside the object)
 // A function inside an object = METHOD</code></pre>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>4 ways to create objects in TypeScript:</strong> (1) Direct object type, (2) Inline type, (3) Type alias, (4) Class. We'll cover each one.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>4 ways to create objects in TypeScript:</strong> (1) Direct object type, (2) Inline type, (3) Type alias, (4) Class. We'll cover each one.</p></div>
 </div>
 
 <!-- APPROACH 1: DIRECT -->
 <div class="sec" id="obj-direct">
   <div class="sec-label">Approach 1</div>
-  <h2>Direct Object Type â€” Just Assign Data</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like filling out a <strong>sticky note</strong> right away â€” you write Name: John, Age: 30 directly. No form template needed. Quick and simple.</p></div>
+  <h2>Direct Object Type — Just Assign Data</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like filling out a <strong>sticky note</strong> right away — you write Name: John, Age: 30 directly. No form template needed. Quick and simple.</p></div>
 
   <p>Directly assign values to properties without declaring types. Works in <strong>both JavaScript and TypeScript</strong> (type inference handles the rest).</p>
 
@@ -129,23 +129,23 @@ console.log(employee.getDetails());
     </div>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Don't use <code>: object</code> type annotation!</strong> If you write <code>let employee: object = {...}</code>, you won't be able to access properties later (TypeScript will complain "property does not exist on type object"). Just omit it â€” TS will infer the type automatically.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Don't use <code>: object</code> type annotation!</strong> If you write <code>let employee: object = {...}</code>, you won't be able to access properties later (TypeScript will complain "property does not exist on type object"). Just omit it — TS will infer the type automatically.</p></div>
 
   <h3>The <code>this</code> keyword</h3>
   <pre><code>// Inside an object, 'this' refers to the CURRENT object
-// this.name â†’ accesses the 'name' property of THIS object
+// this.name → accesses the 'name' property of THIS object
 
 getDetails: function() {
-  return this.name;  // âœ… Correct â€” accesses object's 'name'
-  return name;       // âŒ Wrong â€” looks for external variable 'name'
+  return this.name;  // ✅ Correct — accesses object's 'name'
+  return name;       // ❌ Wrong — looks for external variable 'name'
 }</code></pre>
 </div>
 
 <!-- APPROACH 2: INLINE TYPE -->
 <div class="sec" id="obj-inline">
   <div class="sec-label">Approach 2</div>
-  <h2>Inline Type Object â€” Declare Structure, Then Assign</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like designing a <strong>form first</strong> (Name: ___, Age: ___, Grade: ___), and THEN filling it out. Two-step process: structure first, data second.</p></div>
+  <h2>Inline Type Object — Declare Structure, Then Assign</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like designing a <strong>form first</strong> (Name: ___, Age: ___, Grade: ___), and THEN filling it out. Two-step process: structure first, data second.</p></div>
 
   <p>First declare the <strong>structure with data types</strong>, then assign values. <strong>TypeScript only</strong> (because we specify types explicitly).</p>
 
@@ -175,14 +175,14 @@ console.log(student.getSummary());
     </div>
   </div>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Problem with inline types:</strong> If you create ANOTHER student, you have to re-write the entire structure again! For every object, the same structure must be repeated. This leads to the next approach â€” type aliases.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Problem with inline types:</strong> If you create ANOTHER student, you have to re-write the entire structure again! For every object, the same structure must be repeated. This leads to the next approach — type aliases.</p></div>
 </div>
 
 <!-- APPROACH 3: TYPE ALIAS -->
 <div class="sec" id="obj-alias">
   <div class="sec-label">Approach 3</div>
-  <h2>Type Alias â€” Define Once, Reuse Everywhere</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like creating a <strong>reusable form template</strong> at a print shop. You design the form once, then photocopy it for every new student/employee. Same structure, different data.</p></div>
+  <h2>Type Alias — Define Once, Reuse Everywhere</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like creating a <strong>reusable form template</strong> at a print shop. You design the form once, then photocopy it for every new student/employee. Same structure, different data.</p></div>
 
   <p>Create the structure <strong>once</strong> with the <code>type</code> keyword, then reuse it for <strong>multiple objects</strong>. <strong>TypeScript only.</strong></p>
 
@@ -224,21 +224,21 @@ let book3: Product = {
 console.log(book1.getInfo());  // "Learn Java costs 300"
 console.log(book2.getInfo());  // "Learn Python costs 500"
 console.log(book3.getInfo());  // "Learn JavaScript costs 600"</code></pre>
-      <p class="fn">One <code>type Product</code> â†’ reused for 3 objects. No repeated structure!</p>
+      <p class="fn">One <code>type Product</code> → reused for 3 objects. No repeated structure!</p>
     </div>
   </div>
 </div>
 
 <!-- APPROACH 4: CLASS -->
 <div class="sec" id="obj-class">
-  <div class="sec-label">Approach 4 â€” Preferred â­</div>
-  <h2>Class â€” The Blueprint Approach</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A class is like an <strong>architectural blueprint</strong> for a house. The blueprint itself isn't a house â€” but you can build many houses (objects) from the same blueprint. Each house has its own paint color and furniture (different data), but the same layout (structure).</p></div>
+  <div class="sec-label">Approach 4 — Preferred ⭐</div>
+  <h2>Class — The Blueprint Approach</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A class is like an <strong>architectural blueprint</strong> for a house. The blueprint itself isn't a house — but you can build many houses (objects) from the same blueprint. Each house has its own paint color and furniture (different data), but the same layout (structure).</p></div>
 
-  <p>A class is a <strong>blueprint</strong> containing properties and methods. Use the <code>new</code> keyword to create objects from it. This is the <strong>most preferred approach</strong> â€” pure object-oriented programming.</p>
+  <p>A class is a <strong>blueprint</strong> containing properties and methods. Use the <code>new</code> keyword to create objects from it. This is the <strong>most preferred approach</strong> — pure object-oriented programming.</p>
 
   <div class="card ph4-card">
-    <div class="card-head"><div class="card-num">4</div><div class="card-title">Person class with constructor</div><span class="card-badge">Class â­</span></div>
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Person class with constructor</div><span class="card-badge">Class ⭐</span></div>
     <div class="card-body">
       <pre><code>class Person {
   // Properties (key: type)
@@ -246,7 +246,7 @@ console.log(book3.getInfo());  // "Learn JavaScript costs 600"</code></pre>
   firstName: string;
   lastName: string;
 
-  // Constructor â€” assigns data to properties
+  // Constructor — assigns data to properties
   constructor(ssn: string, firstName: string, lastName: string) {
     this.ssn = ssn;
     this.firstName = firstName;
@@ -274,14 +274,14 @@ console.log(person3.getDetails());  // "3333 - Scott S"</code></pre>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Why classes are preferred:</strong> This is the ONLY approach that's truly object-oriented. Java, Python, C# â€” all use classes. TypeScript's class syntax is very similar to Java. In automation and real projects, always use classes.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Why classes are preferred:</strong> This is the ONLY approach that's truly object-oriented. Java, Python, C# — all use classes. TypeScript's class syntax is very similar to Java. In automation and real projects, always use classes.</p></div>
 </div>
 
 <!-- ACCESS -->
 <div class="sec" id="obj-access">
   <div class="sec-label">Accessing Data</div>
   <h2>Dot Notation vs Bracket Notation</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Two ways to find a book in a library:<br>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Two ways to find a book in a library:<br>
   <strong>Dot notation</strong> = "Go to the Science shelf, pick the Physics book" (<code>library.science.physics</code>)<br>
   <strong>Bracket notation</strong> = "Go to shelf ['Science'], pick book ['Physics']" (<code>library["science"]["physics"]</code>)</p></div>
 
@@ -289,7 +289,7 @@ console.log(person3.getDetails());  // "3333 - Scott S"</code></pre>
   <table>
     <thead><tr><th>Notation</th><th>Syntax</th><th>When to use</th></tr></thead>
     <tbody>
-      <tr><td><strong>Dot</strong></td><td><code>employee.name</code></td><td>Most common â€” use this 90% of the time</td></tr>
+      <tr><td><strong>Dot</strong></td><td><code>employee.name</code></td><td>Most common — use this 90% of the time</td></tr>
       <tr><td><strong>Bracket</strong></td><td><code>employee["name"]</code></td><td>When key is dynamic or has special characters</td></tr>
     </tbody>
   </table>
@@ -319,18 +319,18 @@ console.log(employee["getDetails"]());   // bracket</code></pre>
 
 // Modify using dot notation
 employee.job = "Manager";
-console.log(employee.job);  // "Manager" âœ…
+console.log(employee.job);  // "Manager" ✅
 
 // Modify using bracket notation
 employee["job"] = "Director";
-console.log(employee.job);  // "Director" âœ…</code></pre>
+console.log(employee.job);  // "Director" ✅</code></pre>
 </div>
 
 <!-- INTERSECTION TYPES -->
 <div class="sec" id="obj-intersection">
   <div class="sec-label">Advanced</div>
-  <h2>Intersection Types â€” Combining Multiple Types</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Think of a <strong>job application form</strong>. Page 1 asks for personal info (name, age). Page 2 asks for contact info (email, phone). The <strong>complete form</strong> combines BOTH pages. That's intersection â€” merging multiple types into one.</p></div>
+  <h2>Intersection Types — Combining Multiple Types</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Think of a <strong>job application form</strong>. Page 1 asks for personal info (name, age). Page 2 asks for contact info (email, phone). The <strong>complete form</strong> combines BOTH pages. That's intersection — merging multiple types into one.</p></div>
 
   <p>Use the <code>&</code> operator to combine multiple types into one super-type.</p>
 
@@ -361,12 +361,12 @@ let candidate: Candidate = {
   email: "s@gmail.com", // from Contact
   phone: 9876543210,    // from Contact
   getContactInfo: function() {
-    return `${this.name} â€” ${this.email}, ${this.phone}`;
+    return `${this.name} — ${this.email}, ${this.phone}`;
   }
 };
 
 console.log(candidate.getContactInfo());
-// "Scott â€” s@gmail.com, 9876543210"</code></pre>
+// "Scott — s@gmail.com, 9876543210"</code></pre>
       <p class="fn"><code>Candidate</code> = Personal + Contact + its own method. All properties from all types are required.</p>
     </div>
   </div>
@@ -375,8 +375,8 @@ console.log(candidate.getContactInfo());
 <!-- CONSTRUCTOR -->
 <div class="sec" id="obj-constructor">
   <div class="sec-label">Class Basics</div>
-  <h2>Constructor â€” Assigning Data at Creation</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A constructor is like a <strong>hospital birth registration</strong>. The moment a baby (object) is born (<code>new</code>), the nurse (constructor) immediately records the name, weight, and time. You don't call the nurse later â€” she acts automatically at birth.</p></div>
+  <h2>Constructor — Assigning Data at Creation</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A constructor is like a <strong>hospital birth registration</strong>. The moment a baby (object) is born (<code>new</code>), the nurse (constructor) immediately records the name, weight, and time. You don't call the nurse later — she acts automatically at birth.</p></div>
 
   <div class="bordered">
   <table>
@@ -394,7 +394,7 @@ console.log(candidate.getContactInfo());
   ssn: string;
   firstName: string;
 
-  // Constructor â€” runs AUTOMATICALLY when 'new Person(...)' is called
+  // Constructor — runs AUTOMATICALLY when 'new Person(...)' is called
   constructor(ssn: string, firstName: string) {
     this.ssn = ssn;            // assign parameter to class variable
     this.firstName = firstName;
@@ -408,8 +408,8 @@ let p = new Person("111", "John");
   <h3>Why use <code>this</code>?</h3>
   <pre><code>constructor(ssn: string) {
   this.ssn = ssn;
-  // this.ssn â†’ class property
-  // ssn      â†’ parameter (local)
+  // this.ssn → class property
+  // ssn      → parameter (local)
   // Without 'this', TS can't tell which is which!
 }</code></pre>
 
@@ -418,26 +418,26 @@ let p = new Person("111", "John");
 let p2 = new Person("222", "David");  // p2 has its OWN copy
 let p3 = new Person("333", "Scott");  // p3 has its OWN copy
 
-// p1, p2, p3 are INDEPENDENT â€” changing one doesn't affect others
+// p1, p2, p3 are INDEPENDENT — changing one doesn't affect others
 // Same class structure, different data</code></pre>
 </div>
 
 <!-- COMPARISON TABLE -->
 <div class="sec" id="obj-compare">
   <div class="sec-label">Reference</div>
-  <h2>4 Approaches â€” Compared</h2>
+  <h2>4 Approaches — Compared</h2>
 
   <div class="bordered">
   <table>
-    <thead><tr><th>Feature</th><th>1. Direct</th><th>2. Inline</th><th>3. Type Alias</th><th>4. Class â­</th></tr></thead>
+    <thead><tr><th>Feature</th><th>1. Direct</th><th>2. Inline</th><th>3. Type Alias</th><th>4. Class ⭐</th></tr></thead>
     <tbody>
-      <tr><td><strong>Works in JS?</strong></td><td>âœ…</td><td>âŒ</td><td>âŒ</td><td>âœ… (ES6+)</td></tr>
+      <tr><td><strong>Works in JS?</strong></td><td>✅</td><td>❌</td><td>❌</td><td>✅ (ES6+)</td></tr>
       <tr><td><strong>Specify types?</strong></td><td>No (inferred)</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-      <tr><td><strong>Reusable?</strong></td><td>No</td><td>No (repeat)</td><td>âœ… Yes</td><td>âœ… Yes</td></tr>
-      <tr><td><strong>Has constructor?</strong></td><td>No</td><td>No</td><td>No</td><td>âœ… Yes</td></tr>
-      <tr><td><strong>OOP?</strong></td><td>No</td><td>No</td><td>No</td><td>âœ… Yes</td></tr>
+      <tr><td><strong>Reusable?</strong></td><td>No</td><td>No (repeat)</td><td>✅ Yes</td><td>✅ Yes</td></tr>
+      <tr><td><strong>Has constructor?</strong></td><td>No</td><td>No</td><td>No</td><td>✅ Yes</td></tr>
+      <tr><td><strong>OOP?</strong></td><td>No</td><td>No</td><td>No</td><td>✅ Yes</td></tr>
       <tr><td><strong>Best for</strong></td><td>Quick one-off</td><td>Single typed obj</td><td>Multiple same-type</td><td>Production code</td></tr>
-      <tr><td><strong>Priority</strong></td><td>2nd choice</td><td>Interview only</td><td>Interview only</td><td>â­ 1st choice</td></tr>
+      <tr><td><strong>Priority</strong></td><td>2nd choice</td><td>Interview only</td><td>Interview only</td><td>⭐ 1st choice</td></tr>
     </tbody>
   </table>
   </div>
@@ -460,7 +460,7 @@ let p3 = new Person("333", "Scott");  // p3 has its OWN copy
   <pre><code>type Product = { name: string; price: number };
 let book: Product = { name: "Learn TS", price: 300 };</code></pre>
 
-  <h3>4. Class (preferred â­)</h3>
+  <h3>4. Class (preferred ⭐)</h3>
   <pre><code>class Person {
   name: string;
   constructor(name: string) { this.name = name; }
@@ -479,16 +479,16 @@ obj["name"]        // bracket notation
 obj.name = "New";  // modify value</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… 'this' keyword = current object inside methods
-// âœ… 'new' keyword = creates object from class
-// âœ… Constructor runs AUTOMATICALLY at object creation
-// âœ… Constructor NEVER returns a value
-// âœ… Objects from same class are INDEPENDENT
-// âœ… Use colon (:) not equals (=) for key-value pairs
-// âœ… Separate properties with commas (,) â€” class uses semicolons (;)</code></pre>
+  <pre><code>// ✅ 'this' keyword = current object inside methods
+// ✅ 'new' keyword = creates object from class
+// ✅ Constructor runs AUTOMATICALLY at object creation
+// ✅ Constructor NEVER returns a value
+// ✅ Objects from same class are INDEPENDENT
+// ✅ Use colon (:) not equals (=) for key-value pairs
+// ✅ Separate properties with commas (,) — class uses semicolons (;)</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Objects &amp; Object Types</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Objects &amp; Object Types</p>
 </div>
 
 </div></div></div>

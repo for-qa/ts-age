@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Enums â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript enums â€” numeric enums, string enums, heterogeneous enums, const enums, reverse mapping, and when to use enums vs union literal types.">
+<title>Enums — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript enums — numeric enums, string enums, heterogeneous enums, const enums, reverse mapping, and when to use enums vs union literal types.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Enums</div>
 </div>
 
@@ -56,7 +56,7 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Enums</h1>
-  <p>Define named sets of constants â€” numeric, string, and const enums with reverse mapping and real-world patterns.</p>
+  <p>Define named sets of constants — numeric, string, and const enums with reverse mapping and real-world patterns.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">4</div><div class="stat-l">Enum Types</div></div>
     <div class="stat"><div class="stat-n">1</div><div class="stat-l">Special Feature</div></div>
@@ -68,30 +68,30 @@
 <div class="sec" id="en-what">
   <div class="sec-label">Core Concept</div>
   <h2>What is an Enum?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> An enum is like a <strong>TV remote with preset channels</strong>. Button 1 = "News", Button 2 = "Sports", Button 3 = "Movies". Instead of remembering channel numbers, you press named buttons. Enums give meaningful names to a fixed set of values.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> An enum is like a <strong>TV remote with preset channels</strong>. Button 1 = "News", Button 2 = "Sports", Button 3 = "Movies". Instead of remembering channel numbers, you press named buttons. Enums give meaningful names to a fixed set of values.</p></div>
 
   <p>An <strong>enum</strong> (enumeration) is a way to define a set of <strong>named constants</strong>. Instead of using magic numbers like <code>0</code>, <code>1</code>, <code>2</code>, you give them descriptive names.</p>
 
-  <pre><code>// âŒ Without enums â€” magic numbers (unreadable!)
-let status = 0;  // What does 0 mean? Active? Pending? ðŸ¤·
+  <pre><code>// ❌ Without enums — magic numbers (unreadable!)
+let status = 0;  // What does 0 mean? Active? Pending? ✓
 
-// âœ… With enums â€” clear, readable names
+// ✅ With enums — clear, readable names
 enum Status {
   Active,    // 0
   Inactive,  // 1
   Suspended  // 2
 }
 
-let userStatus: Status = Status.Active;  // Clear! âœ…</code></pre>
+let userStatus: Status = Status.Active;  // Clear! ✅</code></pre>
 
-  <div class="note note-info"><span class="note-i">â„¹</span><p><strong>Syntax:</strong> <code>enum EnumName { Member1, Member2, Member3 }</code> â€” use PascalCase for both the enum name and its members by convention.</p></div>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Syntax:</strong> <code>enum EnumName { Member1, Member2, Member3 }</code> — use PascalCase for both the enum name and its members by convention.</p></div>
 </div>
 
 <!-- NUMERIC ENUMS -->
 <div class="sec" id="en-numeric">
   <div class="sec-label">Default Behavior</div>
-  <h2>Numeric Enums â€” Auto-Incrementing Numbers</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like <strong>floor numbers in a building</strong>. Ground floor = 0, First floor = 1, Second floor = 2. Each floor automatically gets the next number.</p></div>
+  <h2>Numeric Enums — Auto-Incrementing Numbers</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like <strong>floor numbers in a building</strong>. Ground floor = 0, First floor = 1, Second floor = 2. Each floor automatically gets the next number.</p></div>
 
   <p>By default, enum members start at <code>0</code> and auto-increment by 1.</p>
 
@@ -111,7 +111,7 @@ console.log(Direction.Right);  // 3
 let playerMove: Direction = Direction.Left;
 
 if (playerMove === Direction.Left) {
-  console.log("Moving left!");  // âœ… This runs
+  console.log("Moving left!");  // ✅ This runs
 }</code></pre>
 </div>
 
@@ -119,7 +119,7 @@ if (playerMove === Direction.Left) {
 <div class="sec" id="en-custom">
   <div class="sec-label">Custom Values</div>
   <h2>Custom Start Values</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like numbering <strong>exam questions starting from 1</strong> instead of 0. You set the first question as 1, and the rest follow: Q1, Q2, Q3...</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like numbering <strong>exam questions starting from 1</strong> instead of 0. You set the first question as 1, and the rest follow: Q1, Q2, Q3...</p></div>
 
   <pre><code>// Start from 1 instead of 0
 enum StatusCode {
@@ -132,7 +132,7 @@ console.log(StatusCode.OK);          // 200
 console.log(StatusCode.NotFound);    // 404
 console.log(StatusCode.ServerError); // 500
 
-// Partially custom â€” auto-increments from last value
+// Partially custom — auto-increments from last value
 enum Priority {
   Low = 1,     // 1
   Medium,      // 2 (auto-incremented)
@@ -147,10 +147,10 @@ console.log(Priority.Critical); // 4</code></pre>
 <!-- STRING ENUMS -->
 <div class="sec" id="en-string">
   <div class="sec-label">String Values</div>
-  <h2>String Enums â€” Named String Constants</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>colour palette in a design tool</strong>. Instead of remembering "#FF5733", you name it "Sunset Orange". String enums map names to meaningful string values.</p></div>
+  <h2>String Enums — Named String Constants</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>colour palette in a design tool</strong>. Instead of remembering "#FF5733", you name it "Sunset Orange". String enums map names to meaningful string values.</p></div>
 
-  <p>Each member must be <strong>explicitly assigned</strong> a string value â€” no auto-increment for strings.</p>
+  <p>Each member must be <strong>explicitly assigned</strong> a string value — no auto-increment for strings.</p>
 
   <pre><code>enum Color {
   Red = "RED",
@@ -171,13 +171,13 @@ enum Environment {
 let currentEnv: Environment = Environment.Dev;
 console.log(currentEnv);  // "development"</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>No auto-increment!</strong> Unlike numeric enums, string enums require EVERY member to be explicitly assigned a value. You can't skip values.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>No auto-increment!</strong> Unlike numeric enums, string enums require EVERY member to be explicitly assigned a value. You can't skip values.</p></div>
 </div>
 
 <!-- HETEROGENEOUS -->
 <div class="sec" id="en-hetero">
   <div class="sec-label">Mixed Types</div>
-  <h2>Heterogeneous Enums â€” Mixing Numbers &amp; Strings</h2>
+  <h2>Heterogeneous Enums — Mixing Numbers &amp; Strings</h2>
 
   <pre><code>// Mix number and string values (not recommended, but possible)
 enum Mixed {
@@ -188,23 +188,23 @@ enum Mixed {
 console.log(Mixed.No);   // 0
 console.log(Mixed.Yes);  // "YES"</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Not recommended!</strong> Mixing types makes enums confusing. Stick to either all-numeric or all-string enums for clarity.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Not recommended!</strong> Mixing types makes enums confusing. Stick to either all-numeric or all-string enums for clarity.</p></div>
 </div>
 
 <!-- CONST ENUMS -->
 <div class="sec" id="en-const">
   <div class="sec-label">Optimization</div>
-  <h2>const Enums â€” Compile-Time Only</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Regular enums are like <strong>printed menus</strong> that stay on the table. Const enums are like the <strong>waiter reading the menu aloud</strong> â€” the info is delivered, but no menu card is left behind (no JavaScript output).</p></div>
+  <h2>const Enums — Compile-Time Only</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Regular enums are like <strong>printed menus</strong> that stay on the table. Const enums are like the <strong>waiter reading the menu aloud</strong> — the info is delivered, but no menu card is left behind (no JavaScript output).</p></div>
 
-  <pre><code>// Regular enum â†’ generates JavaScript object at runtime
+  <pre><code>// Regular enum → generates JavaScript object at runtime
 enum Direction {
   Up = "UP",
   Down = "DOWN"
 }
 // Compiles to: var Direction; Direction["Up"] = "UP"; ...
 
-// const enum â†’ inlined at compile time (no runtime object!)
+// const enum → inlined at compile time (no runtime object!)
 const enum Speed {
   Slow = 1,
   Medium = 5,
@@ -218,10 +218,10 @@ let s = Speed.Fast;
   <table>
     <thead><tr><th>Feature</th><th>Regular Enum</th><th>const Enum</th></tr></thead>
     <tbody>
-      <tr><td>Runtime object</td><td>âœ… Yes</td><td>âŒ No (removed)</td></tr>
-      <tr><td>Reverse mapping</td><td>âœ… Yes</td><td>âŒ No</td></tr>
+      <tr><td>Runtime object</td><td>✅ Yes</td><td>❌ No (removed)</td></tr>
+      <tr><td>Reverse mapping</td><td>✅ Yes</td><td>❌ No</td></tr>
       <tr><td>Performance</td><td>Normal</td><td>Better (inlined)</td></tr>
-      <tr><td>Computed members</td><td>âœ… Yes</td><td>âŒ No</td></tr>
+      <tr><td>Computed members</td><td>✅ Yes</td><td>❌ No</td></tr>
     </tbody>
   </table>
   </div>
@@ -230,8 +230,8 @@ let s = Speed.Fast;
 <!-- REVERSE MAPPING -->
 <div class="sec" id="en-reverse">
   <div class="sec-label">Feature</div>
-  <h2>Reverse Mapping â€” Value â†’ Name</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>phonebook that works both ways</strong>. Look up "John" â†’ get 12345 (forward). Look up 12345 â†’ get "John" (reverse). Numeric enums support both directions!</p></div>
+  <h2>Reverse Mapping — Value → Name</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>phonebook that works both ways</strong>. Look up "John" → get 12345 (forward). Look up 12345 → get "John" (reverse). Numeric enums support both directions!</p></div>
 
   <pre><code>enum Day {
   Monday = 1,
@@ -239,14 +239,14 @@ let s = Speed.Fast;
   Wednesday = 3
 }
 
-// Forward: Name â†’ Value
+// Forward: Name → Value
 console.log(Day.Monday);     // 1
 
-// Reverse: Value â†’ Name
+// Reverse: Value → Name
 console.log(Day[1]);         // "Monday"
 console.log(Day[3]);         // "Wednesday"</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Numeric enums only!</strong> Reverse mapping works only with numeric enums, not string enums. String enums do NOT support <code>Day["Monday"]</code> reverse lookup.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Numeric enums only!</strong> Reverse mapping works only with numeric enums, not string enums. String enums do NOT support <code>Day["Monday"]</code> reverse lookup.</p></div>
 </div>
 
 <!-- REAL-WORLD USAGE -->
@@ -319,19 +319,19 @@ runTest(Browser.Chrome, TestEnv.Staging);
     <thead><tr><th>Feature</th><th>Enum</th><th>Union Literal</th></tr></thead>
     <tbody>
       <tr><td><strong>Syntax</strong></td><td><code>enum Status { ... }</code></td><td><code>type Status = "a" | "b"</code></td></tr>
-      <tr><td><strong>Runtime value</strong></td><td>âœ… Exists in JS</td><td>âŒ Types only (erased)</td></tr>
-      <tr><td><strong>Reverse mapping</strong></td><td>âœ… Numeric</td><td>âŒ</td></tr>
-      <tr><td><strong>Iteratable</strong></td><td>âœ… Can loop over</td><td>âŒ</td></tr>
+      <tr><td><strong>Runtime value</strong></td><td>✅ Exists in JS</td><td>❌ Types only (erased)</td></tr>
+      <tr><td><strong>Reverse mapping</strong></td><td>✅ Numeric</td><td>❌</td></tr>
+      <tr><td><strong>Iteratable</strong></td><td>✅ Can loop over</td><td>❌</td></tr>
       <tr><td><strong>Bundle size</strong></td><td>Larger</td><td>Smaller (no runtime)</td></tr>
       <tr><td><strong>Recommended</strong></td><td>When runtime values needed</td><td>For simple string sets</td></tr>
     </tbody>
   </table>
   </div>
 
-  <pre><code>// Enum â€” when you need runtime values
+  <pre><code>// Enum — when you need runtime values
 enum Direction { Up, Down, Left, Right }
 
-// Union â€” lighter alternative for type checking
+// Union — lighter alternative for type checking
 type Direction2 = "up" | "down" | "left" | "right";</code></pre>
 </div>
 
@@ -351,18 +351,18 @@ enum Priority { Low = 1, Medium, High }     // 1, 2, 3</code></pre>
   <pre><code>const enum Speed { Slow = 1, Fast = 10 }  // inlined, no runtime</code></pre>
 
   <h3>Reverse mapping (numeric only)</h3>
-  <pre><code>console.log(Direction[0]);  // "Up"  (value â†’ name)</code></pre>
+  <pre><code>console.log(Direction[0]);  // "Up"  (value → name)</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… Numeric enums auto-increment from 0 (or custom start)
-// âœ… String enums require explicit values for EVERY member
-// âœ… const enums are inlined â€” no runtime object generated
-// âœ… Reverse mapping works for numeric enums ONLY
-// âœ… Use enums for fixed sets of related constants
-// âŒ Avoid mixing numbers and strings in one enum</code></pre>
+  <pre><code>// ✅ Numeric enums auto-increment from 0 (or custom start)
+// ✅ String enums require explicit values for EVERY member
+// ✅ const enums are inlined — no runtime object generated
+// ✅ Reverse mapping works for numeric enums ONLY
+// ✅ Use enums for fixed sets of related constants
+// ❌ Avoid mixing numbers and strings in one enum</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Enums &nbsp;Â·&nbsp; numeric Â· string Â· const Â· reverse mapping</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Enums &nbsp;·&nbsp; numeric · string · const · reverse mapping</p>
 </div>
 
 </div></div></div>

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Async/Await & Promises â€” TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript async programming â€” callbacks, promises, async/await, error handling with try-catch, Promise.all, Promise.race, and real-world API patterns.">
+<title>Async/Await & Promises — TypeScript Learning Path</title>
+<meta name="description" content="Learn TypeScript async programming — callbacks, promises, async/await, error handling with try-catch, Promise.all, Promise.race, and real-world API patterns.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -18,7 +18,7 @@
       <div class="tb-brand-sub">Session Notes</div>
     </div>
   </div>
-  <a class="tb-back" href="../index.html">â† Back to Index</a>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
   <div class="tb-topic-title">Async/Await &amp; Promises</div>
 </div>
 
@@ -58,7 +58,7 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Async/Await <span>&amp; Promises</span></h1>
-  <p>Handle asynchronous operations â€” API calls, file reads, and timers â€” with promises and the modern async/await syntax.</p>
+  <p>Handle asynchronous operations — API calls, file reads, and timers — with promises and the modern async/await syntax.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">3</div><div class="stat-l">Promise States</div></div>
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Key Keywords</div></div>
@@ -70,15 +70,15 @@
 <div class="sec" id="as-sync">
   <div class="sec-label">Foundation</div>
   <h2>Synchronous vs Asynchronous</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <strong>Synchronous</strong> = standing in a queue at a bank. You wait for each person to finish before you can go. <strong>Asynchronous</strong> = ordering food at a restaurant. You order, then chat with friends while the kitchen prepares your food. You don't wait idle.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <strong>Synchronous</strong> = standing in a queue at a bank. You wait for each person to finish before you can go. <strong>Asynchronous</strong> = ordering food at a restaurant. You order, then chat with friends while the kitchen prepares your food. You don't wait idle.</p></div>
 
-  <pre><code>// Synchronous â€” each line waits for the previous one
+  <pre><code>// Synchronous — each line waits for the previous one
 console.log("Step 1");  // runs first
 console.log("Step 2");  // runs second
 console.log("Step 3");  // runs third
 // Output: Step 1, Step 2, Step 3 (in order)
 
-// Asynchronous â€” some tasks run "in the background"
+// Asynchronous — some tasks run "in the background"
 console.log("Step 1");
 setTimeout(() => console.log("Step 2 (delayed)"), 2000);
 console.log("Step 3");
@@ -90,7 +90,7 @@ console.log("Step 3");
     <thead><tr><th>Synchronous</th><th>Asynchronous</th></tr></thead>
     <tbody>
       <tr><td>Runs line by line, in order</td><td>Some tasks run in background</td></tr>
-      <tr><td>Blocks until each line completes</td><td>Doesn't block â€” continues executing</td></tr>
+      <tr><td>Blocks until each line completes</td><td>Doesn't block — continues executing</td></tr>
       <tr><td>Simple but slow for I/O</td><td>Complex but fast for I/O</td></tr>
       <tr><td>Regular function calls</td><td>API calls, timers, file reads</td></tr>
     </tbody>
@@ -101,10 +101,10 @@ console.log("Step 3");
 <!-- CALLBACKS -->
 <div class="sec" id="as-callback">
   <div class="sec-label">Old Way</div>
-  <h2>Callbacks â€” The Original Approach</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like leaving your phone number at a busy restaurant: "Call me BACK when my table is ready." You give them a function (your number) to execute later.</p></div>
+  <h2>Callbacks — The Original Approach</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like leaving your phone number at a busy restaurant: "Call me BACK when my table is ready." You give them a function (your number) to execute later.</p></div>
 
-  <pre><code>// Callback pattern â€” pass a function to call when done
+  <pre><code>// Callback pattern — pass a function to call when done
 function fetchUser(id: number, callback: (user: string) => void): void {
   setTimeout(() => {
     callback(`User_${id}`);  // "call back" with the result
@@ -115,26 +115,26 @@ fetchUser(1, (user) => {
   console.log(`Got: ${user}`);  // "Got: User_1" (after 1 second)
 });</code></pre>
 
-  <pre><code>// âŒ Callback Hell â€” nested callbacks become unreadable!
+  <pre><code>// ❌ Callback Hell — nested callbacks become unreadable!
 fetchUser(1, (user) => {
   fetchOrders(user, (orders) => {
     fetchDetails(orders[0], (details) => {
       processPayment(details, (result) => {
-        console.log(result);  // ðŸ˜µ 4 levels deep!
+        console.log(result);  // ✓ 4 levels deep!
       });
     });
   });
 });
 // This is why Promises were invented!</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Callback hell!</strong> Deeply nested callbacks are hard to read, debug, and maintain. Promises and async/await solve this problem elegantly.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Callback hell!</strong> Deeply nested callbacks are hard to read, debug, and maintain. Promises and async/await solve this problem elegantly.</p></div>
 </div>
 
 <!-- WHAT IS A PROMISE -->
 <div class="sec" id="as-promise">
   <div class="sec-label">Promises</div>
   <h2>What is a Promise?</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> A promise is like an <strong>online order tracking number</strong>. When you place an order, you get a tracking number (promise). The order is either: still processing (pending), delivered successfully (fulfilled/resolved), or failed (rejected).</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A promise is like an <strong>online order tracking number</strong>. When you place an order, you get a tracking number (promise). The order is either: still processing (pending), delivered successfully (fulfilled/resolved), or failed (rejected).</p></div>
 
   <p>A <strong>Promise</strong> is an object representing the eventual result of an asynchronous operation. It has three states:</p>
 
@@ -142,16 +142,16 @@ fetchUser(1, (user) => {
   <table>
     <thead><tr><th>State</th><th>Meaning</th><th>Handler</th></tr></thead>
     <tbody>
-      <tr><td><strong>Pending</strong></td><td>Operation still in progress</td><td>â€”</td></tr>
-      <tr><td><strong>Fulfilled</strong></td><td>Operation succeeded â†’ has a value</td><td><code>.then()</code></td></tr>
-      <tr><td><strong>Rejected</strong></td><td>Operation failed â†’ has an error</td><td><code>.catch()</code></td></tr>
+      <tr><td><strong>Pending</strong></td><td>Operation still in progress</td><td>—</td></tr>
+      <tr><td><strong>Fulfilled</strong></td><td>Operation succeeded → has a value</td><td><code>.then()</code></td></tr>
+      <tr><td><strong>Rejected</strong></td><td>Operation failed → has an error</td><td><code>.catch()</code></td></tr>
     </tbody>
   </table>
   </div>
 
   <pre><code>// Promise flow
-//  Pending â†’ Fulfilled (success) â†’ .then() handles it
-//  Pending â†’ Rejected  (failure) â†’ .catch() handles it</code></pre>
+//  Pending → Fulfilled (success) → .then() handles it
+//  Pending → Rejected  (failure) → .catch() handles it</code></pre>
 </div>
 
 <!-- CREATING PROMISES -->
@@ -164,9 +164,9 @@ let myPromise: Promise&lt;string&gt; = new Promise((resolve, reject) => {
   let success = true;
 
   if (success) {
-    resolve("Operation completed!");   // â†’ Fulfilled
+    resolve("Operation completed!");   // → Fulfilled
   } else {
-    reject("Something went wrong!");   // â†’ Rejected
+    reject("Something went wrong!");   // → Rejected
   }
 });
 
@@ -198,8 +198,8 @@ fetchUser(1)
 <!-- CHAINING -->
 <div class="sec" id="as-chain">
   <div class="sec-label">Chaining</div>
-  <h2>Chaining <code>.then()</code> â€” Sequential Steps</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like an <strong>assembly line</strong>. Step 1: cut the fabric. Step 2: stitch it. Step 3: add buttons. Each step passes its result to the next.</p></div>
+  <h2>Chaining <code>.then()</code> — Sequential Steps</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like an <strong>assembly line</strong>. Step 1: cut the fabric. Step 2: stitch it. Step 3: add buttons. Each step passes its result to the next.</p></div>
 
   <pre><code>fetchUser(1)
   .then((user) => {
@@ -224,19 +224,19 @@ fetchUser(1)
 <!-- ASYNC/AWAIT -->
 <div class="sec" id="as-await">
   <div class="sec-label">Modern Syntax</div>
-  <h2><code>async</code> / <code>await</code> â€” Cleaner Promises</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> <code>async/await</code> is like telling a friend: "Go order my coffee. I'll <strong>wait right here</strong> until you come back." It makes asynchronous code LOOK and READ like synchronous code.</p></div>
+  <h2><code>async</code> / <code>await</code> — Cleaner Promises</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>async/await</code> is like telling a friend: "Go order my coffee. I'll <strong>wait right here</strong> until you come back." It makes asynchronous code LOOK and READ like synchronous code.</p></div>
 
   <p><code>async</code> marks a function as asynchronous. <code>await</code> pauses execution until the promise resolves.</p>
 
-  <pre><code>// âŒ With .then() chains (harder to read)
+  <pre><code>// ❌ With .then() chains (harder to read)
 fetchUser(1)
   .then(user => fetchOrders(user.name))
   .then(orders => processOrder(orders[0]))
   .then(result => console.log(result))
   .catch(err => console.log(err));
 
-// âœ… With async/await (reads like normal code!)
+// ✅ With async/await (reads like normal code!)
 async function processUserOrder(): Promise&lt;void&gt; {
   const user = await fetchUser(1);
   const orders = await fetchOrders(user.name);
@@ -248,8 +248,8 @@ async function processUserOrder(): Promise&lt;void&gt; {
   <table>
     <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td><code>async</code></td><td>Put before <code>function</code> keyword â€” function now returns a Promise</td></tr>
-      <tr><td><code>await</code></td><td>Put before a Promise â€” pauses until it resolves</td></tr>
+      <tr><td><code>async</code></td><td>Put before <code>function</code> keyword — function now returns a Promise</td></tr>
+      <tr><td><code>await</code></td><td>Put before a Promise — pauses until it resolves</td></tr>
       <tr><td><code>await</code> location</td><td>Can ONLY be used inside an <code>async</code> function</td></tr>
       <tr><td>Return type</td><td><code>async</code> functions always return <code>Promise&lt;T&gt;</code></td></tr>
     </tbody>
@@ -272,7 +272,7 @@ async function main(): Promise&lt;void&gt; {
 <div class="sec" id="as-trycatch">
   <div class="sec-label">Error Handling</div>
   <h2>Error Handling with <code>try/catch</code></h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like wearing a <strong>safety net while tightrope walking</strong>. <code>try</code> = walk the rope. <code>catch</code> = the net catches you if you fall. <code>finally</code> = you get down from the platform either way.</p></div>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like wearing a <strong>safety net while tightrope walking</strong>. <code>try</code> = walk the rope. <code>catch</code> = the net catches you if you fall. <code>finally</code> = you get down from the platform either way.</p></div>
 
   <pre><code>async function loadUserData(id: number): Promise&lt;void&gt; {
   try {
@@ -283,22 +283,22 @@ async function main(): Promise&lt;void&gt; {
     // Catches ANY error from the try block
     console.log(`Failed: ${error}`);
   } finally {
-    // Runs ALWAYS â€” success or failure
+    // Runs ALWAYS — success or failure
     console.log("Loading complete");
   }
 }
 
 loadUserData(1);   // Success path
-loadUserData(-1);  // Error path â†’ catch block runs</code></pre>
+loadUserData(-1);  // Error path → catch block runs</code></pre>
 
-  <div class="note note-warn"><span class="note-i">âš </span><p><strong>Always wrap <code>await</code> in <code>try/catch</code>!</strong> Without it, rejected promises will crash your application with an unhandled promise rejection error.</p></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Always wrap <code>await</code> in <code>try/catch</code>!</strong> Without it, rejected promises will crash your application with an unhandled promise rejection error.</p></div>
 </div>
 
 <!-- PROMISE.ALL -->
 <div class="sec" id="as-all">
   <div class="sec-label">Utility</div>
-  <h2><code>Promise.all()</code> â€” Run in Parallel</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like ordering <strong>3 dishes at the same time</strong> instead of one after another. All kitchens work simultaneously. You get everything when the LAST dish is ready. But if ANY dish fails â†’ the entire order is cancelled.</p></div>
+  <h2><code>Promise.all()</code> — Run in Parallel</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like ordering <strong>3 dishes at the same time</strong> instead of one after another. All kitchens work simultaneously. You get everything when the LAST dish is ready. But if ANY dish fails → the entire order is cancelled.</p></div>
 
   <pre><code>async function loadDashboard(): Promise&lt;void&gt; {
   try {
@@ -323,10 +323,10 @@ loadUserData(-1);  // Error path â†’ catch block runs</code></pre>
 <!-- PROMISE.RACE -->
 <div class="sec" id="as-race">
   <div class="sec-label">Utility</div>
-  <h2><code>Promise.race()</code> â€” First One Wins</h2>
-  <div class="note note-tip"><span class="note-i">ðŸª</span><p><strong>Real-Life Example:</strong> Like a <strong>100m sprint</strong>. Multiple runners start together. Whoever finishes FIRST wins â€” the rest don't matter.</p></div>
+  <h2><code>Promise.race()</code> — First One Wins</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>100m sprint</strong>. Multiple runners start together. Whoever finishes FIRST wins — the rest don't matter.</p></div>
 
-  <pre><code>// Timeout pattern â€” cancel if too slow
+  <pre><code>// Timeout pattern — cancel if too slow
 function timeout(ms: number): Promise&lt;never&gt; {
   return new Promise((_, reject) =>
     setTimeout(() => reject("Timeout!"), ms)
@@ -396,7 +396,7 @@ async function main() {
   </div>
 
   <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">Automation â€” Wait for Element</div><span class="card-badge">Testing</span></div>
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Automation — Wait for Element</div><span class="card-badge">Testing</span></div>
     <div class="card-body">
       <pre><code>async function waitForElement(
   selector: string,
@@ -456,15 +456,15 @@ finally { cleanup(); }</code></pre>
   <pre><code>const [a, b, c] = await Promise.all([p1, p2, p3]);</code></pre>
 
   <h3>Key rules</h3>
-  <pre><code>// âœ… async function always returns Promise&lt;T&gt;
-// âœ… await can ONLY be used inside async functions
-// âœ… Always wrap await in try/catch for error handling
-// âœ… Promise.all = parallel execution (faster!)
-// âœ… Promise.race = first one wins (timeout patterns)
-// âŒ Don't forget error handling â€” unhandled rejections crash apps</code></pre>
+  <pre><code>// ✅ async function always returns Promise&lt;T&gt;
+// ✅ await can ONLY be used inside async functions
+// ✅ Always wrap await in try/catch for error handling
+// ✅ Promise.all = parallel execution (faster!)
+// ✅ Promise.race = first one wins (timeout patterns)
+// ❌ Don't forget error handling — unhandled rejections crash apps</code></pre>
 
   <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;Â·&nbsp; Async/Await & Promises &nbsp;Â·&nbsp; Promise Â· async Â· await Â· try/catch</p>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Async/Await & Promises &nbsp;·&nbsp; Promise · async · await · try/catch</p>
 </div>
 
 </div></div></div>
