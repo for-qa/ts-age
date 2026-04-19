@@ -1,0 +1,37 @@
+{
+  // Disable VS Code built-in suggestions
+  "editor.quickSuggestions": {
+    "other": "off",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.parameterHints.enabled": false,
+  "editor.wordBasedSuggestions": "off",
+  "editor.acceptSuggestionOnEnter": "off",
+  
+  // Disable AI inline suggestions (General)
+  "editor.inlineSuggest.enabled": false,
+  "editor.codeLens": false,
+
+  // Disable GitHub Copilot
+  "github.copilot.enable": {
+    "*": false
+  },
+
+  // Disable Gemini / Google Cloud Code Assistant
+  "cloudcode.duetAI.inlineSuggestions.enable": false,
+  "cloudcode.gemini.inlineSuggestions.enable": false,
+
+  // Disable Sourcegraph Cody
+  "cody.autocomplete.enabled": false,
+
+  // Disable Tabnine
+  "tabnine.experimentalAutoImports": false,
+
+  // Disable TypeScript language server suggestions
+  "typescript.suggest.enabled": false,
+  "typescript.suggest.autoImports": false,
+  "javascript.suggest.enabled": false,
+  "javascript.suggest.autoImports": false
+}
