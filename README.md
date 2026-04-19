@@ -1,6 +1,6 @@
 # 📘 TypeScript Learning Path
 
-A comprehensive, beginner-friendly TypeScript curriculum built as a static site. Every topic is explained with **simple language**, **real-life analogies**, and **practical code examples** — like explaining to a 10-year-old who can code.
+A comprehensive, beginner-friendly TypeScript curriculum built as a static site. Every topic is explained with **simple language**, **real-life analogies**, and **practical code examples** to make complex concepts intuitive and easy to grasp.
 
 ---
 
