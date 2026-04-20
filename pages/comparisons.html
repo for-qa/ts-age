@@ -104,11 +104,11 @@ if (true) { let b = 10; }
     <thead><tr><th>Feature</th><th>Block Scope</th><th>Local / Function Scope</th></tr></thead>
     <tbody>
       <tr><td>Created by</td><td>Any <code>{ }</code> — if, for, while, bare blocks</td><td>A <code>function</code> body</td></tr>
-      <tr><td>Keywords</td><td><code>let</code>, <code>const</code></td><td><code>var</code>, <code>let</code>, <code>const</code>, function params</td></tr>
+      <tr><td>Keywords</td><td><code>let</code>, <code>const</code> (Trapped inside <b>any</b> <code>{ }</code>)</td><td><code>var</code> (Trapped <b>only</b> inside functions)</td></tr>
       <tr><td>Lifetime</td><td>Only while inside the <code>{ }</code></td><td>Until the function returns</td></tr>
       <tr><td>Accessible outside?</td><td>❌ No</td><td>❌ No (but wider than block)</td></tr>
       <tr><td>Example containers</td><td><code>if</code>, <code>for</code>, <code>while</code>, <code>switch</code></td><td>Any named or anonymous function</td></tr>
-      <tr><td>var behaviour</td><td>⚠ var IGNORES block scope</td><td>var respects function scope</td></tr>
+      <tr><td>var behaviour</td><td>⚠ var ESCAPES block scope</td><td>var is trapped by functions</td></tr>
     </tbody>
   </table></div>
   <pre><code>// ─── BLOCK SCOPE (let / const) ───────────────────────────
