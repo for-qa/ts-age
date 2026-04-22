@@ -44,6 +44,8 @@
   <a href="#if-abstract-class">Abstract Class Concept</a>
   <a href="#if-rules">Inheritance Rules</a>
   <a href="#if-compare">Class vs Interface</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#if-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#if-cheatsheet">Cheatsheet</a>
 </nav>
@@ -361,6 +363,69 @@ class Dog implements Animal, Pet { }
   </div>
 </div>
 
+<!-- COMMON MISTAKES -->
+<div class="sec" id="if-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Trying to create an object with <code>new Interface()</code></strong>
+    <p>An interface is just a <em>blueprint on paper</em> — it describes a shape but has NO actual code inside. You cannot use <code>new</code> on it. Only <strong>classes</strong> can be instantiated with <code>new</code>.</p>
+    <pre><code>interface Animal {
+  name: string;
+  sound(): string;
+}
+
+// ❌ WRONG — cannot instantiate an interface!
+let dog = new Animal();  // Error: 'Animal' only refers to a type
+
+// ✅ CORRECT — create a class that implements the interface
+class Dog implements Animal {
+  name: string;
+  constructor(name: string) { this.name = name; }
+  sound() { return "Woof!"; }
+}
+let dog = new Dog("Buddy"); // ✓ Works!</code></pre>
+    <p><strong>Rule:</strong> Interfaces = blueprint (no <code>new</code>). Classes = factory (use <code>new</code>). Think: you can't build a house from just the architectural drawing — you need actual bricks (class)!</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Forgetting to implement ALL required properties</strong>
+    <p>When a class <code>implements</code> an interface, it MUST provide ALL required properties and methods. Missing even one gives a compile error!</p>
+    <pre><code>interface Vehicle {
+  brand: string;
+  speed: number;
+  drive(): void;
+}
+
+// ❌ WRONG — missing 'speed' and 'drive()'
+class Car implements Vehicle {
+  brand = "Toyota";
+  // Error: Class 'Car' incorrectly implements interface 'Vehicle'
+  // Property 'speed' is missing
+  // Property 'drive' is missing
+}
+
+// ✅ CORRECT — all properties and methods implemented
+class CarFixed implements Vehicle {
+  brand = "Toyota";
+  speed = 120;
+  drive() { console.log("Driving!"); }
+}</code></pre>
+    <p><strong>Rule:</strong> Check the interface like a checklist — every non-optional property must be in your class. TypeScript will tell you exactly which ones are missing!</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you wrote</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td><code>new Interface()</code></td><td><code>new Animal()</code></td><td>Compile error</td><td>Create a class, then <code>new Dog()</code></td></tr>
+      <tr><td>Missing property</td><td>Class missing required field</td><td>Compile error</td><td>Implement ALL interface properties</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
 <!-- CHEATSHEET -->
 <div class="sec" id="if-cheatsheet">
   <div class="sec-label">Reference</div>
@@ -410,14 +475,14 @@ class Dog implements Animal, Pet { }
 <script>
 (function() {
   const nav = document.getElementById('nav-iface');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

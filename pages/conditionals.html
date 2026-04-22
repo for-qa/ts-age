@@ -38,6 +38,8 @@
   <a href="#cs-nested">Nested if … else if</a>
   <a href="#cs-switch">switch … case</a>
   <a href="#cs-break">Why break Matters</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#cs-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#cs-compare">Comparison Table</a>
   <a href="#cs-cheatsheet">Cheatsheet</a>
@@ -305,6 +307,70 @@ switch (day) {
   </div>
 </div>
 
+<!-- COMMON MISTAKES -->
+<div class="sec" id="cs-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Multiple <code>if</code> blocks vs <code>else if</code></strong>
+    <p>Separate <code>if</code> blocks are like separate doors — the computer checks EVERY one independently. <code>else if</code> is like one door with multiple locks — it stops at the FIRST one that opens.</p>
+    <pre><code>let marks = 95;
+
+// ❌ WRONG — ALL matching ifs run! (3 outputs!)
+if (marks >= 60) {
+  console.log("Pass");     // ✅ Prints (95 >= 60)
+}
+if (marks >= 80) {
+  console.log("Good");     // ✅ Prints (95 >= 80)
+}
+if (marks >= 90) {
+  console.log("Excellent"); // ✅ Prints (95 >= 90)
+}
+// Output: Pass, Good, Excellent ← 3 messages!
+
+// ✅ CORRECT — stops at FIRST match!
+if (marks >= 90) {
+  console.log("Excellent"); // ✅ Prints this ONLY
+} else if (marks >= 80) {
+  console.log("Good");     // Skipped
+} else if (marks >= 60) {
+  console.log("Pass");     // Skipped
+}
+// Output: Excellent ← only 1 message!</code></pre>
+    <p><strong>Rule:</strong> Use <code>else if</code> when you want ONLY ONE block to run. Use separate <code>if</code> blocks only when MULTIPLE conditions can be true at the same time and you want ALL of them to execute.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Using <code>=</code> instead of <code>===</code> in conditions</strong>
+    <p>This is the #1 most common bug for beginners. A single <code>=</code> means "put this value in the box." It does NOT mean "check if they're equal."</p>
+    <pre><code>let color = "red";
+
+// ❌ WRONG — assigns "blue" to color, then checks if "blue" is truthy
+if (color = "blue") {
+  console.log("It's blue!"); // ALWAYS runs!
+  // color is now "blue" — you accidentally changed it!
+}
+
+// ✅ CORRECT — compares color to "blue"
+if (color === "blue") {
+  console.log("It's blue!"); // Only runs if color was actually "blue"
+}</code></pre>
+    <p><strong>Rule:</strong> In conditions, ALWAYS use <code>===</code> (three equals). If you see <code>=</code> (one equal) inside an <code>if</code>, it's almost certainly a bug!</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>What you wrote</th><th>What happens</th><th>What you wanted</th></tr></thead>
+    <tbody>
+      <tr><td>Separate <code>if</code> + <code>if</code> + <code>if</code></td><td>ALL matching blocks run</td><td><code>if</code> … <code>else if</code> … <code>else if</code></td></tr>
+      <tr><td><code>if (x = 5)</code></td><td>Assigns 5 to x (always true)</td><td><code>if (x === 5)</code></td></tr>
+      <tr><td><code>switch</code> without <code>break</code></td><td>Falls through ALL cases below</td><td>Add <code>break;</code> after each case</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
 <!-- COMPARISON TABLE -->
 <div class="sec" id="cs-compare">
   <div class="sec-label">Reference</div>
@@ -387,14 +453,14 @@ switch (day) {
 <script>
 (function() {
   const nav = document.getElementById('nav-conditionals');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

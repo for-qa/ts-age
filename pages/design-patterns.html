@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Design Patterns — TypeScript Learning Path</title>
+<meta name="description" content="Learn Singleton, Factory, Observer, and Strategy design patterns in TypeScript with real-world examples and when to use each.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Design Patterns</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-dp">
+  <div class="nav-logo"><div class="v">🏗</div><h2>Patterns</h2></div>
+  <div class="nav-group">Patterns</div>
+  <a href="#dp-what">What are Patterns?</a>
+  <a href="#dp-singleton">Singleton</a>
+  <a href="#dp-factory">Factory</a>
+  <a href="#dp-observer">Observer</a>
+  <a href="#dp-strategy">Strategy</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#dp-mistakes">⚠ Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#dp-compare">When to Use</a>
+  <a href="#dp-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="dp-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Design Patterns</span><span class="hero-tag">Pro Level</span></div>
+  <h1>Design Patterns</h1>
+  <p>Reusable solutions to common software problems. These patterns appear in every professional codebase — knowing them makes you think like a senior dev.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Patterns</div></div>
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Common Mistakes</div></div>
+  </div>
+</div>
+
+<!-- WHAT -->
+<div class="sec" id="dp-what">
+  <div class="sec-label">Patterns</div>
+  <h2>What are Design Patterns?</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Design patterns are like <strong>recipes</strong> 📖. You don't invent a new way to make roti every time — you follow a proven recipe. Design patterns are proven recipes for solving common coding problems.</p></div>
+</div>
+
+<!-- SINGLETON -->
+<div class="sec" id="dp-singleton">
+  <div class="sec-label">Patterns</div>
+  <h2>Singleton — Only One Instance</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> There's only ONE President of India at a time. No matter how many times you ask "who's the president?", you always get the same person. That's a Singleton.</p></div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Ensure only one instance exists</div><span class="card-badge">Singleton</span></div>
+    <div class="card-body"><pre><code>class Database {
+  private static instance: Database;
+  private connectionCount = 0;
+
+  // Private constructor — can't use 'new Database()' outside!
+  private constructor() {
+    console.log("Database connection created");
+  }
+
+  // Only way to get the instance
+  static getInstance(): Database {
+    if (!Database.instance) {
+      Database.instance = new Database();
+    }
+    return Database.instance;
+  }
+
+  query(sql: string) {
+    this.connectionCount++;
+    console.log(`[Query #${this.connectionCount}] ${sql}`);
+  }
+}
+
+// Usage:
+const db1 = Database.getInstance();
+const db2 = Database.getInstance();
+console.log(db1 === db2);  // true — same instance!
+
+db1.query("SELECT * FROM users");
+db2.query("INSERT INTO logs");  // uses same connection
+
+// new Database();  // ❌ Error: constructor is private
+
+// ✅ Use when: database connections, config managers, loggers
+// ❌ Avoid when: unit testing (hard to mock/reset)</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- FACTORY -->
+<div class="sec" id="dp-factory">
+  <div class="sec-label">Patterns</div>
+  <h2>Factory — Create Without Knowing the Class</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> You go to a car dealership and say "I want an SUV." You don't build the car yourself — the factory builds the right car based on your request.</p></div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Delegate object creation to a factory</div><span class="card-badge">Factory</span></div>
+    <div class="card-body"><pre><code>interface Notification {
+  send(message: string): void;
+}
+
+class EmailNotification implements Notification {
+  send(message: string) { console.log(`📧 Email: ${message}`); }
+}
+class SMSNotification implements Notification {
+  send(message: string) { console.log(`📱 SMS: ${message}`); }
+}
+class PushNotification implements Notification {
+  send(message: string) { console.log(`🔔 Push: ${message}`); }
+}
+
+// The Factory — creates the right type based on input
+type NotifType = "email" | "sms" | "push";
+
+function createNotification(type: NotifType): Notification {
+  switch (type) {
+    case "email": return new EmailNotification();
+    case "sms":   return new SMSNotification();
+    case "push":  return new PushNotification();
+  }
+}
+
+// Usage — caller doesn't know which class is created
+const notif = createNotification("email");
+notif.send("Hello!");  // 📧 Email: Hello!
+
+// ✅ Use when: creating objects based on config/input
+// ✅ Adding new types = just add a new case</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- OBSERVER -->
+<div class="sec" id="dp-observer">
+  <div class="sec-label">Patterns</div>
+  <h2>Observer — Subscribe to Events</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> Like subscribing to a YouTube channel. When a new video (event) is uploaded, ALL subscribers get notified automatically. You don't check manually — the notification comes to you.</p></div>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">One-to-many event notification</div><span class="card-badge">Observer</span></div>
+    <div class="card-body"><pre><code>type Listener&lt;T&gt; = (data: T) => void;
+
+class EventEmitter&lt;T&gt; {
+  private listeners: Listener&lt;T&gt;[] = [];
+
+  subscribe(listener: Listener&lt;T&gt;): () => void {
+    this.listeners.push(listener);
+    // Return unsubscribe function
+    return () => {
+      this.listeners = this.listeners.filter(l => l !== listener);
+    };
+  }
+
+  emit(data: T): void {
+    this.listeners.forEach(listener => listener(data));
+  }
+}
+
+// Usage:
+interface CartEvent { item: string; price: number; }
+const cartEvents = new EventEmitter&lt;CartEvent&gt;();
+
+// Subscribe multiple listeners
+const unsub1 = cartEvents.subscribe(e =>
+  console.log(`🛒 Added: ${e.item}`)
+);
+const unsub2 = cartEvents.subscribe(e =>
+  console.log(`💰 Total +₹${e.price}`)
+);
+
+cartEvents.emit({ item: "Laptop", price: 50000 });
+// 🛒 Added: Laptop
+// 💰 Total +₹50000
+
+unsub1();  // unsubscribe first listener
+cartEvents.emit({ item: "Mouse", price: 500 });
+// 💰 Total +₹500  (only second listener fires)</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- STRATEGY -->
+<div class="sec" id="dp-strategy">
+  <div class="sec-label">Patterns</div>
+  <h2>Strategy — Swappable Algorithms</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> Like choosing a payment method at checkout — UPI, credit card, or cash. The checkout process is the same, but the payment <strong>strategy</strong> is swappable.</p></div>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Swap behavior at runtime</div><span class="card-badge">Strategy</span></div>
+    <div class="card-body"><pre><code>// Define strategy interface
+interface SortStrategy&lt;T&gt; {
+  sort(data: T[]): T[];
+}
+
+// Concrete strategies
+class BubbleSort&lt;T&gt; implements SortStrategy&lt;T&gt; {
+  sort(data: T[]): T[] {
+    console.log("Using bubble sort (simple, slow)");
+    return [...data].sort();
+  }
+}
+class QuickSort&lt;T&gt; implements SortStrategy&lt;T&gt; {
+  sort(data: T[]): T[] {
+    console.log("Using quick sort (fast)");
+    return [...data].sort();
+  }
+}
+
+// Context that uses the strategy
+class Sorter&lt;T&gt; {
+  constructor(private strategy: SortStrategy&lt;T&gt;) {}
+
+  setStrategy(strategy: SortStrategy&lt;T&gt;) {
+    this.strategy = strategy;
+  }
+
+  sort(data: T[]): T[] {
+    return this.strategy.sort(data);
+  }
+}
+
+// Swap strategies at runtime!
+const sorter = new Sorter(new BubbleSort&lt;number&gt;());
+sorter.sort([3, 1, 2]);  // "Using bubble sort"
+
+sorter.setStrategy(new QuickSort());
+sorter.sort([3, 1, 2]);  // "Using quick sort"</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div class="sec" id="dp-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Overusing patterns</strong>
+    <p>Not every problem needs a pattern. A simple function is often better than a Factory class. Use patterns when complexity justifies them.</p>
+    <pre><code>// ❌ Overkill for simple cases
+class GreeterFactory {
+  create(name: string) { return `Hello ${name}`; }
+}
+
+// ✅ Just use a function
+const greet = (name: string) => `Hello ${name}`;</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Singleton makes testing hard</strong>
+    <pre><code>// Singletons carry state between tests!
+// FIX: Allow reset in test environments, or use dependency injection</code></pre>
+  </div></div>
+</div>
+
+<!-- WHEN TO USE -->
+<div class="sec" id="dp-compare">
+  <div class="sec-label">Reference</div>
+  <h2>When to Use Which?</h2>
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Pattern</th><th>Use when</th><th>Real examples</th></tr></thead>
+    <tbody>
+      <tr><td><span class="p p-blue">Singleton</span></td><td>Need exactly ONE instance</td><td>DB connection, logger, config</td></tr>
+      <tr><td><span class="p p-green">Factory</span></td><td>Create objects based on input</td><td>Notifications, UI components</td></tr>
+      <tr><td><span class="p p-violet">Observer</span></td><td>React to events/changes</td><td>Event bus, state management</td></tr>
+      <tr><td><span class="p p-amber">Strategy</span></td><td>Swap algorithms at runtime</td><td>Sorting, payment, auth methods</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="dp-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// SINGLETON — private constructor + static getInstance()
+class S { private static i: S; static get() { return S.i ??= new S(); } }
+
+// FACTORY — function that returns different types
+function create(type: string): Base { switch(type) { ... } }
+
+// OBSERVER — subscribe/emit
+emitter.subscribe(fn);  emitter.emit(data);
+
+// STRATEGY — swappable interface implementation
+class Ctx { constructor(private s: Strategy) {} setStrategy(s) { this.s = s; } }</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Design Patterns &nbsp;·&nbsp; Next: Decorators</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-dp');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

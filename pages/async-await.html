@@ -303,11 +303,14 @@ loadUserData(-1);  // Error path → catch block runs</code></pre>
   <pre><code>async function loadDashboard(): Promise&lt;void&gt; {
   try {
     // All three run at the SAME TIME (parallel)
-    const [user, orders, notifications] = await Promise.all([
+    const results = await Promise.all([
       fetchUser(1),
       fetchOrders("Alice"),
       fetchNotifications("Alice")
     ]);
+    const user = results[0];
+    const orders = results[1];
+    const notifications = results[2];
 
     console.log(user, orders, notifications);
   } catch (error) {
@@ -453,7 +456,8 @@ catch (error) { console.log(error); }
 finally { cleanup(); }</code></pre>
 
   <h3>Parallel execution</h3>
-  <pre><code>const [a, b, c] = await Promise.all([p1, p2, p3]);</code></pre>
+  <pre><code>const results = await Promise.all([p1, p2, p3]);
+// results[0] = p1 result, results[1] = p2 result, results[2] = p3 result</code></pre>
 
   <h3>Key rules</h3>
   <pre><code>// ✅ async function always returns Promise&lt;T&gt;
@@ -472,14 +476,14 @@ finally { cleanup(); }</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-async');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

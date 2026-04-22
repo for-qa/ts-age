@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapped &amp; Conditional Types — TypeScript Learning Path</title>
+<meta name="description" content="Build custom utility types — mapped types with keyof, conditional types with extends, infer keyword, and real-world type transformations.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Mapped &amp; Conditional Types</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-mc">
+  <div class="nav-logo"><div class="v">⚙</div><h2>Advanced</h2></div>
+  <div class="nav-group">Mapped</div>
+  <a href="#mc-mapped">Mapped Types</a>
+  <a href="#mc-build">Build Partial Yourself</a>
+  <div class="nav-group">Conditional</div>
+  <a href="#mc-cond">Conditional Types</a>
+  <a href="#mc-infer">infer Keyword</a>
+  <div class="nav-group">Custom</div>
+  <a href="#mc-custom">Build Your Own</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#mc-mistakes">⚠ Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#mc-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="mc-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Mapped Types</span><span class="hero-tag">Conditional</span><span class="hero-tag">infer</span></div>
+  <h1>Mapped &amp; Conditional Types</h1>
+  <p>The type system's power tools — build your own Partial, Required, and any custom transformation. This is how utility types work under the hood.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Type Tools</div></div>
+    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Custom Types</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Mistakes</div></div>
+  </div>
+</div>
+
+<!-- MAPPED TYPES -->
+<div class="sec" id="mc-mapped">
+  <div class="sec-label">Mapped</div>
+  <h2>Mapped Types</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Like a <strong>photocopier with settings</strong> 🖨. You feed in a document (type), and the copier creates a new version where every page (property) is modified the same way — make all pages read-only, all pages optional, etc.</p></div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Loop over properties and transform them</div><span class="card-badge">Mapped</span></div>
+    <div class="card-body"><pre><code>// Syntax: { [K in keyof T]: NewType }
+// "For each key K in type T, create a property with NewType"
+
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+
+// Make all properties optional (this IS Partial!)
+type MyOptional&lt;T&gt; = {
+  [K in keyof T]?: T[K];
+};
+type OptionalUser = MyOptional&lt;User&gt;;
+// { name?: string; age?: number; email?: string; }
+
+// Make all properties readonly
+type MyReadonly&lt;T&gt; = {
+  readonly [K in keyof T]: T[K];
+};
+
+// Make all properties nullable
+type Nullable&lt;T&gt; = {
+  [K in keyof T]: T[K] | null;
+};
+type NullableUser = Nullable&lt;User&gt;;
+// { name: string | null; age: number | null; email: string | null; }</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- BUILD PARTIAL -->
+<div class="sec" id="mc-build">
+  <div class="sec-label">Mapped</div>
+  <h2>Build Partial Yourself!</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">How built-in utilities actually work</div><span class="card-badge">Under the Hood</span></div>
+    <div class="card-body"><pre><code>// Partial — add ? to every property
+type Partial&lt;T&gt; = { [K in keyof T]?: T[K] };
+
+// Required — remove ? from every property
+type Required&lt;T&gt; = { [K in keyof T]-?: T[K] };
+//                                    ^^ -? removes optional
+
+// Readonly — add readonly to every property
+type Readonly&lt;T&gt; = { readonly [K in keyof T]: T[K] };
+
+// Pick — keep only listed keys
+type Pick&lt;T, K extends keyof T&gt; = { [P in K]: T[P] };
+
+// Record — create from key type and value type
+type Record&lt;K extends string, V&gt; = { [P in K]: V };
+
+// All utility types are just mapped types! 🤯</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- CONDITIONAL TYPES -->
+<div class="sec" id="mc-cond">
+  <div class="sec-label">Conditional</div>
+  <h2>Conditional Types</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> Like an <strong>if/else for types</strong>. "If T is a string, give me X. Otherwise, give me Y."</p></div>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">T extends U ? X : Y</div><span class="card-badge">Conditional</span></div>
+    <div class="card-body"><pre><code>// Syntax: T extends U ? TrueType : FalseType
+
+// Is it a string?
+type IsString&lt;T&gt; = T extends string ? "yes" : "no";
+type A = IsString&lt;string&gt;;   // "yes"
+type B = IsString&lt;number&gt;;   // "no"
+
+// Flatten arrays (if array, get element type)
+type Flatten&lt;T&gt; = T extends Array&lt;infer U&gt; ? U : T;
+type C = Flatten&lt;string[]&gt;;  // string
+type D = Flatten&lt;number&gt;;    // number (not an array, return as-is)
+
+// Extract non-nullable
+type NonNull&lt;T&gt; = T extends null | undefined ? never : T;
+type E = NonNull&lt;string | null | undefined&gt;;  // string
+
+// This is how Exclude works!
+type Exclude&lt;T, U&gt; = T extends U ? never : T;
+type F = Exclude&lt;"a" | "b" | "c", "a"&gt;;  // "b" | "c"</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- INFER -->
+<div class="sec" id="mc-infer">
+  <div class="sec-label">Conditional</div>
+  <h2>The <code>infer</code> Keyword</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Extract types from within other types</div><span class="card-badge">infer</span></div>
+    <div class="card-body"><pre><code>// infer = "figure out this type for me"
+
+// Get return type of a function
+type MyReturnType&lt;T&gt; = T extends (...args: any[]) => infer R ? R : never;
+//                                                   ^^^^^^^ "infer R"
+// "If T is a function, extract its return type as R"
+
+type X = MyReturnType&lt;() => string&gt;;           // string
+type Y = MyReturnType&lt;(a: number) => boolean&gt;; // boolean
+
+// Get element type of array
+type ElementOf&lt;T&gt; = T extends (infer E)[] ? E : never;
+type Z = ElementOf&lt;number[]&gt;;  // number
+
+// Get promise value
+type Unwrap&lt;T&gt; = T extends Promise&lt;infer V&gt; ? V : T;
+type W = Unwrap&lt;Promise&lt;string&gt;&gt;;  // string
+type Q = Unwrap&lt;number&gt;;           // number</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM UTILITIES -->
+<div class="sec" id="mc-custom">
+  <div class="sec-label">Custom</div>
+  <h2>Build Your Own Utility Types</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Combine mapped + conditional for powerful types</div><span class="card-badge">Custom</span></div>
+    <div class="card-body"><pre><code>// 1. Make only string properties optional
+type OptionalStrings&lt;T&gt; = {
+  [K in keyof T]: T[K] extends string ? T[K] | undefined : T[K];
+};
+
+// 2. Deep Readonly (recursive!)
+type DeepReadonly&lt;T&gt; = {
+  readonly [K in keyof T]: T[K] extends object ? DeepReadonly&lt;T[K]&gt; : T[K];
+};
+
+// 3. Make specific keys required, rest optional
+type RequireKeys&lt;T, K extends keyof T&gt; = Required&lt;Pick&lt;T, K&gt;&gt; &amp; Partial&lt;Omit&lt;T, K&gt;&gt;;
+
+interface Form {
+  name: string;
+  email: string;
+  phone: string;
+  age: number;
+}
+type SignupForm = RequireKeys&lt;Form, "name" | "email"&gt;;
+// name & email required, phone & age optional!</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div class="sec" id="mc-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Infinite recursion in recursive types</strong>
+    <pre><code>// ❌ Can crash the compiler
+type Bad&lt;T&gt; = { [K in keyof T]: Bad&lt;T[K]&gt; };  // infinite!
+
+// ✅ Add a base case
+type Good&lt;T&gt; = {
+  [K in keyof T]: T[K] extends object ? Good&lt;T[K]&gt; : T[K];
+};</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Overly complex types</strong>
+    <p>If a type takes 10 lines to read, split it into smaller named types. Your teammates need to understand it too.</p>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Forgetting distributive behavior</strong>
+    <pre><code>// Conditional types DISTRIBUTE over unions!
+type X = Exclude&lt;"a" | "b" | "c", "a"&gt;;
+// Checks each: "a" extends "a"? never : "a" → never
+//              "b" extends "a"? never : "b" → "b"
+//              "c" extends "a"? never : "c" → "c"
+// Result: "b" | "c"</code></pre>
+  </div></div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="mc-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// MAPPED — transform all properties
+{ [K in keyof T]: NewType }        // loop over keys
+{ [K in keyof T]?: T[K] }         // add optional (Partial)
+{ readonly [K in keyof T]: T[K] }  // add readonly
+{ [K in keyof T]-?: T[K] }        // remove optional (Required)
+
+// CONDITIONAL — if/else for types
+T extends U ? X : Y
+
+// INFER — extract inner type
+T extends Array&lt;infer E&gt; ? E : never    // array element
+T extends (...args: any[]) => infer R ? R : never  // return type
+T extends Promise&lt;infer V&gt; ? V : T      // unwrap promise</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Mapped &amp; Conditional Types &nbsp;·&nbsp; Next: Unit Testing</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-mc');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

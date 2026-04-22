@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Date &amp; Time — TypeScript Learning Path</title>
+<meta name="description" content="Master Date in TypeScript — creating, getting/setting parts, formatting, comparing, timestamps, and the classic month-is-zero trap.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Date &amp; Time</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-dt">
+  <div class="nav-logo"><div class="v">📅</div><h2>Date</h2></div>
+  <div class="nav-group">Basics</div>
+  <a href="#dt-create">Creating Dates</a>
+  <a href="#dt-get">Getting Parts</a>
+  <a href="#dt-set">Setting Parts</a>
+  <div class="nav-group">Formatting</div>
+  <a href="#dt-format">Formatting</a>
+  <a href="#dt-iso">ISO &amp; Timestamps</a>
+  <div class="nav-group">Operations</div>
+  <a href="#dt-compare">Comparing</a>
+  <a href="#dt-calc">Calculations</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#dt-mistakes">⚠ Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#dt-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="dt-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Date</span><span class="hero-tag">Time</span></div>
+  <h1>Date &amp; Time</h1>
+  <p>JavaScript's Date object is notoriously tricky. Months start at 0, timezones bite you, and formatting is manual. Master the gotchas here.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Ways to Create</div></div>
+    <div class="stat"><div class="stat-n">7</div><div class="stat-l">Getter Methods</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Common Mistakes</div></div>
+  </div>
+</div>
+
+<!-- CREATING DATES -->
+<div class="sec" id="dt-create">
+  <div class="sec-label">Basics</div>
+  <h2>Creating Dates</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">4 ways to create a Date</div><span class="card-badge">new Date()</span></div>
+    <div class="card-body"><pre><code>// 1. Current date/time
+const now = new Date();
+console.log(now);  // 2024-06-15T10:30:00.000Z
+
+// 2. From a string
+const d1 = new Date("2024-06-15");          // ISO format (safest!)
+const d2 = new Date("June 15, 2024");       // human readable
+const d3 = new Date("2024-06-15T10:30:00"); // with time
+
+// 3. From numbers (year, monthINDEX, day, hours, min, sec)
+const d4 = new Date(2024, 5, 15);  // ⚠ Month 5 = JUNE (0-indexed!)
+const d5 = new Date(2024, 5, 15, 10, 30, 0);
+
+// 4. From timestamp (milliseconds since Jan 1, 1970)
+const d6 = new Date(1718448000000);
+
+// Current timestamp:
+const timestamp = Date.now();  // milliseconds since epoch
+console.log(timestamp);        // 1718448000000</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- GETTING PARTS -->
+<div class="sec" id="dt-get">
+  <div class="sec-label">Basics</div>
+  <h2>Getting Date Parts</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Extract year, month, day, etc.</div><span class="card-badge">Getters</span></div>
+    <div class="card-body"><pre><code>const date = new Date("2024-06-15T10:30:45");
+
+date.getFullYear();   // 2024
+date.getMonth();      // 5  ⚠ NOT 6! (0-indexed: Jan=0, Jun=5)
+date.getDate();       // 15 (day of month)
+date.getDay();        // 6  (day of week: 0=Sun, 6=Sat)
+date.getHours();      // 10
+date.getMinutes();    // 30
+date.getSeconds();    // 45
+date.getMilliseconds(); // 0
+date.getTime();       // 1718444445000 (timestamp)
+
+// ⚠ THE BIGGEST TRAP:
+// getMonth() is 0-INDEXED → January = 0, December = 11
+// getDate() is 1-INDEXED → 1st = 1, 31st = 31
+// getDay() is 0-INDEXED → Sunday = 0, Saturday = 6</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- SETTING PARTS -->
+<div class="sec" id="dt-set">
+  <div class="sec-label">Basics</div>
+  <h2>Setting Date Parts</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Modify dates in place</div><span class="card-badge">Setters</span></div>
+    <div class="card-body"><pre><code>const date = new Date("2024-06-15");
+
+date.setFullYear(2025);
+date.setMonth(11);     // December (0-indexed!)
+date.setDate(25);      // 25th
+
+console.log(date);     // 2025-12-25 (Christmas!)
+
+// ⚠ Setters MUTATE the original date object!
+// To avoid mutation, clone first:
+const original = new Date("2024-06-15");
+const copy = new Date(original.getTime());
+copy.setFullYear(2025);
+console.log(original); // still 2024-06-15 ✅</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- FORMATTING -->
+<div class="sec" id="dt-format">
+  <div class="sec-label">Formatting</div>
+  <h2>Formatting Dates</h2>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Display dates in human-readable formats</div><span class="card-badge">Format</span></div>
+    <div class="card-body"><pre><code>const date = new Date("2024-06-15T10:30:00");
+
+// Built-in methods:
+date.toString();          // "Sat Jun 15 2024 10:30:00 GMT+0530"
+date.toDateString();      // "Sat Jun 15 2024"
+date.toTimeString();      // "10:30:00 GMT+0530"
+date.toISOString();       // "2024-06-15T05:00:00.000Z"
+
+// ✅ BEST: toLocaleDateString() — locale-aware formatting
+date.toLocaleDateString("en-IN");
+// "15/6/2024"
+
+date.toLocaleDateString("en-IN", {
+  day: "numeric", month: "short", year: "numeric"
+});
+// "15 Jun 2024"
+
+date.toLocaleDateString("en-IN", {
+  weekday: "long", day: "numeric", month: "long", year: "numeric"
+});
+// "Saturday, 15 June 2024"
+
+// Time formatting:
+date.toLocaleTimeString("en-IN", {
+  hour: "2-digit", minute: "2-digit", hour12: true
+});
+// "10:30 am"</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ISO & TIMESTAMPS -->
+<div class="sec" id="dt-iso">
+  <div class="sec-label">Formatting</div>
+  <h2>ISO Strings &amp; Timestamps</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Machine-readable date formats</div><span class="card-badge">ISO/Unix</span></div>
+    <div class="card-body"><pre><code>// ISO 8601 — the universal date format for APIs
+const date = new Date();
+date.toISOString();  // "2024-06-15T10:30:00.000Z"
+// Always UTC, always consistent — best for storage & APIs
+
+// Unix Timestamp — milliseconds since Jan 1, 1970
+Date.now();            // 1718448000000  (current time)
+date.getTime();        // 1718448000000  (specific date)
++date;                 // 1718448000000  (shortcut)
+
+// Convert timestamp back to Date:
+const fromTimestamp = new Date(1718448000000);
+
+// ✅ Use ISO for storage/APIs, locale for display</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARING -->
+<div class="sec" id="dt-compare">
+  <div class="sec-label">Operations</div>
+  <h2>Comparing Dates</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">6</div><div class="card-title">Which is earlier? Later? Same?</div><span class="card-badge">Compare</span></div>
+    <div class="card-body"><pre><code>const d1 = new Date("2024-06-15");
+const d2 = new Date("2024-12-25");
+
+// ✅ Compare with > < >= <=
+console.log(d1 < d2);   // true  (June is before December)
+console.log(d1 > d2);   // false
+
+// ❌ DO NOT use === or == for equality!
+const a = new Date("2024-06-15");
+const b = new Date("2024-06-15");
+console.log(a === b);   // false! (different objects)
+console.log(a == b);    // false!
+
+// ✅ Compare timestamps for equality
+console.log(a.getTime() === b.getTime());  // true ✅
+
+// Is date in the past?
+function isPast(date: Date): boolean {
+  return date.getTime() < Date.now();
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATIONS -->
+<div class="sec" id="dt-calc">
+  <div class="sec-label">Operations</div>
+  <h2>Date Calculations</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">7</div><div class="card-title">Add days, difference between dates</div><span class="card-badge">Math</span></div>
+    <div class="card-body"><pre><code>// Difference in days:
+const start = new Date("2024-01-01");
+const end = new Date("2024-06-15");
+const diffMs = end.getTime() - start.getTime();
+const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+console.log(diffDays);  // 166 days
+
+// Add days to a date:
+function addDays(date: Date, days: number): Date {
+  const result = new Date(date.getTime());  // clone!
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
+const today = new Date();
+const nextWeek = addDays(today, 7);
+const yesterday = addDays(today, -1);
+
+// Age calculator:
+function getAge(birthday: Date): number {
+  const diff = Date.now() - birthday.getTime();
+  return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+}
+console.log(getAge(new Date("1999-03-15")));  // 25</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- COMMON MISTAKES -->
+<div class="sec" id="dt-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Months are 0-INDEXED</strong>
+    <pre><code>// ❌ WRONG — this creates JULY, not June!
+const june = new Date(2024, 6, 15);  // July 15!
+
+// ✅ CORRECT — June = month 5
+const juneCorrect = new Date(2024, 5, 15);</code></pre>
+    <p><strong>Rule:</strong> Jan=0, Feb=1, ... Dec=11. Always subtract 1 from the human month number.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Comparing dates with === fails</strong>
+    <pre><code>// ❌ Two Date objects are NEVER === even with same value
+new Date("2024-06-15") === new Date("2024-06-15")  // false!
+
+// ✅ Compare timestamps
+d1.getTime() === d2.getTime()  // true ✅</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Setters MUTATE the original</strong>
+    <pre><code>const date = new Date("2024-06-15");
+date.setFullYear(2025);  // MUTATES date!
+
+// ✅ Clone first if you need the original
+const copy = new Date(date.getTime());
+copy.setFullYear(2025);</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 4: JSON.stringify converts Date to string</strong>
+    <pre><code>const obj = { created: new Date() };
+const json = JSON.stringify(obj);
+const parsed = JSON.parse(json);
+console.log(typeof parsed.created);  // "string" — NOT a Date!
+
+// ✅ Convert back manually
+parsed.created = new Date(parsed.created);</code></pre>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Month 0-indexed</td><td>Wrong month</td><td>Subtract 1 from human month</td></tr>
+      <tr><td>=== on dates</td><td>Always false</td><td>Compare <code>.getTime()</code></td></tr>
+      <tr><td>Setters mutate</td><td>Original changed</td><td>Clone before modifying</td></tr>
+      <tr><td>JSON loses Date</td><td>Becomes string</td><td><code>new Date(parsed.field)</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="dt-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// CREATE
+new Date()                    // now
+new Date("2024-06-15")        // from ISO string
+new Date(2024, 5, 15)         // year, monthINDEX, day
+Date.now()                    // current timestamp (ms)
+
+// GET
+d.getFullYear()  d.getMonth()   d.getDate()   d.getDay()
+d.getHours()     d.getMinutes() d.getSeconds() d.getTime()
+
+// FORMAT
+d.toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" })
+d.toISOString()               // "2024-06-15T00:00:00.000Z"
+
+// COMPARE
+d1.getTime() === d2.getTime()  // equality
+d1 < d2                        // before/after
+
+// CALCULATE
+Math.floor((d2 - d1) / (1000*60*60*24))  // diff in days</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Date &amp; Time &nbsp;·&nbsp; Next: Modules &amp; Imports</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-dt');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

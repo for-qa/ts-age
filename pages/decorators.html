@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decorators — TypeScript Learning Path</title>
+<meta name="description" content="TypeScript decorators — class, method, property, parameter decorators with real-world examples: logging, validation, memoization.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Decorators</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-dec">
+  <div class="nav-logo"><div class="v">@</div><h2>Decorators</h2></div>
+  <div class="nav-group">Basics</div>
+  <a href="#dec-what">What are Decorators?</a>
+  <a href="#dec-class">Class Decorators</a>
+  <a href="#dec-method">Method Decorators</a>
+  <a href="#dec-prop">Property Decorators</a>
+  <div class="nav-group">Real-World</div>
+  <a href="#dec-log">Logging</a>
+  <a href="#dec-memo">Memoization</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#dec-mistakes">⚠ Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#dec-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="dec-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Decorators</span><span class="hero-tag">Pro Level</span></div>
+  <h1>Decorators</h1>
+  <p>Special functions that modify classes, methods, and properties — used extensively in Angular, NestJS, and TypeORM. The <code>@</code> syntax.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Decorator Types</div></div>
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Real-World Uses</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Common Mistakes</div></div>
+  </div>
+</div>
+
+<!-- WHAT -->
+<div class="sec" id="dec-what">
+  <div class="sec-label">Basics</div>
+  <h2>What are Decorators?</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Decorators are like <strong>stickers on a laptop</strong> 💻. The laptop works the same, but stickers add personality (extra behavior). A <code>@Log</code> decorator adds logging without changing the original method.</p></div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Functions that modify classes/methods at definition time</div><span class="card-badge">@ Syntax</span></div>
+    <div class="card-body"><pre><code>// A decorator is just a function!
+// It runs when the class is DEFINED, not when methods are called
+
+// Enable in tsconfig.json:
+// "experimentalDecorators": true
+
+// Basic usage:
+@MyDecorator
+class MyClass { }
+
+// On methods:
+class API {
+  @Log
+  fetchData() { ... }
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- CLASS DECORATORS -->
+<div class="sec" id="dec-class">
+  <div class="sec-label">Basics</div>
+  <h2>Class Decorators</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Modify or replace the class itself</div><span class="card-badge">@Class</span></div>
+    <div class="card-body"><pre><code>// A class decorator receives the constructor
+function Sealed(constructor: Function) {
+  Object.seal(constructor);
+  Object.seal(constructor.prototype);
+  console.log(`${constructor.name} is sealed!`);
+}
+
+@Sealed
+class User {
+  name: string;
+  constructor(name: string) { this.name = name; }
+}
+// Logs: "User is sealed!" — at class definition time
+
+// Decorator factory — decorator that takes arguments
+function Component(config: { selector: string }) {
+  return function(constructor: Function) {
+    console.log(`Component ${config.selector} registered`);
+  };
+}
+
+@Component({ selector: "app-header" })
+class HeaderComponent { }
+// Logs: "Component app-header registered"</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- METHOD DECORATORS -->
+<div class="sec" id="dec-method">
+  <div class="sec-label">Basics</div>
+  <h2>Method Decorators</h2>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Wrap or modify method behavior</div><span class="card-badge">@Method</span></div>
+    <div class="card-body"><pre><code>// Method decorator receives: target, name, descriptor
+function Log(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const original = descriptor.value;
+
+  descriptor.value = function(...args: any[]) {
+    console.log(`Calling ${propertyKey} with`, args);
+    const result = original.apply(this, args);
+    console.log(`${propertyKey} returned`, result);
+    return result;
+  };
+}
+
+class Calculator {
+  @Log
+  add(a: number, b: number): number {
+    return a + b;
+  }
+}
+
+const calc = new Calculator();
+calc.add(2, 3);
+// Calling add with [2, 3]
+// add returned 5</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- PROPERTY DECORATORS -->
+<div class="sec" id="dec-prop">
+  <div class="sec-label">Basics</div>
+  <h2>Property Decorators</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Add metadata to properties</div><span class="card-badge">@Property</span></div>
+    <div class="card-body"><pre><code>// Property decorator — track which fields are required
+const requiredFields: string[] = [];
+
+function Required(target: any, propertyKey: string) {
+  requiredFields.push(propertyKey);
+}
+
+class Form {
+  @Required name: string = "";
+  @Required email: string = "";
+  phone: string = "";  // optional, no decorator
+}
+
+console.log(requiredFields);  // ["name", "email"]
+// Now you can validate: check all required fields are filled</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- LOGGING -->
+<div class="sec" id="dec-log">
+  <div class="sec-label">Real-World</div>
+  <h2>Real-World: Logging Decorator</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Add logging without modifying business logic</div><span class="card-badge">Logging</span></div>
+    <div class="card-body"><pre><code>function Measure(target: any, key: string, desc: PropertyDescriptor) {
+  const original = desc.value;
+  desc.value = function(...args: any[]) {
+    const start = performance.now();
+    const result = original.apply(this, args);
+    const end = performance.now();
+    console.log(`⏱ ${key} took ${(end - start).toFixed(2)}ms`);
+    return result;
+  };
+}
+
+class DataService {
+  @Measure
+  processLargeDataset(data: number[]) {
+    return data.sort((a, b) => a - b);
+  }
+}
+// ⏱ processLargeDataset took 12.34ms</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MEMOIZATION -->
+<div class="sec" id="dec-memo">
+  <div class="sec-label">Real-World</div>
+  <h2>Real-World: Memoization</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Cache expensive computations</div><span class="card-badge">Memo</span></div>
+    <div class="card-body"><pre><code>function Memoize(target: any, key: string, desc: PropertyDescriptor) {
+  const original = desc.value;
+  const cache = new Map&lt;string, any&gt;();
+
+  desc.value = function(...args: any[]) {
+    const cacheKey = JSON.stringify(args);
+    if (cache.has(cacheKey)) {
+      console.log(`Cache hit for ${key}(${cacheKey})`);
+      return cache.get(cacheKey);
+    }
+    const result = original.apply(this, args);
+    cache.set(cacheKey, result);
+    return result;
+  };
+}
+
+class MathService {
+  @Memoize
+  fibonacci(n: number): number {
+    if (n <= 1) return n;
+    return this.fibonacci(n - 1) + this.fibonacci(n - 2);
+  }
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div class="sec" id="dec-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Forgetting experimentalDecorators</strong>
+    <pre><code>// Add to tsconfig.json:
+// "experimentalDecorators": true
+// Without this, @ syntax won't work!</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Decorator execution order</strong>
+    <pre><code>// Multiple decorators run BOTTOM to TOP (closest to class first)
+@A
+@B
+@C
+class X { }
+// Execution order: C → B → A (bottom-up!)</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Decorators run at DEFINITION, not at runtime</strong>
+    <pre><code>// Class decorators run when the class is loaded,
+// NOT when instances are created!
+// Method decorators wrap the method at definition time.</code></pre>
+  </div></div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="dec-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// CLASS — receives constructor
+function Dec(constructor: Function) { }
+
+// METHOD — receives target, name, descriptor
+function Dec(t: any, key: string, desc: PropertyDescriptor) { }
+
+// PROPERTY — receives target, name
+function Dec(target: any, key: string) { }
+
+// FACTORY — decorator that takes args
+function Dec(args) { return function(target) { }; }
+
+// ORDER: bottom-up for multiple decorators
+// ENABLE: "experimentalDecorators": true in tsconfig.json</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Decorators &nbsp;·&nbsp; Next: Mapped &amp; Conditional Types</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-dec');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

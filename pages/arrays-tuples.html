@@ -476,7 +476,26 @@ console.log(tp[1]);              // Peter</code></pre>
     <div class="eitem"><div class="eid" style="color:var(--amber)">EC-04<br>Tuple order</div><div><div class="etitle">Swapping tuple values</div><div class="edesc">If a tuple is declared as <code>[number, string]</code> then <code>[25, "John"]</code> is valid but <code>["John", 25]</code> is a compile error. Type <em>and</em> position are both fixed.</div></div></div>
     <div class="eitem"><div class="eid" style="color:var(--amber)">EC-05<br>Tuple union</div><div><div class="etitle">Confusing <code>[string, number]</code> with a union</div><div class="edesc"><code>[string, number]</code> is a <strong>tuple type</strong>. <code>string | number</code> is a <strong>union type</strong>. They look similar but behave completely differently.</div></div></div>
     <div class="eitem"><div class="eid" style="color:var(--blue)">EC-06<br>2D Array</div><div><div class="etitle">2D arrays vs array of tuples</div><div class="edesc"><code>students[0][1]</code> implies a 2D array. An array of tuples requires two steps: extract the tuple, then index into it.</div></div></div>
+    <div class="eitem"><div class="eid" style="color:var(--red)">EC-07<br>Mutation</div><div><div class="etitle">Arrays are <em>reference types</em> — modifying inside a function changes the original!</div><div class="edesc">When you pass an array to a function, it doesn't make a copy — it passes the SAME array. So <code>push()</code>, <code>pop()</code>, or <code>arr[i] = x</code> inside a function will change your original array outside! Use <code>[...arr]</code> (spread) to make a copy first if you don't want this.</div></div></div>
   </div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>⚠ Array mutation — the silent surprise</strong>
+    <pre><code>function addItem(list: string[]) {
+  list.push("new item");  // Modifies the ORIGINAL array!
+}
+
+const fruits = ["apple", "banana"];
+addItem(fruits);
+console.log(fruits); // ["apple", "banana", "new item"] ← changed!
+
+// ✅ To avoid this, copy first:
+function addItemSafe(list: string[]) {
+  const copy = [...list];  // Spread = shallow copy
+  copy.push("new item");
+  return copy;  // Return new array, original untouched
+}</code></pre>
+  </div></div>
 </div>
 
 <div class="sec" id="at-cheatsheet">
@@ -517,14 +536,14 @@ function toUpper(words: string[]): string[] {
 <script>
 (function() {
   const nav = document.getElementById('nav-arrays-tuples');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

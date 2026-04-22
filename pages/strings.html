@@ -47,6 +47,8 @@
   <div class="nav-group">Concepts</div>
   <a href="#str-immutable">String Immutability</a>
   <a href="#str-multiline">Multi-line Strings</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#str-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#str-cheatsheet">Cheatsheet</a>
 </nav>
@@ -398,6 +400,74 @@ console.log(multiLine);
   <div class="note note-info"><span class="note-i">ℹ</span><p>Back ticks unlock TWO powers: <strong>variable embedding</strong> (<code>${var}</code>) and <strong>multi-line strings</strong>. Single/double quotes can do neither.</p></div>
 </div>
 
+<!-- COMMON MISTAKES -->
+<div class="sec" id="str-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: <code>str.length()</code> with parentheses — it's NOT a method!</strong>
+    <p><code>length</code> is a <em>property</em> (like reading a label), NOT a <em>method</em> (like pressing a button). Adding <code>()</code> causes an error!</p>
+    <pre><code>let name = "Alice";
+
+// ❌ WRONG — length is not a function!
+console.log(name.length()); // TypeError: name.length is not a function
+
+// ✅ CORRECT — no parentheses needed
+console.log(name.length);   // 5 ✓
+
+// How to remember:
+// .length    → property (just reading a value) → NO ()
+// .toUpperCase() → method (doing an action) → YES ()</code></pre>
+    <p><strong>Rule:</strong> <code>length</code> = property (no parentheses). Methods like <code>toUpperCase()</code>, <code>includes()</code>, <code>trim()</code> = actions (need parentheses).</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: <code>includes()</code> is CASE SENSITIVE!</strong>
+    <p><code>includes()</code> checks for an EXACT match including uppercase/lowercase. <code>"Hello"</code> and <code>"hello"</code> are different!</p>
+    <pre><code>let greeting = "Hello World";
+
+// ❌ WRONG — case doesn't match!
+console.log(greeting.includes("hello")); // false (lowercase h)
+console.log(greeting.includes("world")); // false (lowercase w)
+
+// ✅ CORRECT — exact case match
+console.log(greeting.includes("Hello")); // true ✓
+console.log(greeting.includes("World")); // true ✓
+
+// ✅ TRICK — convert both to lowercase for case-insensitive search
+console.log(greeting.toLowerCase().includes("hello")); // true ✓</code></pre>
+    <p><strong>Rule:</strong> When searching strings, convert both sides to <code>.toLowerCase()</code> first if you don't care about case.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: <code>substring()</code> end index is EXCLUSIVE</strong>
+    <p>The second number in <code>substring(start, end)</code> is NOT included in the result. It stops ONE character BEFORE that index!</p>
+    <pre><code>let text = "TypeScript";
+//          T y p e S c r i p t
+// Index:   0 1 2 3 4 5 6 7 8 9
+
+// ❌ WRONG expectation — you expect 5 characters
+console.log(text.substring(0, 4)); // "Type" (only 4 chars, not 5!)
+// It gives characters at index 0, 1, 2, 3 — stops BEFORE index 4
+
+// ✅ CORRECT — to get "TypeS" (5 chars), use end = 5
+console.log(text.substring(0, 5)); // "TypeS" ✓</code></pre>
+    <p><strong>Rule:</strong> <code>substring(start, end)</code> gives characters from <code>start</code> up to BUT NOT INCLUDING <code>end</code>. Think: <code>end - start = number of characters</code>.</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you wrote</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td><code>length()</code></td><td><code>str.length()</code></td><td>TypeError</td><td><code>str.length</code> (no parens)</td></tr>
+      <tr><td>Case sensitive</td><td><code>"Hello".includes("hello")</code></td><td><code>false</code></td><td><code>.toLowerCase().includes()</code></td></tr>
+      <tr><td>Off-by-one</td><td><code>substring(0, 4)</code></td><td>4 chars, not 5</td><td>End index is exclusive</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
 <!-- CHEATSHEET -->
 <div class="sec" id="str-cheatsheet">
   <div class="sec-label">Reference</div>
@@ -448,14 +518,14 @@ let s3 = `backtick`;     // template literal (${} + multi-line)</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-strings');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

@@ -43,6 +43,8 @@
   <a href="#dt-any">any</a>
   <a href="#dt-union">Union Type</a>
   <a href="#dt-void">void</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#dt-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#dt-comparison">Comparison Table</a>
   <a href="#dt-cheatsheet">Cheatsheet</a>
@@ -523,6 +525,77 @@ console.log(result);  // 30</code></pre>
 </div>
 
 <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     COMMON MISTAKES
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="dt-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: <code>typeof null</code> returns <code>"object"</code> (not <code>"null"</code>!)</strong>
+    <p>This is a famous JavaScript bug from 1995 that was never fixed. <code>typeof null</code> says <code>"object"</code> instead of <code>"null"</code>. If you use <code>typeof</code> to check for null, you'll get the WRONG answer!</p>
+    <pre><code>// ❌ WRONG — typeof null is "object", not "null"!
+let data = null;
+console.log(typeof data); // "object" ← SURPRISE!
+
+if (typeof data === "null") {
+  console.log("It's null!"); // NEVER runs!
+}
+
+// ✅ CORRECT — use === null to check for null
+if (data === null) {
+  console.log("It's null!"); // ✓ Works!
+}</code></pre>
+    <p><strong>Rule:</strong> Never use <code>typeof</code> to check for <code>null</code>. Always use <code>=== null</code> directly.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Number + String = String (not a number!)</strong>
+    <p>When you use <code>+</code> with a number and a string, JavaScript converts the number to a string and GLUES them together. This is called <strong>type coercion</strong> and it catches every beginner.</p>
+    <pre><code>let price: number = 100;
+let tax: string = "20";
+
+// ❌ WRONG — string + number = concatenation!
+let total = price + tax;
+console.log(total);       // "10020" (not 120!)
+console.log(typeof total); // "string" ← it became a string!
+
+// ✅ CORRECT — convert string to number first
+let totalFixed = price + Number(tax);
+console.log(totalFixed);       // 120 ✓
+console.log(typeof totalFixed); // "number" ✓</code></pre>
+    <p><strong>Rule:</strong> Always check your data types before doing math. Use <code>Number()</code> or <code>parseInt()</code> to convert strings to numbers.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Using <code>any</code> defeats the whole purpose of TypeScript!</strong>
+    <p>When you type <code>any</code>, TypeScript stops checking that variable completely. No autocomplete, no error warnings, no safety. It's like wearing a seatbelt but not buckling it.</p>
+    <pre><code>// ❌ BAD — any removes all type safety
+let data: any = "hello";
+data = 42;          // No error (but is this intentional?)
+data.toUpperCase(); // No error in editor, CRASHES at runtime!
+// TypeError: data.toUpperCase is not a function
+
+// ✅ BETTER — use union types for flexibility WITH safety
+let data2: string | number = "hello";
+data2 = 42;            // ✓ Allowed
+data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</code></pre>
+    <p><strong>Rule:</strong> Avoid <code>any</code> whenever possible. If a variable can hold multiple types, use a <strong>union type</strong> (<code>string | number</code>) instead — you get flexibility AND safety.</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you expect</th><th>What actually happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td><code>typeof null</code></td><td><code>"null"</code></td><td><code>"object"</code></td><td>Use <code>=== null</code></td></tr>
+      <tr><td><code>100 + "20"</code></td><td><code>120</code></td><td><code>"10020"</code></td><td><code>100 + Number("20")</code></td></tr>
+      <tr><td><code>let x: any</code></td><td>Type safety</td><td>No checking at all</td><td><code>string | number</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
      COMPARISON TABLE
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
 <div class="sec" id="dt-comparison">
@@ -618,14 +691,14 @@ y = "hello";         // ❌ ERROR — type can't change!</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-data-types');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

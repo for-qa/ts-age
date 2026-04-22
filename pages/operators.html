@@ -42,6 +42,8 @@
   <a href="#op-increment">Increment &amp; Decrement</a>
   <a href="#op-prepost">Pre vs Post (Interview!)</a>
   <a href="#op-ternary">Ternary / Conditional</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#op-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#op-comparison">Comparison Table</a>
   <a href="#op-cheatsheet">Cheatsheet</a>
@@ -503,6 +505,71 @@ console.log(status);  // "Adult"
 </div>
 
 <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     COMMON MISTAKES
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="op-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Using <code>=</code> instead of <code>===</code> in conditions</strong>
+    <p>A single <code>=</code> is <em>assignment</em> (putting a value into a box). A triple <code>===</code> is <em>comparison</em> (checking if two things are equal). If you accidentally use <code>=</code> inside an <code>if</code>, it ALWAYS passes — because the assignment itself is truthy!</p>
+    <pre><code>let score = 50;
+
+// ❌ WRONG — this ASSIGNS 100 to score, doesn't compare!
+if (score = 100) {
+  console.log("Perfect!");  // ALWAYS runs! score is now 100
+}
+
+// ✅ CORRECT — this COMPARES score to 100
+if (score === 100) {
+  console.log("Perfect!");  // Only runs if score is actually 100
+}</code></pre>
+    <p><strong>Rule:</strong> Inside <code>if()</code>, <code>while()</code>, or any condition — ALWAYS use <code>===</code> (three equals), NEVER <code>=</code> (one equal).</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: <code>+</code> with strings gives concatenation, not addition!</strong>
+    <p>The <code>+</code> operator does MATH with numbers, but GLUES TEXT with strings. If even ONE side is a string, JavaScript converts everything to strings and joins them!</p>
+    <pre><code>// ❌ Surprise! String + Number = String (concatenation)
+console.log("5" + 3);     // "53"  (not 8!)
+console.log(5 + "3");     // "53"  (not 8!)
+console.log("5" + 3 + 2); // "532" (left to right, all become string)
+console.log(5 + 3 + "2"); // "82"  (5+3=8 first, then "8"+"2"="82")
+
+// ✅ CORRECT — convert string to number first
+console.log(Number("5") + 3);   // 8
+console.log(parseInt("5") + 3); // 8</code></pre>
+    <p><strong>Rule:</strong> If your data comes from user input (it's always a string!), convert it with <code>Number()</code> or <code>parseInt()</code> before doing math.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Operator precedence surprises</strong>
+    <p>Just like in school math, <code>*</code> and <code>/</code> happen BEFORE <code>+</code> and <code>-</code>. Forgetting this gives wrong results!</p>
+    <pre><code>// ❌ WRONG expectation
+let result = 2 + 3 * 4;
+console.log(result); // 14 (NOT 20!)
+// Why? 3 * 4 = 12 happens first, then 2 + 12 = 14
+
+// ✅ Use parentheses to force your intended order
+let result2 = (2 + 3) * 4;
+console.log(result2); // 20 ✓</code></pre>
+    <p><strong>Rule:</strong> When in doubt, use <code>(parentheses)</code> to make the order crystal clear. It also makes your code easier to read!</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you wrote</th><th>What it does</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td><code>=</code> in condition</td><td><code>if (x = 5)</code></td><td>Assigns 5 to x (always true)</td><td><code>if (x === 5)</code></td></tr>
+      <tr><td><code>+</code> with string</td><td><code>"5" + 3</code></td><td>Concatenates → <code>"53"</code></td><td><code>Number("5") + 3</code></td></tr>
+      <tr><td>Precedence</td><td><code>2 + 3 * 4</code></td><td>Gives 14, not 20</td><td><code>(2 + 3) * 4</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
      COMPARISON TABLE
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
 <div class="sec" id="op-comparison">
@@ -586,14 +653,14 @@ let result = age >= 18 ? "Adult" : "Minor";</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-operators');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

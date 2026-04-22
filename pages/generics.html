@@ -360,6 +360,7 @@ console.log(result.data.name);  // ✅ autocomplete works!</code></pre>
     <div class="card-head"><div class="card-num">2</div><div class="card-title">Test Data Factory</div><span class="card-badge">Automation</span></div>
     <div class="card-body">
       <pre><code>function createTestData&lt;T&gt;(defaults: T, overrides: Partial&lt;T&gt;): T {
+  // "..." copies all properties from one object into another — covered fully in Topic 24 (Spread &amp; Rest)
   return { ...defaults, ...overrides };
 }
 
@@ -418,14 +419,14 @@ function get&lt;T, K extends keyof T&gt;(obj: T, key: K) { }</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-generics');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

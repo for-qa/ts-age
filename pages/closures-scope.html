@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Closures &amp; Scope — TypeScript Learning Path</title>
+<meta name="description" content="Deep dive into closures and scope — lexical scope, closure patterns, private variables, factory functions, the var-in-loop trap, and memory considerations.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Closures &amp; Scope</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-cls">
+  <div class="nav-logo"><div class="v">🎒</div><h2>Closures</h2></div>
+  <div class="nav-group">Scope</div>
+  <a href="#cls-scope">3 Types of Scope</a>
+  <a href="#cls-lexical">Lexical Scope</a>
+  <div class="nav-group">Closures</div>
+  <a href="#cls-what">What is a Closure?</a>
+  <a href="#cls-counter">Counter Pattern</a>
+  <a href="#cls-private">Private Variables</a>
+  <a href="#cls-factory">Factory Functions</a>
+  <div class="nav-group">Classic Traps</div>
+  <a href="#cls-loop">var in Loops</a>
+  <a href="#cls-memory">Memory</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#cls-mistakes">⚠ Common Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#cls-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="cls-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Closures</span><span class="hero-tag">Scope</span><span class="hero-tag">Interview</span></div>
+  <h1>Closures &amp; Scope</h1>
+  <p>The #1 most asked JavaScript interview topic. If you understand closures, you understand how JS actually works under the hood.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Scope Types</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Closure Patterns</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Common Mistakes</div></div>
+  </div>
+</div>
+
+<!-- 3 TYPES OF SCOPE -->
+<div class="sec" id="cls-scope">
+  <div class="sec-label">Scope</div>
+  <h2>3 Types of Scope</h2>
+  <div class="pipe">
+    <div class="pipe-step"><div class="pipe-ph ph1-c">🌍</div><div class="pipe-name">Global</div><div class="pipe-pts">Visible everywhere</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph2-c">🏠</div><div class="pipe-name">Function</div><div class="pipe-pts">Visible only inside function</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph3-c">📦</div><div class="pipe-name">Block</div><div class="pipe-pts">Visible only inside { }</div></div>
+  </div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Where can a variable be seen?</div><span class="card-badge">Scope</span></div>
+    <div class="card-body"><pre><code>// GLOBAL scope — visible everywhere
+const globalVar = "I'm global";
+
+function demo() {
+  // FUNCTION scope — only visible inside this function
+  const funcVar = "I'm local to demo()";
+
+  if (true) {
+    // BLOCK scope — only visible inside this { }
+    const blockVar = "I'm local to this block";
+    let blockLet = "me too";
+    var funcScoped = "BUT var is function-scoped!";
+
+    console.log(globalVar);   // ✅ accessible
+    console.log(funcVar);     // ✅ accessible
+    console.log(blockVar);    // ✅ accessible
+  }
+
+  console.log(funcScoped);    // ✅ var leaks out of block!
+  // console.log(blockVar);   // ❌ ReferenceError
+  // console.log(blockLet);   // ❌ ReferenceError
+}
+
+// console.log(funcVar);      // ❌ ReferenceError</code></pre>
+      <p class="fn"><strong>Key:</strong> <code>let</code>/<code>const</code> = block-scoped. <code>var</code> = function-scoped (leaks out of blocks!).</p>
+    </div>
+  </div>
+</div>
+
+<!-- LEXICAL SCOPE -->
+<div class="sec" id="cls-lexical">
+  <div class="sec-label">Scope</div>
+  <h2>Lexical Scope</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Lexical scope is like <strong>family inheritance</strong>. A child has access to everything in their parent's house, the grandparent's house, and so on — but the parent can't access the child's room.</p></div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Functions look UP the chain, never down</div><span class="card-badge">Lexical</span></div>
+    <div class="card-body"><pre><code>const grandparent = "👵 Grandparent";
+
+function parent() {
+  const parentVar = "👩 Parent";
+
+  function child() {
+    const childVar = "👧 Child";
+
+    // Child can see UP the chain:
+    console.log(childVar);    // ✅ own
+    console.log(parentVar);   // ✅ parent's
+    console.log(grandparent); // ✅ grandparent's
+  }
+
+  child();
+  // console.log(childVar);  // ❌ parent can't see child's!
+}
+
+// Scope is determined by WHERE the function is WRITTEN,
+// NOT where it is called. This is "lexical" scoping.</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT IS A CLOSURE -->
+<div class="sec" id="cls-what">
+  <div class="sec-label">Closures</div>
+  <h2>What is a Closure?</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> A closure is like a <strong>backpack</strong> 🎒. When a function "graduates" from its school (scope), it carries a backpack with all the variables it still needs. Even after the school is gone, the function still has its backpack.</p></div>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">A function + its remembered variables</div><span class="card-badge">Core Concept</span></div>
+    <div class="card-body"><pre><code>function createGreeter(greeting: string) {
+  // 'greeting' lives here
+
+  return function(name: string) {
+    // This inner function REMEMBERS 'greeting'
+    // even after createGreeter() has finished running!
+    console.log(`${greeting}, ${name}!`);
+  };
+}
+
+const sayHello = createGreeter("Hello");
+const sayNamaste = createGreeter("Namaste");
+
+// createGreeter() has FINISHED executing...
+// but the returned functions still remember their 'greeting'!
+
+sayHello("Alice");    // "Hello, Alice!"
+sayNamaste("Bob");    // "Namaste, Bob!"
+
+// THAT is a closure:
+// The inner function CLOSED OVER the variable 'greeting'
+// and remembers it forever</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTER PATTERN -->
+<div class="sec" id="cls-counter">
+  <div class="sec-label">Closures</div>
+  <h2>Classic Pattern: Counter</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Private state with closures</div><span class="card-badge">Counter</span></div>
+    <div class="card-body"><pre><code>function createCounter() {
+  let count = 0;  // private! not accessible from outside
+
+  return {
+    increment: () => { count++; },
+    decrement: () => { count--; },
+    getCount: () => count,
+  };
+}
+
+const counter = createCounter();
+counter.increment();
+counter.increment();
+counter.increment();
+counter.decrement();
+console.log(counter.getCount());  // 2
+
+// count is PRIVATE — no one can access it directly
+// counter.count  → undefined (doesn't exist on the object)
+
+// Each counter is independent:
+const counter2 = createCounter();
+counter2.increment();
+console.log(counter2.getCount());  // 1 (separate from counter)</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVATE VARIABLES -->
+<div class="sec" id="cls-private">
+  <div class="sec-label">Closures</div>
+  <h2>Private Variables (Module Pattern)</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Encapsulation before classes existed</div><span class="card-badge">Privacy</span></div>
+    <div class="card-body"><pre><code>function createBankAccount(initialBalance: number) {
+  let balance = initialBalance;  // PRIVATE — closure variable
+  const transactions: string[] = [];
+
+  return {
+    deposit(amount: number) {
+      balance += amount;
+      transactions.push(`+${amount}`);
+    },
+    withdraw(amount: number) {
+      if (amount > balance) {
+        console.log("Insufficient funds!");
+        return;
+      }
+      balance -= amount;
+      transactions.push(`-${amount}`);
+    },
+    getBalance: () => balance,
+    getHistory: () => [...transactions],  // return copy!
+  };
+}
+
+const account = createBankAccount(1000);
+account.deposit(500);
+account.withdraw(200);
+console.log(account.getBalance());  // 1300
+// account.balance → undefined (PRIVATE!)</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- FACTORY FUNCTIONS -->
+<div class="sec" id="cls-factory">
+  <div class="sec-label">Closures</div>
+  <h2>Factory Functions</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Generate customized functions</div><span class="card-badge">Factory</span></div>
+    <div class="card-body"><pre><code>// Multiplier factory
+function createMultiplier(factor: number) {
+  return (num: number) => num * factor;
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+const toINR = createMultiplier(83.5);
+
+console.log(double(5));   // 10
+console.log(triple(5));   // 15
+console.log(toINR(100));  // 8350
+
+// Logger factory
+function createLogger(prefix: string) {
+  return (msg: string) => console.log(`[${prefix}] ${msg}`);
+}
+
+const info = createLogger("INFO");
+const error = createLogger("ERROR");
+
+info("Server started");   // [INFO] Server started
+error("Disk full");        // [ERROR] Disk full</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- VAR IN LOOPS -->
+<div class="sec" id="cls-loop">
+  <div class="sec-label">Classic Traps</div>
+  <h2>The Classic: var in Loops</h2>
+  <div class="note note-warn"><span class="note-i">⚠</span><p>This is the <strong>#1 closure interview question</strong>. You WILL be asked this.</p></div>
+  <div class="card ph5-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">var creates SHARED closure — let creates separate ones</div><span class="card-badge">Interview Classic</span></div>
+    <div class="card-body"><pre><code>// ❌ THE TRAP — var is function-scoped, NOT block-scoped
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i);  // What prints?
+  }, 100);
+}
+// Prints: 3, 3, 3  😱 (NOT 0, 1, 2!)
+// WHY? All 3 callbacks share the SAME 'i' (var = function scope)
+// By the time setTimeout fires, i is already 3
+
+// ✅ FIX 1 — use 'let' (block-scoped = separate closure each iteration)
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => {
+    console.log(i);  // 0, 1, 2 ✅
+  }, 100);
+}
+
+// ✅ FIX 2 — IIFE (old school, creates manual closure)
+for (var i = 0; i < 3; i++) {
+  ((j) => {
+    setTimeout(() => {
+      console.log(j);  // 0, 1, 2 ✅
+    }, 100);
+  })(i);
+}</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MEMORY -->
+<div class="sec" id="cls-memory">
+  <div class="sec-label">Classic Traps</div>
+  <h2>Memory Considerations</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Closures keep variables alive in memory</div><span class="card-badge">Memory</span></div>
+    <div class="card-body"><pre><code>// Closures prevent garbage collection of closed-over variables
+
+function createHeavyClosure() {
+  const hugeArray = new Array(1_000_000).fill("data"); // 1M items
+
+  return () => {
+    console.log(hugeArray.length);  // hugeArray stays in memory!
+  };
+}
+
+const fn = createHeavyClosure();
+// hugeArray is NOT garbage collected — fn still references it!
+
+// ✅ FIX — only close over what you need
+function createLightClosure() {
+  const hugeArray = new Array(1_000_000).fill("data");
+  const length = hugeArray.length;  // extract what you need
+
+  return () => {
+    console.log(length);  // only 'length' is kept, not hugeArray
+  };
+}
+// hugeArray CAN be garbage collected now</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- COMMON MISTAKES -->
+<div class="sec" id="cls-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: var in loops creates shared closure</strong>
+    <pre><code>// All callbacks see the FINAL value of var
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+// 5, 5, 5, 5, 5 — NOT 0, 1, 2, 3, 4
+// FIX: use let instead of var</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Accidentally keeping large objects alive</strong>
+    <pre><code>// If you close over a huge object but only need one field,
+// extract the field first. Don't capture the whole object.
+// BAD: return () => bigObj.name;
+// GOOD: const name = bigObj.name; return () => name;</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Thinking closures are complicated</strong>
+    <pre><code>// A closure is JUST a function that remembers variables
+// from where it was CREATED.
+
+// You use closures ALL THE TIME without realizing:
+const name = "Alice";
+button.addEventListener("click", () => {
+  console.log(name);  // This IS a closure!
+});</code></pre>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>var in loop</td><td>All callbacks share same value</td><td>Use <code>let</code></td></tr>
+      <tr><td>Large objects in closure</td><td>Memory leak</td><td>Extract needed values</td></tr>
+      <tr><td>Overthinking closures</td><td>Confusion</td><td>Function + remembered vars</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="cls-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// SCOPE: where a variable is visible
+// Global > Function > Block (let/const)
+// var = function-scoped, let/const = block-scoped
+
+// LEXICAL SCOPE: determined by WHERE function is written
+// Inner functions can see outer variables, not vice versa
+
+// CLOSURE: function + its remembered outer variables
+function outer() {
+  const x = 10;
+  return () => x;  // closure over x
+}
+
+// PATTERNS:
+// Counter:    return { increment, getCount }
+// Private:    let private = ...; return { getters/setters }
+// Factory:    return customized function
+// var trap:   use let in loops, not var</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Closures &amp; Scope &nbsp;·&nbsp; Next: this Keyword</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-cls');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

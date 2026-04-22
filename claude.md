@@ -1,8 +1,9 @@
-# 🧠 TypeScript Notes — Transcript-to-HTML Prompt
+# 🧠 TypeScript Notes — Curriculum Guide
 
-> **Structure:** Separate HTML file per topic + shared `styles.css` + `pages/index.html` landing page.
-> **Purpose:** Convert YouTube transcript CC text into structured, beginner-friendly TypeScript learning notes.
+> **Structure:** Separate HTML file per topic in `pages/` + practice `.ts` file per topic in `practice/` + shared `styles.css` + `index.html` landing page.
+> **Purpose:** 40-topic TypeScript curriculum — beginner to senior level.
 > **Style:** Simple language + real-life examples (like explaining to a 10-year-old who can code).
+> **Status:** ✅ 40/40 topics complete.
 
 ---
 
@@ -12,8 +13,9 @@
 2. The AI will:
    - Identify the topic from the transcript.
    - Assign it a **topic number** based on the learning order below.
-   - Generate a **new standalone HTML file** (e.g., `pages/objects-types.html`).
-   - Add a **topic card** on the `pages/index.html` landing page.
+   - Generate a **new standalone HTML file** (e.g., `pages/objects.html`).
+   - Generate a **practice file** (e.g., `practice/15-objects.ts`).
+   - Add a **topic card** on the `index.html` landing page.
    - Use `styles.css` for shared styling.
 3. **All content must use:**
    - Simple, everyday language (no jargon without explanation).
@@ -22,36 +24,63 @@
 
 ---
 
-## ðŸ“ Preferred Learning Order (Index)
+## 🔑 Ordering Rules
 
-Topics should follow this sequence. When a new transcript is pasted, match its content to the closest topic below and assign the correct topic number. **Do NOT use "Day X" labels** — use topic numbers and category labels instead.
+Topics must be ordered so a learner reading 1→40 **never** encounters a concept before it's taught:
 
-| # | Topic | File | Status |
-|---|-------|------|--------|
-| 1 | **Variables & Keywords** | `pages/variables-keywords.html` | ✅ Done |
-| 2 | **Data Types** | `pages/data-types.html` | ✅ Done |
-| 3 | **Strings & String Methods** | `pages/strings.html` | ✅ Done |
-| 4 | **Arrays & Tuples** | `pages/arrays-tuples.html` | ✅ Done |
-| 5 | **Array Methods** | `pages/array-methods.html` | ✅ Done |
-| 6 | **Operators** | `pages/operators.html` | ✅ Done |
-| 7 | **Conditional Statements** | `pages/conditionals.html` | ✅ Done |
-| 8 | **Loops** | `pages/loops.html` | ✅ Done |
-| 9 | **Functions (Basics + Advanced)** | `pages/functions.html` | ✅ Done |
-| 10 | **Callback & Overloaded Functions** | `pages/functions-advanced.html` | ✅ Done |
-| 11 | **Higher-Order Array Methods** | `pages/higher-order-methods.html` | ✅ Done |
-| 12 | **Type Aliases & Union Types** | `pages/type-aliases.html` | ✅ Done |
-| 13 | **Enums** | `pages/enums.html` | ✅ Done |
-| 14 | **Type Narrowing** | `pages/type-narrowing.html` | ✅ Done |
-| 15 | **Objects & Object Types** | `pages/objects.html` | ✅ Done |
-| 16 | **Classes (Basics)** | `pages/classes-basics.html` | ✅ Done |
-| 17 | **Classes (Inheritance)** | `pages/classes-inheritance.html` | ✅ Done |
-| 18 | **Interfaces** | `pages/interfaces.html` | ✅ Done |
-| 19 | **Generics** | `pages/generics.html` | ✅ Done |
-| 20 | **Modules** | `pages/modules.html` | ✅ Done |
-| 21 | **Async/Await & Promises** | `pages/async-await.html` | ✅ Done |
-| 22 | **Error Handling** | `pages/error-handling.html` | ✅ Done |
-| ★ | **Key Comparisons** | `pages/comparisons.html` | ✅ Done |
-| ★ | **TypeScript Glossary** | `pages/glossary.html` | ✅ Done |
+1. **No forward references** — never use destructuring, spread, or other syntax before its topic.
+2. **If you must preview a concept**, add a 1-line comment: `// "..." explained fully in Topic 24`.
+3. **Deep-dive topics** that expand on earlier topics must include a note: "Builds on Topic X."
+4. **Progressive disclosure** is OK — e.g., rest params introduced in Functions (#9), expanded in Spread/Rest (#24).
+
+---
+
+## 📝 Preferred Learning Order (Complete — 40/40)
+
+| # | Topic | Page | Practice | Status |
+|---|-------|------|----------|--------|
+| 1 | **Variables & Keywords** | `pages/variables-keywords.html` | `practice/01-variables.ts` | ✅ |
+| 2 | **Data Types** | `pages/data-types.html` | `practice/02-data-types.ts` | ✅ |
+| 3 | **Strings & String Methods** | `pages/strings.html` | `practice/03-strings.ts` | ✅ |
+| 4 | **Arrays & Tuples** | `pages/arrays-tuples.html` | `practice/04-arrays.ts` | ✅ |
+| 5 | **Array Methods** | `pages/array-methods.html` | `practice/05-array-methods.ts` | ✅ |
+| 6 | **Operators** | `pages/operators.html` | `practice/06-operators.ts` | ✅ |
+| 7 | **Conditional Statements** | `pages/conditionals.html` | `practice/07-conditionals.ts` | ✅ |
+| 8 | **Loops** | `pages/loops.html` | `practice/08-loops.ts` | ✅ |
+| 9 | **Functions (Basics)** | `pages/functions.html` | `practice/09-functions.ts` | ✅ |
+| 10 | **Callback & Overloaded Functions** | `pages/functions-advanced.html` | `practice/10-callbacks.ts` | ✅ |
+| 11 | **Higher-Order Array Methods** | `pages/higher-order-methods.html` | `practice/11-higher-order.ts` | ✅ |
+| 12 | **Type Aliases & Union Types** | `pages/type-aliases.html` | `practice/12-type-aliases.ts` | ✅ |
+| 13 | **Enums** | `pages/enums.html` | `practice/13-enums.ts` | ✅ |
+| 14 | **Type Narrowing** | `pages/type-narrowing.html` | `practice/14-type-narrowing.ts` | ✅ |
+| 15 | **Objects & Object Types** | `pages/objects.html` | `practice/15-objects.ts` | ✅ |
+| 16 | **Classes (Basics)** | `pages/classes-basics.html` | `practice/16-classes.ts` | ✅ |
+| 17 | **Classes (Inheritance)** | `pages/classes-inheritance.html` | `practice/17-inheritance.ts` | ✅ |
+| 18 | **Interfaces** | `pages/interfaces.html` | `practice/18-interfaces.ts` | ✅ |
+| 19 | **Generics** | `pages/generics.html` | `practice/19-generics.ts` | ✅ |
+| 20 | **Modules** | `pages/modules.html` | `practice/20-modules.ts` | ✅ |
+| 21 | **Async/Await & Promises** | `pages/async-await.html` | `practice/21-async-await.ts` | ✅ |
+| 22 | **Error Handling** | `pages/error-handling.html` | `practice/22-error-handling.ts` | ✅ |
+| 23 | **Destructuring** | `pages/destructuring.html` | `practice/23-destructuring.ts` | ✅ |
+| 24 | **Spread & Rest** | `pages/spread-rest.html` | `practice/24-spread-rest.ts` | ✅ |
+| 25 | **Promises (Deep Dive)** | `pages/promises.html` | `practice/25-promises.ts` | ✅ |
+| 26 | **DOM Manipulation** | `pages/dom-manipulation.html` | `practice/26-dom-manipulation.ts` | ✅ |
+| 27 | **JSON Parse & Stringify** | `pages/json.html` | `practice/27-json.ts` | ✅ |
+| 28 | **Map/Filter/Reduce Practice** | `pages/map-filter-reduce.html` | `practice/28-map-filter-reduce.ts` | ✅ |
+| 29 | **Closures & Scope** | `pages/closures-scope.html` | `practice/29-closures-scope.ts` | ✅ |
+| 30 | **this Keyword** | `pages/this-keyword.html` | `practice/30-this-keyword.ts` | ✅ |
+| 31 | **Utility Types** | `pages/utility-types.html` | `practice/31-utility-types.ts` | ✅ |
+| 32 | **Date & Time** | `pages/date-time.html` | `practice/32-date-time.ts` | ✅ |
+| 33 | **Regular Expressions** | `pages/regex-basics.html` | `practice/33-regex-basics.ts` | ✅ |
+| 34 | **Advanced Type Guards** | `pages/type-guards-advanced.html` | `practice/34-type-guards-advanced.ts` | ✅ |
+| 35 | **API Calls (fetch)** | `pages/api-calls.html` | `practice/35-api-calls.ts` | ✅ |
+| 36 | **Design Patterns** | `pages/design-patterns.html` | `practice/36-design-patterns.ts` | ✅ |
+| 37 | **Decorators** | `pages/decorators.html` | `practice/37-decorators.ts` | ✅ |
+| 38 | **Mapped & Conditional Types** | `pages/mapped-conditional-types.html` | `practice/38-mapped-conditional-types.ts` | ✅ |
+| 39 | **Unit Testing** | `pages/testing.html` | `practice/39-testing.ts` | ✅ |
+| 40 | **Data Structures** | `pages/data-structures.html` | `practice/40-data-structures.ts` | ✅ |
+| ★ | **Key Comparisons** | `pages/comparisons.html` | — | ✅ |
+| ★ | **TypeScript Glossary** | `pages/glossary.html` | — | ✅ |
 
 > **Note:** If a transcript covers a topic not listed, add it at the most logical position based on prerequisites.
 
@@ -82,26 +111,34 @@ Think of an array like **shelves in a supermarket**.
 - Bad: `let arr1`, `let data`, `let temp`
 
 ### 4. Every Topic Must Have
-- **ðŸŽ¯ What is it?** — One-line simple definition.
+- **🎯 What is it?** — One-line simple definition.
 - **🏪 Real-Life Example** — Analogy before any code.
-- **ðŸ’» Code Example** — Clear, commented TypeScript code.
-- **âš ï¸ Common Mistakes** — Beginners' traps with fixes.
+- **💻 Code Example** — Clear, commented TypeScript code (❌ wrong / ✅ correct pattern).
+- **⚠️ Common Mistakes** — Minimum 3 per page with fixes.
 - **✅ Quick Tip** — One-sentence memory aid.
-- **ðŸ“Š Comparison Table** — When comparing similar concepts (e.g., slice vs splice).
-- **ðŸ“ Cheatsheet** — End of topic quick reference.
+- **📊 Comparison Table** — When comparing similar concepts (e.g., slice vs splice).
+- **📝 Cheatsheet** — End of topic quick reference.
 
 ---
 
-## ðŸ—ï¸ HTML Structure Template
+## 🏗️ HTML Structure Template
 
 When adding a new topic, follow this exact pattern:
 
-### Step 1: Create a new HTML file: `pages/{slug}.html`
+### Step 1: Create HTML file: `pages/{slug}.html`
 Copy the structure from an existing topic file (e.g., `pages/variables-keywords.html`).
 
-### Step 2: Add a topic card in `pages/index.html` (inside `<div class="topic-grid">`)
+### Step 2: Create practice file: `practice/{##}-{slug}.ts`
+```typescript
+// ============================================
+// Topic {##} — {TOPIC NAME}
+// ============================================
+// Practice here! Run with: npx tsx {##}-{slug}.ts
+```
+
+### Step 3: Add a topic card in `index.html` (inside `<div class="topic-grid">`)
 ```html
-<a class="topic-card" href="{slug}.html">
+<a class="topic-card" href="pages/{slug}.html">
   <div class="tc-num"><span class="tc-num-badge">{N}</span> {Category}</div>
   <div class="tc-title">{Topic Name}</div>
   <div class="tc-desc">{One-line description}</div>
@@ -112,17 +149,17 @@ Copy the structure from an existing topic file (e.g., `pages/variables-keywords.
 </a>
 ```
 
-### Step 3: Topic page structure
+### Step 4: Topic page structure
 Each topic HTML file follows this structure:
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <div id="topbar">
-  <!-- brand + back button -->
+  <!-- brand + back button (href="../index.html") -->
 </div>
 <div class="page-wrap">
 <div class="wrap">
@@ -136,6 +173,7 @@ Each topic HTML file follows this structure:
   <div class="content">
     <!-- hero section -->
     <!-- sections with real-life examples -->
+    <!-- ⚠ Common Mistakes section -->
     <!-- cheatsheet -->
   </div>
 </div>
@@ -146,7 +184,7 @@ Each topic HTML file follows this structure:
 
 ---
 
-## ðŸ”„ When Updating Existing Content
+## 🔄 When Updating Existing Content
 
 If the current content uses complex language, update it to:
 1. Add a 🏪 **Real-Life Example** box at the start of each section.
@@ -158,30 +196,53 @@ If the current content uses complex language, update it to:
 
 ## ✅ Checklist Before Finishing
 
-- [ ] New HTML file created with correct filename from the topic list.
-- [ ] Topic card added to `pages/index.html` (before placeholder cards).
-- [ ] Topic page uses `<link rel="stylesheet" href="styles.css">` for shared styles.
-- [ ] Page has topbar with "â† Back to Index" link.
+- [ ] New HTML file created in `pages/` with correct filename.
+- [ ] Practice `.ts` file created in `practice/` with topic header.
+- [ ] Topic card added to `index.html` (before bonus comparisons card).
+- [ ] Topic page uses `<link rel="stylesheet" href="../styles.css">`.
+- [ ] Page has topbar with "← Back to Index" link to `../index.html`.
 - [ ] Sidebar navigation with all section links.
 - [ ] Every concept has a real-life example BEFORE the code.
+- [ ] ⚠ Common Mistakes section with minimum 3 mistakes (❌/✅ pattern).
 - [ ] Language is simple enough for a beginner.
 - [ ] Cheatsheet section exists at the end.
 - [ ] Sidebar observer script at the bottom of the page.
-- [ ] Placeholder cards on index.html are updated if needed.
-- [ ] No "Day X" labels used anywhere — use topic numbers and category labels.
+- [ ] No forward references — don't use concepts before they're taught.
+- [ ] No "Day X" labels — use topic numbers and category labels.
 
 ---
 
-## ðŸ“ File Structure
+## 📂 File Structure
 
 ```
-d:\portfolio\ts-age\
-â”œâ”€â”€ index.html                  â† Landing page with topic cards
-â”œâ”€â”€ styles.css                  â† Shared CSS for all pages
-â”œâ”€â”€ variables-keywords.html     â† Topic 1
-â”œâ”€â”€ arrays-tuples.html          â† Topic 2
-â”œâ”€â”€ array-methods.html          â† Topic 3
-â”œâ”€â”€ {new-topic}.html            â† Future topics
-â”œâ”€â”€ claude.md                   â† This file (AI instructions)
-â””â”€â”€ typescript_notes.html       â† Old monolithic file (can be deleted)
+d:\practice\ts-age\
+├── index.html                  ← Landing page with 40 topic cards
+├── styles.css                  ← Shared CSS for all pages
+├── plan.md                     ← Full curriculum roadmap (40/40 done)
+├── claude.md                   ← This file (AI instructions)
+├── pages/
+│   ├── variables-keywords.html ← Topic 1
+│   ├── data-types.html         ← Topic 2
+│   ├── strings.html            ← Topic 3
+│   ├── ...                     ← Topics 4-40
+│   ├── data-structures.html    ← Topic 40
+│   ├── comparisons.html        ← ★ Bonus
+│   └── glossary.html           ← ★ Bonus
+├── practice/
+│   ├── 01-variables.ts         ← Topic 1 practice
+│   ├── 02-data-types.ts        ← Topic 2 practice
+│   ├── ...                     ← Topics 3-40
+│   └── 40-data-structures.ts   ← Topic 40 practice
+└── tsconfig.json
 ```
+
+---
+
+## 📊 Curriculum Phases
+
+| Phase | Topics | Level |
+|-------|--------|-------|
+| **Phase 0** — Foundation | 1–22 | Basics → Intermediate |
+| **Phase 1** — Job-Ready | 23–28 | Essential modern JS/TS |
+| **Phase 2** — Interview-Strong | 29–34 | Deep dives for interviews |
+| **Phase 3** — Pro Level | 35–40 | Senior-level patterns |

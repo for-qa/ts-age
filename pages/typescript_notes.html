@@ -1359,7 +1359,7 @@ document.querySelectorAll('.tb-topic').forEach(btn => {
 // ”” Per-topic sidebar active-link highlighting ””
 function makeObserver(navId, topicPanelId) {
   const nav = document.getElementById(navId);
-  if (!nav) return;
+  if (!nav) { return; }
 
   const links = nav.querySelectorAll('a');
 
@@ -1371,7 +1371,7 @@ function makeObserver(navId, topicPanelId) {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

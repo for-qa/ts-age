@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unit Testing — TypeScript Learning Path</title>
+<meta name="description" content="Learn unit testing in TypeScript — describe, it, expect, matchers, setup/teardown, mocking, and common testing mistakes.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Unit Testing</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-test">
+  <div class="nav-logo"><div class="v">✓</div><h2>Testing</h2></div>
+  <div class="nav-group">Basics</div>
+  <a href="#test-what">Why Test?</a>
+  <a href="#test-structure">describe / it / expect</a>
+  <a href="#test-matchers">Matchers</a>
+  <div class="nav-group">Patterns</div>
+  <a href="#test-setup">Setup / Teardown</a>
+  <a href="#test-mock">Mocking</a>
+  <a href="#test-async">Async Tests</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#test-mistakes">⚠ Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#test-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="test-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Jest</span><span class="hero-tag">Vitest</span><span class="hero-tag">Pro Level</span></div>
+  <h1>Unit Testing</h1>
+  <p>Professional code has tests. Learn the structure, matchers, mocking, and patterns that every production codebase uses.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Matchers</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Patterns</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Mistakes</div></div>
+  </div>
+</div>
+
+<!-- WHY TEST -->
+<div class="sec" id="test-what">
+  <div class="sec-label">Basics</div>
+  <h2>Why Write Tests?</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Tests are like <strong>spell-check for code</strong> ✓. Every time you change something, tests automatically verify nothing else broke. Without tests, you're proofreading a 500-page book by eye every time you change a word.</p></div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Catch bugs before users do</div><span class="card-badge">Why</span></div>
+    <div class="card-body"><pre><code>// Without tests:
+// "I changed function A... did it break B, C, and D?"
+// → Manually check everything? No way.
+
+// With tests:
+// Run `npm test` → ✅ 47 passed, 0 failed
+// Confidence that nothing broke!
+
+// Tools: Jest (most popular) or Vitest (faster, Vite-based)
+// Both have nearly identical syntax</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- DESCRIBE / IT / EXPECT -->
+<div class="sec" id="test-structure">
+  <div class="sec-label">Basics</div>
+  <h2>describe / it / expect</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">The three building blocks</div><span class="card-badge">Structure</span></div>
+    <div class="card-body"><pre><code>// Function to test
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// Tests:
+describe("add", () => {               // Group of tests
+  it("should add two positive numbers", () => {
+    expect(add(2, 3)).toBe(5);         // Assertion
+  });
+
+  it("should handle negative numbers", () => {
+    expect(add(-1, -2)).toBe(-3);
+  });
+
+  it("should handle zero", () => {
+    expect(add(0, 5)).toBe(5);
+  });
+});
+
+// Read like English:
+// "Describe 'add': it should add two positive numbers"</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MATCHERS -->
+<div class="sec" id="test-matchers">
+  <div class="sec-label">Basics</div>
+  <h2>Common Matchers</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Different ways to assert</div><span class="card-badge">Matchers</span></div>
+    <div class="card-body"><pre><code>// EQUALITY
+expect(2 + 2).toBe(4);              // exact (===)
+expect({ a: 1 }).toEqual({ a: 1 }); // deep equality (objects)
+// toBe = same reference, toEqual = same content
+
+// TRUTHINESS
+expect(true).toBeTruthy();
+expect(null).toBeFalsy();
+expect(null).toBeNull();
+expect(undefined).toBeUndefined();
+expect("hello").toBeDefined();
+
+// NUMBERS
+expect(10).toBeGreaterThan(5);
+expect(10).toBeLessThanOrEqual(10);
+expect(0.1 + 0.2).toBeCloseTo(0.3);  // floating point!
+
+// STRINGS
+expect("hello world").toContain("world");
+expect("hello").toMatch(/^hel/);
+
+// ARRAYS
+expect([1, 2, 3]).toContain(2);
+expect([1, 2, 3]).toHaveLength(3);
+
+// ERRORS
+expect(() => { throw new Error("boom"); }).toThrow("boom");
+expect(() => JSON.parse("invalid")).toThrow();
+
+// NEGATION — .not
+expect(5).not.toBe(3);
+expect([1, 2]).not.toContain(5);</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- SETUP / TEARDOWN -->
+<div class="sec" id="test-setup">
+  <div class="sec-label">Patterns</div>
+  <h2>Setup / Teardown</h2>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Run code before/after each test</div><span class="card-badge">Lifecycle</span></div>
+    <div class="card-body"><pre><code>describe("UserService", () => {
+  let users: string[];
+
+  // Runs BEFORE each test — fresh state every time
+  beforeEach(() => {
+    users = ["Alice", "Bob"];
+  });
+
+  // Runs AFTER each test — cleanup
+  afterEach(() => {
+    users = [];
+  });
+
+  it("should add a user", () => {
+    users.push("Charlie");
+    expect(users).toHaveLength(3);
+  });
+
+  it("should start with 2 users (fresh state!)", () => {
+    // beforeEach ran again — users reset to ["Alice", "Bob"]
+    expect(users).toHaveLength(2);
+  });
+});
+
+// Also: beforeAll / afterAll — run once for entire describe block</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MOCKING -->
+<div class="sec" id="test-mock">
+  <div class="sec-label">Patterns</div>
+  <h2>Mocking</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Fake dependencies for isolation</div><span class="card-badge">Mocks</span></div>
+    <div class="card-body"><pre><code>// Mock function — track calls and set return values
+const mockFn = jest.fn();
+mockFn("hello");
+expect(mockFn).toHaveBeenCalledWith("hello");
+expect(mockFn).toHaveBeenCalledTimes(1);
+
+// Mock with return value
+const getUser = jest.fn().mockReturnValue({ name: "Alice" });
+expect(getUser()).toEqual({ name: "Alice" });
+
+// Mock async function
+const fetchData = jest.fn().mockResolvedValue({ id: 1 });
+const data = await fetchData();
+expect(data).toEqual({ id: 1 });
+
+// WHY mock?
+// Don't call REAL APIs in tests — they're slow and unreliable
+// Mock the API function, test YOUR logic around it</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ASYNC TESTS -->
+<div class="sec" id="test-async">
+  <div class="sec-label">Patterns</div>
+  <h2>Testing Async Code</h2>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">await in tests works just like regular code</div><span class="card-badge">Async</span></div>
+    <div class="card-body"><pre><code>// Async function to test
+async function fetchUser(id: number): Promise&lt;{ name: string }&gt; {
+  const res = await fetch(`/api/users/${id}`);
+  return res.json();
+}
+
+// Test with async/await
+it("should fetch user", async () => {
+  const user = await fetchUser(1);
+  expect(user.name).toBe("Alice");
+});
+
+// Test that async function throws
+it("should throw on invalid id", async () => {
+  await expect(fetchUser(-1)).rejects.toThrow("Not found");
+});</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div class="sec" id="test-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Testing implementation, not behavior</strong>
+    <pre><code>// ❌ Testing HOW it works (fragile — breaks when refactored)
+expect(calculator.internalSum).toBe(5);
+
+// ✅ Testing WHAT it does (stable)
+expect(calculator.getTotal()).toBe(5);</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Tests sharing state</strong>
+    <pre><code>// ❌ Test 2 depends on test 1's data
+// Tests should be INDEPENDENT — use beforeEach to reset</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: toBe vs toEqual for objects</strong>
+    <pre><code>// ❌ toBe checks reference, not content!
+expect({ a: 1 }).toBe({ a: 1 });    // FAILS!
+
+// ✅ toEqual checks deep equality
+expect({ a: 1 }).toEqual({ a: 1 }); // PASSES ✅</code></pre>
+  </div></div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="test-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// STRUCTURE
+describe("group", () => {
+  beforeEach(() => { /* setup */ });
+  it("should do X", () => { expect(X).toBe(Y); });
+});
+
+// MATCHERS
+.toBe(val)        .toEqual(obj)     .toBeTruthy()
+.toBeNull()       .toBeDefined()    .toContain(item)
+.toThrow()        .toMatch(/regex/) .toHaveLength(n)
+.not.toBe(val)    .toBeCloseTo(n)
+
+// MOCKS
+jest.fn()                          // create mock
+jest.fn().mockReturnValue(x)       // set return
+jest.fn().mockResolvedValue(x)     // async return
+expect(fn).toHaveBeenCalledWith(x) // verify call
+
+// ASYNC
+it("async", async () => { await expect(fn()).resolves.toBe(x); });</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Unit Testing &nbsp;·&nbsp; Next: Data Structures</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-test');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

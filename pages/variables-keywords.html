@@ -43,6 +43,8 @@
   <a href="#vc-redeclaration">③ Redeclaration</a>
   <a href="#vc-reassignment">④ Reassignment</a>
   <a href="#vc-hoisting">⑤ Hoisting</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#vc-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#vc-comparison">Comparison Table</a>
   <a href="#vc-cheatsheet">Cheatsheet</a>
@@ -483,6 +485,62 @@ const PI = 3.14;
 </div>
 
 <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     COMMON MISTAKES
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="vc-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Thinking <code>const</code> makes EVERYTHING unchangeable</strong>
+    <p><code>const</code> locks the <em>box itself</em> (the variable), NOT what's <em>inside</em> the box. For objects and arrays, you can still change the contents — you just can't replace the entire box with a new one!</p>
+    <pre><code>const person = { name: "Alice", age: 25 };
+
+// ✅ This WORKS — changing what's INSIDE the box
+person.age = 26;           // ✓ Fine! Contents can change
+person.name = "Bob";       // ✓ Fine! Still the same object
+
+// ❌ This FAILS — trying to replace the entire box
+person = { name: "Charlie", age: 30 }; // ERROR!
+// "Cannot assign to 'person' because it is a constant."
+
+// Same with arrays:
+const colors = ["red", "blue"];
+colors.push("green");      // ✓ Fine! Modifying contents
+colors = ["yellow"];       // ❌ ERROR! Can't replace the array</code></pre>
+    <p><strong>Rule:</strong> <code>const</code> = the variable name ALWAYS points to the SAME object/array. But you can still add, remove, or change items inside it.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Using a variable BEFORE declaring it</strong>
+    <p>With <code>var</code>, accessing a variable before its declaration gives <code>undefined</code> (confusing but no crash). With <code>let</code> and <code>const</code>, it throws a <strong>ReferenceError</strong> (the Temporal Dead Zone — TDZ).</p>
+    <pre><code>// var — gives undefined (confusing!)
+console.log(x); // undefined (no error, but WHY?!)
+var x = 10;
+
+// let — throws error (safer!)
+console.log(y); // ❌ ReferenceError: Cannot access 'y' before initialization
+let y = 10;
+
+// const — same error
+console.log(z); // ❌ ReferenceError: Cannot access 'z' before initialization
+const z = 10;</code></pre>
+    <p><strong>Rule:</strong> Always declare your variables BEFORE using them. <code>let</code> and <code>const</code> protect you by crashing early instead of silently giving <code>undefined</code>.</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you expect</th><th>What happens</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><code>const obj = {}</code> then <code>obj.x = 1</code></td><td>Error</td><td>✅ Works fine</td><td>const locks reference, not contents</td></tr>
+      <tr><td><code>const obj = {}</code> then <code>obj = {}</code></td><td>Works</td><td>❌ Error</td><td>Can't replace the whole box</td></tr>
+      <tr><td>Use <code>let x</code> before declaring</td><td><code>undefined</code></td><td>❌ ReferenceError</td><td>TDZ — let/const aren't hoisted like var</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
      COMPARISON TABLE
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
 <div class="sec" id="vc-comparison">
@@ -577,14 +635,14 @@ const maxUsers = 1000;
 // ”” Sidebar active-link highlighting ””
 (function() {
   const nav = document.getElementById('nav-variables');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

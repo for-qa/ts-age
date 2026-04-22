@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Map, Filter, Reduce — TypeScript Learning Path</title>
+<meta name="description" content="Master map, filter, reduce in TypeScript with 15 real-world practice problems, chaining patterns, and common mistakes.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Map / Filter / Reduce</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-mfr">
+  <div class="nav-logo"><div class="v">λ</div><h2>MFR</h2></div>
+  <div class="nav-group">Recap</div>
+  <a href="#mfr-recap">Quick Recap</a>
+  <div class="nav-group">Map Problems</div>
+  <a href="#mfr-map">5 map() Problems</a>
+  <div class="nav-group">Filter Problems</div>
+  <a href="#mfr-filter">5 filter() Problems</a>
+  <div class="nav-group">Reduce Problems</div>
+  <a href="#mfr-reduce">5 reduce() Problems</a>
+  <div class="nav-group">Chaining</div>
+  <a href="#mfr-chain">Chaining Together</a>
+  <a href="#mfr-when">When to Use Which</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#mfr-mistakes">⚠ Common Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#mfr-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="mfr-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">map</span><span class="hero-tag">filter</span><span class="hero-tag">reduce</span></div>
+  <h1>Map, Filter, Reduce — Practice</h1>
+  <p>15 real-world problems to drill the three most important array methods. If you can chain these confidently, you can handle any data transformation.</p>
+  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Builds on Topic 11:</strong> You learned map, filter, and reduce in <em>Higher-Order Array Methods</em>. This page is your <strong>PRACTICE GYM</strong> — 15 real-world problems, chaining patterns, and the 5 mistakes that trip up even experienced devs.</p></div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">15</div><div class="stat-l">Problems</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Methods</div></div>
+    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Common Mistakes</div></div>
+  </div>
+</div>
+
+<!-- RECAP -->
+<div class="sec" id="mfr-recap">
+  <div class="sec-label">Recap</div>
+  <h2>Quick Recap</h2>
+  <div class="pipe">
+    <div class="pipe-step"><div class="pipe-ph ph1-c">map</div><div class="pipe-name">Transform</div><div class="pipe-pts">Same length, new values</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph2-c">filter</div><div class="pipe-name">Keep/Remove</div><div class="pipe-pts">Fewer items, same values</div></div>
+    <div class="pipe-step"><div class="pipe-ph ph3-c">reduce</div><div class="pipe-name">Accumulate</div><div class="pipe-pts">Many → one result</div></div>
+  </div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Signatures at a glance</div><span class="card-badge">Recap</span></div>
+    <div class="card-body">
+      <pre><code>arr.map(item => newItem)                    // [a,b,c] → [A,B,C]
+arr.filter(item => condition)               // [a,b,c] → [a,c]
+arr.reduce((acc, item) => newAcc, initial)  // [a,b,c] → result</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MAP PROBLEMS -->
+<div class="sec" id="mfr-map">
+  <div class="sec-label">Map Problems</div>
+  <h2>5 Real-World map() Problems</h2>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Extract names from objects</div><span class="card-badge">map</span></div>
+    <div class="card-body"><pre><code>interface User { name: string; age: number; }
+const users: User[] = [
+  { name: "Alice", age: 25 }, { name: "Bob", age: 30 }, { name: "Charlie", age: 22 }
+];
+const names = users.map(u => u.name);
+// ["Alice", "Bob", "Charlie"]</code></pre></div>
+  </div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Convert prices USD → INR</div><span class="card-badge">map</span></div>
+    <div class="card-body"><pre><code>const usdPrices = [10, 25, 99, 5.5];
+const inrPrices = usdPrices.map(p => +(p * 83.5).toFixed(2));
+// [835, 2087.5, 8266.5, 459.25]</code></pre></div>
+  </div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Format dates</div><span class="card-badge">map</span></div>
+    <div class="card-body"><pre><code>const dates = ["2024-01-15", "2024-06-20", "2024-12-31"];
+const formatted = dates.map(d => {
+  const date = new Date(d);
+  return date.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+});
+// ["15 Jan 2024", "20 Jun 2024", "31 Dec 2024"]</code></pre></div>
+  </div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Transform API response</div><span class="card-badge">map</span></div>
+    <div class="card-body"><pre><code>interface ApiUser { first_name: string; last_name: string; email_address: string; }
+interface AppUser { fullName: string; email: string; }
+
+const apiData: ApiUser[] = [
+  { first_name: "Alice", last_name: "Smith", email_address: "a@b.com" }
+];
+const appUsers: AppUser[] = apiData.map(u => ({
+  fullName: `${u.first_name} ${u.last_name}`,
+  email: u.email_address,
+}));</code></pre></div>
+  </div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Create HTML from data</div><span class="card-badge">map</span></div>
+    <div class="card-body"><pre><code>const items = ["Milk", "Bread", "Eggs"];
+const html = items.map(i => `&lt;li class="item"&gt;${i}&lt;/li&gt;`).join("\n");
+// &lt;li class="item"&gt;Milk&lt;/li&gt;
+// &lt;li class="item"&gt;Bread&lt;/li&gt;
+// &lt;li class="item"&gt;Eggs&lt;/li&gt;</code></pre></div>
+  </div>
+</div>
+
+<!-- FILTER PROBLEMS -->
+<div class="sec" id="mfr-filter">
+  <div class="sec-label">Filter Problems</div>
+  <h2>5 Real-World filter() Problems</h2>
+
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Filter users by age</div><span class="card-badge">filter</span></div>
+    <div class="card-body"><pre><code>const users = [
+  { name: "Alice", age: 25 }, { name: "Bob", age: 17 },
+  { name: "Charlie", age: 30 }, { name: "Dave", age: 15 }
+];
+const adults = users.filter(u => u.age >= 18);
+// [{ name: "Alice", age: 25 }, { name: "Charlie", age: 30 }]</code></pre></div>
+  </div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Remove null/undefined</div><span class="card-badge">filter</span></div>
+    <div class="card-body"><pre><code>const mixed = ["hello", null, "world", undefined, "", "foo"];
+const clean = mixed.filter((x): x is string => x != null && x !== "");
+// ["hello", "world", "foo"]
+// The type guard (x): x is string narrows the type!</code></pre></div>
+  </div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Search by text</div><span class="card-badge">filter</span></div>
+    <div class="card-body"><pre><code>const products = ["iPhone 15", "Samsung Galaxy", "iPad Pro", "Pixel 8"];
+const query = "ip";
+const results = products.filter(p => p.toLowerCase().includes(query.toLowerCase()));
+// ["iPhone 15", "iPad Pro"]</code></pre></div>
+  </div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Filter by price range</div><span class="card-badge">filter</span></div>
+    <div class="card-body"><pre><code>interface Product { name: string; price: number; }
+const products: Product[] = [
+  { name: "Pen", price: 10 }, { name: "Book", price: 250 },
+  { name: "Laptop", price: 50000 }, { name: "Mouse", price: 500 }
+];
+const affordable = products.filter(p => p.price >= 100 && p.price <= 1000);
+// [{ name: "Book", price: 250 }, { name: "Mouse", price: 500 }]</code></pre></div>
+  </div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Find duplicates</div><span class="card-badge">filter</span></div>
+    <div class="card-body"><pre><code>const nums = [1, 2, 3, 2, 4, 1, 5, 3];
+const dupes = nums.filter((n, i) => nums.indexOf(n) !== i);
+// [2, 1, 3] — items that appear more than once
+
+const unique = nums.filter((n, i) => nums.indexOf(n) === i);
+// [1, 2, 3, 4, 5] — remove duplicates (or use [...new Set(nums)])</code></pre></div>
+  </div>
+</div>
+
+<!-- REDUCE PROBLEMS -->
+<div class="sec" id="mfr-reduce">
+  <div class="sec-label">Reduce Problems</div>
+  <h2>5 Real-World reduce() Problems</h2>
+
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">Sum all numbers</div><span class="card-badge">reduce</span></div>
+    <div class="card-body"><pre><code>const nums = [10, 20, 30, 40];
+const total = nums.reduce((sum, n) => sum + n, 0);
+// 100</code></pre></div>
+  </div>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">Count occurrences (word frequency)</div><span class="card-badge">reduce</span></div>
+    <div class="card-body"><pre><code>const words = ["apple", "banana", "apple", "cherry", "banana", "apple"];
+const freq = words.reduce((acc, word) => {
+  acc[word] = (acc[word] || 0) + 1;
+  return acc;
+}, {} as Record&lt;string, number&gt;);
+// { apple: 3, banana: 2, cherry: 1 }</code></pre></div>
+  </div>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Flatten nested arrays</div><span class="card-badge">reduce</span></div>
+    <div class="card-body"><pre><code>const nested = [[1, 2], [3, 4], [5, 6]];
+const flat = nested.reduce((acc, arr) => [...acc, ...arr], [] as number[]);
+// [1, 2, 3, 4, 5, 6]
+// Modern alternative: nested.flat()</code></pre></div>
+  </div>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Group by category</div><span class="card-badge">reduce</span></div>
+    <div class="card-body"><pre><code>interface Product { name: string; category: string; }
+const products: Product[] = [
+  { name: "iPhone", category: "phones" },
+  { name: "MacBook", category: "laptops" },
+  { name: "Pixel", category: "phones" },
+  { name: "ThinkPad", category: "laptops" },
+];
+const grouped = products.reduce((acc, p) => {
+  if (!acc[p.category]) acc[p.category] = [];
+  acc[p.category].push(p.name);
+  return acc;
+}, {} as Record&lt;string, string[]&gt;);
+// { phones: ["iPhone", "Pixel"], laptops: ["MacBook", "ThinkPad"] }
+// Modern alternative: Object.groupBy(products, p => p.category)</code></pre></div>
+  </div>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">Build object from key-value pairs</div><span class="card-badge">reduce</span></div>
+    <div class="card-body"><pre><code>const pairs: [string, number][] = [["a", 1], ["b", 2], ["c", 3]];
+const obj = pairs.reduce((acc, [key, val]) => {
+  acc[key] = val;
+  return acc;
+}, {} as Record&lt;string, number&gt;);
+// { a: 1, b: 2, c: 3 }
+// Modern alternative: Object.fromEntries(pairs)</code></pre></div>
+  </div>
+</div>
+
+<!-- CHAINING -->
+<div class="sec" id="mfr-chain">
+  <div class="sec-label">Chaining</div>
+  <h2>Chaining map + filter + reduce</h2>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">The real power — combine all three</div><span class="card-badge">Chain</span></div>
+    <div class="card-body"><pre><code>interface Order { product: string; price: number; qty: number; status: string; }
+const orders: Order[] = [
+  { product: "Laptop", price: 50000, qty: 1, status: "delivered" },
+  { product: "Mouse", price: 500, qty: 2, status: "delivered" },
+  { product: "Keyboard", price: 1500, qty: 1, status: "cancelled" },
+  { product: "Monitor", price: 15000, qty: 1, status: "delivered" },
+];
+
+// "Total revenue from delivered orders"
+const revenue = orders
+  .filter(o => o.status === "delivered")        // keep delivered only
+  .map(o => o.price * o.qty)                    // calculate each total
+  .reduce((sum, total) => sum + total, 0);      // sum them up
+// 66000
+
+// "Names of expensive delivered products (>1000)"
+const expensive = orders
+  .filter(o => o.status === "delivered" && o.price > 1000)
+  .map(o => o.product);
+// ["Laptop", "Monitor"]</code></pre></div>
+  </div>
+</div>
+
+<!-- WHEN TO USE WHICH -->
+<div class="sec" id="mfr-when">
+  <div class="sec-label">Chaining</div>
+  <h2>When to Use Which?</h2>
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Need</th><th>Method</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>Transform each item</td><td><span class="p p-blue">map()</span></td><td>names from users, prices × tax</td></tr>
+      <tr><td>Keep/remove items</td><td><span class="p p-green">filter()</span></td><td>adults only, remove nulls</td></tr>
+      <tr><td>Single result from array</td><td><span class="p p-amber">reduce()</span></td><td>sum, count, group, build object</td></tr>
+      <tr><td>Just loop (no return)</td><td><span class="p p-violet">forEach()</span></td><td>logging, side effects</td></tr>
+      <tr><td>Find one item</td><td><code>find()</code></td><td>first match</td></tr>
+      <tr><td>Check existence</td><td><code>some() / every()</code></td><td>any admin? all valid?</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- COMMON MISTAKES -->
+<div class="sec" id="mfr-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Using map() when you don't need the return value</strong>
+    <pre><code>// ❌ WRONG — map creates a new array, but you're ignoring it
+users.map(u => console.log(u.name));
+
+// ✅ CORRECT — use forEach for side effects
+users.forEach(u => console.log(u.name));</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Forgetting return in reduce()</strong>
+    <pre><code>// ❌ WRONG — accumulator becomes undefined!
+const sum = nums.reduce((acc, n) => { acc + n; }, 0);
+
+// ✅ CORRECT — return the new accumulator
+const sum2 = nums.reduce((acc, n) => { return acc + n; }, 0);
+// Or use arrow shorthand:
+const sum3 = nums.reduce((acc, n) => acc + n, 0);</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Wrong initial value in reduce()</strong>
+    <pre><code>// ❌ WRONG — initial value is a number, but you want an object!
+// words.reduce((acc, w) => { acc[w] = 1; return acc; }, 0);
+
+// ✅ CORRECT — match initial value type to desired result
+const freq = words.reduce((acc, w) => {
+  acc[w] = (acc[w] || 0) + 1;
+  return acc;
+}, {} as Record&lt;string, number&gt;);</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 4: Mutating original array inside map()</strong>
+    <pre><code>// ❌ WRONG — mutating the original objects!
+const updated = users.map(u => { u.age += 1; return u; });
+// Original users are ALSO modified!
+
+// ✅ CORRECT — return NEW objects
+const updated2 = users.map(u => ({ ...u, age: u.age + 1 }));</code></pre>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 5: filter() returns a NEW array — must use it!</strong>
+    <pre><code>// ❌ WRONG — ignoring the returned array
+users.filter(u => u.age >= 18);  // result thrown away!
+
+// ✅ CORRECT — use the returned array
+const adults = users.filter(u => u.age >= 18);</code></pre>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>map() for side effects</td><td>Wasted array</td><td>Use forEach()</td></tr>
+      <tr><td>No return in reduce</td><td>acc = undefined</td><td>Always return acc</td></tr>
+      <tr><td>Wrong initial value</td><td>Type mismatch</td><td>Match init to result type</td></tr>
+      <tr><td>Mutating in map</td><td>Original changed</td><td>Spread to new objects</td></tr>
+      <tr><td>Unused filter result</td><td>No effect</td><td>Assign returned array</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="mfr-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// MAP — transform each item
+arr.map(x => x * 2)                    // [2, 4, 6]
+arr.map(u => u.name)                   // extract field
+
+// FILTER — keep matching items
+arr.filter(x => x > 2)                // remove small
+arr.filter((x): x is T => x != null)  // remove nulls (typed)
+
+// REDUCE — accumulate into one value
+arr.reduce((sum, n) => sum + n, 0)                // sum
+arr.reduce((acc, x) => ({ ...acc, [x]: 1 }), {})  // build object
+
+// CHAIN — combine for complex transforms
+arr.filter(condition).map(transform).reduce(accumulate, init)</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Map/Filter/Reduce &nbsp;·&nbsp; Phase 1 Complete!</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-mfr');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

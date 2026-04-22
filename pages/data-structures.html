@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Data Structures — TypeScript Learning Path</title>
+<meta name="description" content="Data structures in TypeScript — Stack, Queue, LinkedList, Map, Set, Big-O basics, and when to use which structure.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<div id="topbar">
+  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
+  <a class="tb-back" href="../index.html">← Back to Index</a>
+  <div class="tb-topic-title">Data Structures</div>
+</div>
+<div class="page-wrap"><div class="wrap">
+<nav id="nav-ds">
+  <div class="nav-logo"><div class="v">🗃</div><h2>Data</h2></div>
+  <div class="nav-group">Structures</div>
+  <a href="#ds-stack">Stack</a>
+  <a href="#ds-queue">Queue</a>
+  <a href="#ds-linked">LinkedList</a>
+  <a href="#ds-map">Map</a>
+  <a href="#ds-set">Set</a>
+  <div class="nav-group">Analysis</div>
+  <a href="#ds-bigo">Big-O Basics</a>
+  <a href="#ds-when">When to Use</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#ds-mistakes">⚠ Mistakes</a>
+  <div class="nav-group">Reference</div>
+  <a href="#ds-cheatsheet">Cheatsheet</a>
+</nav>
+<div class="content">
+
+<div class="hero" id="ds-top">
+  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Data Structures</span><span class="hero-tag">Big-O</span><span class="hero-tag">Topic 40/40</span></div>
+  <h1>Data Structures</h1>
+  <p>The final topic! Choosing the right data structure is what separates juniors from seniors. Know when to use Stack, Queue, Map, or Set — and WHY.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Structures</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Big-O Levels</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Common Mistakes</div></div>
+  </div>
+</div>
+
+<!-- STACK -->
+<div class="sec" id="ds-stack">
+  <div class="sec-label">Structures</div>
+  <h2>Stack — Last In, First Out (LIFO)</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Like a <strong>stack of plates</strong> 🍽. You add plates on top and remove from the top. Last plate added = first plate removed.</p></div>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">1</div><div class="card-title">push() and pop() — that's it!</div><span class="card-badge">Stack</span></div>
+    <div class="card-body"><pre><code>class Stack&lt;T&gt; {
+  private items: T[] = [];
+
+  push(item: T): void { this.items.push(item); }
+  pop(): T | undefined { return this.items.pop(); }
+  peek(): T | undefined { return this.items[this.items.length - 1]; }
+  isEmpty(): boolean { return this.items.length === 0; }
+  get size(): number { return this.items.length; }
+}
+
+const stack = new Stack&lt;number&gt;();
+stack.push(1);  // [1]
+stack.push(2);  // [1, 2]
+stack.push(3);  // [1, 2, 3]
+stack.pop();    // 3 — last in, first out!
+stack.peek();   // 2 — look without removing
+
+// Real uses: undo/redo, browser back button,
+// function call stack, expression parsing</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- QUEUE -->
+<div class="sec" id="ds-queue">
+  <div class="sec-label">Structures</div>
+  <h2>Queue — First In, First Out (FIFO)</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Like a <strong>line at a ticket counter</strong> 🎟. First person in line gets served first.</p></div>
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">2</div><div class="card-title">enqueue() and dequeue()</div><span class="card-badge">Queue</span></div>
+    <div class="card-body"><pre><code>class Queue&lt;T&gt; {
+  private items: Map&lt;number, T&gt; = new Map();
+  private head = 0;
+  private tail = 0;
+
+  enqueue(item: T): void { this.items.set(this.tail++, item); }
+  dequeue(): T | undefined {
+    if (this.isEmpty()) return undefined;
+    const item = this.items.get(this.head);
+    this.items.delete(this.head++);
+    return item;
+  }
+  peek(): T | undefined { return this.items.get(this.head); }
+  isEmpty(): boolean { return this.head === this.tail; }
+  get size(): number { return this.tail - this.head; }
+}
+
+const q = new Queue&lt;string&gt;();
+q.enqueue("Alice");  // [Alice]
+q.enqueue("Bob");    // [Alice, Bob]
+q.enqueue("Charlie");// [Alice, Bob, Charlie]
+q.dequeue();         // "Alice" — first in, first out!
+
+// ⚠ Why not use array.shift()? It's O(n)! See mistakes section.
+// Real uses: task queues, print queue, BFS, message queues</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- LINKED LIST -->
+<div class="sec" id="ds-linked">
+  <div class="sec-label">Structures</div>
+  <h2>LinkedList</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Like a <strong>treasure hunt</strong> 🗺. Each clue tells you where the next clue is. You can only follow the chain — no jumping to the middle.</p></div>
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">3</div><div class="card-title">Nodes linked by references</div><span class="card-badge">LinkedList</span></div>
+    <div class="card-body"><pre><code>class ListNode&lt;T&gt; {
+  constructor(public value: T, public next: ListNode&lt;T&gt; | null = null) {}
+}
+
+class LinkedList&lt;T&gt; {
+  private head: ListNode&lt;T&gt; | null = null;
+
+  prepend(value: T): void {
+    this.head = new ListNode(value, this.head);
+  }
+
+  append(value: T): void {
+    const node = new ListNode(value);
+    if (!this.head) { this.head = node; return; }
+    let current = this.head;
+    while (current.next) current = current.next;
+    current.next = node;
+  }
+
+  toArray(): T[] {
+    const result: T[] = [];
+    let current = this.head;
+    while (current) {
+      result.push(current.value);
+      current = current.next;
+    }
+    return result;
+  }
+}
+
+const list = new LinkedList&lt;number&gt;();
+list.append(1);   list.append(2);   list.prepend(0);
+console.log(list.toArray());  // [0, 1, 2]
+
+// Pros: O(1) insert at head, dynamic size
+// Cons: O(n) access by index, no random access</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="sec" id="ds-map">
+  <div class="sec-label">Structures</div>
+  <h2>Map — Key-Value Pairs</h2>
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">4</div><div class="card-title">Better than plain objects for dynamic keys</div><span class="card-badge">Map</span></div>
+    <div class="card-body"><pre><code>// Map vs Object — Map is better for dynamic key-value storage
+const userCache = new Map&lt;number, string&gt;();
+
+userCache.set(1, "Alice");
+userCache.set(2, "Bob");
+userCache.get(1);        // "Alice"
+userCache.has(3);        // false
+userCache.delete(1);
+userCache.size;          // 1
+
+// Map advantages over objects:
+// ✅ Any type as key (objects, numbers, functions)
+// ✅ Maintains insertion order
+// ✅ .size property (object needs Object.keys().length)
+// ✅ Better performance for frequent add/remove
+
+// Iterating:
+const scores = new Map&lt;string, number&gt;([["math", 90], ["eng", 85]]);
+for (const [key, val] of scores) {
+  console.log(`${key}: ${val}`);
+}
+
+// Convert to/from object:
+const obj = Object.fromEntries(scores);
+const map = new Map(Object.entries(obj));</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- SET -->
+<div class="sec" id="ds-set">
+  <div class="sec-label">Structures</div>
+  <h2>Set — Unique Values Only</h2>
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">5</div><div class="card-title">No duplicates allowed</div><span class="card-badge">Set</span></div>
+    <div class="card-body"><pre><code>const tags = new Set&lt;string&gt;();
+tags.add("typescript");
+tags.add("javascript");
+tags.add("typescript");  // ignored — already exists!
+console.log(tags.size);  // 2
+
+tags.has("typescript");  // true
+tags.delete("javascript");
+
+// Classic use: remove duplicates from array
+const nums = [1, 2, 3, 2, 1, 4, 3];
+const unique = [...new Set(nums)];  // [1, 2, 3, 4]
+
+// Set operations:
+const a = new Set([1, 2, 3]);
+const b = new Set([2, 3, 4]);
+
+const union = new Set([...a, ...b]);            // {1,2,3,4}
+const intersection = new Set([...a].filter(x => b.has(x))); // {2,3}
+const diff = new Set([...a].filter(x => !b.has(x)));        // {1}</code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- BIG-O BASICS -->
+<div class="sec" id="ds-bigo">
+  <div class="sec-label">Analysis</div>
+  <h2>Big-O Basics</h2>
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Big-O</th><th>Name</th><th>Example</th><th>1M items</th></tr></thead>
+    <tbody>
+      <tr><td><code>O(1)</code></td><td>Constant</td><td>Map.get, Array[i], Stack.push</td><td>instant</td></tr>
+      <tr><td><code>O(log n)</code></td><td>Logarithmic</td><td>Binary search</td><td>~20 steps</td></tr>
+      <tr><td><code>O(n)</code></td><td>Linear</td><td>Array.find, loop</td><td>1M steps</td></tr>
+      <tr><td><code>O(n²)</code></td><td>Quadratic</td><td>Nested loops, bubble sort</td><td>1T steps 💀</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="bordered" style="margin-top:1rem">
+  <table>
+    <thead><tr><th>Structure</th><th>Access</th><th>Search</th><th>Insert</th><th>Delete</th></tr></thead>
+    <tbody>
+      <tr><td>Array</td><td>O(1)</td><td>O(n)</td><td>O(n)*</td><td>O(n)*</td></tr>
+      <tr><td>Stack</td><td>O(n)</td><td>O(n)</td><td>O(1)</td><td>O(1)</td></tr>
+      <tr><td>Queue</td><td>O(n)</td><td>O(n)</td><td>O(1)</td><td>O(1)</td></tr>
+      <tr><td>LinkedList</td><td>O(n)</td><td>O(n)</td><td>O(1)**</td><td>O(1)**</td></tr>
+      <tr><td>Map/Set</td><td>O(1)</td><td>O(1)</td><td>O(1)</td><td>O(1)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="fn">* Array shift/unshift is O(n). ** LinkedList O(1) at head; O(n) to find position.</p>
+</div>
+
+<!-- WHEN TO USE -->
+<div class="sec" id="ds-when">
+  <div class="sec-label">Analysis</div>
+  <h2>When to Use Which?</h2>
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Need</th><th>Use</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Ordered list, index access</td><td><span class="p p-blue">Array</span></td><td>O(1) by index</td></tr>
+      <tr><td>Undo/redo, backtracking</td><td><span class="p p-green">Stack</span></td><td>LIFO — last action first</td></tr>
+      <tr><td>Task queue, BFS</td><td><span class="p p-amber">Queue</span></td><td>FIFO — fair ordering</td></tr>
+      <tr><td>Frequent insert at start</td><td><span class="p p-violet">LinkedList</span></td><td>O(1) prepend</td></tr>
+      <tr><td>Key-value lookup</td><td><span class="p p-blue">Map</span></td><td>O(1) get/set</td></tr>
+      <tr><td>Unique values, dedup</td><td><span class="p p-green">Set</span></td><td>Auto-deduplication</td></tr>
+      <tr><td>Simple key-value (string keys)</td><td>Object <code>{}</code></td><td>JSON-friendly</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- MISTAKES -->
+<div class="sec" id="ds-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Mistakes</h2>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Using array.shift() as a queue — it's O(n)!</strong>
+    <pre><code>// ❌ shift() re-indexes the ENTIRE array!
+const q = [1, 2, 3, 4, 5];
+q.shift();  // O(n) — moves every element left
+
+// ✅ Use a Map-based queue (see Queue class above)
+// or a linked list for O(1) dequeue</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Using object when Map is better</strong>
+    <pre><code>// ❌ Object keys are always strings
+const cache: Record&lt;string, any&gt; = {};
+cache[1] = "one";      // key becomes "1" (string!)
+cache[{}] = "object";  // key becomes "[object Object]" 😱
+
+// ✅ Map preserves key types
+const map = new Map();
+map.set(1, "one");     // key stays number
+map.set({}, "object"); // key stays object reference</code></pre>
+  </div></div>
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Not using Set for uniqueness checks</strong>
+    <pre><code>// ❌ O(n) check with array
+const seen: string[] = [];
+if (!seen.includes(item)) seen.push(item);  // O(n) per check!
+
+// ✅ O(1) check with Set
+const seen2 = new Set&lt;string&gt;();
+seen2.add(item);  // auto-deduplicates, O(1)</code></pre>
+  </div></div>
+</div>
+
+<!-- CHEATSHEET -->
+<div class="sec" id="ds-cheatsheet">
+  <div class="sec-label">Reference</div>
+  <h2>Cheatsheet</h2>
+  <pre><code>// STACK (LIFO) — push/pop
+stack.push(x);  stack.pop();  stack.peek();
+
+// QUEUE (FIFO) — enqueue/dequeue
+q.enqueue(x);  q.dequeue();  q.peek();
+
+// MAP — key-value (any key type)
+map.set(k, v);  map.get(k);  map.has(k);  map.delete(k);
+
+// SET — unique values
+set.add(v);  set.has(v);  set.delete(v);  [...new Set(arr)];
+
+// BIG-O: O(1) best → O(log n) → O(n) → O(n²) worst
+// Map/Set = O(1) for everything. Use them!</code></pre>
+  <hr>
+  <p style="font-size:11.5px;color:var(--ink3);text-align:center">🎉 TypeScript Learning Path &nbsp;·&nbsp; 40/40 TOPICS COMPLETE! &nbsp;·&nbsp; 100% Job-Ready 🎉</p>
+</div>
+
+</div></div></div>
+<script>
+(function(){const n=document.getElementById('nav-ds');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
+</script>
+</body>
+</html>

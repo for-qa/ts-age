@@ -38,6 +38,7 @@
   <a href="#lp-dowhile">do … while Loop</a>
   <a href="#lp-for">for Loop</a>
   <a href="#lp-scope">Scope in for Loop</a>
+  <a href="#lp-for-mistake">⚠ Common Mistake</a>
   <div class="nav-group">Jumping</div>
   <a href="#lp-break">break</a>
   <a href="#lp-continue">continue</a>
@@ -243,6 +244,30 @@ for (let i = 1; i <= 10; i++) {
     <div class="pipe-step"><div class="pipe-ph ph4-c">④</div><div class="pipe-name">Increment</div><div class="pipe-pts">Then back to ②</div></div>
   </div>
 
+  <div class="note note-warn" id="lp-for-mistake"><span class="note-i">⚠</span><div>
+    <strong>Common Mistake: <code>j + 1</code> does NOT increment!</strong>
+    <p>A very common beginner mistake is writing <code>j + 1</code> in the increment section of a <code>for</code> loop. This <em>looks</em> like it adds 1 to <code>j</code>, but it does NOT — it just calculates a result and immediately throws it away. The variable <code>j</code> is never updated, so the condition never becomes false and the loop runs forever!</p>
+    <pre><code>// ❌ WRONG — infinite loop! j stays 1 forever
+for (let j = 1; j &lt;= 10; j + 1) {
+  console.log(j);  // prints 1... 1... 1... forever
+}
+
+// ✅ CORRECT — j is actually saved each time
+for (let j = 1; j &lt;= 10; j++) {
+  console.log(j);  // 1, 2, 3, ... 10
+}</code></pre>
+    <p><strong>Rule:</strong> Always use an <em>assignment</em> (something with <code>=</code>) so the new value is saved back into the variable:</p>
+    <table style="margin-top:8px">
+      <thead><tr><th>Expression</th><th>Saves to <code>j</code>?</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><code>j + 1</code></td><td>❌ No</td><td>Infinite loop</td></tr>
+        <tr><td><code>j++</code></td><td>✅ Yes</td><td>Works correctly</td></tr>
+        <tr><td><code>j += 1</code></td><td>✅ Yes</td><td>Works correctly</td></tr>
+        <tr><td><code>j = j + 1</code></td><td>✅ Yes</td><td>Works correctly</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+
   <div class="card ph1-card">
     <div class="card-head"><div class="card-num">1</div><div class="card-title">Even numbers with for loop</div><span class="card-badge">i += 2</span></div>
     <div class="card-body">
@@ -433,14 +458,14 @@ if (i === 5) continue;</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-loops');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

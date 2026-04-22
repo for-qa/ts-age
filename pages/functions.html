@@ -42,6 +42,8 @@
   <div class="nav-group">Arrow / Lambda</div>
   <a href="#fn-arrow">Arrow Functions</a>
   <a href="#fn-implicit">Implicit Return</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#fn-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#fn-compare">Comparison Table</a>
   <a href="#fn-cheatsheet">Cheatsheet</a>
@@ -374,6 +376,73 @@ console.log(multiply(10, 20));  // 200</code></pre>
   </div>
 </div>
 
+<!-- COMMON MISTAKES -->
+<div class="sec" id="fn-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Forgetting <code>return</code> — function silently gives <code>undefined</code></strong>
+    <p>If your function calculates something but doesn't use <code>return</code>, the result is thrown away and the function gives back <code>undefined</code> (nothing). No error, no warning — just a silent bug!</p>
+    <pre><code>// ❌ WRONG — calculates but doesn't return!
+function add(a: number, b: number): number {
+  a + b;  // This calculates 30... and throws it away
+}
+console.log(add(10, 20)); // undefined (not 30!)
+
+// ✅ CORRECT — use return to send the result back
+function addFixed(a: number, b: number): number {
+  return a + b;  // Sends 30 back to whoever called it
+}
+console.log(addFixed(10, 20)); // 30 ✓</code></pre>
+    <p><strong>Rule:</strong> If you need to USE the result of a function somewhere else, you MUST write <code>return</code>. Without it, the result disappears into thin air!</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: <code>fn</code> vs <code>fn()</code> — referencing vs calling</strong>
+    <p>Writing the function name WITHOUT <code>()</code> doesn't run it — it just points to the function itself (like reading a recipe without cooking). You need <code>()</code> to actually call/execute it.</p>
+    <pre><code>function sayHello(): void {
+  console.log("Hello!");
+}
+
+// ❌ WRONG — no parentheses = not called!
+console.log(sayHello);   // [Function: sayHello] (prints the recipe, not the food)
+
+// ✅ CORRECT — parentheses = function runs!
+sayHello();              // "Hello!" (actually executes)</code></pre>
+    <p><strong>Rule:</strong> Always use <code>functionName()</code> with parentheses to CALL a function. Without <code>()</code>, you're just holding the recipe card, not cooking the dish!</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 3: Optional parameter BEFORE required parameter</strong>
+    <p>Optional parameters (with <code>?</code>) must come AFTER all required parameters. TypeScript will give an error if you put them first!</p>
+    <pre><code>// ❌ ERROR — optional param before required
+function greet(greeting?: string, name: string) {
+  console.log(`${greeting} ${name}`);
+}
+// TypeScript says: "A required parameter cannot follow an optional parameter."
+
+// ✅ CORRECT — required first, optional last
+function greetFixed(name: string, greeting?: string) {
+  console.log(`${greeting || "Hi"} ${name}`);
+}
+greetFixed("Alice");          // "Hi Alice"
+greetFixed("Alice", "Hey");  // "Hey Alice"</code></pre>
+    <p><strong>Rule:</strong> Required parameters first, optional parameters last. Think of it like a form — mandatory fields come before optional ones!</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you wrote</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>No <code>return</code></td><td><code>a + b;</code> inside function</td><td>Returns <code>undefined</code></td><td><code>return a + b;</code></td></tr>
+      <tr><td>Missing <code>()</code></td><td><code>console.log(fn)</code></td><td>Shows function object</td><td><code>console.log(fn())</code></td></tr>
+      <tr><td>Optional first</td><td><code>fn(a?: string, b: number)</code></td><td>TypeScript error</td><td><code>fn(b: number, a?: string)</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
 <!-- COMPARISON TABLE -->
 <div class="sec" id="fn-compare">
   <div class="sec-label">Reference</div>
@@ -446,14 +515,14 @@ function fn(a: number, b: number = 10) { }</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-functions');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

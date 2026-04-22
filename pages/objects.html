@@ -43,6 +43,8 @@
   <div class="nav-group">Advanced</div>
   <a href="#obj-intersection">Intersection Types</a>
   <a href="#obj-constructor">Constructor Basics</a>
+  <div class="nav-group">Watch Out!</div>
+  <a href="#obj-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#obj-compare">Comparison Table</a>
   <a href="#obj-cheatsheet">Cheatsheet</a>
@@ -422,6 +424,61 @@ let p3 = new Person("333", "Scott");  // p3 has its OWN copy
 // Same class structure, different data</code></pre>
 </div>
 
+<!-- COMMON MISTAKES -->
+<div class="sec" id="obj-mistakes">
+  <div class="sec-label">Watch Out!</div>
+  <h2>⚠ Common Beginner Mistakes</h2>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 1: Using <code>object</code> type blocks property access</strong>
+    <p>Typing a variable as <code>object</code> (lowercase) tells TypeScript "this is some object" but gives NO information about what's inside. You lose all property access and autocomplete!</p>
+    <pre><code>// ❌ WRONG — 'object' type blocks everything
+let person: object = { name: "Alice", age: 25 };
+console.log(person.name); // ❌ Error: Property 'name' does not exist on type 'object'
+person.age = 26;          // ❌ Error: same reason
+
+// ✅ CORRECT — use inline type or type alias
+let person2: { name: string; age: number } = { name: "Alice", age: 25 };
+console.log(person2.name); // "Alice" ✓
+person2.age = 26;          // ✓ Works!
+
+// ✅ EVEN BETTER — use a class or type alias
+type Person = { name: string; age: number };
+let person3: Person = { name: "Alice", age: 25 };</code></pre>
+    <p><strong>Rule:</strong> Never use <code>object</code> as a type. Always specify the shape (properties and their types) so TypeScript can help you.</p>
+  </div></div>
+
+  <div class="note note-warn"><span class="note-i">⚠</span><div>
+    <strong>Mistake 2: Arrow functions lose <code>this</code> inside objects</strong>
+    <p>Arrow functions (<code>=></code>) do NOT have their own <code>this</code>. If you use an arrow function as a method inside an object, <code>this</code> won't point to the object — it points to whatever <code>this</code> was outside!</p>
+    <pre><code>let employee = {
+  name: "Bob",
+  // ❌ WRONG — arrow function: 'this' is NOT the object!
+  greetArrow: () => {
+    return `Hi, I'm ${this.name}`;  // 'this' is undefined or window!
+  },
+  // ✅ CORRECT — regular function: 'this' IS the object
+  greetRegular: function() {
+    return `Hi, I'm ${this.name}`;  // 'this' = employee object ✓
+  }
+};
+
+console.log(employee.greetArrow());   // "Hi, I'm undefined" ❌
+console.log(employee.greetRegular()); // "Hi, I'm Bob" ✓</code></pre>
+    <p><strong>Rule:</strong> For object methods that use <code>this</code>, always use <code>function()</code> syntax, NOT arrow functions. Save arrows for callbacks and standalone functions.</p>
+  </div></div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Mistake</th><th>What you wrote</th><th>What happens</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td><code>object</code> type</td><td><code>let x: object = {...}</code></td><td>Can't access properties</td><td>Use inline type or type alias</td></tr>
+      <tr><td>Arrow + <code>this</code></td><td><code>greet: () => this.name</code></td><td><code>this</code> is undefined</td><td><code>greet: function() { this.name }</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
 <!-- COMPARISON TABLE -->
 <div class="sec" id="obj-compare">
   <div class="sec-label">Reference</div>
@@ -496,14 +553,14 @@ obj.name = "New";  // modify value</code></pre>
 <script>
 (function() {
   const nav = document.getElementById('nav-objects');
-  if (!nav) return;
+  if (!nav) { return; }
   const links = nav.querySelectorAll('a');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         links.forEach(l => l.classList.remove('on'));
         const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) a.classList.add('on');
+        if (a) { a.classList.add('on'); };
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });

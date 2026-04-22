@@ -1,6 +1,4 @@
 ﻿// ============================================
 // Topic 08 — LOOPS
 // ============================================
-// Practice here! Run with: npx tsx 08-loops.ts 
-
-
+// Practice here! Run with: npx tsx 08-loops.ts
