@@ -44,6 +44,7 @@
           <a href="#c-prim">Primitive vs Non-Primitive</a>
           <a href="#c-mut">Immutable vs Mutable</a>
           <a href="#c-null">null vs undefined</a>
+          <a href="#c-str-any">string vs any</a>
           <a href="#c-any">any vs unknown</a>
           <a href="#c-never">never vs void</a>
 
@@ -77,14 +78,14 @@
             </div>
             <h1>Key Comparisons</h1>
             <p>
-              24 essential "A vs B" comparisons ordered from beginner to
+              25 essential "A vs B" comparisons ordered from beginner to
               advanced — the exact learning path every TypeScript developer
               should follow, with real-life analogies, code snippets, and clear
               tables.
             </p>
             <div class="hero-stats">
               <div class="stat">
-                <div class="stat-n">24</div>
+                <div class="stat-n">25</div>
                 <div class="stat-l">Comparisons</div>
               </div>
               <div class="stat">
@@ -632,7 +633,106 @@ const name = null ?? "Guest";    // "Guest"
 const age  = undefined ?? 18;    // 18</code></pre>
           </div>
 
-          <!-- 8. ANY VS UNKNOWN -->
+          <!-- 8. STRING VS ANY (NEW) -->
+          <div class="sec" id="c-str-any">
+            <div class="sec-label">Data Types</div>
+            <h2>string vs any</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>string</strong> = a labelled
+                drawer that only accepts paper documents — you always know
+                what's inside. <strong>any</strong> = a mystery box where
+                anything can go in or out — you never know what you'll pull out
+                until it blows up.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>string</th>
+                    <th>any</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Type safety</td>
+                    <td>✅ Full — TS validates every operation</td>
+                    <td>❌ None — TS ignores all checks</td>
+                  </tr>
+                  <tr>
+                    <td>Autocomplete / IntelliSense</td>
+                    <td>✅ All string methods shown</td>
+                    <td>❌ No suggestions (TS doesn't know the type)</td>
+                  </tr>
+                  <tr>
+                    <td>Reassign to other types?</td>
+                    <td>❌ Only string values allowed</td>
+                    <td>✅ Can hold number, object, array — anything</td>
+                  </tr>
+                  <tr>
+                    <td>Calling wrong methods</td>
+                    <td>❌ Compile error (caught before run)</td>
+                    <td>✅ No error at compile — 💥 crash at runtime</td>
+                  </tr>
+                  <tr>
+                    <td>Refactor safety</td>
+                    <td>✅ TS highlights all broken usages</td>
+                    <td>❌ Silent breakage — bugs discovered in production</td>
+                  </tr>
+                  <tr>
+                    <td>Use case</td>
+                    <td>✅ Default — always prefer specific types</td>
+                    <td>⚠ Migration from JS, quick prototyping only</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// ─── string — safe and predictable ──────────────────────
+let greeting: string = "Hello, TypeScript!";
+console.log(greeting.toUpperCase());  // ✅ "HELLO, TYPESCRIPT!"
+console.log(greeting.length);         // ✅ 18
+// greeting = 42;                     // ❌ TS Error: Type 'number' is not assignable to type 'string'
+// greeting.toFixed(2);               // ❌ TS Error: Property 'toFixed' does not exist on type 'string'
+
+// ─── any — dangerous wildcard ──────────────────────────
+let data: any = "Hello";
+console.log(data.toUpperCase());  // ✅ works (for now...)
+data = 42;                        // ✅ no error — any accepts everything
+console.log(data.toUpperCase());  // 💥 RUNTIME CRASH: data.toUpperCase is not a function
+
+// ─── Real-world danger: API responses ──────────────────
+// ❌ BAD — no safety net
+function processData(input: any) {
+  return input.trim().toLowerCase();  // 💥 crashes if input is not a string!
+}
+
+// ✅ GOOD — type-safe
+function processDataSafe(input: string) {
+  return input.trim().toLowerCase();  // TS guarantees input is always a string
+}
+
+// ─── Migration tip: use unknown instead of any ─────────
+let mystery: unknown = getApiResponse();
+// mystery.trim();            // ❌ TS Error — must narrow first
+if (typeof mystery === "string") {
+  mystery.trim();             // ✅ safe after typeof check
+}</code></pre>
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Rule of thumb:</strong> If you're tempted to use
+                <code>any</code>, ask yourself — do I know the type? If yes, use
+                it (<code>string</code>, <code>number</code>, etc.). If no, use
+                <code>unknown</code> and narrow. Reserve <code>any</code> only
+                for legacy JS migration where fixing types is impractical.
+              </p>
+            </div>
+          </div>
+
+          <!-- 9. ANY VS UNKNOWN -->
           <div class="sec" id="c-any">
             <div class="sec-label">Data Types</div>
             <h2>any vs unknown</h2>
