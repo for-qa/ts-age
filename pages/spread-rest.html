@@ -1,85 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Spread &amp; Rest Operators — TypeScript Learning Path</title>
-<meta name="description" content="Learn the spread and rest operators in TypeScript. Copy arrays, merge objects, collect function arguments, and avoid shallow-copy pitfalls.">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-
-<div id="topbar">
-  <div class="tb-brand">
-    <div class="tb-brand-icon">TS</div>
-    <div>
-      <div class="tb-brand-name">TypeScript Learning Path</div>
-      <div class="tb-brand-sub">Session Notes</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Spread &amp; Rest Operators — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn the spread and rest operators in TypeScript. Copy arrays, merge objects, collect function arguments, and avoid shallow-copy pitfalls."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Spread &amp; Rest</div>
     </div>
-  </div>
-  <a class="tb-back" href="../index.html">← Back to Index</a>
-  <div class="tb-topic-title">Spread &amp; Rest</div>
-</div>
 
-<div class="page-wrap">
-<div class="wrap">
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-sr">
+          <div class="nav-logo">
+            <div class="v">...</div>
+            <h2>Spread &amp; Rest</h2>
+          </div>
+          <div class="nav-group">Spread Operator</div>
+          <a href="#sr-what">What is Spread?</a>
+          <a href="#sr-arr">Spread with Arrays</a>
+          <a href="#sr-obj">Spread with Objects</a>
+          <a href="#sr-copy">Shallow Copy</a>
+          <a href="#sr-args">Spread in Arguments</a>
+          <div class="nav-group">Rest Operator</div>
+          <a href="#sr-rest-fn">Rest in Functions</a>
+          <a href="#sr-rest-ds">Rest in Destructuring</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#sr-mistakes">⚠ Common Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#sr-compare">Comparison Table</a>
+          <a href="#sr-cheatsheet">Cheatsheet</a>
+        </nav>
 
-<nav id="nav-sr">
-  <div class="nav-logo">
-    <div class="v">...</div>
-    <h2>Spread &amp; Rest</h2>
-  </div>
-  <div class="nav-group">Spread Operator</div>
-  <a href="#sr-what">What is Spread?</a>
-  <a href="#sr-arr">Spread with Arrays</a>
-  <a href="#sr-obj">Spread with Objects</a>
-  <a href="#sr-copy">Shallow Copy</a>
-  <a href="#sr-args">Spread in Arguments</a>
-  <div class="nav-group">Rest Operator</div>
-  <a href="#sr-rest-fn">Rest in Functions</a>
-  <a href="#sr-rest-ds">Rest in Destructuring</a>
-  <div class="nav-group">Watch Out!</div>
-  <a href="#sr-mistakes">⚠ Common Mistakes</a>
-  <div class="nav-group">Reference</div>
-  <a href="#sr-compare">Comparison Table</a>
-  <a href="#sr-cheatsheet">Cheatsheet</a>
-</nav>
+        <div class="content">
+          <div class="hero" id="sr-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Spread</span>
+              <span class="hero-tag">Rest</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Spread &amp; Rest Operators</h1>
+            <p>
+              The same <code>...</code> syntax used for two opposite jobs —
+              spreading values OUT and collecting values IN. Used everywhere in
+              modern TypeScript.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Roles (Spread / Rest)</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">7</div>
+                <div class="stat-l">Patterns Covered</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">5</div>
+                <div class="stat-l">Common Mistakes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">10+</div>
+                <div class="stat-l">Code Examples</div>
+              </div>
+            </div>
+          </div>
 
-<div class="content">
+          <!-- WHAT IS SPREAD -->
+          <div class="sec" id="sr-what">
+            <div class="sec-label">Spread Operator</div>
+            <h2>What is the Spread Operator?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Imagine you have a
+                <strong>jar of beads</strong>. The spread operator is like
+                <strong>pouring all the beads onto the table</strong> — they're
+                no longer inside the jar, they're spread out individually. You
+                can then pick them up and put them into a new jar (a new array
+                or object).
+              </p>
+            </div>
 
-<div class="hero" id="sr-top">
-  <div class="hero-tags">
-    <span class="hero-tag">TypeScript</span>
-    <span class="hero-tag">Spread</span>
-    <span class="hero-tag">Rest</span>
-    <span class="hero-tag">Session Notes</span>
-  </div>
-  <h1>Spread &amp; Rest Operators</h1>
-  <p>The same <code>...</code> syntax used for two opposite jobs — spreading values OUT and collecting values IN. Used everywhere in modern TypeScript.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Roles (Spread / Rest)</div></div>
-    <div class="stat"><div class="stat-n">7</div><div class="stat-l">Patterns Covered</div></div>
-    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Common Mistakes</div></div>
-    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Code Examples</div></div>
-  </div>
-</div>
+            <div class="pipe">
+              <div class="pipe-step">
+                <div class="pipe-ph ph1-c">...</div>
+                <div class="pipe-name">Spread = EXPAND</div>
+                <div class="pipe-pts">
+                  Takes items OUT of a container and lays them flat
+                </div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph2-c">...</div>
+                <div class="pipe-name">Rest = COLLECT</div>
+                <div class="pipe-pts">
+                  Gathers remaining items INTO a container
+                </div>
+              </div>
+            </div>
 
-<!-- WHAT IS SPREAD -->
-<div class="sec" id="sr-what">
-  <div class="sec-label">Spread Operator</div>
-  <h2>What is the Spread Operator?</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Imagine you have a <strong>jar of beads</strong>. The spread operator is like <strong>pouring all the beads onto the table</strong> — they're no longer inside the jar, they're spread out individually. You can then pick them up and put them into a new jar (a new array or object).</p></div>
-
-  <div class="pipe">
-    <div class="pipe-step"><div class="pipe-ph ph1-c">...</div><div class="pipe-name">Spread = EXPAND</div><div class="pipe-pts">Takes items OUT of a container and lays them flat</div></div>
-    <div class="pipe-step"><div class="pipe-ph ph2-c">...</div><div class="pipe-name">Rest = COLLECT</div><div class="pipe-pts">Gathers remaining items INTO a container</div></div>
-  </div>
-
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">!</div><div class="card-title">Same syntax, opposite jobs</div><span class="card-badge">Key Concept</span></div>
-    <div class="card-body">
-      <pre><code>// SPREAD — expanding items OUT
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">Same syntax, opposite jobs</div>
+                <span class="card-badge">Key Concept</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// SPREAD — expanding items OUT
 const arr = [1, 2, 3];
 const copy = [...arr];        // [1, 2, 3] — poured out, then into new array
 
@@ -88,20 +133,29 @@ function sum(...nums: number[]) {  // collects ALL arguments into one array
   return nums.reduce((a, b) => a + b, 0);
 }
 sum(1, 2, 3, 4);  // 10</code></pre>
-      <p class="fn"><strong>Rule of thumb:</strong> On the LEFT side of <code>=</code> or in function params → <strong>Rest</strong>. On the RIGHT side of <code>=</code> or in function calls → <strong>Spread</strong>.</p>
-    </div>
-  </div>
-</div>
+                <p class="fn">
+                  <strong>Rule of thumb:</strong> On the LEFT side of
+                  <code>=</code> or in function params → <strong>Rest</strong>.
+                  On the RIGHT side of <code>=</code> or in function calls →
+                  <strong>Spread</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
 
-<!-- SPREAD WITH ARRAYS -->
-<div class="sec" id="sr-arr">
-  <div class="sec-label">Spread Operator</div>
-  <h2>Spread with Arrays</h2>
+          <!-- SPREAD WITH ARRAYS -->
+          <div class="sec" id="sr-arr">
+            <div class="sec-label">Spread Operator</div>
+            <h2>Spread with Arrays</h2>
 
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">Merge, clone, and insert</div><span class="card-badge">Arrays</span></div>
-    <div class="card-body">
-      <pre><code>const fruits = ["apple", "banana"];
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Merge, clone, and insert</div>
+                <span class="card-badge">Arrays</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const fruits = ["apple", "banana"];
 const veggies = ["carrot", "pea"];
 
 // ✅ Merge two arrays
@@ -122,20 +176,32 @@ const complete = [1, 2, ...([3, 4]), 5, 6];
 // ✅ Add to front or back
 const withStart = ["zero", ...nums];   // ["zero", 1, 2, 5, 6]
 const withEnd = [...nums, 7, 8];       // [1, 2, 5, 6, 7, 8]</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- SPREAD WITH OBJECTS -->
-<div class="sec" id="sr-obj">
-  <div class="sec-label">Spread Operator</div>
-  <h2>Spread with Objects</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Think of it like photocopying a form and then writing over some fields. <code>{...original, name: "New"}</code> copies all fields, then overwrites just the <code>name</code>.</p></div>
+          <!-- SPREAD WITH OBJECTS -->
+          <div class="sec" id="sr-obj">
+            <div class="sec-label">Spread Operator</div>
+            <h2>Spread with Objects</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Think of it like
+                photocopying a form and then writing over some fields.
+                <code>{...original, name: "New"}</code> copies all fields, then
+                overwrites just the <code>name</code>.
+              </p>
+            </div>
 
-  <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">Merge, clone, and override</div><span class="card-badge">Objects</span></div>
-    <div class="card-body">
-      <pre><code>const defaults = { theme: "dark", lang: "en", font: 14 };
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">Merge, clone, and override</div>
+                <span class="card-badge">Objects</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const defaults = { theme: "dark", lang: "en", font: 14 };
 const userPrefs = { lang: "hi", font: 18 };
 
 // ✅ Merge — user overrides defaults (LAST ONE WINS)
@@ -153,20 +219,28 @@ const extended = { ...defaults, notifications: true };
 // ✅ Override a specific field
 const updated = { ...defaults, theme: "light" };
 // { theme: "light", lang: "en", font: 14 }</code></pre>
-      <p class="fn"><strong>Order matters!</strong> Properties from the LAST spread overwrite earlier ones. <code>{...a, ...b}</code> → <code>b</code> wins on conflicts.</p>
-    </div>
-  </div>
-</div>
+                <p class="fn">
+                  <strong>Order matters!</strong> Properties from the LAST
+                  spread overwrite earlier ones. <code>{...a, ...b}</code> →
+                  <code>b</code> wins on conflicts.
+                </p>
+              </div>
+            </div>
+          </div>
 
-<!-- SHALLOW COPY -->
-<div class="sec" id="sr-copy">
-  <div class="sec-label">Spread Operator</div>
-  <h2>Shallow Copy — The Trap!</h2>
+          <!-- SHALLOW COPY -->
+          <div class="sec" id="sr-copy">
+            <div class="sec-label">Spread Operator</div>
+            <h2>Shallow Copy — The Trap!</h2>
 
-  <div class="card ph5-card">
-    <div class="card-head"><div class="card-num">!</div><div class="card-title">Spread only copies ONE level deep</div><span class="card-badge">⚠ Trap</span></div>
-    <div class="card-body">
-      <pre><code>const original = {
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">Spread only copies ONE level deep</div>
+                <span class="card-badge">⚠ Trap</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const original = {
   name: "Alice",
   scores: [90, 85, 78]  // nested array = reference type!
 };
@@ -188,20 +262,31 @@ const safeCopy = {
 };
 safeCopy.scores.push(200);
 console.log(original.scores);  // [90, 85, 78] ✅ safe!</code></pre>
-      <p class="fn">Spread copies <strong>values</strong> for primitives but <strong>references</strong> for objects/arrays. To truly copy nested data, spread each level or use <code>structuredClone()</code>.</p>
-    </div>
-  </div>
-</div>
+                <p class="fn">
+                  Spread copies <strong>values</strong> for primitives but
+                  <strong>references</strong> for objects/arrays. To truly copy
+                  nested data, spread each level or use
+                  <code>structuredClone()</code>.
+                </p>
+              </div>
+            </div>
+          </div>
 
-<!-- SPREAD IN FUNCTION ARGUMENTS -->
-<div class="sec" id="sr-args">
-  <div class="sec-label">Spread Operator</div>
-  <h2>Spread in Function Arguments</h2>
+          <!-- SPREAD IN FUNCTION ARGUMENTS -->
+          <div class="sec" id="sr-args">
+            <div class="sec-label">Spread Operator</div>
+            <h2>Spread in Function Arguments</h2>
 
-  <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">3</div><div class="card-title">Pass array items as separate arguments</div><span class="card-badge">Calling</span></div>
-    <div class="card-body">
-      <pre><code>const numbers = [5, 12, 3, 8, 1];
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">3</div>
+                <div class="card-title">
+                  Pass array items as separate arguments
+                </div>
+                <span class="card-badge">Calling</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const numbers = [5, 12, 3, 8, 1];
 
 // ❌ Without spread — doesn't work!
 // Math.max(numbers);  // NaN — expects individual numbers, not an array
@@ -216,20 +301,32 @@ function greet(first: string, last: string) {
 }
 const names: [string, string] = ["Alice", "Smith"];
 greet(...names);  // "Hello Alice Smith"</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- REST IN FUNCTIONS -->
-<div class="sec" id="sr-rest-fn">
-  <div class="sec-label">Rest Operator</div>
-  <h2>Rest in Function Parameters</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Rest is like a <strong>bag at a buffet</strong> — "I'll take the first two items individually, and throw everything else into this bag." The bag (<code>...rest</code>) holds whatever is left.</p></div>
+          <!-- REST IN FUNCTIONS -->
+          <div class="sec" id="sr-rest-fn">
+            <div class="sec-label">Rest Operator</div>
+            <h2>Rest in Function Parameters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Rest is like a
+                <strong>bag at a buffet</strong> — "I'll take the first two
+                items individually, and throw everything else into this bag."
+                The bag (<code>...rest</code>) holds whatever is left.
+              </p>
+            </div>
 
-  <div class="card ph4-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">Collect unlimited arguments</div><span class="card-badge">...rest</span></div>
-    <div class="card-body">
-      <pre><code>// ✅ Accept any number of arguments
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Collect unlimited arguments</div>
+                <span class="card-badge">...rest</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// ✅ Accept any number of arguments
 function sum(...nums: number[]): number {
   return nums.reduce((total, n) => total + n, 0);
 }
@@ -250,20 +347,28 @@ introduce("Hello", "Alice", "Bob", "Charlie");
 function log(level: string, ...messages: string[]) {
   messages.forEach(m => console.log(`[${level}] ${m}`));
 }</code></pre>
-      <p class="fn"><code>...rest</code> collects all remaining arguments into a <strong>real array</strong> (not the old <code>arguments</code> object).</p>
-    </div>
-  </div>
-</div>
+                <p class="fn">
+                  <code>...rest</code> collects all remaining arguments into a
+                  <strong>real array</strong> (not the old
+                  <code>arguments</code> object).
+                </p>
+              </div>
+            </div>
+          </div>
 
-<!-- REST IN DESTRUCTURING -->
-<div class="sec" id="sr-rest-ds">
-  <div class="sec-label">Rest Operator</div>
-  <h2>Rest in Destructuring</h2>
+          <!-- REST IN DESTRUCTURING -->
+          <div class="sec" id="sr-rest-ds">
+            <div class="sec-label">Rest Operator</div>
+            <h2>Rest in Destructuring</h2>
 
-  <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">Collect remaining items</div><span class="card-badge">Destructuring</span></div>
-    <div class="card-body">
-      <pre><code>// ✅ Array — grab first, collect the rest
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">Collect remaining items</div>
+                <span class="card-badge">Destructuring</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// ✅ Array — grab first, collect the rest
 const [gold, silver, ...others] = ["India", "USA", "UK", "Japan", "France"];
 console.log(gold);    // "India"
 console.log(silver);  // "USA"
@@ -280,19 +385,25 @@ const fullUser = { id: 1, password: "secret", email: "a@b.com", name: "Bob" };
 const { password, ...safeUser } = fullUser;
 console.log(safeUser);  // { id: 1, email: "a@b.com", name: "Bob" }
 // 'password' is extracted and discarded — safeUser is clean!</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- COMMON MISTAKES -->
-<div class="sec" id="sr-mistakes">
-  <div class="sec-label">Watch Out!</div>
-  <h2>⚠ Common Beginner Mistakes</h2>
+          <!-- COMMON MISTAKES -->
+          <div class="sec" id="sr-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Beginner Mistakes</h2>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 1: Spread only does SHALLOW copy</strong>
-    <p>Nested objects/arrays are still shared between original and copy. Changing nested data in the copy changes the original too!</p>
-    <pre><code>// ❌ WRONG — nested array is shared
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong>Mistake 1: Spread only does SHALLOW copy</strong>
+                <p>
+                  Nested objects/arrays are still shared between original and
+                  copy. Changing nested data in the copy changes the original
+                  too!
+                </p>
+                <pre><code>// ❌ WRONG — nested array is shared
 const original = { name: "A", tags: ["ts", "js"] };
 const copy = { ...original };
 copy.tags.push("react");
@@ -302,13 +413,26 @@ console.log(original.tags);  // ["ts", "js", "react"] 😱
 const safeCopy = { ...original, tags: [...original.tags] };
 safeCopy.tags.push("react");
 console.log(original.tags);  // ["ts", "js"] ✅</code></pre>
-    <p><strong>Rule:</strong> Always spread nested arrays/objects separately, or use <code>structuredClone(obj)</code> for a true deep copy.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> Always spread nested arrays/objects
+                  separately, or use <code>structuredClone(obj)</code> for a
+                  true deep copy.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 2: Object spread — LAST one wins (silent overwrite)</strong>
-    <p>When merging objects, later properties silently overwrite earlier ones with the same key. No error, no warning!</p>
-    <pre><code>const config1 = { port: 3000, host: "localhost" };
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: Object spread — LAST one wins (silent
+                  overwrite)</strong
+                >
+                <p>
+                  When merging objects, later properties silently overwrite
+                  earlier ones with the same key. No error, no warning!
+                </p>
+                <pre><code>const config1 = { port: 3000, host: "localhost" };
 const config2 = { port: 8080, debug: true };
 
 // ❌ Surprise — port got overwritten silently!
@@ -318,26 +442,48 @@ console.log(merged.port);  // 8080 (NOT 3000!)
 // ✅ Be intentional — put important values LAST
 const safe = { ...config2, ...config1 };
 console.log(safe.port);  // 3000 (config1 wins)</code></pre>
-    <p><strong>Rule:</strong> In <code>{...a, ...b}</code>, <code>b</code> wins on duplicate keys. Put your priority source LAST.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> In <code>{...a, ...b}</code>,
+                  <code>b</code> wins on duplicate keys. Put your priority
+                  source LAST.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 3: Spreading a string — surprise characters!</strong>
-    <p>Strings are iterable, so spreading them gives individual characters, not what you might expect.</p>
-    <pre><code>// ❌ Surprise!
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 3: Spreading a string — surprise characters!</strong
+                >
+                <p>
+                  Strings are iterable, so spreading them gives individual
+                  characters, not what you might expect.
+                </p>
+                <pre><code>// ❌ Surprise!
 const word = "hello";
 const chars = [...word];
 console.log(chars);  // ["h", "e", "l", "l", "o"]
 
 // This is technically correct — but often unexpected!
 // Be careful when spreading variables that might be strings.</code></pre>
-    <p><strong>Rule:</strong> <code>[...string]</code> splits into characters. If you want the string in an array, use <code>[string]</code> (no spread).</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> <code>[...string]</code> splits into
+                  characters. If you want the string in an array, use
+                  <code>[string]</code> (no spread).
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 4: Rest must be the LAST parameter</strong>
-    <p>You cannot put anything after a rest parameter — it collects everything remaining.</p>
-    <pre><code>// ❌ WRONG — rest is not last
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong>Mistake 4: Rest must be the LAST parameter</strong>
+                <p>
+                  You cannot put anything after a rest parameter — it collects
+                  everything remaining.
+                </p>
+                <pre><code>// ❌ WRONG — rest is not last
 // function bad(...nums: number[], label: string) { }
 // Error: A rest parameter must be last in a parameter list.
 
@@ -347,102 +493,192 @@ function good(label: string, ...nums: number[]) {
 }
 good("scores", 90, 85, 78);
 // "scores" [90, 85, 78]</code></pre>
-    <p><strong>Rule:</strong> <code>...rest</code> is always the LAST parameter — it's greedy and grabs everything.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> <code>...rest</code> is always the LAST
+                  parameter — it's greedy and grabs everything.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 5: Confusing spread vs rest — same symbol, opposite jobs</strong>
-    <pre><code>// SPREAD (right side / call site) — expands OUT
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 5: Confusing spread vs rest — same symbol, opposite
+                  jobs</strong
+                >
+                <pre><code>// SPREAD (right side / call site) — expands OUT
 const merged = [...arr1, ...arr2];  // spread
 Math.max(...numbers);               // spread
 
 // REST (left side / definition) — collects IN
 const [first, ...rest] = arr;                 // rest
 function fn(...args: number[]) { }            // rest</code></pre>
-    <p><strong>Rule:</strong> <strong>Spread = unpacking a suitcase.</strong> <strong>Rest = packing leftovers into a bag.</strong></p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong>
+                  <strong>Spread = unpacking a suitcase.</strong>
+                  <strong>Rest = packing leftovers into a bag.</strong>
+                </p>
+              </div>
+            </div>
 
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
-    <tbody>
-      <tr><td>Shallow copy trap</td><td>Nested data is shared</td><td>Spread nested levels or <code>structuredClone()</code></td></tr>
-      <tr><td>Last-one-wins overwrite</td><td>Silent property loss</td><td>Put priority source LAST</td></tr>
-      <tr><td>Spreading strings</td><td>Gets char array</td><td>Use <code>[str]</code> not <code>[...str]</code></td></tr>
-      <tr><td>Rest not last</td><td>Syntax error</td><td>Always put <code>...rest</code> last</td></tr>
-      <tr><td>Spread vs Rest confusion</td><td>Wrong usage</td><td>Right side = spread, left side = rest</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What happens</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Shallow copy trap</td>
+                    <td>Nested data is shared</td>
+                    <td>
+                      Spread nested levels or <code>structuredClone()</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Last-one-wins overwrite</td>
+                    <td>Silent property loss</td>
+                    <td>Put priority source LAST</td>
+                  </tr>
+                  <tr>
+                    <td>Spreading strings</td>
+                    <td>Gets char array</td>
+                    <td>Use <code>[str]</code> not <code>[...str]</code></td>
+                  </tr>
+                  <tr>
+                    <td>Rest not last</td>
+                    <td>Syntax error</td>
+                    <td>Always put <code>...rest</code> last</td>
+                  </tr>
+                  <tr>
+                    <td>Spread vs Rest confusion</td>
+                    <td>Wrong usage</td>
+                    <td>Right side = spread, left side = rest</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- COMPARISON TABLE -->
-<div class="sec" id="sr-compare">
-  <div class="sec-label">Reference</div>
-  <h2>Spread vs Rest — Side by Side</h2>
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Feature</th><th>Spread <code>...</code></th><th>Rest <code>...</code></th></tr></thead>
-    <tbody>
-      <tr><td>Purpose</td><td><span class="p p-blue">Expand / Unpack</span></td><td><span class="p p-green">Collect / Gather</span></td></tr>
-      <tr><td>Where used</td><td>Right side of <code>=</code>, function calls</td><td>Left side of <code>=</code>, function params</td></tr>
-      <tr><td>With arrays</td><td><code>[...arr1, ...arr2]</code></td><td><code>const [a, ...rest] = arr</code></td></tr>
-      <tr><td>With objects</td><td><code>{...obj1, ...obj2}</code></td><td><code>const {a, ...rest} = obj</code></td></tr>
-      <tr><td>Functions</td><td><code>fn(...args)</code> (call)</td><td><code>fn(...args)</code> (define)</td></tr>
-      <tr><td>Analogy</td><td>Pouring beads out of jar</td><td>Sweeping beads into bag</td></tr>
-      <tr><td>Position</td><td>Anywhere</td><td>Must be LAST</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+          <!-- COMPARISON TABLE -->
+          <div class="sec" id="sr-compare">
+            <div class="sec-label">Reference</div>
+            <h2>Spread vs Rest — Side by Side</h2>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Spread <code>...</code></th>
+                    <th>Rest <code>...</code></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Purpose</td>
+                    <td><span class="p p-blue">Expand / Unpack</span></td>
+                    <td><span class="p p-green">Collect / Gather</span></td>
+                  </tr>
+                  <tr>
+                    <td>Where used</td>
+                    <td>Right side of <code>=</code>, function calls</td>
+                    <td>Left side of <code>=</code>, function params</td>
+                  </tr>
+                  <tr>
+                    <td>With arrays</td>
+                    <td><code>[...arr1, ...arr2]</code></td>
+                    <td><code>const [a, ...rest] = arr</code></td>
+                  </tr>
+                  <tr>
+                    <td>With objects</td>
+                    <td><code>{...obj1, ...obj2}</code></td>
+                    <td><code>const {a, ...rest} = obj</code></td>
+                  </tr>
+                  <tr>
+                    <td>Functions</td>
+                    <td><code>fn(...args)</code> (call)</td>
+                    <td><code>fn(...args)</code> (define)</td>
+                  </tr>
+                  <tr>
+                    <td>Analogy</td>
+                    <td>Pouring beads out of jar</td>
+                    <td>Sweeping beads into bag</td>
+                  </tr>
+                  <tr>
+                    <td>Position</td>
+                    <td>Anywhere</td>
+                    <td>Must be LAST</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- CHEATSHEET -->
-<div class="sec" id="sr-cheatsheet">
-  <div class="sec-label">Reference</div>
-  <h2>Quick Reference Cheatsheet</h2>
+          <!-- CHEATSHEET -->
+          <div class="sec" id="sr-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
 
-  <h3>Spread (Expand)</h3>
-  <pre><code>[...arr1, ...arr2]          // Merge arrays
+            <h3>Spread (Expand)</h3>
+            <pre><code>[...arr1, ...arr2]          // Merge arrays
 {...obj1, ...obj2}          // Merge objects (last wins)
 [...arr]                    // Clone array (shallow)
 {...obj}                    // Clone object (shallow)
 Math.max(...numbers)        // Pass array as arguments
 fn(...args)                 // Unpack into function call</code></pre>
 
-  <h3>Rest (Collect)</h3>
-  <pre><code>function fn(...args: T[])       // Collect all args
+            <h3>Rest (Collect)</h3>
+            <pre><code>function fn(...args: T[])       // Collect all args
 function fn(a, ...rest: T[])   // Collect remaining args
 const [first, ...rest] = arr   // Destructure + collect
 const {a, ...rest} = obj       // Destructure + collect</code></pre>
 
-  <h3>Deep Copy</h3>
-  <pre><code>const deep = structuredClone(original);  // True deep copy
+            <h3>Deep Copy</h3>
+            <pre><code>const deep = structuredClone(original);  // True deep copy
 // OR manually spread each level:
 const safe = { ...obj, nested: { ...obj.nested } };</code></pre>
 
-  <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Spread &amp; Rest &nbsp;·&nbsp; Next: Promises</p>
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Spread &amp; Rest
+              &nbsp;·&nbsp; Next: Promises
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div>
-
-</div></div></div>
-
-<script>
-(function() {
-  const nav = document.getElementById('nav-sr');
-  if (!nav) { return; }
-  const links = nav.querySelectorAll('a');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.remove('on'));
-        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) { a.classList.add('on'); };
-      }
-    });
-  }, { rootMargin: '-15% 0px -75% 0px' });
-  document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
-})();
-</script>
-</body>
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-sr");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+  </body>
 </html>

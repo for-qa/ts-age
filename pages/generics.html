@@ -1,78 +1,109 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Generics — TypeScript Learning Path</title>
-<meta name="description" content="Learn TypeScript generics — generic functions, generic interfaces, generic classes, constraints with extends, default types, and real-world utility patterns.">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-
-<div id="topbar">
-  <div class="tb-brand">
-    <div class="tb-brand-icon">TS</div>
-    <div>
-      <div class="tb-brand-name">TypeScript Learning Path</div>
-      <div class="tb-brand-sub">Session Notes</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Generics — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript generics — generic functions, generic interfaces, generic classes, constraints with extends, default types, and real-world utility patterns."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Generics</div>
     </div>
-  </div>
-  <a class="tb-back" href="../index.html">← Back to Index</a>
-  <div class="tb-topic-title">Generics</div>
-</div>
 
-<div class="page-wrap">
-<div class="wrap">
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-generics">
+          <div class="nav-logo">
+            <div class="v">TS</div>
+            <h2>Generics</h2>
+          </div>
+          <div class="nav-group">Basics</div>
+          <a href="#gn-what">What are Generics?</a>
+          <a href="#gn-func">Generic Functions</a>
+          <a href="#gn-multi">Multiple Type Params</a>
+          <div class="nav-group">Advanced</div>
+          <a href="#gn-iface">Generic Interfaces</a>
+          <a href="#gn-class">Generic Classes</a>
+          <a href="#gn-constraint">Constraints</a>
+          <a href="#gn-default">Default Types</a>
+          <div class="nav-group">Practical</div>
+          <a href="#gn-builtin">Built-in Generics</a>
+          <a href="#gn-patterns">Real-World Patterns</a>
+          <div class="nav-group">Reference</div>
+          <a href="#gn-cheatsheet">Cheatsheet</a>
+        </nav>
 
-<nav id="nav-generics">
-  <div class="nav-logo">
-    <div class="v">TS</div>
-    <h2>Generics</h2>
-  </div>
-  <div class="nav-group">Basics</div>
-  <a href="#gn-what">What are Generics?</a>
-  <a href="#gn-func">Generic Functions</a>
-  <a href="#gn-multi">Multiple Type Params</a>
-  <div class="nav-group">Advanced</div>
-  <a href="#gn-iface">Generic Interfaces</a>
-  <a href="#gn-class">Generic Classes</a>
-  <a href="#gn-constraint">Constraints</a>
-  <a href="#gn-default">Default Types</a>
-  <div class="nav-group">Practical</div>
-  <a href="#gn-builtin">Built-in Generics</a>
-  <a href="#gn-patterns">Real-World Patterns</a>
-  <div class="nav-group">Reference</div>
-  <a href="#gn-cheatsheet">Cheatsheet</a>
-</nav>
+        <div class="content">
+          <div class="hero" id="gn-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Generics</span>
+              <span class="hero-tag">Advanced</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Generics</h1>
+            <p>
+              Write flexible, reusable code that works with ANY type while
+              keeping type safety — the most powerful feature of TypeScript.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Generic Targets</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Advanced Features</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">5</div>
+                <div class="stat-l">Built-in Utilities</div>
+              </div>
+            </div>
+          </div>
 
-<div class="content">
+          <!-- WHAT ARE GENERICS -->
+          <div class="sec" id="gn-what">
+            <div class="sec-label">Core Concept</div>
+            <h2>What are Generics?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Generics are like a
+                <strong>gift box</strong>. The box doesn't care what's inside —
+                it could hold a book, a phone, or shoes. The box design
+                (function) stays the same, but the content (type) changes
+                depending on what you put in. The box adapts to whatever you
+                give it.
+              </p>
+            </div>
 
-<div class="hero" id="gn-top">
-  <div class="hero-tags">
-    <span class="hero-tag">TypeScript</span>
-    <span class="hero-tag">Generics</span>
-    <span class="hero-tag">Advanced</span>
-    <span class="hero-tag">Session Notes</span>
-  </div>
-  <h1>Generics</h1>
-  <p>Write flexible, reusable code that works with ANY type while keeping type safety — the most powerful feature of TypeScript.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Generic Targets</div></div>
-    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Advanced Features</div></div>
-    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Built-in Utilities</div></div>
-  </div>
-</div>
+            <p>
+              Generics let you write code that works with
+              <strong>any type</strong> without losing type safety. Instead of
+              hardcoding <code>string</code> or <code>number</code>, you use a
+              <strong>type parameter</strong> (placeholder) like
+              <code>&lt;T&gt;</code>.
+            </p>
 
-<!-- WHAT ARE GENERICS -->
-<div class="sec" id="gn-what">
-  <div class="sec-label">Core Concept</div>
-  <h2>What are Generics?</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Generics are like a <strong>gift box</strong>. The box doesn't care what's inside — it could hold a book, a phone, or shoes. The box design (function) stays the same, but the content (type) changes depending on what you put in. The box adapts to whatever you give it.</p></div>
-
-  <p>Generics let you write code that works with <strong>any type</strong> without losing type safety. Instead of hardcoding <code>string</code> or <code>number</code>, you use a <strong>type parameter</strong> (placeholder) like <code>&lt;T&gt;</code>.</p>
-
-  <pre><code>// ❌ Without generics — need separate functions for each type
+            <pre><code>// ❌ Without generics — need separate functions for each type
 function identityString(value: string): string { return value; }
 function identityNumber(value: number): number { return value; }
 
@@ -87,16 +118,34 @@ let a = identity&lt;string&gt;("hello");  // a is string ✅
 let b = identity&lt;number&gt;(42);       // b is number ✅
 let c = identity("auto");           // c is string (type inferred!) ✅</code></pre>
 
-  <div class="note note-info"><span class="note-i">i</span><p><strong>Convention:</strong> <code>T</code> = Type, <code>K</code> = Key, <code>V</code> = Value, <code>E</code> = Element. You can use any letter, but these are standard. The <code>&lt;T&gt;</code> is declared after the function name and before the parentheses.</p></div>
-</div>
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Convention:</strong> <code>T</code> = Type,
+                <code>K</code> = Key, <code>V</code> = Value, <code>E</code> =
+                Element. You can use any letter, but these are standard. The
+                <code>&lt;T&gt;</code> is declared after the function name and
+                before the parentheses.
+              </p>
+            </div>
+          </div>
 
-<!-- GENERIC FUNCTIONS -->
-<div class="sec" id="gn-func">
-  <div class="sec-label">Functions</div>
-  <h2>Generic Functions — Flexible Parameters</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>printer</strong>. It doesn't care if you print a photo, a document, or a label. The printer adapts to whatever you feed it. Similarly, a generic function adapts to whatever type you pass.</p></div>
+          <!-- GENERIC FUNCTIONS -->
+          <div class="sec" id="gn-func">
+            <div class="sec-label">Functions</div>
+            <h2>Generic Functions — Flexible Parameters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a
+                <strong>printer</strong>. It doesn't care if you print a photo,
+                a document, or a label. The printer adapts to whatever you feed
+                it. Similarly, a generic function adapts to whatever type you
+                pass.
+              </p>
+            </div>
 
-  <pre><code>// Returns the first element of any array
+            <pre><code>// Returns the first element of any array
 function getFirst&lt;T&gt;(arr: T[]): T {
   return arr[0];
 }
@@ -113,20 +162,28 @@ function reverseArray&lt;T&gt;(arr: T[]): T[] {
 console.log(reverseArray([1, 2, 3]));       // [3, 2, 1]
 console.log(reverseArray(["x", "y", "z"])); // ["z", "y", "x"]</code></pre>
 
-  <pre><code>// Arrow function syntax
+            <pre><code>// Arrow function syntax
 const wrapInArray = &lt;T&gt;(value: T): T[] =&gt; [value];
 
 console.log(wrapInArray(42));       // [42]
 console.log(wrapInArray("hello"));  // ["hello"]</code></pre>
-</div>
+          </div>
 
-<!-- MULTIPLE TYPE PARAMS -->
-<div class="sec" id="gn-multi">
-  <div class="sec-label">Multiple Types</div>
-  <h2>Multiple Type Parameters</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>shipping label</strong> with two fields — "From" (one type) and "To" (another type). Both are flexible but independent of each other.</p></div>
+          <!-- MULTIPLE TYPE PARAMS -->
+          <div class="sec" id="gn-multi">
+            <div class="sec-label">Multiple Types</div>
+            <h2>Multiple Type Parameters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a
+                <strong>shipping label</strong> with two fields — "From" (one
+                type) and "To" (another type). Both are flexible but independent
+                of each other.
+              </p>
+            </div>
 
-  <pre><code>// Two type parameters: T and U
+            <pre><code>// Two type parameters: T and U
 function makePair&lt;T, U&gt;(first: T, second: U): [T, U] {
   return [first, second];
 }
@@ -144,15 +201,24 @@ function mapKeyValue&lt;K, V&gt;(key: K, value: V): { key: K; value: V } {
 
 let entry = mapKeyValue("name", "John");  // { key: string, value: string }
 console.log(entry);  // { key: "name", value: "John" }</code></pre>
-</div>
+          </div>
 
-<!-- GENERIC INTERFACES -->
-<div class="sec" id="gn-iface">
-  <div class="sec-label">Interfaces</div>
-  <h2>Generic Interfaces</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>standardized report template</strong>. The format is always the same (title, date, data), but the "data" section can hold anything — sales numbers, student marks, inventory counts. The template adapts to the data type.</p></div>
+          <!-- GENERIC INTERFACES -->
+          <div class="sec" id="gn-iface">
+            <div class="sec-label">Interfaces</div>
+            <h2>Generic Interfaces</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a
+                <strong>standardized report template</strong>. The format is
+                always the same (title, date, data), but the "data" section can
+                hold anything — sales numbers, student marks, inventory counts.
+                The template adapts to the data type.
+              </p>
+            </div>
 
-  <pre><code>// Generic interface — T can be anything
+            <pre><code>// Generic interface — T can be anything
 interface ApiResponse&lt;T&gt; {
   status: number;
   message: string;
@@ -174,15 +240,24 @@ let listResponse: ApiResponse&lt;string[]&gt; = {
 
 console.log(userResponse.data.name);  // "John"
 console.log(listResponse.data[0]);    // "Alice"</code></pre>
-</div>
+          </div>
 
-<!-- GENERIC CLASSES -->
-<div class="sec" id="gn-class">
-  <div class="sec-label">Classes</div>
-  <h2>Generic Classes</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Like a <strong>storage locker</strong>. The locker design is the same, but you decide what goes inside — clothes, tools, books. A generic class is a reusable container that adapts to whatever type you store in it.</p></div>
+          <!-- GENERIC CLASSES -->
+          <div class="sec" id="gn-class">
+            <div class="sec-label">Classes</div>
+            <h2>Generic Classes</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a
+                <strong>storage locker</strong>. The locker design is the same,
+                but you decide what goes inside — clothes, tools, books. A
+                generic class is a reusable container that adapts to whatever
+                type you store in it.
+              </p>
+            </div>
 
-  <pre><code>class Box&lt;T&gt; {
+            <pre><code>class Box&lt;T&gt; {
   private content: T;
 
   constructor(item: T) {
@@ -210,7 +285,7 @@ console.log(numBox.getContent());   // 42
 let userBox = new Box({ name: "Alice", age: 30 });
 console.log(userBox.getContent().name);  // "Alice"</code></pre>
 
-  <pre><code>// Generic stack (LIFO data structure)
+            <pre><code>// Generic stack (LIFO data structure)
 class Stack&lt;T&gt; {
   private items: T[] = [];
 
@@ -225,17 +300,31 @@ numStack.push(10);
 numStack.push(20);
 console.log(numStack.pop());   // 20
 console.log(numStack.peek());  // 10</code></pre>
-</div>
+          </div>
 
-<!-- CONSTRAINTS -->
-<div class="sec" id="gn-constraint">
-  <div class="sec-label">Advanced</div>
-  <h2>Constraints — Limiting <code>T</code> with <code>extends</code></h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A <strong>photo frame</strong> accepts any picture, but it must be a specific size. Similarly, a constrained generic accepts any type, but that type must have certain properties.</p></div>
+          <!-- CONSTRAINTS -->
+          <div class="sec" id="gn-constraint">
+            <div class="sec-label">Advanced</div>
+            <h2>
+              Constraints — Limiting <code>T</code> with <code>extends</code>
+            </h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A
+                <strong>photo frame</strong> accepts any picture, but it must be
+                a specific size. Similarly, a constrained generic accepts any
+                type, but that type must have certain properties.
+              </p>
+            </div>
 
-  <p>Sometimes <code>T</code> can be "too flexible" — you need to guarantee it has certain properties. Use <code>extends</code> to add constraints.</p>
+            <p>
+              Sometimes <code>T</code> can be "too flexible" — you need to
+              guarantee it has certain properties. Use <code>extends</code> to
+              add constraints.
+            </p>
 
-  <pre><code>// ❌ Problem — T could be anything (no .length guarantee)
+            <pre><code>// ❌ Problem — T could be anything (no .length guarantee)
 function logLength&lt;T&gt;(item: T): void {
   console.log(item.length);  // ERROR: Property 'length' doesn't exist on type T
 }
@@ -254,7 +343,7 @@ logLength([1, 2, 3]);    // 3 ✅ (arrays have .length)
 logLength({ length: 7 }); // 7 ✅ (object with .length)
 logLength(42);           // ❌ ERROR (numbers don't have .length)</code></pre>
 
-  <pre><code>// Constraint with keyof — ensure key exists in object
+            <pre><code>// Constraint with keyof — ensure key exists in object
 function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
   return obj[key];
 }
@@ -262,14 +351,14 @@ function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
 let person = { name: "Alice", age: 30 };
 console.log(getProperty(person, "name"));  // "Alice" ✅
 console.log(getProperty(person, "email")); // ❌ ERROR — "email" not in person</code></pre>
-</div>
+          </div>
 
-<!-- DEFAULT TYPES -->
-<div class="sec" id="gn-default">
-  <div class="sec-label">Advanced</div>
-  <h2>Default Type Parameters</h2>
+          <!-- DEFAULT TYPES -->
+          <div class="sec" id="gn-default">
+            <div class="sec-label">Advanced</div>
+            <h2>Default Type Parameters</h2>
 
-  <pre><code>// Default type = string (if not specified)
+            <pre><code>// Default type = string (if not specified)
 interface Container&lt;T = string&gt; {
   value: T;
 }
@@ -284,32 +373,72 @@ function createArray&lt;T = number&gt;(length: number, value: T): T[] {
 
 console.log(createArray(3, 0));        // [0, 0, 0]  — T = number (default)
 console.log(createArray(3, "hi"));     // ["hi", "hi", "hi"] — T = string</code></pre>
-</div>
+          </div>
 
-<!-- BUILT-IN GENERICS -->
-<div class="sec" id="gn-builtin">
-  <div class="sec-label">Built-in</div>
-  <h2>Built-in Generic Types You Already Use</h2>
+          <!-- BUILT-IN GENERICS -->
+          <div class="sec" id="gn-builtin">
+            <div class="sec-label">Built-in</div>
+            <h2>Built-in Generic Types You Already Use</h2>
 
-  <p>Many TypeScript features are generic under the hood!</p>
+            <p>Many TypeScript features are generic under the hood!</p>
 
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Built-in</th><th>Generic Form</th><th>Example</th></tr></thead>
-    <tbody>
-      <tr><td>Array</td><td><code>Array&lt;T&gt;</code></td><td><code>let nums: Array&lt;number&gt; = [1, 2];</code></td></tr>
-      <tr><td>Promise</td><td><code>Promise&lt;T&gt;</code></td><td><code>let p: Promise&lt;string&gt;</code></td></tr>
-      <tr><td>Partial</td><td><code>Partial&lt;T&gt;</code></td><td>Makes all properties optional</td></tr>
-      <tr><td>Required</td><td><code>Required&lt;T&gt;</code></td><td>Makes all properties required</td></tr>
-      <tr><td>Readonly</td><td><code>Readonly&lt;T&gt;</code></td><td>Makes all properties readonly</td></tr>
-      <tr><td>Pick</td><td><code>Pick&lt;T, K&gt;</code></td><td>Select specific properties</td></tr>
-      <tr><td>Omit</td><td><code>Omit&lt;T, K&gt;</code></td><td>Exclude specific properties</td></tr>
-      <tr><td>Record</td><td><code>Record&lt;K, V&gt;</code></td><td>Key-value map type</td></tr>
-    </tbody>
-  </table>
-  </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Built-in</th>
+                    <th>Generic Form</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Array</td>
+                    <td><code>Array&lt;T&gt;</code></td>
+                    <td>
+                      <code>let nums: Array&lt;number&gt; = [1, 2];</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Promise</td>
+                    <td><code>Promise&lt;T&gt;</code></td>
+                    <td><code>let p: Promise&lt;string&gt;</code></td>
+                  </tr>
+                  <tr>
+                    <td>Partial</td>
+                    <td><code>Partial&lt;T&gt;</code></td>
+                    <td>Makes all properties optional</td>
+                  </tr>
+                  <tr>
+                    <td>Required</td>
+                    <td><code>Required&lt;T&gt;</code></td>
+                    <td>Makes all properties required</td>
+                  </tr>
+                  <tr>
+                    <td>Readonly</td>
+                    <td><code>Readonly&lt;T&gt;</code></td>
+                    <td>Makes all properties readonly</td>
+                  </tr>
+                  <tr>
+                    <td>Pick</td>
+                    <td><code>Pick&lt;T, K&gt;</code></td>
+                    <td>Select specific properties</td>
+                  </tr>
+                  <tr>
+                    <td>Omit</td>
+                    <td><code>Omit&lt;T, K&gt;</code></td>
+                    <td>Exclude specific properties</td>
+                  </tr>
+                  <tr>
+                    <td>Record</td>
+                    <td><code>Record&lt;K, V&gt;</code></td>
+                    <td>Key-value map type</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-  <pre><code>type User = { name: string; age: number; email: string };
+            <pre><code>type User = { name: string; age: number; email: string };
 
 // Partial — all fields optional
 let update: Partial&lt;User&gt; = { name: "Bob" };  // ✅ age & email optional
@@ -327,17 +456,21 @@ let scores: Record&lt;string, number&gt; = {
   math: 95,
   science: 88
 };</code></pre>
-</div>
+          </div>
 
-<!-- REAL-WORLD PATTERNS -->
-<div class="sec" id="gn-patterns">
-  <div class="sec-label">Practical</div>
-  <h2>Real-World Patterns</h2>
+          <!-- REAL-WORLD PATTERNS -->
+          <div class="sec" id="gn-patterns">
+            <div class="sec-label">Practical</div>
+            <h2>Real-World Patterns</h2>
 
-  <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">Generic API Service</div><span class="card-badge">Pattern</span></div>
-    <div class="card-body">
-      <pre><code>interface ApiResponse&lt;T&gt; {
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Generic API Service</div>
+                <span class="card-badge">Pattern</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface ApiResponse&lt;T&gt; {
   success: boolean;
   data: T;
   error?: string;
@@ -353,13 +486,17 @@ async function fetchData&lt;T&gt;(url: string): Promise&lt;ApiResponse&lt;T&gt;&
 type User = { name: string; age: number };
 const result = await fetchData&lt;User&gt;("/api/user/1");
 console.log(result.data.name);  // ✅ autocomplete works!</code></pre>
-    </div>
-  </div>
+              </div>
+            </div>
 
-  <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">Test Data Factory</div><span class="card-badge">Automation</span></div>
-    <div class="card-body">
-      <pre><code>function createTestData&lt;T&gt;(defaults: T, overrides: Partial&lt;T&gt;): T {
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">Test Data Factory</div>
+                <span class="card-badge">Automation</span>
+              </div>
+              <div class="card-body">
+                <pre><code>function createTestData&lt;T&gt;(defaults: T, overrides: Partial&lt;T&gt;): T {
   // "..." copies all properties from one object into another — covered fully in Topic 24 (Spread &amp; Rest)
   return { ...defaults, ...overrides };
 }
@@ -374,64 +511,79 @@ const defaultLogin: LoginData = {
 
 let test1 = createTestData(defaultLogin, { username: "admin" });
 // { username: "admin", password: "pass123", remember: false }</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- CHEATSHEET -->
-<div class="sec" id="gn-cheatsheet">
-  <div class="sec-label">Reference</div>
-  <h2>Quick Reference Cheatsheet</h2>
+          <!-- CHEATSHEET -->
+          <div class="sec" id="gn-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
 
-  <h3>Generic function</h3>
-  <pre><code>function identity&lt;T&gt;(val: T): T { return val; }
+            <h3>Generic function</h3>
+            <pre><code>function identity&lt;T&gt;(val: T): T { return val; }
 const arrow = &lt;T&gt;(val: T): T =&gt; val;</code></pre>
 
-  <h3>Generic interface</h3>
-  <pre><code>interface Box&lt;T&gt; { content: T; }
+            <h3>Generic interface</h3>
+            <pre><code>interface Box&lt;T&gt; { content: T; }
 let b: Box&lt;string&gt; = { content: "hello" };</code></pre>
 
-  <h3>Generic class</h3>
-  <pre><code>class Stack&lt;T&gt; {
+            <h3>Generic class</h3>
+            <pre><code>class Stack&lt;T&gt; {
   private items: T[] = [];
   push(item: T) { this.items.push(item); }
   pop(): T | undefined { return this.items.pop(); }
 }</code></pre>
 
-  <h3>Constraints</h3>
-  <pre><code>function fn&lt;T extends HasLength&gt;(item: T) { }
+            <h3>Constraints</h3>
+            <pre><code>function fn&lt;T extends HasLength&gt;(item: T) { }
 function get&lt;T, K extends keyof T&gt;(obj: T, key: K) { }</code></pre>
 
-  <h3>Key rules</h3>
-  <pre><code>// ✅ &lt;T&gt; = type parameter placeholder (decided at call time)
+            <h3>Key rules</h3>
+            <pre><code>// ✅ &lt;T&gt; = type parameter placeholder (decided at call time)
 // ✅ T can be inferred from arguments (no need to specify explicitly)
 // ✅ Use constraints (extends) to limit what T can be
 // ✅ Default types: &lt;T = string&gt; if no type provided
 // ✅ Built-in utilities: Partial, Required, Pick, Omit, Record
 // ❌ Don't use 'any' — use generics for type-safe flexibility</code></pre>
 
-  <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Generics &nbsp;·&nbsp; &lt;T&gt; · constraints · utility types · patterns</p>
-</div>
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Generics &nbsp;·&nbsp;
+              &lt;T&gt; · constraints · utility types · patterns
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div></div></div>
-
-<script>
-(function() {
-  const nav = document.getElementById('nav-generics');
-  if (!nav) { return; }
-  const links = nav.querySelectorAll('a');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.remove('on'));
-        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) { a.classList.add('on'); };
-      }
-    });
-  }, { rootMargin: '-15% 0px -75% 0px' });
-  document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
-})();
-</script>
-</body>
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-generics");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+  </body>
 </html>

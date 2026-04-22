@@ -1,89 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Key Comparisons — TypeScript Learning Path</title>
-<meta name="description" content="Essential TypeScript comparisons — primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, any vs unknown, and more with real-life analogies.">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-<div id="topbar">
-  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
-  <a class="tb-back" href="../index.html">← Back to Index</a>
-  <div class="tb-topic-title">Key Comparisons</div>
-</div>
-<div class="page-wrap"><div class="wrap">
-<nav id="nav-cmp">
-  <div class="nav-logo"><div class="v">VS</div><h2>Comparisons</h2></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Key Comparisons — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Essential TypeScript comparisons — primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, any vs unknown, and more with real-life analogies."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Key Comparisons</div>
+    </div>
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-cmp">
+          <div class="nav-logo">
+            <div class="v">VS</div>
+            <h2>Comparisons</h2>
+          </div>
 
-  <div class="nav-group">1 · Variables &amp; Scope</div>
-  <a href="#c-let">let vs const vs var</a>
-  <a href="#c-scope">Block Scope vs Local Scope</a>
-  <a href="#c-hoist">Hoisted vs Non-Hoisted</a>
-  <a href="#c-eq">== vs ===</a>
+          <div class="nav-group">1 · Variables &amp; Scope</div>
+          <a href="#c-let">let vs const vs var</a>
+          <a href="#c-scope">Block Scope vs Local Scope</a>
+          <a href="#c-hoist">Hoisted vs Non-Hoisted</a>
+          <a href="#c-eq">== vs ===</a>
 
-  <div class="nav-group">2 · Data Types</div>
-  <a href="#c-prim">Primitive vs Non-Primitive</a>
-  <a href="#c-mut">Immutable vs Mutable</a>
-  <a href="#c-null">null vs undefined</a>
-  <a href="#c-any">any vs unknown</a>
-  <a href="#c-never">never vs void</a>
+          <div class="nav-group">2 · Data Types</div>
+          <a href="#c-prim">Primitive vs Non-Primitive</a>
+          <a href="#c-mut">Immutable vs Mutable</a>
+          <a href="#c-null">null vs undefined</a>
+          <a href="#c-any">any vs unknown</a>
+          <a href="#c-never">never vs void</a>
 
-  <div class="nav-group">3 · Type System</div>
-  <a href="#c-ti">type vs interface</a>
-  <a href="#c-ut">Union vs Tuple</a>
-  <a href="#c-eu">Enum vs Union Literal</a>
-  <a href="#c-lg">Literal vs Generic</a>
-  <a href="#c-narrow">Type Assertion vs Type Narrowing</a>
+          <div class="nav-group">3 · Type System</div>
+          <a href="#c-ti">type vs interface</a>
+          <a href="#c-ut">Union vs Tuple</a>
+          <a href="#c-eu">Enum vs Union Literal</a>
+          <a href="#c-lg">Literal vs Generic</a>
+          <a href="#c-narrow">Type Assertion vs Type Narrowing</a>
 
-  <div class="nav-group">4 · Functions</div>
-  <a href="#c-fn">function vs arrow</a>
-  <a href="#c-forin">for...in vs for...of</a>
-  <a href="#c-optional">Optional vs Default Params</a>
+          <div class="nav-group">4 · Functions</div>
+          <a href="#c-fn">function vs arrow</a>
+          <a href="#c-forin">for...in vs for...of</a>
+          <a href="#c-optional">Optional vs Default Params</a>
 
-  <div class="nav-group">5 · OOP</div>
-  <a href="#c-ci">Class vs Interface</a>
-  <a href="#c-ei">extends vs implements</a>
-  <a href="#c-access">public vs private vs protected</a>
+          <div class="nav-group">5 · OOP</div>
+          <a href="#c-ci">Class vs Interface</a>
+          <a href="#c-ei">extends vs implements</a>
+          <a href="#c-access">public vs private vs protected</a>
 
-  <div class="nav-group">6 · Async</div>
-  <a href="#c-sa">Sync vs Async</a>
-  <a href="#c-promise">Promise vs async/await</a>
-</nav>
-<div class="content">
+          <div class="nav-group">6 · Async</div>
+          <a href="#c-sa">Sync vs Async</a>
+          <a href="#c-promise">Promise vs async/await</a>
+        </nav>
+        <div class="content">
+          <div class="hero" id="c-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span
+              ><span class="hero-tag">Comparisons</span
+              ><span class="hero-tag">Interview Prep</span>
+            </div>
+            <h1>Key Comparisons</h1>
+            <p>
+              24 essential "A vs B" comparisons ordered from beginner to
+              advanced — the exact learning path every TypeScript developer
+              should follow, with real-life analogies, code snippets, and clear
+              tables.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">24</div>
+                <div class="stat-l">Comparisons</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">6</div>
+                <div class="stat-l">Categories</div>
+              </div>
+            </div>
+          </div>
 
-<div class="hero" id="c-top">
-  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Comparisons</span><span class="hero-tag">Interview Prep</span></div>
-  <h1>Key Comparisons</h1>
-  <p>24 essential "A vs B" comparisons ordered from beginner to advanced — the exact learning path every TypeScript developer should follow, with real-life analogies, code snippets, and clear tables.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">24</div><div class="stat-l">Comparisons</div></div>
-    <div class="stat"><div class="stat-n">6</div><div class="stat-l">Categories</div></div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
+          <!-- ═══════════════════════════════════════════════════════
      CATEGORY 1 — VARIABLES & SCOPE
      ═══════════════════════════════════════════════════════ -->
 
-<!-- 1. LET VS CONST VS VAR -->
-<div class="sec" id="c-let">
-  <div class="sec-label">Variables &amp; Scope</div>
-  <h2>let vs const vs var</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>var</strong> = a whiteboard anyone can erase (old style, leaks everywhere). <strong>let</strong> = a notebook page you can update but only inside the room you're in. <strong>const</strong> = a carved stone tablet — permanent, can't be overwritten.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>var</th><th>let</th><th>const</th></tr></thead>
-    <tbody>
-      <tr><td>Scope</td><td>Function</td><td>Block { }</td><td>Block { }</td></tr>
-      <tr><td>Reassign</td><td>✅</td><td>✅</td><td>❌</td></tr>
-      <tr><td>Redeclare</td><td>✅</td><td>❌</td><td>❌</td></tr>
-      <tr><td>Hoisted</td><td>✅ (undefined)</td><td>❌ (TDZ)</td><td>❌ (TDZ)</td></tr>
-      <tr><td>Recommended</td><td>❌ Never</td><td>✅ When value changes</td><td>✅ Default choice</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>var x = 1; var x = 2;     // ✅ No error (bad!)
+          <!-- 1. LET VS CONST VS VAR -->
+          <div class="sec" id="c-let">
+            <div class="sec-label">Variables &amp; Scope</div>
+            <h2>let vs const vs var</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>var</strong> = a whiteboard
+                anyone can erase (old style, leaks everywhere).
+                <strong>let</strong> = a notebook page you can update but only
+                inside the room you're in. <strong>const</strong> = a carved
+                stone tablet — permanent, can't be overwritten.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>var</th>
+                    <th>let</th>
+                    <th>const</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Scope</td>
+                    <td>Function</td>
+                    <td>Block { }</td>
+                    <td>Block { }</td>
+                  </tr>
+                  <tr>
+                    <td>Reassign</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Redeclare</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Hoisted</td>
+                    <td>✅ (undefined)</td>
+                    <td>❌ (TDZ)</td>
+                    <td>❌ (TDZ)</td>
+                  </tr>
+                  <tr>
+                    <td>Recommended</td>
+                    <td>❌ Never</td>
+                    <td>✅ When value changes</td>
+                    <td>✅ Default choice</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>var x = 1; var x = 2;     // ✅ No error (bad!)
 let y = 1; // let y = 2;  // ❌ Cannot redeclare
 const z = 1; // z = 2;    // ❌ Cannot reassign
 
@@ -93,25 +166,75 @@ console.log(a);  // 10 (var leaks out! ❌)
 
 if (true) { let b = 10; }
 // console.log(b); // ❌ ReferenceError (let stays in block ✅)</code></pre>
-</div>
+          </div>
 
-<!-- 2. BLOCK SCOPE VS LOCAL SCOPE (NEW) -->
-<div class="sec" id="c-scope">
-  <div class="sec-label">Variables &amp; Scope</div>
-  <h2>Block Scope vs Local (Function) Scope</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Block scope</strong> = a locker that only exists inside a specific classroom — gone when you leave the room (the <code>{ }</code>). <strong>Local scope</strong> = a personal bag you carry for the entire length of a function call — alive until the function returns.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Block Scope</th><th>Local / Function Scope</th></tr></thead>
-    <tbody>
-      <tr><td>Created by</td><td>Any <code>{ }</code> — if, for, while, bare blocks</td><td>A <code>function</code> body</td></tr>
-      <tr><td>Keywords</td><td><code>let</code>, <code>const</code> (Trapped inside <b>any</b> <code>{ }</code>)</td><td><code>var</code> (Trapped <b>only</b> inside functions)</td></tr>
-      <tr><td>Lifetime</td><td>Only while inside the <code>{ }</code></td><td>Until the function returns</td></tr>
-      <tr><td>Accessible outside?</td><td>❌ No</td><td>❌ No (but wider than block)</td></tr>
-      <tr><td>Example containers</td><td><code>if</code>, <code>for</code>, <code>while</code>, <code>switch</code></td><td>Any named or anonymous function</td></tr>
-      <tr><td>var behaviour</td><td>⚠ var ESCAPES block scope</td><td>var is trapped by functions</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// ─── BLOCK SCOPE (let / const) ───────────────────────────
+          <!-- 2. BLOCK SCOPE VS LOCAL SCOPE (NEW) -->
+          <div class="sec" id="c-scope">
+            <div class="sec-label">Variables &amp; Scope</div>
+            <h2>Block Scope vs Local (Function) Scope</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Block scope</strong> = a
+                locker that only exists inside a specific classroom — gone when
+                you leave the room (the <code>{ }</code>).
+                <strong>Local scope</strong> = a personal bag you carry for the
+                entire length of a function call — alive until the function
+                returns.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Block Scope</th>
+                    <th>Local / Function Scope</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Created by</td>
+                    <td>Any <code>{ }</code> — if, for, while, bare blocks</td>
+                    <td>A <code>function</code> body</td>
+                  </tr>
+                  <tr>
+                    <td>Keywords</td>
+                    <td>
+                      <code>let</code>, <code>const</code> (Trapped inside
+                      <b>any</b> <code>{ }</code>)
+                    </td>
+                    <td>
+                      <code>var</code> (Trapped <b>only</b> inside functions)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Lifetime</td>
+                    <td>Only while inside the <code>{ }</code></td>
+                    <td>Until the function returns</td>
+                  </tr>
+                  <tr>
+                    <td>Accessible outside?</td>
+                    <td>❌ No</td>
+                    <td>❌ No (but wider than block)</td>
+                  </tr>
+                  <tr>
+                    <td>Example containers</td>
+                    <td>
+                      <code>if</code>, <code>for</code>, <code>while</code>,
+                      <code>switch</code>
+                    </td>
+                    <td>Any named or anonymous function</td>
+                  </tr>
+                  <tr>
+                    <td>var behaviour</td>
+                    <td>⚠ var ESCAPES block scope</td>
+                    <td>var is trapped by functions</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// ─── BLOCK SCOPE (let / const) ───────────────────────────
 function demo() {
   if (true) {
     let blockVar = "I live only in this if-block";
@@ -147,25 +270,71 @@ function outer() {
   inner();
   // console.log(y);          // ❌ outer cannot see inner's y
 }</code></pre>
-  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Key rule:</strong> Always prefer <code>let</code>/<code>const</code> so your variables respect block boundaries. <code>var</code> only respects function scope, which makes bugs much harder to track down in loops and conditionals.</p></div>
-</div>
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Key rule:</strong> Always prefer <code>let</code>/<code
+                  >const</code
+                >
+                so your variables respect block boundaries.
+                <code>var</code> only respects function scope, which makes bugs
+                much harder to track down in loops and conditionals.
+              </p>
+            </div>
+          </div>
 
-<!-- 3. HOISTED VS NON-HOISTED -->
-<div class="sec" id="c-hoist">
-  <div class="sec-label">Variables &amp; Scope</div>
-  <h2>Hoisted vs Non-Hoisted</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Hoisted</strong> = a student who raises their hand before the teacher even asks — JS moves the declaration to the top automatically. <strong>Non-hoisted</strong> = a student who waits to be called — you must declare it first or you get an error.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Hoisted</th><th>Non-Hoisted</th></tr></thead>
-    <tbody>
-      <tr><td>Moved to top?</td><td>✅ Declaration moved to top</td><td>❌ Stays where written</td></tr>
-      <tr><td>Use before declare?</td><td>✅ (but value is <code>undefined</code>)</td><td>❌ ReferenceError (TDZ)</td></tr>
-      <tr><td>Variables</td><td><code>var</code></td><td><code>let</code>, <code>const</code></td></tr>
-      <tr><td>Functions</td><td><code>function</code> declarations</td><td>Arrow functions, function expressions</td></tr>
-      <tr><td>Classes</td><td colspan="2">❌ Classes are NEVER hoisted</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// ✅ HOISTED — var declaration is moved to the top
+          <!-- 3. HOISTED VS NON-HOISTED -->
+          <div class="sec" id="c-hoist">
+            <div class="sec-label">Variables &amp; Scope</div>
+            <h2>Hoisted vs Non-Hoisted</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Hoisted</strong> = a student
+                who raises their hand before the teacher even asks — JS moves
+                the declaration to the top automatically.
+                <strong>Non-hoisted</strong> = a student who waits to be called
+                — you must declare it first or you get an error.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Hoisted</th>
+                    <th>Non-Hoisted</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Moved to top?</td>
+                    <td>✅ Declaration moved to top</td>
+                    <td>❌ Stays where written</td>
+                  </tr>
+                  <tr>
+                    <td>Use before declare?</td>
+                    <td>✅ (but value is <code>undefined</code>)</td>
+                    <td>❌ ReferenceError (TDZ)</td>
+                  </tr>
+                  <tr>
+                    <td>Variables</td>
+                    <td><code>var</code></td>
+                    <td><code>let</code>, <code>const</code></td>
+                  </tr>
+                  <tr>
+                    <td>Functions</td>
+                    <td><code>function</code> declarations</td>
+                    <td>Arrow functions, function expressions</td>
+                  </tr>
+                  <tr>
+                    <td>Classes</td>
+                    <td colspan="2">❌ Classes are NEVER hoisted</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// ✅ HOISTED — var declaration is moved to the top
 console.log(x);  // undefined (not an error!)
 var x = 10;
 console.log(x);  // 10
@@ -182,53 +351,134 @@ function greet() { console.log("Hello!"); }
 // ❌ Arrow functions are NOT hoisted
 // sayBye();  // ✓ ReferenceError
 const sayBye = () => console.log("Bye!");</code></pre>
-  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>TDZ (Temporal Dead Zone):</strong> The space between the start of a block and where <code>let</code>/<code>const</code> is declared. Accessing the variable in the TDZ causes a ReferenceError — this is by design to catch bugs early.</p></div>
-</div>
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>TDZ (Temporal Dead Zone):</strong> The space between the
+                start of a block and where <code>let</code>/<code>const</code>
+                is declared. Accessing the variable in the TDZ causes a
+                ReferenceError — this is by design to catch bugs early.
+              </p>
+            </div>
+          </div>
 
-<!-- 4. == VS === -->
-<div class="sec" id="c-eq">
-  <div class="sec-label">Variables &amp; Scope</div>
-  <h2>== vs === (Loose vs Strict)</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>==</strong> = "Do these look similar?" (a photo vs a painting of the same person — close enough). <strong>===</strong> = "Are these the EXACT same thing?" (same person, same fingerprint, same ID).</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>== (Loose)</th><th>=== (Strict)</th></tr></thead>
-    <tbody>
-      <tr><td>Type conversion</td><td>✅ Yes (coerces)</td><td>❌ No</td></tr>
-      <tr><td><code>5 == "5"</code></td><td>true</td><td>false</td></tr>
-      <tr><td><code>0 == false</code></td><td>true</td><td>false</td></tr>
-      <tr><td><code>null == undefined</code></td><td>true</td><td>false</td></tr>
-      <tr><td>Recommended</td><td>❌ Avoid</td><td>✅ Always use</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>console.log(5 == "5");    // true  (string → number coercion)
+          <!-- 4. == VS === -->
+          <div class="sec" id="c-eq">
+            <div class="sec-label">Variables &amp; Scope</div>
+            <h2>== vs === (Loose vs Strict)</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>==</strong> = "Do these look
+                similar?" (a photo vs a painting of the same person — close
+                enough). <strong>===</strong> = "Are these the EXACT same
+                thing?" (same person, same fingerprint, same ID).
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>== (Loose)</th>
+                    <th>=== (Strict)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Type conversion</td>
+                    <td>✅ Yes (coerces)</td>
+                    <td>❌ No</td>
+                  </tr>
+                  <tr>
+                    <td><code>5 == "5"</code></td>
+                    <td>true</td>
+                    <td>false</td>
+                  </tr>
+                  <tr>
+                    <td><code>0 == false</code></td>
+                    <td>true</td>
+                    <td>false</td>
+                  </tr>
+                  <tr>
+                    <td><code>null == undefined</code></td>
+                    <td>true</td>
+                    <td>false</td>
+                  </tr>
+                  <tr>
+                    <td>Recommended</td>
+                    <td>❌ Avoid</td>
+                    <td>✅ Always use</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>console.log(5 == "5");    // true  (string → number coercion)
 console.log(5 === "5");   // false (different types — no coercion)
 console.log(0 == false);  // true  (false → 0)
 console.log(0 === false); // false (number ≠ boolean)
 console.log("" == false); // true  (both → 0)
 console.log("" === false);// false</code></pre>
-</div>
+          </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
+          <!-- ═══════════════════════════════════════════════════════
      CATEGORY 2 — DATA TYPES
      ═══════════════════════════════════════════════════════ -->
 
-<!-- 5. PRIMITIVE VS NON-PRIMITIVE -->
-<div class="sec" id="c-prim">
-  <div class="sec-label">Data Types</div>
-  <h2>Primitive vs Non-Primitive</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Primitive</strong> = a single coin (one value, copied directly). <strong>Non-primitive</strong> = a wallet (holds many things, you share the wallet itself — not a copy).</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Primitive</th><th>Non-Primitive</th></tr></thead>
-    <tbody>
-      <tr><td>Stores</td><td>Single value</td><td>Collection / complex structure</td></tr>
-      <tr><td>Types</td><td>string, number, boolean, null, undefined, bigint, symbol</td><td>object, array, function, class, interface</td></tr>
-      <tr><td>Stored in</td><td>Stack (fast)</td><td>Heap (reference)</td></tr>
-      <tr><td>Comparison</td><td>By value</td><td>By reference</td></tr>
-      <tr><td>Mutable?</td><td>❌ Immutable</td><td>✅ Mutable</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Primitive — copied by VALUE
+          <!-- 5. PRIMITIVE VS NON-PRIMITIVE -->
+          <div class="sec" id="c-prim">
+            <div class="sec-label">Data Types</div>
+            <h2>Primitive vs Non-Primitive</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Primitive</strong> = a single
+                coin (one value, copied directly).
+                <strong>Non-primitive</strong> = a wallet (holds many things,
+                you share the wallet itself — not a copy).
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Primitive</th>
+                    <th>Non-Primitive</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Stores</td>
+                    <td>Single value</td>
+                    <td>Collection / complex structure</td>
+                  </tr>
+                  <tr>
+                    <td>Types</td>
+                    <td>
+                      string, number, boolean, null, undefined, bigint, symbol
+                    </td>
+                    <td>object, array, function, class, interface</td>
+                  </tr>
+                  <tr>
+                    <td>Stored in</td>
+                    <td>Stack (fast)</td>
+                    <td>Heap (reference)</td>
+                  </tr>
+                  <tr>
+                    <td>Comparison</td>
+                    <td>By value</td>
+                    <td>By reference</td>
+                  </tr>
+                  <tr>
+                    <td>Mutable?</td>
+                    <td>❌ Immutable</td>
+                    <td>✅ Mutable</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Primitive — copied by VALUE
 let a = 10;
 let b = a;
 b = 20;
@@ -239,24 +489,63 @@ let arr1 = [1, 2, 3];
 let arr2 = arr1;       // both point to the SAME array in memory
 arr2.push(4);
 console.log(arr1);     // [1, 2, 3, 4] (changed! same reference)</code></pre>
-</div>
+          </div>
 
-<!-- 6. IMMUTABLE VS MUTABLE -->
-<div class="sec" id="c-mut">
-  <div class="sec-label">Data Types</div>
-  <h2>Immutable vs Mutable</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Immutable</strong> = a printed book — once printed, you can't change the words. You have to print a new edition. <strong>Mutable</strong> = a whiteboard — erase and rewrite anytime.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Immutable</th><th>Mutable</th></tr></thead>
-    <tbody>
-      <tr><td>Can be changed?</td><td>❌ No — creates a new value</td><td>✅ Yes — modifies in place</td></tr>
-      <tr><td>Examples</td><td>string, number, boolean, tuple (TS)</td><td>array, object</td></tr>
-      <tr><td>Methods return</td><td>New value (original unchanged)</td><td>Modified original</td></tr>
-      <tr><td>Keywords</td><td><code>const</code>, <code>readonly</code>, <code>Readonly&lt;T&gt;</code></td><td>Default behavior for objects/arrays</td></tr>
-      <tr><td>Safety</td><td>✅ Predictable, no side effects</td><td>⚠ Can cause unexpected changes</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// IMMUTABLE — strings cannot be changed in place
+          <!-- 6. IMMUTABLE VS MUTABLE -->
+          <div class="sec" id="c-mut">
+            <div class="sec-label">Data Types</div>
+            <h2>Immutable vs Mutable</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Immutable</strong> = a printed
+                book — once printed, you can't change the words. You have to
+                print a new edition. <strong>Mutable</strong> = a whiteboard —
+                erase and rewrite anytime.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Immutable</th>
+                    <th>Mutable</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Can be changed?</td>
+                    <td>❌ No — creates a new value</td>
+                    <td>✅ Yes — modifies in place</td>
+                  </tr>
+                  <tr>
+                    <td>Examples</td>
+                    <td>string, number, boolean, tuple (TS)</td>
+                    <td>array, object</td>
+                  </tr>
+                  <tr>
+                    <td>Methods return</td>
+                    <td>New value (original unchanged)</td>
+                    <td>Modified original</td>
+                  </tr>
+                  <tr>
+                    <td>Keywords</td>
+                    <td>
+                      <code>const</code>, <code>readonly</code>,
+                      <code>Readonly&lt;T&gt;</code>
+                    </td>
+                    <td>Default behavior for objects/arrays</td>
+                  </tr>
+                  <tr>
+                    <td>Safety</td>
+                    <td>✅ Predictable, no side effects</td>
+                    <td>⚠ Can cause unexpected changes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// IMMUTABLE — strings cannot be changed in place
 let name = "hello";
 let upper = name.toUpperCase();  // returns NEW string
 console.log(name);   // "hello"  (original unchanged!)
@@ -277,24 +566,62 @@ const config: Readonly<{ port: number; host: string }> = {
 // Immutable array
 const colors: readonly string[] = ["red", "green"];
 // colors.push("blue");  // ❌ ERROR — readonly array!</code></pre>
-</div>
+          </div>
 
-<!-- 7. NULL VS UNDEFINED -->
-<div class="sec" id="c-null">
-  <div class="sec-label">Data Types</div>
-  <h2>null vs undefined</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>undefined</strong> = an empty parking spot where nobody has parked yet. <strong>null</strong> = a parking spot with a "Reserved — intentionally kept empty" sign.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>undefined</th><th>null</th></tr></thead>
-    <tbody>
-      <tr><td>Meaning</td><td>Not yet assigned</td><td>Intentionally empty</td></tr>
-      <tr><td>Set by</td><td>JavaScript automatically</td><td>Developer manually</td></tr>
-      <tr><td>typeof</td><td><code>"undefined"</code></td><td><code>"object"</code> (JS bug!)</td></tr>
-      <tr><td><code>==</code> each other?</td><td colspan="2">✅ <code>null == undefined</code> is true</td></tr>
-      <tr><td><code>===</code> each other?</td><td colspan="2">❌ <code>null === undefined</code> is false</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>let x;                        // undefined (never assigned)
+          <!-- 7. NULL VS UNDEFINED -->
+          <div class="sec" id="c-null">
+            <div class="sec-label">Data Types</div>
+            <h2>null vs undefined</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>undefined</strong> = an empty
+                parking spot where nobody has parked yet.
+                <strong>null</strong> = a parking spot with a "Reserved —
+                intentionally kept empty" sign.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>undefined</th>
+                    <th>null</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Meaning</td>
+                    <td>Not yet assigned</td>
+                    <td>Intentionally empty</td>
+                  </tr>
+                  <tr>
+                    <td>Set by</td>
+                    <td>JavaScript automatically</td>
+                    <td>Developer manually</td>
+                  </tr>
+                  <tr>
+                    <td>typeof</td>
+                    <td><code>"undefined"</code></td>
+                    <td><code>"object"</code> (JS bug!)</td>
+                  </tr>
+                  <tr>
+                    <td><code>==</code> each other?</td>
+                    <td colspan="2">
+                      ✅ <code>null == undefined</code> is true
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>===</code> each other?</td>
+                    <td colspan="2">
+                      ❌ <code>null === undefined</code> is false
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>let x;                        // undefined (never assigned)
 let y: string | null = null;  // null (intentionally empty)
 
 console.log(x == y);   // true  (loose equality — both "empty")
@@ -303,24 +630,60 @@ console.log(x === y);  // false (strict — different types)
 // Nullish coalescing ?? — handles both null and undefined
 const name = null ?? "Guest";    // "Guest"
 const age  = undefined ?? 18;    // 18</code></pre>
-</div>
+          </div>
 
-<!-- 8. ANY VS UNKNOWN -->
-<div class="sec" id="c-any">
-  <div class="sec-label">Data Types</div>
-  <h2>any vs unknown</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>any</strong> = a wild card — does whatever it wants, no checks. <strong>unknown</strong> = a new employee who must show their ID and pass verification before accessing anything.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>any</th><th>unknown</th></tr></thead>
-    <tbody>
-      <tr><td>Type safety</td><td>❌ None — escapes TS checking</td><td>✅ Full — must narrow first</td></tr>
-      <tr><td>Access properties</td><td>✅ No checks needed</td><td>❌ Must narrow first</td></tr>
-      <tr><td>Assign to other types</td><td>✅ Freely</td><td>❌ Must check first</td></tr>
-      <tr><td>Use case</td><td>Quick prototyping / migration</td><td>Production code, API responses</td></tr>
-      <tr><td>Introduced</td><td>Always existed</td><td>TypeScript 3.0</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// any — no safety (dangerous!)
+          <!-- 8. ANY VS UNKNOWN -->
+          <div class="sec" id="c-any">
+            <div class="sec-label">Data Types</div>
+            <h2>any vs unknown</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>any</strong> = a wild card —
+                does whatever it wants, no checks. <strong>unknown</strong> = a
+                new employee who must show their ID and pass verification before
+                accessing anything.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>any</th>
+                    <th>unknown</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Type safety</td>
+                    <td>❌ None — escapes TS checking</td>
+                    <td>✅ Full — must narrow first</td>
+                  </tr>
+                  <tr>
+                    <td>Access properties</td>
+                    <td>✅ No checks needed</td>
+                    <td>❌ Must narrow first</td>
+                  </tr>
+                  <tr>
+                    <td>Assign to other types</td>
+                    <td>✅ Freely</td>
+                    <td>❌ Must check first</td>
+                  </tr>
+                  <tr>
+                    <td>Use case</td>
+                    <td>Quick prototyping / migration</td>
+                    <td>Production code, API responses</td>
+                  </tr>
+                  <tr>
+                    <td>Introduced</td>
+                    <td>Always existed</td>
+                    <td>TypeScript 3.0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// any — no safety (dangerous!)
 let a: any = "hello";
 a.toFixed(2);  // No TS error but CRASHES at runtime!
 
@@ -330,24 +693,61 @@ let b: unknown = "hello";
 if (typeof b === "string") {
   b.toUpperCase();   // ✅ Safe after narrowing
 }</code></pre>
-</div>
+          </div>
 
-<!-- 9. NEVER VS VOID (NEW) -->
-<div class="sec" id="c-never">
-  <div class="sec-label">Data Types</div>
-  <h2>never vs void</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>void</strong> = a function that finishes its job but doesn't hand you anything back (like a postman who delivers but gives you no receipt). <strong>never</strong> = a function that never comes back at all — it crashes, loops forever, or throws before it can return.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>void</th><th>never</th></tr></thead>
-    <tbody>
-      <tr><td>Meaning</td><td>Returns, but no useful value</td><td>Never returns at all</td></tr>
-      <tr><td>Value allowed</td><td><code>undefined</code> only</td><td>Nothing — no value possible</td></tr>
-      <tr><td>Used for</td><td>Functions with no return value</td><td>Throw-only or infinite-loop functions</td></tr>
-      <tr><td>Assignable to</td><td>Only <code>void</code> / <code>undefined</code></td><td>Every type (bottom type)</td></tr>
-      <tr><td>Exhaustiveness check</td><td>❌</td><td>✅ Great for switch guards</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// void — function finishes, returns nothing
+          <!-- 9. NEVER VS VOID (NEW) -->
+          <div class="sec" id="c-never">
+            <div class="sec-label">Data Types</div>
+            <h2>never vs void</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>void</strong> = a function
+                that finishes its job but doesn't hand you anything back (like a
+                postman who delivers but gives you no receipt).
+                <strong>never</strong> = a function that never comes back at all
+                — it crashes, loops forever, or throws before it can return.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>void</th>
+                    <th>never</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Meaning</td>
+                    <td>Returns, but no useful value</td>
+                    <td>Never returns at all</td>
+                  </tr>
+                  <tr>
+                    <td>Value allowed</td>
+                    <td><code>undefined</code> only</td>
+                    <td>Nothing — no value possible</td>
+                  </tr>
+                  <tr>
+                    <td>Used for</td>
+                    <td>Functions with no return value</td>
+                    <td>Throw-only or infinite-loop functions</td>
+                  </tr>
+                  <tr>
+                    <td>Assignable to</td>
+                    <td>Only <code>void</code> / <code>undefined</code></td>
+                    <td>Every type (bottom type)</td>
+                  </tr>
+                  <tr>
+                    <td>Exhaustiveness check</td>
+                    <td>❌</td>
+                    <td>✅ Great for switch guards</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// void — function finishes, returns nothing
 function logMessage(msg: string): void {
   console.log(msg);
   // no return needed
@@ -373,31 +773,74 @@ function area(s: Shape): number {
       return check;
   }
 }</code></pre>
-</div>
+          </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
+          <!-- ═══════════════════════════════════════════════════════
      CATEGORY 3 — TYPE SYSTEM
      ═══════════════════════════════════════════════════════ -->
 
-<!-- 10. TYPE VS INTERFACE -->
-<div class="sec" id="c-ti">
-  <div class="sec-label">Type System</div>
-  <h2>type vs interface</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>interface</strong> = a formal contract (can be extended and merged). <strong>type</strong> = a nickname/alias (can alias anything — unions, primitives, intersections).</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>type</th><th>interface</th></tr></thead>
-    <tbody>
-      <tr><td>Object shapes</td><td>✅</td><td>✅</td></tr>
-      <tr><td>Primitives</td><td>✅</td><td>❌</td></tr>
-      <tr><td>Unions <code>A | B</code></td><td>✅</td><td>❌</td></tr>
-      <tr><td>Intersections <code>A &amp; B</code></td><td>✅</td><td>❌</td></tr>
-      <tr><td><code>extends</code></td><td>❌ (use &amp;)</td><td>✅</td></tr>
-      <tr><td><code>implements</code></td><td>✅</td><td>✅</td></tr>
-      <tr><td>Declaration merging</td><td>❌</td><td>✅ (great for library types)</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// type — flexible (unions, primitives, computed)
+          <!-- 10. TYPE VS INTERFACE -->
+          <div class="sec" id="c-ti">
+            <div class="sec-label">Type System</div>
+            <h2>type vs interface</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>interface</strong> = a formal
+                contract (can be extended and merged). <strong>type</strong> = a
+                nickname/alias (can alias anything — unions, primitives,
+                intersections).
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>type</th>
+                    <th>interface</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Object shapes</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                  </tr>
+                  <tr>
+                    <td>Primitives</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Unions <code>A | B</code></td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Intersections <code>A &amp; B</code></td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td><code>extends</code></td>
+                    <td>❌ (use &amp;)</td>
+                    <td>✅</td>
+                  </tr>
+                  <tr>
+                    <td><code>implements</code></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                  </tr>
+                  <tr>
+                    <td>Declaration merging</td>
+                    <td>❌</td>
+                    <td>✅ (great for library types)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// type — flexible (unions, primitives, computed)
 type ID = string | number;
 type Point = { x: number; y: number };
 type ReadonlyPoint = Readonly&lt;Point&gt;;
@@ -408,23 +851,56 @@ interface Dog extends Animal { breed: string; }
 
 // Declaration merging (only interface can do this)
 interface Window { myCustomProp: string; }  // adds to existing Window type!</code></pre>
-</div>
+          </div>
 
-<!-- 11. UNION VS TUPLE -->
-<div class="sec" id="c-ut">
-  <div class="sec-label">Type System</div>
-  <h2>Union vs Tuple</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Union</strong> = "this gift can be a book OR a toy" (one slot, many possible types). <strong>Tuple</strong> = "this box must contain exactly: 1 book in slot 0, 1 pen in slot 1, 1 eraser in slot 2" — fixed positions, fixed types.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Union</th><th>Tuple</th></tr></thead>
-    <tbody>
-      <tr><td>What it defines</td><td>ONE value with multiple possible types</td><td>FIXED array with specific type per position</td></tr>
-      <tr><td>Syntax</td><td><code>string | number</code></td><td><code>[string, number]</code></td></tr>
-      <tr><td>Length</td><td>N/A (single value)</td><td>Fixed</td></tr>
-      <tr><td>Access</td><td>Narrow first, then use</td><td>By index — type known immediately</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Union — ONE slot, multiple possible types
+          <!-- 11. UNION VS TUPLE -->
+          <div class="sec" id="c-ut">
+            <div class="sec-label">Type System</div>
+            <h2>Union vs Tuple</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Union</strong> = "this gift
+                can be a book OR a toy" (one slot, many possible types).
+                <strong>Tuple</strong> = "this box must contain exactly: 1 book
+                in slot 0, 1 pen in slot 1, 1 eraser in slot 2" — fixed
+                positions, fixed types.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Union</th>
+                    <th>Tuple</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>What it defines</td>
+                    <td>ONE value with multiple possible types</td>
+                    <td>FIXED array with specific type per position</td>
+                  </tr>
+                  <tr>
+                    <td>Syntax</td>
+                    <td><code>string | number</code></td>
+                    <td><code>[string, number]</code></td>
+                  </tr>
+                  <tr>
+                    <td>Length</td>
+                    <td>N/A (single value)</td>
+                    <td>Fixed</td>
+                  </tr>
+                  <tr>
+                    <td>Access</td>
+                    <td>Narrow first, then use</td>
+                    <td>By index — type known immediately</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Union — ONE slot, multiple possible types
 let id: string | number = "ABC";
 id = 123;  // ✅ also valid
 
@@ -436,24 +912,60 @@ console.log(record[1]); // 25     (TypeScript knows it's a number)
 // Common use: React useState returns a tuple!
 // const [count, setCount] = useState&lt;number&gt;(0);
 // count is number, setCount is Dispatch&lt;SetStateAction&lt;number&gt;&gt;</code></pre>
-</div>
+          </div>
 
-<!-- 12. ENUM VS UNION LITERAL -->
-<div class="sec" id="c-eu">
-  <div class="sec-label">Type System</div>
-  <h2>Enum vs Union Literal</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Enum</strong> = a physical menu card on the table (exists at runtime, you can pick it up). <strong>Union literal</strong> = the waiter reads options aloud (only exists at order time — no card remains).</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Enum</th><th>Union Literal</th></tr></thead>
-    <tbody>
-      <tr><td>Runtime value</td><td>✅ Exists in compiled JS</td><td>❌ Erased after compile</td></tr>
-      <tr><td>Reverse mapping</td><td>✅ (numeric enums)</td><td>❌</td></tr>
-      <tr><td>Bundle size</td><td>Larger (generates JS object)</td><td>Zero (compile-time only)</td></tr>
-      <tr><td>Iterate values</td><td>✅</td><td>❌</td></tr>
-      <tr><td>Preferred today</td><td>Special cases only</td><td>✅ Modern TS preferred</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Enum — generates a real JS object at runtime
+          <!-- 12. ENUM VS UNION LITERAL -->
+          <div class="sec" id="c-eu">
+            <div class="sec-label">Type System</div>
+            <h2>Enum vs Union Literal</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Enum</strong> = a physical
+                menu card on the table (exists at runtime, you can pick it up).
+                <strong>Union literal</strong> = the waiter reads options aloud
+                (only exists at order time — no card remains).
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Enum</th>
+                    <th>Union Literal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Runtime value</td>
+                    <td>✅ Exists in compiled JS</td>
+                    <td>❌ Erased after compile</td>
+                  </tr>
+                  <tr>
+                    <td>Reverse mapping</td>
+                    <td>✅ (numeric enums)</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Bundle size</td>
+                    <td>Larger (generates JS object)</td>
+                    <td>Zero (compile-time only)</td>
+                  </tr>
+                  <tr>
+                    <td>Iterate values</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Preferred today</td>
+                    <td>Special cases only</td>
+                    <td>✅ Modern TS preferred</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Enum — generates a real JS object at runtime
 enum Direction { Up, Down, Left, Right }
 console.log(Direction.Up);      // 0
 console.log(Direction[0]);      // "Up" (reverse mapping!)
@@ -466,22 +978,50 @@ let d2: Direction2 = "up";
 // const enum — inline, even smaller bundle (no reverse mapping)
 const enum Status { Active = "active", Inactive = "inactive" }
 let s: Status = Status.Active;  // compiles to just "active"</code></pre>
-</div>
+          </div>
 
-<!-- 13. LITERAL VS GENERIC -->
-<div class="sec" id="c-lg">
-  <div class="sec-label">Type System</div>
-  <h2>Literal Types vs Generics</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Literal</strong> = a vending machine with 3 fixed buttons (Coke, Pepsi, Water — nothing else). <strong>Generic</strong> = a universal dispenser — you load ANY drink and it adapts.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Literal Types</th><th>Generics &lt;T&gt;</th></tr></thead>
-    <tbody>
-      <tr><td>Values</td><td>Fixed, known at design time</td><td>Flexible, decided at call time</td></tr>
-      <tr><td>Flexibility</td><td>Restricted to exact values</td><td>Works with ANY type</td></tr>
-      <tr><td>Use case</td><td>Config options, status codes, modes</td><td>Reusable utilities, containers, hooks</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Literal — ONLY these exact string values allowed
+          <!-- 13. LITERAL VS GENERIC -->
+          <div class="sec" id="c-lg">
+            <div class="sec-label">Type System</div>
+            <h2>Literal Types vs Generics</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Literal</strong> = a vending
+                machine with 3 fixed buttons (Coke, Pepsi, Water — nothing
+                else). <strong>Generic</strong> = a universal dispenser — you
+                load ANY drink and it adapts.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Literal Types</th>
+                    <th>Generics &lt;T&gt;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Values</td>
+                    <td>Fixed, known at design time</td>
+                    <td>Flexible, decided at call time</td>
+                  </tr>
+                  <tr>
+                    <td>Flexibility</td>
+                    <td>Restricted to exact values</td>
+                    <td>Works with ANY type</td>
+                  </tr>
+                  <tr>
+                    <td>Use case</td>
+                    <td>Config options, status codes, modes</td>
+                    <td>Reusable utilities, containers, hooks</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Literal — ONLY these exact string values allowed
 type Theme = "light" | "dark" | "system";
 let t: Theme = "light";   // ✅
 // let t2: Theme = "blue"; // ❌ not in the literal set
@@ -493,24 +1033,64 @@ wrap(42);        // inferred as number[]
 wrap({ id: 1 }); // inferred as { id: number }[]
 
 // Real-world: Array&lt;T&gt;, Promise&lt;T&gt;, Ref&lt;T&gt; are all generics!</code></pre>
-</div>
+          </div>
 
-<!-- 14. TYPE ASSERTION VS TYPE NARROWING (NEW) -->
-<div class="sec" id="c-narrow">
-  <div class="sec-label">Type System</div>
-  <h2>Type Assertion vs Type Narrowing</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Type assertion</strong> = telling the bouncer "Trust me, I'm 18" without showing ID — you override the check, which can be wrong. <strong>Type narrowing</strong> = actually showing your ID — the bouncer (TypeScript) verifies it themselves.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Type Assertion (as)</th><th>Type Narrowing</th></tr></thead>
-    <tbody>
-      <tr><td>How it works</td><td>You tell TS what the type is</td><td>TS figures it out from runtime checks</td></tr>
-      <tr><td>Safety</td><td>⚠ Unsafe — you could be wrong</td><td>✅ Safe — proven at runtime</td></tr>
-      <tr><td>Syntax</td><td><code>value as Type</code></td><td><code>typeof</code>, <code>instanceof</code>, <code>in</code>, truthiness</td></tr>
-      <tr><td>Runtime check?</td><td>❌ Compile-time only</td><td>✅ Actual runtime check</td></tr>
-      <tr><td>Preferred</td><td>Only when you're certain</td><td>✅ Always prefer this</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// TYPE ASSERTION — you override TS (risky!)
+          <!-- 14. TYPE ASSERTION VS TYPE NARROWING (NEW) -->
+          <div class="sec" id="c-narrow">
+            <div class="sec-label">Type System</div>
+            <h2>Type Assertion vs Type Narrowing</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Type assertion</strong> =
+                telling the bouncer "Trust me, I'm 18" without showing ID — you
+                override the check, which can be wrong.
+                <strong>Type narrowing</strong> = actually showing your ID — the
+                bouncer (TypeScript) verifies it themselves.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Type Assertion (as)</th>
+                    <th>Type Narrowing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>How it works</td>
+                    <td>You tell TS what the type is</td>
+                    <td>TS figures it out from runtime checks</td>
+                  </tr>
+                  <tr>
+                    <td>Safety</td>
+                    <td>⚠ Unsafe — you could be wrong</td>
+                    <td>✅ Safe — proven at runtime</td>
+                  </tr>
+                  <tr>
+                    <td>Syntax</td>
+                    <td><code>value as Type</code></td>
+                    <td>
+                      <code>typeof</code>, <code>instanceof</code>,
+                      <code>in</code>, truthiness
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Runtime check?</td>
+                    <td>❌ Compile-time only</td>
+                    <td>✅ Actual runtime check</td>
+                  </tr>
+                  <tr>
+                    <td>Preferred</td>
+                    <td>Only when you're certain</td>
+                    <td>✅ Always prefer this</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// TYPE ASSERTION — you override TS (risky!)
 const input = document.getElementById("name") as HTMLInputElement;
 input.value = "Alice";  // TS trusts you — but if it's not an input, runtime crash!
 
@@ -543,29 +1123,65 @@ function makeSound(animal: Cat | Dog) {
     animal.bark();  // ✅ narrowed to Dog
   }
 }</code></pre>
-</div>
+          </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
+          <!-- ═══════════════════════════════════════════════════════
      CATEGORY 4 — FUNCTIONS
      ═══════════════════════════════════════════════════════ -->
 
-<!-- 15. FUNCTION VS ARROW -->
-<div class="sec" id="c-fn">
-  <div class="sec-label">Functions</div>
-  <h2>function vs Arrow Function</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Regular function</strong> = a formal letter writer who uses their own "I" (has its own <code>this</code>). <strong>Arrow function</strong> = a sticky note writer who borrows the "I" from whoever owns the desk (inherits parent's <code>this</code>).</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>function</th><th>Arrow =&gt;</th></tr></thead>
-    <tbody>
-      <tr><td>Syntax</td><td><code>function name() {}</code></td><td><code>const name = () =&gt; {}</code></td></tr>
-      <tr><td><code>this</code> binding</td><td>Own <code>this</code> (dynamic)</td><td>Inherits parent's <code>this</code> (lexical)</td></tr>
-      <tr><td>Hoisted</td><td>✅ Yes</td><td>❌ No</td></tr>
-      <tr><td>As class method</td><td>✅ Preferred</td><td>⚠ Careful with <code>this</code></td></tr>
-      <tr><td>Callbacks</td><td>Works fine</td><td>✅ Preferred (shorter, correct <code>this</code>)</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Regular — hoisted, own 'this'
+          <!-- 15. FUNCTION VS ARROW -->
+          <div class="sec" id="c-fn">
+            <div class="sec-label">Functions</div>
+            <h2>function vs Arrow Function</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Regular function</strong> = a
+                formal letter writer who uses their own "I" (has its own
+                <code>this</code>). <strong>Arrow function</strong> = a sticky
+                note writer who borrows the "I" from whoever owns the desk
+                (inherits parent's <code>this</code>).
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>function</th>
+                    <th>Arrow =&gt;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Syntax</td>
+                    <td><code>function name() {}</code></td>
+                    <td><code>const name = () =&gt; {}</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>this</code> binding</td>
+                    <td>Own <code>this</code> (dynamic)</td>
+                    <td>Inherits parent's <code>this</code> (lexical)</td>
+                  </tr>
+                  <tr>
+                    <td>Hoisted</td>
+                    <td>✅ Yes</td>
+                    <td>❌ No</td>
+                  </tr>
+                  <tr>
+                    <td>As class method</td>
+                    <td>✅ Preferred</td>
+                    <td>⚠ Careful with <code>this</code></td>
+                  </tr>
+                  <tr>
+                    <td>Callbacks</td>
+                    <td>Works fine</td>
+                    <td>✅ Preferred (shorter, correct <code>this</code>)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Regular — hoisted, own 'this'
 function greet(name: string) { return `Hi ${name}`; }
 
 // Arrow — shorter, inherits parent 'this'
@@ -582,24 +1198,60 @@ class Timer {
     // setInterval(function() { this.seconds++; }, 1000);
   }
 }</code></pre>
-</div>
+          </div>
 
-<!-- 16. FOR...IN VS FOR...OF -->
-<div class="sec" id="c-forin">
-  <div class="sec-label">Functions</div>
-  <h2>for...in vs for...of</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>for...in</strong> = reading the INDEX labels on library shelves (shelf 0, shelf 1...). <strong>for...of</strong> = reading the actual BOOKS sitting on those shelves.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>for...in</th><th>for...of</th></tr></thead>
-    <tbody>
-      <tr><td>Iterates over</td><td>Keys / property names / indexes</td><td>Values</td></tr>
-      <tr><td>Arrays</td><td>Returns index as string ("0","1"...)</td><td>Returns actual value ✅</td></tr>
-      <tr><td>Objects</td><td>✅ Returns keys</td><td>❌ Objects not iterable by default</td></tr>
-      <tr><td>Strings</td><td>Returns index</td><td>✅ Returns each character</td></tr>
-      <tr><td>Recommended for arrays</td><td>❌ Use Object.keys() instead</td><td>✅ Preferred</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>let fruits = ["apple", "banana", "cherry"];
+          <!-- 16. FOR...IN VS FOR...OF -->
+          <div class="sec" id="c-forin">
+            <div class="sec-label">Functions</div>
+            <h2>for...in vs for...of</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>for...in</strong> = reading
+                the INDEX labels on library shelves (shelf 0, shelf 1...).
+                <strong>for...of</strong> = reading the actual BOOKS sitting on
+                those shelves.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>for...in</th>
+                    <th>for...of</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Iterates over</td>
+                    <td>Keys / property names / indexes</td>
+                    <td>Values</td>
+                  </tr>
+                  <tr>
+                    <td>Arrays</td>
+                    <td>Returns index as string ("0","1"...)</td>
+                    <td>Returns actual value ✅</td>
+                  </tr>
+                  <tr>
+                    <td>Objects</td>
+                    <td>✅ Returns keys</td>
+                    <td>❌ Objects not iterable by default</td>
+                  </tr>
+                  <tr>
+                    <td>Strings</td>
+                    <td>Returns index</td>
+                    <td>✅ Returns each character</td>
+                  </tr>
+                  <tr>
+                    <td>Recommended for arrays</td>
+                    <td>❌ Use Object.keys() instead</td>
+                    <td>✅ Preferred</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>let fruits = ["apple", "banana", "cherry"];
 
 for (let i in fruits) console.log(i);        // "0", "1", "2"  (string indexes!)
 for (let f of fruits) console.log(f);        // "apple", "banana", "cherry" (values!)
@@ -610,24 +1262,61 @@ for (let key in obj) console.log(key);       // "a", "b", "c"
 
 // Strings work with for...of
 for (let ch of "hi") console.log(ch);        // "h", "i"</code></pre>
-</div>
+          </div>
 
-<!-- 17. OPTIONAL VS DEFAULT PARAMS (NEW) -->
-<div class="sec" id="c-optional">
-  <div class="sec-label">Functions</div>
-  <h2>Optional vs Default Parameters</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Optional parameter</strong> = a form field marked "optional" — you may leave it blank (value is <code>undefined</code> if skipped). <strong>Default parameter</strong> = a pre-filled form field — it has a sensible value already, but you can override it.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Optional (param?)</th><th>Default (param = val)</th></tr></thead>
-    <tbody>
-      <tr><td>Syntax</td><td><code>name?: string</code></td><td><code>name: string = "Guest"</code></td></tr>
-      <tr><td>Value if skipped</td><td><code>undefined</code></td><td>The default value</td></tr>
-      <tr><td>Must handle undefined?</td><td>✅ Always narrow it</td><td>❌ Already has a value</td></tr>
-      <tr><td>Position</td><td>Must come after required params</td><td>Must come after required params</td></tr>
-      <tr><td>Use case</td><td>Truly optional config</td><td>Sensible fallbacks</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Optional — might be undefined inside the function
+          <!-- 17. OPTIONAL VS DEFAULT PARAMS (NEW) -->
+          <div class="sec" id="c-optional">
+            <div class="sec-label">Functions</div>
+            <h2>Optional vs Default Parameters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Optional parameter</strong> =
+                a form field marked "optional" — you may leave it blank (value
+                is <code>undefined</code> if skipped).
+                <strong>Default parameter</strong> = a pre-filled form field —
+                it has a sensible value already, but you can override it.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Optional (param?)</th>
+                    <th>Default (param = val)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Syntax</td>
+                    <td><code>name?: string</code></td>
+                    <td><code>name: string = "Guest"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Value if skipped</td>
+                    <td><code>undefined</code></td>
+                    <td>The default value</td>
+                  </tr>
+                  <tr>
+                    <td>Must handle undefined?</td>
+                    <td>✅ Always narrow it</td>
+                    <td>❌ Already has a value</td>
+                  </tr>
+                  <tr>
+                    <td>Position</td>
+                    <td>Must come after required params</td>
+                    <td>Must come after required params</td>
+                  </tr>
+                  <tr>
+                    <td>Use case</td>
+                    <td>Truly optional config</td>
+                    <td>Sensible fallbacks</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Optional — might be undefined inside the function
 function greet(name?: string): string {
   // Must handle the undefined case!
   return `Hello, ${name ?? "stranger"}!`;
@@ -653,30 +1342,69 @@ function createUser(
 createUser(1);                  // 1, "viewer", undefined
 createUser(2, "admin");         // 2, "admin",  undefined
 createUser(3, "admin", "Alex"); // 3, "admin",  "Alex"</code></pre>
-</div>
+          </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
+          <!-- ═══════════════════════════════════════════════════════
      CATEGORY 5 — OOP
      ═══════════════════════════════════════════════════════ -->
 
-<!-- 18. CLASS VS INTERFACE -->
-<div class="sec" id="c-ci">
-  <div class="sec-label">OOP</div>
-  <h2>Class vs Interface</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Class</strong> = a factory that builds cars — it has the blueprint AND the machines to produce them. <strong>Interface</strong> = just the blueprint on paper — no machines, someone else builds it.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Class</th><th>Interface</th></tr></thead>
-    <tbody>
-      <tr><td>Implementation</td><td>✅ Full (fields + methods)</td><td>❌ Abstract shape only</td></tr>
-      <tr><td>Constructor</td><td>✅</td><td>❌</td></tr>
-      <tr><td><code>new</code> keyword</td><td>✅</td><td>❌</td></tr>
-      <tr><td>Access modifiers</td><td>✅ public / private / protected</td><td>❌</td></tr>
-      <tr><td>Multiple inheritance</td><td>❌ Single extends only</td><td>✅ Multiple interfaces</td></tr>
-      <tr><td>Runtime existence</td><td>✅ Exists in compiled JS</td><td>❌ Erased at compile time</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Interface — structure / contract only
+          <!-- 18. CLASS VS INTERFACE -->
+          <div class="sec" id="c-ci">
+            <div class="sec-label">OOP</div>
+            <h2>Class vs Interface</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Class</strong> = a factory
+                that builds cars — it has the blueprint AND the machines to
+                produce them. <strong>Interface</strong> = just the blueprint on
+                paper — no machines, someone else builds it.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Class</th>
+                    <th>Interface</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Implementation</td>
+                    <td>✅ Full (fields + methods)</td>
+                    <td>❌ Abstract shape only</td>
+                  </tr>
+                  <tr>
+                    <td>Constructor</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td><code>new</code> keyword</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Access modifiers</td>
+                    <td>✅ public / private / protected</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Multiple inheritance</td>
+                    <td>❌ Single extends only</td>
+                    <td>✅ Multiple interfaces</td>
+                  </tr>
+                  <tr>
+                    <td>Runtime existence</td>
+                    <td>✅ Exists in compiled JS</td>
+                    <td>❌ Erased at compile time</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Interface — structure / contract only
 interface Shape { area(): number; color: string; }
 
 // Class — full implementation with state and logic
@@ -688,23 +1416,56 @@ class Circle implements Shape {
 
 const c = new Circle(5);  // ✅ new works on class
 // new Shape();            // ❌ can't instantiate an interface</code></pre>
-</div>
+          </div>
 
-<!-- 19. EXTENDS VS IMPLEMENTS -->
-<div class="sec" id="c-ei">
-  <div class="sec-label">OOP</div>
-  <h2>extends vs implements</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>extends</strong> = inheriting your parent's house — you GET the furniture already inside. <strong>implements</strong> = signing a contract that says you'll furnish your own house — you PROMISE to provide everything yourself.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>extends</th><th>implements</th></tr></thead>
-    <tbody>
-      <tr><td>Used with</td><td>Class → Class, Interface → Interface</td><td>Class → Interface(s)</td></tr>
-      <tr><td>Properties</td><td>Auto-inherited</td><td>Must re-declare</td></tr>
-      <tr><td>Methods</td><td>Auto-inherited (can override)</td><td>Must implement every one</td></tr>
-      <tr><td>Multiple</td><td>❌ Single class only</td><td>✅ Multiple interfaces OK</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// extends — inherits everything automatically
+          <!-- 19. EXTENDS VS IMPLEMENTS -->
+          <div class="sec" id="c-ei">
+            <div class="sec-label">OOP</div>
+            <h2>extends vs implements</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>extends</strong> = inheriting
+                your parent's house — you GET the furniture already inside.
+                <strong>implements</strong> = signing a contract that says
+                you'll furnish your own house — you PROMISE to provide
+                everything yourself.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>extends</th>
+                    <th>implements</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Used with</td>
+                    <td>Class → Class, Interface → Interface</td>
+                    <td>Class → Interface(s)</td>
+                  </tr>
+                  <tr>
+                    <td>Properties</td>
+                    <td>Auto-inherited</td>
+                    <td>Must re-declare</td>
+                  </tr>
+                  <tr>
+                    <td>Methods</td>
+                    <td>Auto-inherited (can override)</td>
+                    <td>Must implement every one</td>
+                  </tr>
+                  <tr>
+                    <td>Multiple</td>
+                    <td>❌ Single class only</td>
+                    <td>✅ Multiple interfaces OK</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// extends — inherits everything automatically
 class Animal { move() { console.log("moving"); } }
 class Dog extends Animal { }  // Dog already HAS move()!
 new Dog().move();  // "moving" ✅
@@ -717,24 +1478,67 @@ class Duck implements Flyable, Swimmable {  // ✅ multiple OK!
   fly()  { console.log("flying"); }   // MUST implement
   swim() { console.log("swimming"); } // MUST implement
 }</code></pre>
-</div>
+          </div>
 
-<!-- 20. PUBLIC VS PRIVATE VS PROTECTED (NEW) -->
-<div class="sec" id="c-access">
-  <div class="sec-label">OOP</div>
-  <h2>public vs private vs protected</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>public</strong> = the front porch — anyone can visit. <strong>private</strong> = your bedroom — only you (the class itself) can enter. <strong>protected</strong> = the family room — only you and your family members (subclasses) can enter.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>public</th><th>private</th><th>protected</th></tr></thead>
-    <tbody>
-      <tr><td>Accessible from</td><td>Anywhere</td><td>Own class only</td><td>Own class + subclasses</td></tr>
-      <tr><td>Default?</td><td>✅ Yes</td><td>❌</td><td>❌</td></tr>
-      <tr><td>Subclass can access?</td><td>✅</td><td>❌</td><td>✅</td></tr>
-      <tr><td>Outside instance?</td><td>✅</td><td>❌ TS compile error</td><td>❌ TS compile error</td></tr>
-      <tr><td>JS runtime privacy</td><td>N/A</td><td>TS only (use # for true JS private)</td><td>TS only</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>class BankAccount {
+          <!-- 20. PUBLIC VS PRIVATE VS PROTECTED (NEW) -->
+          <div class="sec" id="c-access">
+            <div class="sec-label">OOP</div>
+            <h2>public vs private vs protected</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>public</strong> = the front
+                porch — anyone can visit. <strong>private</strong> = your
+                bedroom — only you (the class itself) can enter.
+                <strong>protected</strong> = the family room — only you and your
+                family members (subclasses) can enter.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>public</th>
+                    <th>private</th>
+                    <th>protected</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Accessible from</td>
+                    <td>Anywhere</td>
+                    <td>Own class only</td>
+                    <td>Own class + subclasses</td>
+                  </tr>
+                  <tr>
+                    <td>Default?</td>
+                    <td>✅ Yes</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Subclass can access?</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                  </tr>
+                  <tr>
+                    <td>Outside instance?</td>
+                    <td>✅</td>
+                    <td>❌ TS compile error</td>
+                    <td>❌ TS compile error</td>
+                  </tr>
+                  <tr>
+                    <td>JS runtime privacy</td>
+                    <td>N/A</td>
+                    <td>TS only (use # for true JS private)</td>
+                    <td>TS only</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>class BankAccount {
   public  owner: string;      // anyone can read/write
   private balance: number;    // ONLY this class can touch it
   protected accountNo: string; // this class + subclasses
@@ -771,29 +1575,68 @@ class Secret {
   #pin: number = 1234;   // real JS private — not just TS!
   getPin() { return this.#pin; }
 }</code></pre>
-</div>
+          </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
+          <!-- ═══════════════════════════════════════════════════════
      CATEGORY 6 — ASYNC
      ═══════════════════════════════════════════════════════ -->
 
-<!-- 21. SYNC VS ASYNC -->
-<div class="sec" id="c-sa">
-  <div class="sec-label">Async</div>
-  <h2>Synchronous vs Asynchronous</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Sync</strong> = a bank queue — each person waits for the one in front before getting served. <strong>Async</strong> = a restaurant — you order food, chat while the kitchen cooks, and food arrives when ready without you waiting frozen at the table.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Synchronous</th><th>Asynchronous</th></tr></thead>
-    <tbody>
-      <tr><td>Execution</td><td>Line by line, in order</td><td>Non-blocking, runs in background</td></tr>
-      <tr><td>Blocking</td><td>✅ Waits for each operation</td><td>❌ Continues executing other code</td></tr>
-      <tr><td>Speed for I/O</td><td>Slow (CPU waits idle)</td><td>Fast (CPU does other work)</td></tr>
-      <tr><td>Keywords</td><td>Normal functions</td><td><code>async</code>, <code>await</code>, <code>Promise</code></td></tr>
-      <tr><td>Use cases</td><td>Math, string ops, array transforms</td><td>API calls, file I/O, timers, DB queries</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// Sync — blocks until done, order guaranteed
+          <!-- 21. SYNC VS ASYNC -->
+          <div class="sec" id="c-sa">
+            <div class="sec-label">Async</div>
+            <h2>Synchronous vs Asynchronous</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Sync</strong> = a bank queue —
+                each person waits for the one in front before getting served.
+                <strong>Async</strong> = a restaurant — you order food, chat
+                while the kitchen cooks, and food arrives when ready without you
+                waiting frozen at the table.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Synchronous</th>
+                    <th>Asynchronous</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Execution</td>
+                    <td>Line by line, in order</td>
+                    <td>Non-blocking, runs in background</td>
+                  </tr>
+                  <tr>
+                    <td>Blocking</td>
+                    <td>✅ Waits for each operation</td>
+                    <td>❌ Continues executing other code</td>
+                  </tr>
+                  <tr>
+                    <td>Speed for I/O</td>
+                    <td>Slow (CPU waits idle)</td>
+                    <td>Fast (CPU does other work)</td>
+                  </tr>
+                  <tr>
+                    <td>Keywords</td>
+                    <td>Normal functions</td>
+                    <td>
+                      <code>async</code>, <code>await</code>,
+                      <code>Promise</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Use cases</td>
+                    <td>Math, string ops, array transforms</td>
+                    <td>API calls, file I/O, timers, DB queries</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// Sync — blocks until done, order guaranteed
 console.log("1");
 console.log("2");
 console.log("3");  // Output: 1, 2, 3
@@ -802,25 +1645,66 @@ console.log("3");  // Output: 1, 2, 3
 console.log("1");
 setTimeout(() => console.log("2"), 1000);
 console.log("3");  // Output: 1, 3, 2  (2 comes last!)</code></pre>
-</div>
+          </div>
 
-<!-- 22. PROMISE VS ASYNC/AWAIT (NEW) -->
-<div class="sec" id="c-promise">
-  <div class="sec-label">Async</div>
-  <h2>Promise vs async / await</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Analogy:</strong> <strong>Promise + .then()</strong> = a callback chain — you hand the baton to the next runner at each step. <strong>async/await</strong> = you write the relay race as if all runners are YOU, one after the other — same async underneath, but reads like sync code.</p></div>
-  <div class="bordered"><table>
-    <thead><tr><th>Feature</th><th>Promise (.then/.catch)</th><th>async / await</th></tr></thead>
-    <tbody>
-      <tr><td>Syntax style</td><td>Chain of callbacks</td><td>Reads like synchronous code</td></tr>
-      <tr><td>Error handling</td><td><code>.catch()</code></td><td><code>try / catch</code></td></tr>
-      <tr><td>Readability</td><td>⚠ Chaining can get messy</td><td>✅ Clean and linear</td></tr>
-      <tr><td>Parallel execution</td><td><code>Promise.all([])</code></td><td><code>await Promise.all([])</code></td></tr>
-      <tr><td>Under the hood</td><td>Promises</td><td>Promises (syntactic sugar!)</td></tr>
-      <tr><td>Debugging</td><td>Harder (stack traces fragmented)</td><td>✅ Easier (natural call stack)</td></tr>
-    </tbody>
-  </table></div>
-  <pre><code>// ── PROMISE (.then / .catch) ──────────────────────────────
+          <!-- 22. PROMISE VS ASYNC/AWAIT (NEW) -->
+          <div class="sec" id="c-promise">
+            <div class="sec-label">Async</div>
+            <h2>Promise vs async / await</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Analogy:</strong> <strong>Promise + .then()</strong> = a
+                callback chain — you hand the baton to the next runner at each
+                step. <strong>async/await</strong> = you write the relay race as
+                if all runners are YOU, one after the other — same async
+                underneath, but reads like sync code.
+              </p>
+            </div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Promise (.then/.catch)</th>
+                    <th>async / await</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Syntax style</td>
+                    <td>Chain of callbacks</td>
+                    <td>Reads like synchronous code</td>
+                  </tr>
+                  <tr>
+                    <td>Error handling</td>
+                    <td><code>.catch()</code></td>
+                    <td><code>try / catch</code></td>
+                  </tr>
+                  <tr>
+                    <td>Readability</td>
+                    <td>⚠ Chaining can get messy</td>
+                    <td>✅ Clean and linear</td>
+                  </tr>
+                  <tr>
+                    <td>Parallel execution</td>
+                    <td><code>Promise.all([])</code></td>
+                    <td><code>await Promise.all([])</code></td>
+                  </tr>
+                  <tr>
+                    <td>Under the hood</td>
+                    <td>Promises</td>
+                    <td>Promises (syntactic sugar!)</td>
+                  </tr>
+                  <tr>
+                    <td>Debugging</td>
+                    <td>Harder (stack traces fragmented)</td>
+                    <td>✅ Easier (natural call stack)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <pre><code>// ── PROMISE (.then / .catch) ──────────────────────────────
 function fetchUser(id: number): Promise&lt;string&gt; {
   return fetch(`/api/users/${id}`)
     .then(res => res.json())
@@ -849,12 +1733,42 @@ async function fetchAll() {
   // ✅ Parallel (fast) — both fire simultaneously
   const [c, d] = await Promise.all([fetchUser2(1), fetchUser2(2)]);
 }</code></pre>
-  <div class="note note-warn"><span class="note-i">⚠</span><p><strong>Common mistake:</strong> Calling <code>await</code> in a loop one by one is sequential — use <code>Promise.all()</code> to run them in parallel and get a significant speed boost.</p></div>
-</div>
-
-</div></div></div>
-<script>
-(function(){const n=document.getElementById('nav-cmp');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
-</script>
-</body>
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Common mistake:</strong> Calling <code>await</code> in a
+                loop one by one is sequential — use
+                <code>Promise.all()</code> to run them in parallel and get a
+                significant speed boost.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const n = document.getElementById("nav-cmp");
+        if (!n) {
+          return;
+        }
+        const l = n.querySelectorAll("a");
+        const o = new IntersectionObserver(
+          (e) => {
+            e.forEach((e) => {
+              if (e.isIntersecting) {
+                l.forEach((l) => l.classList.remove("on"));
+                const a = n.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document.querySelectorAll(".content [id]").forEach((s) => o.observe(s));
+      })();
+    </script>
+  </body>
 </html>

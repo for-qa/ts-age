@@ -1,76 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JSON — TypeScript Learning Path</title>
-<meta name="description" content="Master JSON in TypeScript — parse, stringify, type safety, localStorage, API responses, and common pitfalls like lost Date objects and circular references.">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>JSON — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Master JSON in TypeScript — parse, stringify, type safety, localStorage, API responses, and common pitfalls like lost Date objects and circular references."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">JSON</div>
+    </div>
 
-<div id="topbar">
-  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
-  <a class="tb-back" href="../index.html">← Back to Index</a>
-  <div class="tb-topic-title">JSON</div>
-</div>
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-json">
+          <div class="nav-logo">
+            <div class="v">{}</div>
+            <h2>JSON</h2>
+          </div>
+          <div class="nav-group">Basics</div>
+          <a href="#json-what">What is JSON?</a>
+          <a href="#json-syntax">Syntax Rules</a>
+          <a href="#json-vs">JSON vs JS Object</a>
+          <div class="nav-group">Core Methods</div>
+          <a href="#json-stringify">JSON.stringify()</a>
+          <a href="#json-parse">JSON.parse()</a>
+          <a href="#json-pretty">Pretty Printing</a>
+          <div class="nav-group">TypeScript</div>
+          <a href="#json-typing">Typing Parsed JSON</a>
+          <a href="#json-guards">Type Guards</a>
+          <div class="nav-group">Real-World</div>
+          <a href="#json-storage">localStorage</a>
+          <a href="#json-api">API Responses</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#json-mistakes">⚠ Common Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#json-compare">Comparison Table</a>
+          <a href="#json-cheatsheet">Cheatsheet</a>
+        </nav>
 
-<div class="page-wrap">
-<div class="wrap">
+        <div class="content">
+          <div class="hero" id="json-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">JSON</span>
+              <span class="hero-tag">API</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>JSON — Parse &amp; Stringify</h1>
+            <p>
+              JSON is the universal data language of the web. Every API, every
+              config file, every localStorage call uses it. Master it or be
+              confused forever.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Core Methods</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">6</div>
+                <div class="stat-l">Syntax Rules</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">5</div>
+                <div class="stat-l">Common Mistakes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">10+</div>
+                <div class="stat-l">Code Examples</div>
+              </div>
+            </div>
+          </div>
 
-<nav id="nav-json">
-  <div class="nav-logo"><div class="v">{}</div><h2>JSON</h2></div>
-  <div class="nav-group">Basics</div>
-  <a href="#json-what">What is JSON?</a>
-  <a href="#json-syntax">Syntax Rules</a>
-  <a href="#json-vs">JSON vs JS Object</a>
-  <div class="nav-group">Core Methods</div>
-  <a href="#json-stringify">JSON.stringify()</a>
-  <a href="#json-parse">JSON.parse()</a>
-  <a href="#json-pretty">Pretty Printing</a>
-  <div class="nav-group">TypeScript</div>
-  <a href="#json-typing">Typing Parsed JSON</a>
-  <a href="#json-guards">Type Guards</a>
-  <div class="nav-group">Real-World</div>
-  <a href="#json-storage">localStorage</a>
-  <a href="#json-api">API Responses</a>
-  <div class="nav-group">Watch Out!</div>
-  <a href="#json-mistakes">⚠ Common Mistakes</a>
-  <div class="nav-group">Reference</div>
-  <a href="#json-compare">Comparison Table</a>
-  <a href="#json-cheatsheet">Cheatsheet</a>
-</nav>
+          <!-- WHAT IS JSON -->
+          <div class="sec" id="json-what">
+            <div class="sec-label">Basics</div>
+            <h2>What is JSON?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> JSON is like
+                <strong>English at an international airport</strong>. Every
+                country (programming language / system) speaks a different
+                language, but they all understand English (JSON). It's the
+                <strong>universal way to share data</strong> between servers,
+                browsers, databases, and APIs.
+              </p>
+            </div>
 
-<div class="content">
-
-<div class="hero" id="json-top">
-  <div class="hero-tags">
-    <span class="hero-tag">TypeScript</span>
-    <span class="hero-tag">JSON</span>
-    <span class="hero-tag">API</span>
-    <span class="hero-tag">Session Notes</span>
-  </div>
-  <h1>JSON — Parse &amp; Stringify</h1>
-  <p>JSON is the universal data language of the web. Every API, every config file, every localStorage call uses it. Master it or be confused forever.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">2</div><div class="stat-l">Core Methods</div></div>
-    <div class="stat"><div class="stat-n">6</div><div class="stat-l">Syntax Rules</div></div>
-    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Common Mistakes</div></div>
-    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Code Examples</div></div>
-  </div>
-</div>
-
-<!-- WHAT IS JSON -->
-<div class="sec" id="json-what">
-  <div class="sec-label">Basics</div>
-  <h2>What is JSON?</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> JSON is like <strong>English at an international airport</strong>. Every country (programming language / system) speaks a different language, but they all understand English (JSON). It's the <strong>universal way to share data</strong> between servers, browsers, databases, and APIs.</p></div>
-
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">!</div><div class="card-title">JSON = JavaScript Object Notation</div><span class="card-badge">Core Concept</span></div>
-    <div class="card-body">
-      <pre><code>// JSON is a TEXT FORMAT for storing and transporting data
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">JSON = JavaScript Object Notation</div>
+                <span class="card-badge">Core Concept</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// JSON is a TEXT FORMAT for storing and transporting data
 // It LOOKS like a JavaScript object, but it's actually a STRING
 
 // This is a JavaScript object:
@@ -84,19 +126,25 @@ const json = '{"name": "Alice", "age": 25}';
 // 2. Config files (package.json, tsconfig.json)
 // 3. Storing data in localStorage
 // 4. Sending data between systems</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- SYNTAX RULES -->
-<div class="sec" id="json-syntax">
-  <div class="sec-label">Basics</div>
-  <h2>JSON Syntax Rules</h2>
+          <!-- SYNTAX RULES -->
+          <div class="sec" id="json-syntax">
+            <div class="sec-label">Basics</div>
+            <h2>JSON Syntax Rules</h2>
 
-  <div class="card ph5-card">
-    <div class="card-head"><div class="card-num">!</div><div class="card-title">Strict rules — even one violation = crash</div><span class="card-badge">Rules</span></div>
-    <div class="card-body">
-      <pre><code>// ✅ VALID JSON
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">
+                  Strict rules — even one violation = crash
+                </div>
+                <span class="card-badge">Rules</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// ✅ VALID JSON
 {
   "name": "Alice",
   "age": 25,
@@ -128,45 +176,104 @@ const json = '{"name": "Alice", "age": 25}';
 
 // 6. Single value without object/array wrapper
 // "hello"  ← technically valid JSON, but unusual</code></pre>
-    </div>
-  </div>
+              </div>
+            </div>
 
-  <div class="pipe">
-    <div class="pipe-step"><div class="pipe-ph ph1-c">✅</div><div class="pipe-name">Allowed Types</div><div class="pipe-pts">string, number, boolean, null, object, array</div></div>
-    <div class="pipe-step"><div class="pipe-ph ph5-c">❌</div><div class="pipe-name">NOT Allowed</div><div class="pipe-pts">undefined, functions, Date, RegExp, Symbol, comments</div></div>
-  </div>
-</div>
+            <div class="pipe">
+              <div class="pipe-step">
+                <div class="pipe-ph ph1-c">✅</div>
+                <div class="pipe-name">Allowed Types</div>
+                <div class="pipe-pts">
+                  string, number, boolean, null, object, array
+                </div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph5-c">❌</div>
+                <div class="pipe-name">NOT Allowed</div>
+                <div class="pipe-pts">
+                  undefined, functions, Date, RegExp, Symbol, comments
+                </div>
+              </div>
+            </div>
+          </div>
 
-<!-- JSON VS JS OBJECT -->
-<div class="sec" id="json-vs">
-  <div class="sec-label">Basics</div>
-  <h2>JSON vs JavaScript Object</h2>
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Feature</th><th>JS Object</th><th>JSON</th></tr></thead>
-    <tbody>
-      <tr><td>Type</td><td><span class="p p-blue">Object (in memory)</span></td><td><span class="p p-green">String (text)</span></td></tr>
-      <tr><td>Keys</td><td>Unquoted or quoted</td><td>MUST be double-quoted</td></tr>
-      <tr><td>Values</td><td>Any JS value</td><td>Only string, number, bool, null, obj, array</td></tr>
-      <tr><td>Trailing comma</td><td>Allowed</td><td>NOT allowed</td></tr>
-      <tr><td>Comments</td><td>Allowed</td><td>NOT allowed</td></tr>
-      <tr><td>Functions</td><td>Can have methods</td><td>Cannot</td></tr>
-      <tr><td>undefined</td><td>Valid value</td><td>NOT valid (gets dropped)</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+          <!-- JSON VS JS OBJECT -->
+          <div class="sec" id="json-vs">
+            <div class="sec-label">Basics</div>
+            <h2>JSON vs JavaScript Object</h2>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>JS Object</th>
+                    <th>JSON</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Type</td>
+                    <td><span class="p p-blue">Object (in memory)</span></td>
+                    <td><span class="p p-green">String (text)</span></td>
+                  </tr>
+                  <tr>
+                    <td>Keys</td>
+                    <td>Unquoted or quoted</td>
+                    <td>MUST be double-quoted</td>
+                  </tr>
+                  <tr>
+                    <td>Values</td>
+                    <td>Any JS value</td>
+                    <td>Only string, number, bool, null, obj, array</td>
+                  </tr>
+                  <tr>
+                    <td>Trailing comma</td>
+                    <td>Allowed</td>
+                    <td>NOT allowed</td>
+                  </tr>
+                  <tr>
+                    <td>Comments</td>
+                    <td>Allowed</td>
+                    <td>NOT allowed</td>
+                  </tr>
+                  <tr>
+                    <td>Functions</td>
+                    <td>Can have methods</td>
+                    <td>Cannot</td>
+                  </tr>
+                  <tr>
+                    <td>undefined</td>
+                    <td>Valid value</td>
+                    <td>NOT valid (gets dropped)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- JSON.STRINGIFY -->
-<div class="sec" id="json-stringify">
-  <div class="sec-label">Core Methods</div>
-  <h2>JSON.stringify() — Object → String</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Stringify is like <strong>packing your clothes into a suitcase</strong> (flat text) so you can travel (send data over the network). At the destination, you <strong>unpack</strong> (parse) them back into usable form.</p></div>
+          <!-- JSON.STRINGIFY -->
+          <div class="sec" id="json-stringify">
+            <div class="sec-label">Core Methods</div>
+            <h2>JSON.stringify() — Object → String</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life:</strong> Stringify is like
+                <strong>packing your clothes into a suitcase</strong> (flat
+                text) so you can travel (send data over the network). At the
+                destination, you <strong>unpack</strong> (parse) them back into
+                usable form.
+              </p>
+            </div>
 
-  <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">Convert objects to JSON strings</div><span class="card-badge">stringify</span></div>
-    <div class="card-body">
-      <pre><code>const user = { name: "Alice", age: 25, isAdmin: true };
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Convert objects to JSON strings</div>
+                <span class="card-badge">stringify</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const user = { name: "Alice", age: 25, isAdmin: true };
 
 // Convert to JSON string
 const json = JSON.stringify(user);
@@ -188,19 +295,25 @@ const data = {
 };
 console.log(JSON.stringify(data));
 // '{"users":[{"name":"Alice","role":"admin"},{"name":"Bob","role":"user"}]}'</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- JSON.PARSE -->
-<div class="sec" id="json-parse">
-  <div class="sec-label">Core Methods</div>
-  <h2>JSON.parse() — String → Object</h2>
+          <!-- JSON.PARSE -->
+          <div class="sec" id="json-parse">
+            <div class="sec-label">Core Methods</div>
+            <h2>JSON.parse() — String → Object</h2>
 
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">Convert JSON strings back to objects</div><span class="card-badge">parse</span></div>
-    <div class="card-body">
-      <pre><code>const json = '{"name":"Alice","age":25}';
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">
+                  Convert JSON strings back to objects
+                </div>
+                <span class="card-badge">parse</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const json = '{"name":"Alice","age":25}';
 
 // Convert back to an object
 const user = JSON.parse(json);
@@ -213,19 +326,23 @@ console.log(user.age);   // 25
 // Arrays:
 const arr = JSON.parse('[1, 2, 3]');
 console.log(arr);  // [1, 2, 3]</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- PRETTY PRINTING -->
-<div class="sec" id="json-pretty">
-  <div class="sec-label">Core Methods</div>
-  <h2>Pretty Printing</h2>
+          <!-- PRETTY PRINTING -->
+          <div class="sec" id="json-pretty">
+            <div class="sec-label">Core Methods</div>
+            <h2>Pretty Printing</h2>
 
-  <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">3</div><div class="card-title">Make JSON human-readable</div><span class="card-badge">Formatting</span></div>
-    <div class="card-body">
-      <pre><code>const user = { name: "Alice", age: 25, scores: [90, 85] };
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">3</div>
+                <div class="card-title">Make JSON human-readable</div>
+                <span class="card-badge">Formatting</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const user = { name: "Alice", age: 25, scores: [90, 85] };
 
 // Default — compact, one line
 console.log(JSON.stringify(user));
@@ -253,19 +370,25 @@ console.log(JSON.stringify(user, null, "\t"));
 //   value    — what to convert
 //   replacer — filter function (null = include everything)
 //   spaces   — indentation (number or string)</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- TYPING PARSED JSON -->
-<div class="sec" id="json-typing">
-  <div class="sec-label">TypeScript</div>
-  <h2>Typing Parsed JSON — TypeScript-Specific!</h2>
+          <!-- TYPING PARSED JSON -->
+          <div class="sec" id="json-typing">
+            <div class="sec-label">TypeScript</div>
+            <h2>Typing Parsed JSON — TypeScript-Specific!</h2>
 
-  <div class="card ph4-card">
-    <div class="card-head"><div class="card-num">4</div><div class="card-title">JSON.parse() returns 'any' — fix it!</div><span class="card-badge">Type Safety</span></div>
-    <div class="card-body">
-      <pre><code>interface User {
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">4</div>
+                <div class="card-title">
+                  JSON.parse() returns 'any' — fix it!
+                </div>
+                <span class="card-badge">Type Safety</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface User {
   name: string;
   age: number;
   isAdmin: boolean;
@@ -288,19 +411,23 @@ const user3: User = JSON.parse(json);
 // ⚠ WARNING: Both methods TRUST you!
 // If the JSON doesn't match the type, TypeScript won't catch it
 // at runtime — it only checks at compile time</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- TYPE GUARDS -->
-<div class="sec" id="json-guards">
-  <div class="sec-label">TypeScript</div>
-  <h2>Runtime Validation with Type Guards</h2>
+          <!-- TYPE GUARDS -->
+          <div class="sec" id="json-guards">
+            <div class="sec-label">TypeScript</div>
+            <h2>Runtime Validation with Type Guards</h2>
 
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">5</div><div class="card-title">Don't just trust — VERIFY!</div><span class="card-badge">Safe Parsing</span></div>
-    <div class="card-body">
-      <pre><code>interface User {
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">5</div>
+                <div class="card-title">Don't just trust — VERIFY!</div>
+                <span class="card-badge">Safe Parsing</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface User {
   name: string;
   age: number;
 }
@@ -336,19 +463,25 @@ const user = parseUser('{"name":"Alice","age":25}');
 if (user) {
   console.log(user.name);  // ✅ safe!
 }</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- LOCALSTORAGE -->
-<div class="sec" id="json-storage">
-  <div class="sec-label">Real-World</div>
-  <h2>localStorage — Store Data in Browser</h2>
+          <!-- LOCALSTORAGE -->
+          <div class="sec" id="json-storage">
+            <div class="sec-label">Real-World</div>
+            <h2>localStorage — Store Data in Browser</h2>
 
-  <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">6</div><div class="card-title">localStorage only stores STRINGS — need JSON!</div><span class="card-badge">Storage</span></div>
-    <div class="card-body">
-      <pre><code>interface Settings {
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">6</div>
+                <div class="card-title">
+                  localStorage only stores STRINGS — need JSON!
+                </div>
+                <span class="card-badge">Storage</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface Settings {
   theme: string;
   fontSize: number;
 }
@@ -373,19 +506,23 @@ localStorage.removeItem("settings");
 
 // CLEAR ALL
 localStorage.clear();</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- API RESPONSES -->
-<div class="sec" id="json-api">
-  <div class="sec-label">Real-World</div>
-  <h2>API Responses — fetch + JSON</h2>
+          <!-- API RESPONSES -->
+          <div class="sec" id="json-api">
+            <div class="sec-label">Real-World</div>
+            <h2>API Responses — fetch + JSON</h2>
 
-  <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">7</div><div class="card-title">APIs send JSON — you parse it</div><span class="card-badge">APIs</span></div>
-    <div class="card-body">
-      <pre><code>interface Post {
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">7</div>
+                <div class="card-title">APIs send JSON — you parse it</div>
+                <span class="card-badge">APIs</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface Post {
   id: number;
   title: string;
   body: string;
@@ -411,19 +548,26 @@ async function createPost(title: string, body: string) {
   const result = await response.json();
   return result;
 }</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- COMMON MISTAKES -->
-<div class="sec" id="json-mistakes">
-  <div class="sec-label">Watch Out!</div>
-  <h2>⚠ Common Beginner Mistakes</h2>
+          <!-- COMMON MISTAKES -->
+          <div class="sec" id="json-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Beginner Mistakes</h2>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 1: JSON.parse() on invalid JSON — crashes!</strong>
-    <p><code>JSON.parse()</code> throws a <code>SyntaxError</code> if the string isn't valid JSON. Always wrap in try/catch!</p>
-    <pre><code>// ❌ CRASH — invalid JSON
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 1: JSON.parse() on invalid JSON — crashes!</strong
+                >
+                <p>
+                  <code>JSON.parse()</code> throws a <code>SyntaxError</code> if
+                  the string isn't valid JSON. Always wrap in try/catch!
+                </p>
+                <pre><code>// ❌ CRASH — invalid JSON
 const bad = "{ name: 'Alice' }";  // unquoted key + single quotes
 JSON.parse(bad);  // SyntaxError: Unexpected token n
 
@@ -433,12 +577,22 @@ try {
 } catch (err) {
   console.error("Invalid JSON:", err);
 }</code></pre>
-    <p><strong>Rule:</strong> NEVER call <code>JSON.parse()</code> without <code>try/catch</code> if the data comes from user input, APIs, or localStorage.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> NEVER call
+                  <code>JSON.parse()</code> without <code>try/catch</code> if
+                  the data comes from user input, APIs, or localStorage.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 2: JSON.parse() returns 'any' — lost type safety</strong>
-    <pre><code>// ❌ DANGEROUS — no type checking
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: JSON.parse() returns 'any' — lost type
+                  safety</strong
+                >
+                <pre><code>// ❌ DANGEROUS — no type checking
 const data = JSON.parse('{"name":"Alice"}');
 console.log(data.xyz);  // undefined, no TS error!
 
@@ -446,12 +600,21 @@ console.log(data.xyz);  // undefined, no TS error!
 interface User { name: string; }
 const user = JSON.parse('{"name":"Alice"}') as User;
 // user.xyz;  // TS error! ✅</code></pre>
-    <p><strong>Rule:</strong> Always use <code>as Type</code> or a type guard after <code>JSON.parse()</code>.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> Always use <code>as Type</code> or a
+                  type guard after <code>JSON.parse()</code>.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 3: undefined, functions, and Dates get LOST in JSON</strong>
-    <pre><code>const obj = {
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 3: undefined, functions, and Dates get LOST in
+                  JSON</strong
+                >
+                <pre><code>const obj = {
   name: "Alice",
   age: undefined,        // ← will be REMOVED
   greet: () => "hi",     // ← will be REMOVED
@@ -466,24 +629,38 @@ console.log(json);
 const parsed = JSON.parse(json);
 console.log(typeof parsed.createdAt);  // "string" — NOT a Date object!
 // parsed.createdAt.getFullYear()  // TypeError!</code></pre>
-    <p><strong>Rule:</strong> <code>undefined</code> and functions disappear. <code>Date</code> becomes a string. Convert dates back manually after parsing.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> <code>undefined</code> and functions
+                  disappear. <code>Date</code> becomes a string. Convert dates
+                  back manually after parsing.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 4: Single quotes in JSON — INVALID!</strong>
-    <pre><code>// ❌ INVALID — single quotes are NOT valid JSON
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong>Mistake 4: Single quotes in JSON — INVALID!</strong>
+                <pre><code>// ❌ INVALID — single quotes are NOT valid JSON
 const bad = "{'name': 'Alice'}";
 JSON.parse(bad);  // SyntaxError!
 
 // ✅ VALID — must use double quotes
 const good = '{"name": "Alice"}';
 JSON.parse(good);  // ✅ works</code></pre>
-    <p><strong>Rule:</strong> JSON requires <strong>double quotes</strong> for both keys and string values. No exceptions.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> JSON requires
+                  <strong>double quotes</strong> for both keys and string
+                  values. No exceptions.
+                </p>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 5: Circular references crash stringify</strong>
-    <pre><code>// ❌ CRASH — object references itself
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong>Mistake 5: Circular references crash stringify</strong>
+                <pre><code>// ❌ CRASH — object references itself
 const obj: any = { name: "Alice" };
 obj.self = obj;  // circular reference!
 
@@ -495,59 +672,120 @@ JSON.stringify(obj, (key, value) => {
   if (key === "self") return undefined;  // skip circular
   return value;
 });</code></pre>
-    <p><strong>Rule:</strong> Objects that reference themselves cannot be stringified. Remove circular refs or use a custom replacer.</p>
-  </div></div>
+                <p>
+                  <strong>Rule:</strong> Objects that reference themselves
+                  cannot be stringified. Remove circular refs or use a custom
+                  replacer.
+                </p>
+              </div>
+            </div>
 
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
-    <tbody>
-      <tr><td>Parse invalid JSON</td><td>SyntaxError crash</td><td>Wrap in <code>try/catch</code></td></tr>
-      <tr><td>Parse returns <code>any</code></td><td>No type safety</td><td><code>as Type</code> or type guard</td></tr>
-      <tr><td>undefined/functions/Date</td><td>Lost or converted</td><td>Handle manually after parse</td></tr>
-      <tr><td>Single quotes</td><td>Invalid JSON</td><td>Always use double quotes</td></tr>
-      <tr><td>Circular references</td><td>TypeError crash</td><td>Custom replacer function</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What happens</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Parse invalid JSON</td>
+                    <td>SyntaxError crash</td>
+                    <td>Wrap in <code>try/catch</code></td>
+                  </tr>
+                  <tr>
+                    <td>Parse returns <code>any</code></td>
+                    <td>No type safety</td>
+                    <td><code>as Type</code> or type guard</td>
+                  </tr>
+                  <tr>
+                    <td>undefined/functions/Date</td>
+                    <td>Lost or converted</td>
+                    <td>Handle manually after parse</td>
+                  </tr>
+                  <tr>
+                    <td>Single quotes</td>
+                    <td>Invalid JSON</td>
+                    <td>Always use double quotes</td>
+                  </tr>
+                  <tr>
+                    <td>Circular references</td>
+                    <td>TypeError crash</td>
+                    <td>Custom replacer function</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- COMPARISON TABLE -->
-<div class="sec" id="json-compare">
-  <div class="sec-label">Reference</div>
-  <h2>stringify vs parse — Side by Side</h2>
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Feature</th><th><code>JSON.stringify()</code></th><th><code>JSON.parse()</code></th></tr></thead>
-    <tbody>
-      <tr><td>Direction</td><td><span class="p p-blue">Object → String</span></td><td><span class="p p-green">String → Object</span></td></tr>
-      <tr><td>Use when</td><td>Sending data, saving</td><td>Receiving data, loading</td></tr>
-      <tr><td>Returns</td><td><code>string</code></td><td><code>any</code></td></tr>
-      <tr><td>Can crash?</td><td>Yes (circular refs)</td><td>Yes (invalid JSON)</td></tr>
-      <tr><td>Common use</td><td>localStorage.setItem, fetch body</td><td>localStorage.getItem, response.json()</td></tr>
-      <tr><td>Pretty print</td><td><code>stringify(obj, null, 2)</code></td><td>N/A</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+          <!-- COMPARISON TABLE -->
+          <div class="sec" id="json-compare">
+            <div class="sec-label">Reference</div>
+            <h2>stringify vs parse — Side by Side</h2>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th><code>JSON.stringify()</code></th>
+                    <th><code>JSON.parse()</code></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Direction</td>
+                    <td><span class="p p-blue">Object → String</span></td>
+                    <td><span class="p p-green">String → Object</span></td>
+                  </tr>
+                  <tr>
+                    <td>Use when</td>
+                    <td>Sending data, saving</td>
+                    <td>Receiving data, loading</td>
+                  </tr>
+                  <tr>
+                    <td>Returns</td>
+                    <td><code>string</code></td>
+                    <td><code>any</code></td>
+                  </tr>
+                  <tr>
+                    <td>Can crash?</td>
+                    <td>Yes (circular refs)</td>
+                    <td>Yes (invalid JSON)</td>
+                  </tr>
+                  <tr>
+                    <td>Common use</td>
+                    <td>localStorage.setItem, fetch body</td>
+                    <td>localStorage.getItem, response.json()</td>
+                  </tr>
+                  <tr>
+                    <td>Pretty print</td>
+                    <td><code>stringify(obj, null, 2)</code></td>
+                    <td>N/A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- CHEATSHEET -->
-<div class="sec" id="json-cheatsheet">
-  <div class="sec-label">Reference</div>
-  <h2>Quick Reference Cheatsheet</h2>
+          <!-- CHEATSHEET -->
+          <div class="sec" id="json-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
 
-  <h3>Convert</h3>
-  <pre><code>JSON.stringify(obj)              // Object → JSON string
+            <h3>Convert</h3>
+            <pre><code>JSON.stringify(obj)              // Object → JSON string
 JSON.parse(str)                  // JSON string → Object
 JSON.stringify(obj, null, 2)     // Pretty print</code></pre>
 
-  <h3>Type Safety</h3>
-  <pre><code>const data = JSON.parse(json) as MyType;   // assertion
+            <h3>Type Safety</h3>
+            <pre><code>const data = JSON.parse(json) as MyType;   // assertion
 const data: MyType = JSON.parse(json);     // typed variable
 // For runtime safety, use a type guard!</code></pre>
 
-  <h3>localStorage Pattern</h3>
-  <pre><code>// Save
+            <h3>localStorage Pattern</h3>
+            <pre><code>// Save
 localStorage.setItem("key", JSON.stringify(data));
 
 // Load
@@ -556,8 +794,8 @@ if (raw) {
   const data = JSON.parse(raw) as MyType;
 }</code></pre>
 
-  <h3>API Pattern</h3>
-  <pre><code>// Receive
+            <h3>API Pattern</h3>
+            <pre><code>// Receive
 const data = await response.json();
 
 // Send
@@ -567,35 +805,50 @@ fetch(url, {
   body: JSON.stringify(payload),
 });</code></pre>
 
-  <h3>Safe Parse</h3>
-  <pre><code>try {
+            <h3>Safe Parse</h3>
+            <pre><code>try {
   const data = JSON.parse(untrusted) as MyType;
 } catch {
   console.error("Invalid JSON");
 }</code></pre>
 
-  <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; JSON &nbsp;·&nbsp; Next: Map/Filter/Reduce</p>
-</div>
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; JSON &nbsp;·&nbsp; Next:
+              Map/Filter/Reduce
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</div></div></div>
-
-<script>
-(function() {
-  const nav = document.getElementById('nav-json');
-  if (!nav) { return; }
-  const links = nav.querySelectorAll('a');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => l.classList.remove('on'));
-        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
-        if (a) { a.classList.add('on'); };
-      }
-    });
-  }, { rootMargin: '-15% 0px -75% 0px' });
-  document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
-})();
-</script>
-</body>
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-json");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+  </body>
 </html>

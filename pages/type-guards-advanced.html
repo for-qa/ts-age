@@ -1,57 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Advanced Type Guards — TypeScript Learning Path</title>
-<meta name="description" content="Master advanced type guards — custom is predicates, discriminated unions, exhaustive never checks, assertion functions, and real-world API patterns.">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-<div id="topbar">
-  <div class="tb-brand"><div class="tb-brand-icon">TS</div><div><div class="tb-brand-name">TypeScript Learning Path</div><div class="tb-brand-sub">Session Notes</div></div></div>
-  <a class="tb-back" href="../index.html">← Back to Index</a>
-  <div class="tb-topic-title">Advanced Type Guards</div>
-</div>
-<div class="page-wrap"><div class="wrap">
-<nav id="nav-tg">
-  <div class="nav-logo"><div class="v">🛡</div><h2>Guards</h2></div>
-  <div class="nav-group">Recap</div>
-  <a href="#tg-recap">Built-in Guards</a>
-  <div class="nav-group">Advanced</div>
-  <a href="#tg-custom">Custom is Guards</a>
-  <a href="#tg-disc">Discriminated Unions</a>
-  <a href="#tg-exhaust">Exhaustive never</a>
-  <a href="#tg-assert">Assertion Functions</a>
-  <div class="nav-group">Real-World</div>
-  <a href="#tg-api">API Response Pattern</a>
-  <div class="nav-group">Watch Out!</div>
-  <a href="#tg-mistakes">⚠ Mistakes</a>
-  <div class="nav-group">Reference</div>
-  <a href="#tg-compare">Comparison Table</a>
-  <a href="#tg-cheatsheet">Cheatsheet</a>
-</nav>
-<div class="content">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Advanced Type Guards — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Master advanced type guards — custom is predicates, discriminated unions, exhaustive never checks, assertion functions, and real-world API patterns."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Advanced Type Guards</div>
+    </div>
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-tg">
+          <div class="nav-logo">
+            <div class="v">🛡</div>
+            <h2>Guards</h2>
+          </div>
+          <div class="nav-group">Recap</div>
+          <a href="#tg-recap">Built-in Guards</a>
+          <div class="nav-group">Advanced</div>
+          <a href="#tg-custom">Custom is Guards</a>
+          <a href="#tg-disc">Discriminated Unions</a>
+          <a href="#tg-exhaust">Exhaustive never</a>
+          <a href="#tg-assert">Assertion Functions</a>
+          <div class="nav-group">Real-World</div>
+          <a href="#tg-api">API Response Pattern</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#tg-mistakes">⚠ Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#tg-compare">Comparison Table</a>
+          <a href="#tg-cheatsheet">Cheatsheet</a>
+        </nav>
+        <div class="content">
+          <div class="hero" id="tg-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span
+              ><span class="hero-tag">Type Guards</span
+              ><span class="hero-tag">Narrowing</span>
+            </div>
+            <h1>Advanced Type Guards</h1>
+            <p>
+              Go beyond typeof and instanceof — custom predicates, discriminated
+              unions, exhaustive checks, and assertion functions for bulletproof
+              type safety.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">5</div>
+                <div class="stat-l">Guard Types</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Common Mistakes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">8+</div>
+                <div class="stat-l">Code Examples</div>
+              </div>
+            </div>
+          </div>
 
-<div class="hero" id="tg-top">
-  <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Type Guards</span><span class="hero-tag">Narrowing</span></div>
-  <h1>Advanced Type Guards</h1>
-  <p>Go beyond typeof and instanceof — custom predicates, discriminated unions, exhaustive checks, and assertion functions for bulletproof type safety.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Guard Types</div></div>
-    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Common Mistakes</div></div>
-    <div class="stat"><div class="stat-n">8+</div><div class="stat-l">Code Examples</div></div>
-  </div>
-</div>
-
-<!-- RECAP -->
-<div class="sec" id="tg-recap">
-  <div class="sec-label">Recap</div>
-  <h2>Built-in Type Guards</h2>
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">0</div><div class="card-title">Quick recap — typeof, instanceof, in</div><span class="card-badge">Recap</span></div>
-    <div class="card-body"><pre><code>// typeof — for primitives
+          <!-- RECAP -->
+          <div class="sec" id="tg-recap">
+            <div class="sec-label">Recap</div>
+            <h2>Built-in Type Guards</h2>
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">0</div>
+                <div class="card-title">
+                  Quick recap — typeof, instanceof, in
+                </div>
+                <span class="card-badge">Recap</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// typeof — for primitives
 function process(value: string | number) {
   if (typeof value === "string") {
     console.log(value.toUpperCase());  // TS knows it's string
@@ -77,18 +116,34 @@ function speak(pet: Dog | Cat) {
     pet.meow();   // TS knows it's Cat
   }
 }</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- CUSTOM IS GUARDS -->
-<div class="sec" id="tg-custom">
-  <div class="sec-label">Advanced</div>
-  <h2>Custom Type Guards with <code>is</code></h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> A custom type guard is like a <strong>bouncer at a club</strong> 🚪. You define the rules ("must have name AND age"), and the bouncer checks each person. If they pass, TypeScript treats them as the correct type inside the if block.</p></div>
-  <div class="card ph2-card">
-    <div class="card-head"><div class="card-num">1</div><div class="card-title">Tell TypeScript: "if this returns true, the type is X"</div><span class="card-badge">is Predicate</span></div>
-    <div class="card-body"><pre><code>interface User {
+          <!-- CUSTOM IS GUARDS -->
+          <div class="sec" id="tg-custom">
+            <div class="sec-label">Advanced</div>
+            <h2>Custom Type Guards with <code>is</code></h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life:</strong> A custom type guard is like a
+                <strong>bouncer at a club</strong> 🚪. You define the rules
+                ("must have name AND age"), and the bouncer checks each person.
+                If they pass, TypeScript treats them as the correct type inside
+                the if block.
+              </p>
+            </div>
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">
+                  Tell TypeScript: "if this returns true, the type is X"
+                </div>
+                <span class="card-badge">is Predicate</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface User {
   name: string;
   age: number;
   email: string;
@@ -122,18 +177,33 @@ function processData(data: unknown) {
 const mixed: unknown[] = [{ name: "A", age: 1, email: "a@b" }, "not user", 42];
 const users = mixed.filter(isUser);
 // users is User[] — TypeScript knows! ✅</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- DISCRIMINATED UNIONS -->
-<div class="sec" id="tg-disc">
-  <div class="sec-label">Advanced</div>
-  <h2>Discriminated Unions</h2>
-  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> Like a <strong>package label</strong> 📦. Every box has a label saying "fragile", "heavy", or "liquid". You check the label to know how to handle it. The <code>type</code> field is the label.</p></div>
-  <div class="card ph4-card">
-    <div class="card-head"><div class="card-num">2</div><div class="card-title">A shared property that identifies the variant</div><span class="card-badge">Discriminant</span></div>
-    <div class="card-body"><pre><code>// Each shape has a 'kind' property — the discriminant
+          <!-- DISCRIMINATED UNIONS -->
+          <div class="sec" id="tg-disc">
+            <div class="sec-label">Advanced</div>
+            <h2>Discriminated Unions</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life:</strong> Like a
+                <strong>package label</strong> 📦. Every box has a label saying
+                "fragile", "heavy", or "liquid". You check the label to know how
+                to handle it. The <code>type</code> field is the label.
+              </p>
+            </div>
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">
+                  A shared property that identifies the variant
+                </div>
+                <span class="card-badge">Discriminant</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Each shape has a 'kind' property — the discriminant
 interface Circle {
   kind: "circle";     // literal type — the label!
   radius: number;
@@ -163,17 +233,24 @@ function area(shape: Shape): number {
       return 0.5 * shape.base * shape.height;
   }
 }</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- EXHAUSTIVE CHECKING -->
-<div class="sec" id="tg-exhaust">
-  <div class="sec-label">Advanced</div>
-  <h2>Exhaustive Checking with <code>never</code></h2>
-  <div class="card ph5-card">
-    <div class="card-head"><div class="card-num">3</div><div class="card-title">Catch missing cases at COMPILE time</div><span class="card-badge">never</span></div>
-    <div class="card-body"><pre><code>// If you add a new shape but forget to handle it,
+          <!-- EXHAUSTIVE CHECKING -->
+          <div class="sec" id="tg-exhaust">
+            <div class="sec-label">Advanced</div>
+            <h2>Exhaustive Checking with <code>never</code></h2>
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">3</div>
+                <div class="card-title">
+                  Catch missing cases at COMPILE time
+                </div>
+                <span class="card-badge">never</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// If you add a new shape but forget to handle it,
 // TypeScript will ERROR at compile time!
 
 function assertNever(value: never): never {
@@ -197,18 +274,30 @@ function area(shape: Shape): number {
 }
 
 // This guarantees you handle EVERY variant!</code></pre>
-      <p class="fn"><strong>Why it works:</strong> After all cases are handled, <code>shape</code> should be type <code>never</code> (impossible). If it's not <code>never</code>, you missed a case.</p>
-    </div>
-  </div>
-</div>
+                <p class="fn">
+                  <strong>Why it works:</strong> After all cases are handled,
+                  <code>shape</code> should be type
+                  <code>never</code> (impossible). If it's not
+                  <code>never</code>, you missed a case.
+                </p>
+              </div>
+            </div>
+          </div>
 
-<!-- ASSERTION FUNCTIONS -->
-<div class="sec" id="tg-assert">
-  <div class="sec-label">Advanced</div>
-  <h2>Assertion Functions</h2>
-  <div class="card ph3-card">
-    <div class="card-head"><div class="card-num">4</div><div class="card-title">Throw if wrong type — narrow if correct</div><span class="card-badge">asserts</span></div>
-    <div class="card-body"><pre><code>// Unlike 'is' guards (which return boolean),
+          <!-- ASSERTION FUNCTIONS -->
+          <div class="sec" id="tg-assert">
+            <div class="sec-label">Advanced</div>
+            <h2>Assertion Functions</h2>
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">4</div>
+                <div class="card-title">
+                  Throw if wrong type — narrow if correct
+                </div>
+                <span class="card-badge">asserts</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Unlike 'is' guards (which return boolean),
 // assertion functions THROW if the check fails
 
 function assertIsString(value: unknown): asserts value is string {
@@ -233,17 +322,24 @@ function assertDefined&lt;T&gt;(value: T | null | undefined): asserts value is T
 const el = document.querySelector("#app");  // Element | null
 assertDefined(el);
 el.textContent = "Hello";  // TS knows el is Element ✅</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- API RESPONSE PATTERN -->
-<div class="sec" id="tg-api">
-  <div class="sec-label">Real-World</div>
-  <h2>API Response Pattern</h2>
-  <div class="card ph1-card">
-    <div class="card-head"><div class="card-num">5</div><div class="card-title">Discriminated union for API results</div><span class="card-badge">Real-World</span></div>
-    <div class="card-body"><pre><code>// Common pattern: API responses with success/error variants
+          <!-- API RESPONSE PATTERN -->
+          <div class="sec" id="tg-api">
+            <div class="sec-label">Real-World</div>
+            <h2>API Response Pattern</h2>
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">5</div>
+                <div class="card-title">
+                  Discriminated union for API results
+                </div>
+                <span class="card-badge">Real-World</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Common pattern: API responses with success/error variants
 interface SuccessResponse&lt;T&gt; {
   status: "success";
   data: T;
@@ -281,18 +377,20 @@ async function fetchUser(id: number): Promise&lt;ApiResponse&lt;User&gt;&gt; {
     return { status: "error", message: "Network error", code: 500 };
   }
 }</code></pre>
-    </div>
-  </div>
-</div>
+              </div>
+            </div>
+          </div>
 
-<!-- MISTAKES -->
-<div class="sec" id="tg-mistakes">
-  <div class="sec-label">Watch Out!</div>
-  <h2>⚠ Common Mistakes</h2>
+          <!-- MISTAKES -->
+          <div class="sec" id="tg-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Mistakes</h2>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 1: typeof null === "object"</strong>
-    <pre><code>// ❌ This doesn't guard against null!
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong>Mistake 1: typeof null === "object"</strong>
+                <pre><code>// ❌ This doesn't guard against null!
 function isObj(val: unknown): val is object {
   return typeof val === "object";  // null passes! 😱
 }
@@ -301,11 +399,17 @@ function isObj(val: unknown): val is object {
 function isObj2(val: unknown): val is object {
   return typeof val === "object" && val !== null;
 }</code></pre>
-  </div></div>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 2: Missing return/break in discriminated switch</strong>
-    <pre><code>// ❌ Forgot return — falls through!
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: Missing return/break in discriminated
+                  switch</strong
+                >
+                <pre><code>// ❌ Forgot return — falls through!
 function area(s: Shape): number {
   switch (s.kind) {
     case "circle":
@@ -317,11 +421,17 @@ function area(s: Shape): number {
 
 // ✅ Always return or break
 // Enable "noFallthroughCasesInSwitch" in tsconfig.json</code></pre>
-  </div></div>
+              </div>
+            </div>
 
-  <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 3: No default/never case — new types go unchecked</strong>
-    <pre><code>// ❌ If you add "pentagon" to Shape, no error!
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 3: No default/never case — new types go
+                  unchecked</strong
+                >
+                <pre><code>// ❌ If you add "pentagon" to Shape, no error!
 switch (shape.kind) {
   case "circle": ...
   case "rectangle": ...
@@ -331,45 +441,98 @@ switch (shape.kind) {
 // ✅ Add assertNever in default
 default: return assertNever(shape);
 // Now adding pentagon without a case → compile error!</code></pre>
-  </div></div>
+              </div>
+            </div>
 
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Mistake</th><th>What happens</th><th>Fix</th></tr></thead>
-    <tbody>
-      <tr><td>typeof null</td><td>null passes as object</td><td>Add <code>&& val !== null</code></td></tr>
-      <tr><td>Missing return</td><td>Falls through cases</td><td>Always return/break</td></tr>
-      <tr><td>No never check</td><td>New types unhandled</td><td><code>assertNever()</code> in default</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What happens</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>typeof null</td>
+                    <td>null passes as object</td>
+                    <td>Add <code>&& val !== null</code></td>
+                  </tr>
+                  <tr>
+                    <td>Missing return</td>
+                    <td>Falls through cases</td>
+                    <td>Always return/break</td>
+                  </tr>
+                  <tr>
+                    <td>No never check</td>
+                    <td>New types unhandled</td>
+                    <td><code>assertNever()</code> in default</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- COMPARISON TABLE -->
-<div class="sec" id="tg-compare">
-  <div class="sec-label">Reference</div>
-  <h2>All Guard Types — Comparison</h2>
-  <div class="bordered">
-  <table>
-    <thead><tr><th>Guard</th><th>Use for</th><th>Returns</th></tr></thead>
-    <tbody>
-      <tr><td><code>typeof x</code></td><td>Primitives (string, number)</td><td>Narrows inline</td></tr>
-      <tr><td><code>instanceof</code></td><td>Classes</td><td>Narrows inline</td></tr>
-      <tr><td><code>"key" in obj</code></td><td>Property existence</td><td>Narrows inline</td></tr>
-      <tr><td><code>x is Type</code></td><td>Custom validation</td><td>boolean</td></tr>
-      <tr><td>Discriminated union</td><td>Tagged variants</td><td>switch/if narrows</td></tr>
-      <tr><td><code>asserts x is T</code></td><td>Throw-or-narrow</td><td>void (throws)</td></tr>
-      <tr><td><code>never</code> check</td><td>Exhaustiveness</td><td>Compile-time error</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
+          <!-- COMPARISON TABLE -->
+          <div class="sec" id="tg-compare">
+            <div class="sec-label">Reference</div>
+            <h2>All Guard Types — Comparison</h2>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Guard</th>
+                    <th>Use for</th>
+                    <th>Returns</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>typeof x</code></td>
+                    <td>Primitives (string, number)</td>
+                    <td>Narrows inline</td>
+                  </tr>
+                  <tr>
+                    <td><code>instanceof</code></td>
+                    <td>Classes</td>
+                    <td>Narrows inline</td>
+                  </tr>
+                  <tr>
+                    <td><code>"key" in obj</code></td>
+                    <td>Property existence</td>
+                    <td>Narrows inline</td>
+                  </tr>
+                  <tr>
+                    <td><code>x is Type</code></td>
+                    <td>Custom validation</td>
+                    <td>boolean</td>
+                  </tr>
+                  <tr>
+                    <td>Discriminated union</td>
+                    <td>Tagged variants</td>
+                    <td>switch/if narrows</td>
+                  </tr>
+                  <tr>
+                    <td><code>asserts x is T</code></td>
+                    <td>Throw-or-narrow</td>
+                    <td>void (throws)</td>
+                  </tr>
+                  <tr>
+                    <td><code>never</code> check</td>
+                    <td>Exhaustiveness</td>
+                    <td>Compile-time error</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-<!-- CHEATSHEET -->
-<div class="sec" id="tg-cheatsheet">
-  <div class="sec-label">Reference</div>
-  <h2>Cheatsheet</h2>
-  <pre><code>// CUSTOM GUARD — returns boolean, narrows type
+          <!-- CHEATSHEET -->
+          <div class="sec" id="tg-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Cheatsheet</h2>
+            <pre><code>// CUSTOM GUARD — returns boolean, narrows type
 function isX(val: unknown): val is X { return check; }
 
 // DISCRIMINATED UNION — tagged with literal type
@@ -384,13 +547,40 @@ default: return assertNever(value);
 function assert(val: unknown): asserts val is string {
   if (typeof val !== "string") throw new Error();
 }</code></pre>
-  <hr>
-  <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Advanced Type Guards &nbsp;·&nbsp; Phase 2 Complete!</p>
-</div>
-
-</div></div></div>
-<script>
-(function(){const n=document.getElementById('nav-tg');if (!n) { return; }const l=n.querySelectorAll('a');const o=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){l.forEach(l=>l.classList.remove('on'));const a=n.querySelector(`a[href="#${e.target.id}"]`);if (a) { a.classList.add('on'); }}})},{rootMargin:'-15% 0px -75% 0px'});document.querySelectorAll('.content [id]').forEach(s=>o.observe(s))})();
-</script>
-</body>
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Advanced Type Guards
+              &nbsp;·&nbsp; Phase 2 Complete!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const n = document.getElementById("nav-tg");
+        if (!n) {
+          return;
+        }
+        const l = n.querySelectorAll("a");
+        const o = new IntersectionObserver(
+          (e) => {
+            e.forEach((e) => {
+              if (e.isIntersecting) {
+                l.forEach((l) => l.classList.remove("on"));
+                const a = n.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document.querySelectorAll(".content [id]").forEach((s) => o.observe(s));
+      })();
+    </script>
+  </body>
 </html>
