@@ -8,7 +8,7 @@ A comprehensive, beginner-to-senior TypeScript curriculum built as a static site
 
 - **40 Core Topics** — from variables to data structures, in a logical prerequisite-based order
 - **4 Learning Phases** — Foundation → Job-Ready → Interview-Strong → Pro Level
-- **2 Bonus References** — Key Comparisons (A vs B interview prep) & A-Z Glossary
+- **2 Bonus References** — Key Comparisons (24 A-vs-B interview prep) & A-Z Glossary (48 terms)
 - **Real-Life Analogies** — every concept linked to an everyday scenario
 - **Code Snippets** — copy-paste-ready TypeScript examples in every section
 - **Practice Files** — 40 numbered `.ts` files to write and run your own code
@@ -24,13 +24,13 @@ ts-age/
 ├── styles.css              # Shared design system
 ├── plan.md                 # Full curriculum roadmap
 ├── claude.md               # AI prompt guide & content rules
-├── pages/                  # One HTML file per topic (40 + 2 bonus)
+├── pages/                  # One HTML file per topic (40 + 2 bonus = 42)
 │   ├── variables-keywords.html   # Topic 1
 │   ├── data-types.html           # Topic 2
 │   ├── ...                       # Topics 3–39
 │   ├── data-structures.html      # Topic 40
-│   ├── comparisons.html          # ★ Bonus — 16 A-vs-B comparisons
-│   └── glossary.html             # ★ Bonus — 45 terms A-Z
+│   ├── comparisons.html          # ★ Bonus — 24 A-vs-B comparisons
+│   └── glossary.html             # ★ Bonus — 48 terms A-Z
 ├── practice/               # Blank .ts files for hands-on coding
 │   ├── 01-variables.ts
 │   ├── 02-data-types.ts

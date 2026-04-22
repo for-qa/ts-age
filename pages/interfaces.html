@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -47,6 +47,7 @@
   <div class="nav-group">Watch Out!</div>
   <a href="#if-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
+  <a href="#if-index">Index Signatures</a>
   <a href="#if-cheatsheet">Cheatsheet</a>
 </nav>
 
@@ -423,6 +424,54 @@ class CarFixed implements Vehicle {
       <tr><td>Missing property</td><td>Class missing required field</td><td>Compile error</td><td>Implement ALL interface properties</td></tr>
     </tbody>
   </table>
+  </div>
+</div>
+
+<!-- INDEX SIGNATURES -->
+<div class="sec" id="if-index">
+  <div class="sec-label">Reference</div>
+  <h2>Index Signatures — Dynamic Keys</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> An index signature is like a <strong>dictionary</strong> — you don't know all the words in advance, but you know every entry has a word (string key) and a definition (value of a specific type).</p></div>
+
+  <p>When you don't know all property names ahead of time but know their shape, use an <strong>index signature</strong>:</p>
+
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">I</div><div class="card-title">Dynamic keys with type safety</div><span class="card-badge">Index Signatures</span></div>
+    <div class="card-body">
+      <pre><code>// Index signature — any string key, number value
+interface ScoreBoard {
+  [playerName: string]: number;
+}
+
+const scores: ScoreBoard = {
+  Alice: 95,
+  Bob: 87,
+  Charlie: 92,
+};
+scores["Dave"] = 78;  // ✅ dynamic key works!
+
+// Mix fixed + dynamic keys
+interface ApiResponse {
+  status: number;          // fixed key — always present
+  message: string;         // fixed key — always present
+  [key: string]: unknown;  // any other key is allowed
+}
+
+const res: ApiResponse = {
+  status: 200,
+  message: "OK",
+  data: [1, 2, 3],     // ✅ allowed by index signature
+  timestamp: Date.now() // ✅ allowed by index signature
+};
+
+// Readonly index signature — can't add/modify after creation
+interface ReadonlyMap {
+  readonly [key: string]: string;
+}
+const config: ReadonlyMap = { theme: "dark", lang: "en" };
+// config.theme = "light";  // ❌ Error — readonly!</code></pre>
+      <p class="fn"><strong>Rule:</strong> The index signature value type must be compatible with ALL fixed property types. If <code>[key: string]: number</code>, then every property must be <code>number</code>.</p>
+    </div>
   </div>
 </div>
 

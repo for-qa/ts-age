@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -46,6 +46,7 @@
   <a href="#fn-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
   <a href="#fn-compare">Comparison Table</a>
+  <a href="#fn-void-never">void vs never</a>
   <a href="#fn-cheatsheet">Cheatsheet</a>
 </nav>
 
@@ -462,6 +463,57 @@ greetFixed("Alice", "Hey");  // "Hey Alice"</code></pre>
   </div>
 
   <div class="note note-info"><span class="note-i">i</span><p><strong>Interview Tip:</strong> Arrow functions are the <strong>modern, preferred</strong> way. Named and anonymous functions are from older JavaScript/TypeScript versions. In automation and modern TS code, always prefer arrow functions.</p></div>
+</div>
+
+<!-- VOID VS NEVER -->
+<div class="sec" id="fn-void-never">
+  <div class="sec-label">Reference</div>
+  <h2>void vs never — What's the Difference?</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> <code>void</code> = a vending machine that takes your money and gives you nothing back (but it finishes). <code>never</code> = a black hole — the function never finishes (throws or loops forever).</p></div>
+
+  <div class="card ph3-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Two very different "nothing" types</div><span class="card-badge">Key Distinction</span></div>
+    <div class="card-body">
+      <pre><code>// void — function completes, returns nothing
+function logMessage(msg: string): void {
+  console.log(msg);  // runs and finishes
+}
+
+// never — function NEVER completes
+function throwError(msg: string): never {
+  throw new Error(msg);  // always throws, never returns
+}
+
+function infiniteLoop(): never {
+  while (true) { }  // never ends
+}
+
+// WHY IT MATTERS — exhaustive checking:
+type Status = "active" | "inactive";
+
+function handleStatus(s: Status): string {
+  switch (s) {
+    case "active":   return "✅";
+    case "inactive": return "❌";
+    default:
+      const _check: never = s;  // TS error if you add a new Status
+      return _check;            // but forget to handle it here!
+  }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Feature</th><th><code>void</code></th><th><code>never</code></th></tr></thead>
+    <tbody>
+      <tr><td>Function completes?</td><td><span class="p p-green">Yes</span></td><td><span class="p p-red">No</span></td></tr>
+      <tr><td>Returns a value?</td><td>No (undefined)</td><td>N/A (unreachable)</td></tr>
+      <tr><td>Use case</td><td>Side effects (log, print)</td><td>Errors, infinite loops, exhaustive checks</td></tr>
+      <tr><td>Example</td><td><code>console.log()</code></td><td><code>throw new Error()</code></td></tr>
+    </tbody>
+  </table>
+  </div>
 </div>
 
 <!-- CHEATSHEET -->

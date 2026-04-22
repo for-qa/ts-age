@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -36,6 +36,7 @@
   <a href="#cls-static">static</a>
   <div class="nav-group">Full Example</div>
   <a href="#cls-student">Student Class</a>
+  <a href="#cls-shorthand">Parameter Shorthand</a>
   <a href="#cls-usage">Creating Objects</a>
   <div class="nav-group">Overloading</div>
   <a href="#cls-ctor-overload">Constructor Overloading</a>
@@ -230,6 +231,61 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
 }</code></pre>
     </div>
   </div>
+</div>
+
+<!-- PARAMETER PROPERTIES SHORTHAND -->
+<div class="sec" id="cls-shorthand">
+  <div class="sec-label">TypeScript Shorthand</div>
+  <h2>Constructor Parameter Properties</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Instead of writing a shopping list AND then putting each item on the shelf separately, you just put items on the shelf as you write them down. <strong>One step instead of two.</strong></p></div>
+
+  <p>TypeScript lets you declare AND initialize properties <strong>directly in the constructor parameters</strong> by adding an access modifier (<code>public</code>, <code>private</code>, <code>protected</code>, or <code>readonly</code>). This eliminates the need to declare properties separately and assign them with <code>this.x = x</code>.</p>
+
+  <div class="card ph5-card">
+    <div class="card-head"><div class="card-num">!</div><div class="card-title">Verbose way — declare + assign separately</div><span class="card-badge">❌ Verbose</span></div>
+    <div class="card-body">
+      <pre><code>class Person {
+  public name: string;
+  private age: number;
+  readonly id: number;
+
+  constructor(name: string, age: number, id: number) {
+    this.name = name;  // line 1: declare
+    this.age = age;    // line 2: assign in constructor
+    this.id = id;      // line 3: 6 lines of boilerplate!
+  }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">✓</div><div class="card-title">Shorthand — declare + assign in ONE line</div><span class="card-badge">✅ Clean TS</span></div>
+    <div class="card-body">
+      <pre><code>class Person {
+  // No separate property declarations needed!
+  constructor(
+    public name: string,      // auto-creates this.name
+    private age: number,      // auto-creates this.age (private)
+    readonly id: number       // auto-creates this.id (readonly)
+  ) {
+    // No this.x = x assignments needed!
+    // TypeScript does it automatically.
+  }
+
+  greet(): string {
+    return `Hi, I'm ${this.name}, age ${this.age}, ID: ${this.id}`;
+  }
+}
+
+const p = new Person("Alice", 25, 101);
+console.log(p.name);    // "Alice" ✅ public — accessible
+// console.log(p.age);  // ❌ Error — private
+// p.id = 999;          // ❌ Error — readonly</code></pre>
+      <p class="fn">The modifier keyword (<code>public</code>, <code>private</code>, <code>protected</code>, <code>readonly</code>) in the constructor parameter is what triggers this behavior. Without it, the parameter is just a regular parameter — no property is created.</p>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">i</span><p><strong>When to use:</strong> Always prefer the shorthand for simple classes. It's the <strong>idiomatic TypeScript</strong> way and is used in every professional codebase. The verbose way is only needed when you need custom initialization logic beyond simple assignment.</p></div>
 </div>
 
 <!-- USAGE -->

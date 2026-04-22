@@ -209,6 +209,26 @@ If the current content uses complex language, update it to:
 - [ ] Sidebar observer script at the bottom of the page.
 - [ ] No forward references — don't use concepts before they're taught.
 - [ ] No "Day X" labels — use topic numbers and category labels.
+- [ ] Uses `let`/`const` only — no `var` (except when teaching why `var` is bad).
+- [ ] Catch blocks use `unknown` type with narrowing (not `any`).
+- [ ] Constructor parameter shorthand preferred over verbose declare+assign.
+- [ ] `typeof` return values listed explicitly (not "etc.").
+
+---
+
+## 🔧 TypeScript Standards (Audit-Enforced)
+
+All code examples must follow modern TypeScript (TS 4.0+):
+
+| Rule | ❌ Avoid | ✅ Use |
+|------|---------|--------|
+| Variable declarations | `var x = 10` | `let x = 10` or `const x = 10` |
+| Catch block typing | `catch (e) { e.message }` | `catch (e: unknown) { if (e instanceof Error) e.message }` |
+| Constructor properties | Verbose declare + `this.x = x` | `constructor(public name: string)` shorthand |
+| Module imports (types) | `import { User } from "./types"` | `import type { User } from "./types"` |
+| typeof results | `"string", "number", etc.` | List all 8: `"string"`, `"number"`, `"bigint"`, `"boolean"`, `"symbol"`, `"undefined"`, `"object"`, `"function"` |
+| Primitive types | `string`, `number`, `boolean` only | Include `bigint`, `symbol` where relevant |
+| Advanced types | `any` for unknown data | Prefer `unknown` with narrowing |
 
 ---
 

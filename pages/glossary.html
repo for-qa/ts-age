@@ -25,8 +25,11 @@
   <a href="#g-var">var</a>
   <div class="nav-group">Data Types</div>
   <a href="#g-any">any</a>
+  <a href="#g-bigint">bigint</a>
   <a href="#g-immutable">Immutable</a>
+  <a href="#g-never">never</a>
   <a href="#g-null">null / undefined</a>
+  <a href="#g-symbol">symbol</a>
   <a href="#g-typeof">typeof</a>
   <a href="#g-unknown">unknown</a>
   <a href="#g-void">void</a>
@@ -80,7 +83,7 @@
   <h1>TypeScript Glossary</h1>
   <p>Every key term explained in plain English with a real-life analogy and a code snippet. Grouped by topic, sorted A-Z within each group.</p>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n">45</div><div class="stat-l">Terms</div></div>
+    <div class="stat"><div class="stat-n">48</div><div class="stat-l">Terms</div></div>
     <div class="stat"><div class="stat-n">8</div><div class="stat-l">Topics</div></div>
   </div>
 </div>
@@ -142,12 +145,41 @@ x = 42;       // no error
 x.foo.bar();  // no error at compile — crashes at runtime!</code></pre>
 </div>
 
+<div class="sec" id="g-bigint">
+<h2>bigint</h2>
+<p><strong>Real life:</strong> A calculator with infinite digits — for numbers too large for <code>number</code> to handle precisely (beyond 2⁵³).</p>
+<pre><code>const huge: bigint = 9007199254740993n; // note the 'n' suffix
+const also: bigint = BigInt("9007199254740993");
+// Cannot mix bigint and number in math:
+// huge + 1; // ❌ Error! Use huge + 1n instead</code></pre>
+</div>
+
 <div class="sec" id="g-immutable">
 <h2>Immutable</h2>
 <p><strong>Real life:</strong> A printed book — you can't change the words. You can only buy a new edition.</p>
 <pre><code>let name = "hello";
 name.toUpperCase(); // returns "HELLO" but name is still "hello"
 // Strings, numbers, booleans are immutable</code></pre>
+</div>
+
+<div class="sec" id="g-never">
+<h2>never</h2>
+<p><strong>Real life:</strong> A black hole — nothing ever comes out. Used for functions that never return (throw or infinite loop) and exhaustive checks.</p>
+<pre><code>function throwError(msg: string): never {
+  throw new Error(msg); // never returns
+}
+
+// Exhaustive check — if you reach this, you missed a case
+type Shape = "circle" | "square";
+function area(s: Shape): number {
+  switch (s) {
+    case "circle": return 1;
+    case "square": return 2;
+    default:
+      const _exhaustive: never = s; // TS error if a case is missing
+      return _exhaustive;
+  }
+}</code></pre>
 </div>
 
 <div class="sec" id="g-null">
@@ -157,6 +189,19 @@ name.toUpperCase(); // returns "HELLO" but name is still "hello"
 let y: string | null = null; // null — intentionally empty</code></pre>
 </div>
 
+<div class="sec" id="g-symbol">
+<h2>symbol</h2>
+<p><strong>Real life:</strong> A unique serial number stamped on each item — even two symbols with the same description are never equal.</p>
+<pre><code>const id1: symbol = Symbol("id");
+const id2: symbol = Symbol("id");
+console.log(id1 === id2); // false — always unique!
+
+// Used as unique object keys:
+const KEY = Symbol("secret");
+const obj = { [KEY]: "hidden value" };
+console.log(obj[KEY]); // "hidden value"</code></pre>
+</div>
+
 <div class="sec" id="g-typeof">
 <h2>typeof</h2>
 <p><strong>Real life:</strong> Asking "what kind of animal is this?" before deciding how to handle it.</p>
@@ -164,7 +209,8 @@ let y: string | null = null; // null — intentionally empty</code></pre>
 if (typeof val === "string") {
   console.log(val.toUpperCase()); // safe!
 }
-// typeof returns: "string", "number", "boolean", "object", etc.</code></pre>
+// typeof returns: "string", "number", "bigint", "boolean",
+//                 "symbol", "undefined", "object", "function"</code></pre>
 </div>
 
 <div class="sec" id="g-unknown">

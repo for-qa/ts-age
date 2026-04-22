@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -622,6 +622,22 @@ const maxUsers = 1000;
   console.log(b); // ❌ Error (let stays in block)
   console.log(c); // ❌ Error (const stays in block)
 }</code></pre>
+
+  <h3>TypeScript type inference — let vs const</h3>
+  <pre><code>// TS infers DIFFERENTLY for let vs const:
+let x = "hello";      // type: string   (widened — can be reassigned)
+const y = "hello";    // type: "hello"  (literal — can never change!)
+
+let n = 42;            // type: number
+const m = 42;          // type: 42
+
+// WHY this matters — const gives you narrower, safer types:
+type Direction = "up" | "down";
+const dir = "up";      // type: "up" ✅ — works with Direction
+let dir2 = "up";       // type: string ❌ — too wide for Direction
+
+// Fix: use 'as const' to force literal type with let:
+let dir3 = "up" as const; // type: "up" ✅</code></pre>
 
   <hr>
   <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Variables &amp; Keywords &nbsp;·&nbsp; Next: Data Types</p>

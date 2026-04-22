@@ -271,6 +271,9 @@ function Dec(args) { return function(target) { }; }
 
 // ORDER: bottom-up for multiple decorators
 // ENABLE: "experimentalDecorators": true in tsconfig.json</code></pre>
+
+  <div class="note note-info"><span class="note-i">i</span><p><strong>TS 5.0+ Update:</strong> TypeScript 5.0 introduced <strong>native ECMAScript decorators</strong> (Stage 3 proposal) — no <code>experimentalDecorators</code> flag needed. The syntax is nearly identical but uses the new TC39 standard. If you're on TS 5.0+, you can use decorators without the tsconfig flag. Both APIs coexist — the flag controls which spec you target.</p></div>
+
   <hr>
   <p style="font-size:11.5px;color:var(--ink3);text-align:center">TypeScript Learning Path &nbsp;·&nbsp; Decorators &nbsp;·&nbsp; Next: Mapped &amp; Conditional Types</p>
 </div>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -37,6 +37,8 @@
   <a href="#mod-export">export Keyword</a>
   <a href="#mod-import">import Keyword</a>
   <a href="#mod-full">Full Example</a>
+  <a href="#mod-default">Default Export</a>
+  <a href="#mod-type">Type-Only Imports</a>
   <div class="nav-group">Reference</div>
   <a href="#mod-rules">Key Rules</a>
   <a href="#mod-cheatsheet">Cheatsheet</a>
@@ -233,6 +235,64 @@ console.log(Formatter.toUpper("welcome"));  // "WELCOME"</code></pre>
   </div>
 </div>
 
+<!-- DEFAULT EXPORT -->
+<div class="sec" id="mod-default">
+  <div class="sec-label">How-To</div>
+  <h2>Default Export — One Main Thing Per File</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life:</strong> A named export is like a store with many labeled shelves. A <strong>default export</strong> is like a store with ONE featured product in the window — you don't need to know its name to grab it.</p></div>
+
+  <div class="card ph4-card">
+    <div class="card-head"><div class="card-num">D</div><div class="card-title">export default — one per file</div><span class="card-badge">Default</span></div>
+    <div class="card-body">
+      <pre><code>// math.ts — default export
+export default function add(a: number, b: number): number {
+  return a + b;
+}
+
+// You can ALSO have named exports alongside:
+export const PI = 3.14;
+
+// app.ts — import default (no curly braces!)
+import add from "./math";       // name it whatever you want!
+import myAdd from "./math";    // same thing, different name
+import add, { PI } from "./math";  // default + named together
+
+console.log(add(2, 3));  // 5
+console.log(PI);         // 3.14</code></pre>
+      <p class="fn"><strong>Rule:</strong> Only ONE <code>export default</code> per file. Named exports can have many. Import default = no <code>{ }</code>. Import named = needs <code>{ }</code>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TYPE-ONLY IMPORTS -->
+<div class="sec" id="mod-type">
+  <div class="sec-label">How-To</div>
+  <h2>Type-Only Imports (TS 3.8+)</h2>
+  <div class="note note-info"><span class="note-i">i</span><p>When you import a <strong>type or interface</strong> that only exists at compile time, use <code>import type</code>. This tells TypeScript "this import is only for type checking — don't include it in the compiled JavaScript output."</p></div>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">T</div><div class="card-title">import type — types only</div><span class="card-badge">Type-Only</span></div>
+    <div class="card-body">
+      <pre><code>// types.ts
+export interface User {
+  name: string;
+  age: number;
+}
+export type Role = "admin" | "user" | "guest";
+
+// app.ts — type-only import
+import type { User, Role } from "./types";
+
+function greet(user: User): string {
+  return `Hello ${user.name}`;
+}
+
+// ✅ The import is erased from compiled JS — zero runtime cost
+// ✅ Prevents accidentally using a type as a value</code></pre>
+    </div>
+  </div>
+</div>
+
 <!-- CHEATSHEET -->
 <div class="sec" id="mod-cheatsheet">
   <div class="sec-label">Reference</div>
@@ -242,15 +302,22 @@ console.log(Formatter.toUpper("welcome"));  // "WELCOME"</code></pre>
   <pre><code>export let x = 10;
 export function doStuff() { ... }
 export class Helper { ... }
-export interface Config { ... }</code></pre>
+export interface Config { ... }
+export default function main() { ... }  // one per file
+export type Role = "admin" | "user";     // type export</code></pre>
 
   <h3>Import (in consuming file)</h3>
-  <pre><code>// Individual imports
-import { x } from "./module";
-import { doStuff } from "./module";
+  <pre><code>// Named imports
+import { x, doStuff, Helper } from "./module";
 
-// Multiple in one line
-import { x, doStuff, Helper } from "./module";</code></pre>
+// Default import (no curly braces)
+import main from "./module";
+
+// Default + named together
+import main, { x, doStuff } from "./module";
+
+// Type-only import (erased at compile time)
+import type { Config } from "./module";</code></pre>
 
   <h3>Use case — Automation utility</h3>
   <pre><code>// utils.ts (module)

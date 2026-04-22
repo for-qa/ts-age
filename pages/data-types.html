@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,9 +40,14 @@
   <a href="#dt-string">string</a>
   <a href="#dt-boolean">boolean</a>
   <a href="#dt-null">null &amp; undefined</a>
+  <a href="#dt-symbol">symbol</a>
+  <a href="#dt-bigint">bigint</a>
+  <div class="nav-group">TS Special Types</div>
   <a href="#dt-any">any</a>
   <a href="#dt-union">Union Type</a>
   <a href="#dt-void">void</a>
+  <a href="#dt-unknown">unknown</a>
+  <a href="#dt-never">never</a>
   <div class="nav-group">Watch Out!</div>
   <a href="#dt-mistakes">⚠ Common Mistakes</a>
   <div class="nav-group">Reference</div>
@@ -60,9 +65,9 @@
     <span class="hero-tag">Session Notes</span>
   </div>
   <h1>Data <span>Types</span></h1>
-  <p>What kind of data can a variable hold? This session covers all primitive data types in TypeScript — number, string, boolean, null, undefined, any, union, and void — plus the critical difference between type annotation and type inference.</p>
+  <p>What kind of data can a variable hold? This session covers TypeScript's full type system — true primitive types (number, string, boolean, null, undefined, symbol, bigint), TS-only special types (any, unknown, never, union, void), and an overview of non-primitive types — plus type annotation vs type inference.</p>
   <div class="hero-stats">
-    <div class="stat"><div class="stat-n">8</div><div class="stat-l">Primitive Types</div></div>
+    <div class="stat"><div class="stat-n">12</div><div class="stat-l">Types Covered</div></div>
     <div class="stat"><div class="stat-n">2</div><div class="stat-l">Categories</div></div>
     <div class="stat"><div class="stat-n">3</div><div class="stat-l">Key Terms</div></div>
     <div class="stat"><div class="stat-n">15+</div><div class="stat-l">Code Examples</div></div>
@@ -232,13 +237,14 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
   <table>
     <thead><tr><th>Category</th><th>Types</th><th>Stores</th></tr></thead>
     <tbody>
-      <tr><td><span class="p p-blue">Primitive</span></td><td><code>number</code>, <code>string</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>, <code>any</code>, union, <code>void</code></td><td>Single value at a time</td></tr>
-      <tr><td><span class="p p-violet">Non-Primitive</span></td><td><code>Array</code>, <code>Function</code>, <code>Class</code>, <code>Interface</code>, <code>Tuple</code>, <code>Object</code></td><td>Group of values / objects</td></tr>
+      <tr><td><span class="p p-blue">Primitive</span></td><td><code>number</code>, <code>string</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>, <code>symbol</code>, <code>bigint</code></td><td>Single value at a time</td></tr>
+      <tr><td><span class="p p-amber">TS Special</span></td><td><code>any</code>, <code>unknown</code>, <code>never</code>, <code>void</code>, union</td><td>Type-level concepts — not runtime values</td></tr>
+      <tr><td><span class="p p-violet">Non-Primitive</span></td><td><code>Array</code>, <code>Function</code>, <code>Class</code>, <code>Interface</code>, <code>Tuple</code>, <code>Object</code>, <code>Enum</code></td><td>Group of values / objects</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="note note-info"><span class="note-i">i</span><p>Non-primitive types (arrays, objects, classes) are covered in separate topics. This page focuses on <strong>primitive types</strong> only.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p>Non-primitive types are covered in separate topics. This page covers all <strong>primitive types</strong> and <strong>TS special types</strong>.</p></div>
 </div>
 
 <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
@@ -525,6 +531,139 @@ console.log(result);  // 30</code></pre>
 </div>
 
 <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     SYMBOL
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="dt-symbol">
+  <div class="sec-label">Primitive Types</div>
+  <h2>symbol — Unique Identifiers</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> A <code>symbol</code> is like a <strong>fingerprint</strong> — every fingerprint is unique, even if two people look alike. Every <code>Symbol()</code> you create is guaranteed to be 100% unique, even if you give two symbols the same description label.</p></div>
+
+  <p><code>symbol</code> is a true JavaScript primitive that creates <strong>completely unique values</strong>. No two symbols are ever equal — not even if they share the same description. Mostly used as unique object property keys to avoid name collisions.</p>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">S</div><div class="card-title">symbol — always unique, even with the same label</div><span class="card-badge">Rarely used by beginners</span></div>
+    <div class="card-body">
+      <pre><code>const id1: symbol = Symbol("id");
+const id2: symbol = Symbol("id");  // same description
+
+console.log(id1 === id2);  // false — ALWAYS unique!
+console.log(typeof id1);   // "symbol"
+
+// Common use: unique keys on objects to prevent accidental overwrite
+const KEY = Symbol("secretKey");
+const obj = { [KEY]: "hidden value" };
+console.log(obj[KEY]);  // "hidden value"</code></pre>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Beginner Note:</strong> You won't use <code>symbol</code> in everyday TypeScript. It appears in library code and advanced patterns. Just know it exists and is a genuine JS/TS primitive — <code>typeof Symbol() === "symbol"</code>.</p></div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     BIGINT
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="dt-bigint">
+  <div class="sec-label">Primitive Types</div>
+  <h2>bigint — Very Large Integers</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Normal <code>number</code> is like a pocket calculator — accurate for everyday math, but it breaks for astronomically large integers. <code>bigint</code> is like a <strong>scientific calculator</strong> — it can handle numbers with hundreds of digits without losing precision.</p></div>
+
+  <p><code>bigint</code> is for integers <strong>beyond the safe limit</strong> of <code>number</code> (which is ~9 quadrillion). Add an <code>n</code> suffix to any integer literal to make it a bigint. Added in ES2020.</p>
+
+  <div class="card ph2-card">
+    <div class="card-head"><div class="card-num">n</div><div class="card-title">bigint — huge integers with the 'n' suffix</div><span class="card-badge">Use 'n' suffix</span></div>
+    <div class="card-body">
+      <pre><code>let big: bigint = 9007199254740993n;   // ← notice the 'n'
+let normal: number = 9007199254740993;  // loses precision!
+
+console.log(big);          // 9007199254740993n  ✓ exact
+console.log(typeof big);   // "bigint"
+
+// ❌ You CANNOT mix bigint and number in math:
+// big + 1;    ← ERROR: can't add number to bigint
+// ✅ Add the 'n' suffix to literals too:
+big + 1n;     // ✓ works fine</code></pre>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Beginner Note:</strong> You'll rarely use <code>bigint</code> unless working with cryptography, very large IDs, or financial systems. Just remember: add an <code>n</code> suffix to the integer literal — <code>100n</code> not <code>100</code>.</p></div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     UNKNOWN
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="dt-unknown">
+  <div class="sec-label">TS Special Types</div>
+  <h2>unknown — The Safe Version of any</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>unknown</code> is like receiving a <strong>sealed mystery box</strong> — you can store it and pass it around, but before you open it and use what's inside, you MUST check what's in there first. <code>any</code> is like opening the box blindly and assuming it's fine — risky!</p></div>
+
+  <p><code>unknown</code> is the <strong>type-safe alternative to <code>any</code></strong>. It accepts any value, but forces you to check (narrow) the type before using it. <strong>Always prefer <code>unknown</code> over <code>any</code>.</strong></p>
+
+  <div class="card ph1-card">
+    <div class="card-head"><div class="card-num">?</div><div class="card-title">unknown — must narrow the type before use</div><span class="card-badge">Prefer over any</span></div>
+    <div class="card-body">
+      <pre><code>let value: unknown = "Hello";
+
+// ❌ Can't use directly — TypeScript doesn't know the type yet:
+// value.toUpperCase();  ← ERROR!
+
+// ✅ Narrow the type first with typeof:
+if (typeof value === "string") {
+  console.log(value.toUpperCase()); // HELLO ← safe!
+}
+
+value = 42;    // ✓ can hold any type — like any
+value = true;  // ✓ still fine</code></pre>
+    </div>
+  </div>
+
+  <div class="bordered">
+  <table>
+    <thead><tr><th>Aspect</th><th><code>any</code></th><th><code>unknown</code></th></tr></thead>
+    <tbody>
+      <tr><td>Accepts any value?</td><td><span class="p p-green">Yes</span></td><td><span class="p p-green">Yes</span></td></tr>
+      <tr><td>Can use directly without a type check?</td><td><span class="p p-red">Yes (dangerous!)</span></td><td><span class="p p-blue">No — must check first</span></td></tr>
+      <tr><td>Type safe?</td><td><span class="p p-red">No</span></td><td><span class="p p-green">Yes</span></td></tr>
+      <tr><td>Recommended?</td><td>Avoid it</td><td>✅ Use this instead</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     NEVER
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+<div class="sec" id="dt-never">
+  <div class="sec-label">TS Special Types</div>
+  <h2>never — This Can Never Happen</h2>
+  <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> <code>never</code> is like a <strong>dead-end road sign</strong> — if you reach it, something has gone very wrong. It represents code paths that should <em>never</em> be reached, like a function that always throws an error before it can return anything.</p></div>
+
+  <p><code>never</code> represents values that <strong>never occur</strong>. It's assigned to functions that always throw errors or run infinite loops — they never produce a return value. TypeScript also uses <code>never</code> internally for exhaustive type checking.</p>
+
+  <div class="card ph5-card">
+    <div class="card-head"><div class="card-num">✗</div><div class="card-title">never — functions that never return normally</div><span class="card-badge">Advanced</span></div>
+    <div class="card-body">
+      <pre><code>// A function that always throws — never returns:
+function crash(msg: string): never {
+  throw new Error(msg);  // execution stops here, never completes
+}
+
+// A function with an infinite loop — also never returns:
+function loop(): never {
+  while (true) {
+    console.log("running...");
+  }
+}
+
+// TypeScript also uses never for exhaustive checks:
+// When all cases of a union type are handled,
+// the remaining (impossible) case has type never.</code></pre>
+    </div>
+  </div>
+
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Beginner Note:</strong> You won't write <code>never</code> yourself very often. TypeScript uses it internally. If TypeScript tells you a variable is <code>never</code>, it means every possible type has already been handled — that's a <em>good</em> thing! It means your code is airtight.</p></div>
+</div>
+
+<!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
      COMMON MISTAKES
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
 <div class="sec" id="dt-mistakes">
@@ -600,19 +739,23 @@ data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</co
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
 <div class="sec" id="dt-comparison">
   <div class="sec-label">Reference</div>
-  <h2>Complete Primitive Types Comparison</h2>
+  <h2>Complete Types Comparison</h2>
   <div class="bordered">
   <table>
-    <thead><tr><th>Type</th><th>What it holds</th><th>Example</th><th>Notes</th></tr></thead>
+    <thead><tr><th>Type</th><th>Category</th><th>What it holds</th><th>Example</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td><code class="cn">number</code></td><td>Integers &amp; decimals</td><td><code>30</code>, <code>3.14</code></td><td>One type for all numbers</td></tr>
-      <tr><td><code class="cn">string</code></td><td>Text / characters</td><td><code>"Hello"</code>, <code>`Hi ${x}`</code></td><td>3 ways: " " or ' ' or ` `</td></tr>
-      <tr><td><code class="cn">boolean</code></td><td>true or false</td><td><code>true</code>, <code>false</code></td><td>Only 2 values possible</td></tr>
-      <tr><td><code class="cn">null</code></td><td>Intentionally empty</td><td><code>null</code></td><td>"I know there's nothing"</td></tr>
-      <tr><td><code class="cn">undefined</code></td><td>Not assigned</td><td><code>undefined</code></td><td>"Nobody put anything here"</td></tr>
-      <tr><td><code class="cn">any</code></td><td>Anything at all</td><td><code>42</code>, <code>"hi"</code>, <code>true</code></td><td>⚠ Breaks type safety!</td></tr>
-      <tr><td><code class="cn">union</code></td><td>Specific listed types</td><td><code>number | string</code></td><td>Controlled flexibility</td></tr>
-      <tr><td><code class="cn">void</code></td><td>Nothing (functions)</td><td><code>void</code></td><td>Function returns nothing</td></tr>
+      <tr><td><code class="cn">number</code></td><td><span class="p p-blue">Primitive</span></td><td>Integers &amp; decimals</td><td><code>30</code>, <code>3.14</code></td><td>One type for all numbers</td></tr>
+      <tr><td><code class="cn">string</code></td><td><span class="p p-blue">Primitive</span></td><td>Text / characters</td><td><code>"Hello"</code>, <code>`Hi ${x}`</code></td><td>3 ways: " " or ' ' or ` `</td></tr>
+      <tr><td><code class="cn">boolean</code></td><td><span class="p p-blue">Primitive</span></td><td>true or false</td><td><code>true</code>, <code>false</code></td><td>Only 2 values possible</td></tr>
+      <tr><td><code class="cn">null</code></td><td><span class="p p-blue">Primitive</span></td><td>Intentionally empty</td><td><code>null</code></td><td>"I know there's nothing"</td></tr>
+      <tr><td><code class="cn">undefined</code></td><td><span class="p p-blue">Primitive</span></td><td>Not assigned</td><td><code>undefined</code></td><td>"Nobody put anything here"</td></tr>
+      <tr><td><code class="cn">symbol</code></td><td><span class="p p-blue">Primitive</span></td><td>Unique identifier</td><td><code>Symbol("id")</code></td><td>Always unique — no two are equal</td></tr>
+      <tr><td><code class="cn">bigint</code></td><td><span class="p p-blue">Primitive</span></td><td>Very large integers</td><td><code>9007199254740993n</code></td><td>Use <code>n</code> suffix; ES2020+</td></tr>
+      <tr><td><code class="cn">any</code></td><td><span class="p p-amber">TS Special</span></td><td>Anything at all</td><td><code>42</code>, <code>"hi"</code>, <code>true</code></td><td>⚠ Breaks type safety!</td></tr>
+      <tr><td><code class="cn">unknown</code></td><td><span class="p p-amber">TS Special</span></td><td>Anything — but must check type first</td><td><code>unknown</code></td><td>✅ Safe version of <code>any</code></td></tr>
+      <tr><td><code class="cn">never</code></td><td><span class="p p-amber">TS Special</span></td><td>Nothing — unreachable code</td><td><code>never</code></td><td>Functions that always throw</td></tr>
+      <tr><td><code class="cn">union</code></td><td><span class="p p-amber">TS Special</span></td><td>Specific listed types</td><td><code>number | string</code></td><td>Controlled flexibility</td></tr>
+      <tr><td><code class="cn">void</code></td><td><span class="p p-amber">TS Special</span></td><td>Nothing (functions)</td><td><code>void</code></td><td>Function returns nothing</td></tr>
     </tbody>
   </table>
   </div>
@@ -659,6 +802,26 @@ function greet(): void {
 }
 function add(a: number, b: number): number {
   return a + b;            // returns a number
+}
+
+// -- symbol (primitive) -----------------------------------
+const key1: symbol = Symbol("id");
+const key2: symbol = Symbol("id");
+console.log(key1 === key2);  // false — always unique!
+
+// -- bigint (primitive) -----------------------------------
+let huge: bigint = 9007199254740993n;  // 'n' suffix!
+console.log(typeof huge);  // "bigint"
+
+// -- unknown (safe any) -----------------------------------
+let input: unknown = "hello";
+if (typeof input === "string") {
+  console.log(input.toUpperCase()); // must check type first!
+}
+
+// -- never (unreachable) ----------------------------------
+function fail(msg: string): never {
+  throw new Error(msg);  // never returns normally
 }</code></pre>
 
   <h3>Key terms</h3>
