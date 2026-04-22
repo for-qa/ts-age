@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -79,7 +79,7 @@
   <h2>What is an Array?</h2>
   <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Imagine you have a <strong>grocery list</strong> on a piece of paper. Each item is written on a line — Line 1: Milk, Line 2: Bread, Line 3: Eggs. That paper with multiple items is an <strong>array</strong>. A normal variable is like a sticky note — it can only hold ONE item. An array is like a full page — it holds MANY items in order.</p></div>
   <p>A normal variable can hold <strong>only one value at a time</strong>. If you put a new value? The old one gets replaced. But what if you need to store a bunch of things — like a list of your friends' names or your exam scores? That's where an <strong>array</strong> comes in.</p>
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Simple Definition:</strong> An array is a <strong>list variable</strong> — it stores multiple values under one name, like a to-do list that holds many tasks.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Simple Definition:</strong> An array is a <strong>list variable</strong> — it stores multiple values under one name, like a to-do list that holds many tasks.</p></div>
   <h3>TypeScript vs Java — important difference</h3>
   <p>In Java, there's a regular <strong>array</strong> (fixed number of slots, like a parking lot with 10 spots) and an <strong>ArrayList</strong> (can grow, like a waiting line). In TypeScript, arrays work like the flexible version by default — they grow and shrink as needed. If you want a fixed-size collection in TypeScript, you use a <strong>tuple</strong> (covered later).</p>
   <h3>Core properties</h3>
@@ -218,7 +218,7 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
     <div class="pipe-step"><div class="pipe-ph ph2-c">Loop 2</div><div class="pipe-name"><code>for…in</code></div><div class="pipe-pts">yields index</div></div>
     <div class="pipe-step"><div class="pipe-ph ph3-c">Loop 3</div><div class="pipe-name"><code>for…of</code></div><div class="pipe-pts">yields value directly</div></div>
   </div>
-  <div class="note note-info"><span class="note-i">ℹ</span><p>A fourth option — <code>forEach()</code> — is an array <em>method</em> that accepts a callback function. Covered in Day 10 / Day 11.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p>A fourth option — <code>forEach()</code> — is an array <em>method</em> that accepts a callback function. Covered in Day 10 / Day 11.</p></div>
 </div>
 
 <div class="sec" id="at-forloop">
@@ -266,7 +266,7 @@ for (let i in empIds) {
   console.log(empIds[i]);
 }
 // 101  102  103  104</code></pre>
-      <div class="note note-info" style="margin-top:.75rem"><span class="note-i">ℹ</span><p><code>i</code> in a <code>for…in</code> loop is the <strong>index</strong>, not the value. You must still write <code>empIds[i]</code> to get the element. Writing <code>console.log(i)</code> gives <code>0 1 2 3</code>.</p></div>
+      <div class="note note-info" style="margin-top:.75rem"><span class="note-i">i</span><p><code>i</code> in a <code>for…in</code> loop is the <strong>index</strong>, not the value. You must still write <code>empIds[i]</code> to get the element. Writing <code>console.log(i)</code> gives <code>0 1 2 3</code>.</p></div>
     </div>
   </div>
 </div>
@@ -361,7 +361,7 @@ console.log(search(100, ar));  // false</code></pre>
 let words: string[] = ["hello", "world", "typescript"];
 console.log(capitalizeWords(words));
 // [ 'HELLO', 'WORLD', 'TYPESCRIPT' ]</code></pre>
-      <div class="note note-info" style="margin-top:.75rem"><span class="note-i">ℹ</span><p>The result is stored at <code>result[i]</code> — the <strong>same index</strong> as the source element. Position is preserved. The original <code>ar</code> array is unchanged.</p></div>
+      <div class="note note-info" style="margin-top:.75rem"><span class="note-i">i</span><p>The result is stored at <code>result[i]</code> — the <strong>same index</strong> as the source element. Position is preserved. The original <code>ar</code> array is unchanged.</p></div>
     </div>
   </div>
 </div>
@@ -371,7 +371,7 @@ console.log(capitalizeWords(words));
   <h2>What is a Tuple?</h2>
   <div class="note note-tip"><span class="note-i">✓</span><p><strong>Real-Life Example:</strong> Think of a tuple like a <strong>passport</strong> — it has exactly 3 things in a fixed order: <strong>Name</strong> (text), <strong>Age</strong> (number), <strong>Photo</strong> (image). You can't add a 4th field, you can't swap the order, and the Name slot can't suddenly become a number. That's a tuple — a <strong>fixed-size box</strong> where every slot has a specific type.</p></div>
   <p>A <strong>tuple</strong> is like an array's strict older sibling — it has two rules that can't be broken: <strong>fixed length</strong> (you can't add or remove items) and <strong>fixed types per position</strong> (each slot only accepts one specific type).</p>
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Simple Definition:</strong> A tuple is a list with a locked size and locked types. Slot 1 = always text, Slot 2 = always number. No exceptions.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Simple Definition:</strong> A tuple is a list with a locked size and locked types. Slot 1 = always text, Slot 2 = always number. No exceptions.</p></div>
   <div class="card ph1-card">
     <div class="card-head"><div class="card-num">T1</div><div class="card-title">Two-element tuple — <code>[string, number]</code></div><span class="card-badge">Fixed 2 values</span></div>
     <div class="card-body">
@@ -442,7 +442,7 @@ console.log(students[0]);        // [ 101, 'John' ]
 let tp = students[1];            // [ 102, 'Peter' ]
 console.log(tp[0]);              // 102
 console.log(tp[1]);              // Peter</code></pre>
-      <div class="note note-info" style="margin-top:.75rem"><span class="note-i">ℹ</span><p><code>students[1][0]</code> is <strong>not</strong> valid here — this implies a 2D array. Always extract the tuple first, then index into it.</p></div>
+      <div class="note note-info" style="margin-top:.75rem"><span class="note-i">i</span><p><code>students[1][0]</code> is <strong>not</strong> valid here — this implies a 2D array. Always extract the tuple first, then index into it.</p></div>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -265,7 +265,7 @@ console.log(area({ kind: "circle", radius: 5 }));           // 78.54
 console.log(area({ kind: "rectangle", width: 4, height: 6 })); // 24
 console.log(area({ kind: "triangle", base: 10, height: 3 })); // 15</code></pre>
 
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>The "kind" field</strong> (discriminant) must be a literal type and present in ALL union members. It acts as a tag that TypeScript uses to narrow the type automatically inside <code>switch</code> or <code>if</code> blocks.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>The "kind" field</strong> (discriminant) must be a literal type and present in ALL union members. It acts as a tag that TypeScript uses to narrow the type automatically inside <code>switch</code> or <code>if</code> blocks.</p></div>
 </div>
 
 <!-- CUSTOM TYPE PREDICATES -->
@@ -326,7 +326,7 @@ function area(shape: Shape): number {
   }
 }</code></pre>
 
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>The <code>never</code> type</strong> represents "should never happen." If TypeScript can still assign a value to <code>never</code>, it means you missed a case — catching bugs at compile time!</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>The <code>never</code> type</strong> represents "should never happen." If TypeScript can still assign a value to <code>never</code>, it means you missed a case — catching bugs at compile time!</p></div>
 </div>
 
 <!-- CHEATSHEET -->

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -257,7 +257,7 @@ c.display();
 // "Display from Parent"  ← super.display() triggered this
 // "Display from Child"   ← child's own code</code></pre>
 
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Order doesn't matter for methods:</strong> Unlike <code>super()</code> in constructors (must be first line), <code>super.method()</code> can be called anywhere in the method body.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Order doesn't matter for methods:</strong> Unlike <code>super()</code> in constructors (must be first line), <code>super.method()</code> can be called anywhere in the method body.</p></div>
 </div>
 
 <!-- SUPER — PROPERTY LIMITATION -->
@@ -360,7 +360,7 @@ console.log(emp.empId);  // ❌ private — only within Employee</code></pre>
     </div>
   </div>
 
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Default is public.</strong> If you don't write any modifier, the property/method is <code>public</code>. In automation/testing, everything is usually left as public. Access modifiers matter more for application development and interview questions.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Default is public.</strong> If you don't write any modifier, the property/method is <code>public</code>. In automation/testing, everything is usually left as public. Access modifiers matter more for application development and interview questions.</p></div>
 </div>
 
 <!-- PARENT VAR CHILD OBJ -->
@@ -394,7 +394,7 @@ car.year;           // ❌ ERROR: only in Honda, not in Car!</code></pre>
   </table>
   </div>
 
-  <div class="note note-info"><span class="note-i">ℹ</span><p><strong>Rule:</strong> Inheritance flows <strong>parent → child</strong> (top-down). Storing a child in a parent variable is going <strong>reverse</strong> — so child-only features become inaccessible. You can access anything that exists in BOTH classes or the parent class.</p></div>
+  <div class="note note-info"><span class="note-i">i</span><p><strong>Rule:</strong> Inheritance flows <strong>parent → child</strong> (top-down). Storing a child in a parent variable is going <strong>reverse</strong> — so child-only features become inaccessible. You can access anything that exists in BOTH classes or the parent class.</p></div>
 </div>
 
 <!-- CHEATSHEET -->
