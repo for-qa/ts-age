@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var TOPICS = [
+  const TOPICS = [
     { f: "variables-keywords.html", t: "Variables & Keywords", n: "1" },
     { f: "data-types.html", t: "Data Types", n: "2" },
     { f: "strings.html", t: "Strings & String Methods", n: "3" },
@@ -28,7 +28,7 @@
     { f: "spread-rest.html", t: "Spread & Rest Operators", n: "24" },
     { f: "promises.html", t: "Promises (Deep Dive)", n: "25" },
     { f: "dom-manipulation.html", t: "DOM Manipulation", n: "26" },
-    { f: "json.html", t: "JSON â€” Parse & Stringify", n: "27" },
+    { f: "json.html", t: "JSON \u2014 Parse & Stringify", n: "27" },
     { f: "map-filter-reduce.html", t: "Map, Filter, Reduce", n: "28" },
     { f: "closures-scope.html", t: "Closures & Scope", n: "29" },
     { f: "this-keyword.html", t: "The this Keyword", n: "30" },
@@ -47,37 +47,37 @@
     { f: "mnemonic-cheatsheet.html", t: "\ud83e\udde0 Mnemonic Cheatsheet", n: "\ud83e\udde0" }
   ];
 
-  var STORAGE_KEY = "ts-learning-progress";
-  var THEME_KEY = "ts-theme";
-  var currentFile = location.pathname.split("/").pop();
-  var idx = -1;
-  for (var i = 0; i < TOPICS.length; i++) {
-    if (TOPICS[i].f === currentFile) { idx = i; break; }
+  const STORAGE_KEY = "ts-learning-progress";
+  const THEME_KEY = "ts-theme";
+  const currentFile = location.pathname.split("/").pop();
+  let idx = -1;
+  for (const [i, topic] of TOPICS.entries()) {
+    if (topic.f === currentFile) { idx = i; break; }
   }
   if (idx < 0) return;
 
   function getProgress() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch (_) { return {}; }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
   }
   function saveProgress(p) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch (_) {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch { /* storage unavailable */ }
   }
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* ══════════════════════════════════════════════
      1. DARK MODE
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+  ══════════════════════════════════════════════ */
   function applyTheme(dark) {
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
-    try { localStorage.setItem(THEME_KEY, dark ? "dark" : "light"); } catch (_) {}
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    try { localStorage.setItem(THEME_KEY, dark ? "dark" : "light"); } catch { /* storage unavailable */ }
   }
-  var savedTheme = null;
-  try { savedTheme = localStorage.getItem(THEME_KEY); } catch (_) {}
-  var isDark = savedTheme === "dark";
-  applyTheme(isDark);
 
-  var topbar = document.getElementById("topbar");
-  if (topbar) {
-    var btn = document.createElement("button");
+  function initDarkMode(topbar) {
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem(THEME_KEY); } catch { /* storage unavailable */ }
+    let isDark = savedTheme === "dark";
+    applyTheme(isDark);
+    if (!topbar) return;
+    const btn = document.createElement("button");
     btn.className = "tb-theme-btn";
     btn.title = "Toggle dark/light mode";
     btn.textContent = isDark ? "\u2600\ufe0f" : "\ud83c\udf19";
@@ -89,52 +89,42 @@
     topbar.appendChild(btn);
   }
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* ══════════════════════════════════════════════
      2. PREV / NEXT NAVIGATION + KEYBOARD
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-  var prev = idx > 0 ? TOPICS[idx - 1] : null;
-  var next = idx < TOPICS.length - 1 ? TOPICS[idx + 1] : null;
-
-  var navHTML = '<div class="pn-nav">';
-  if (prev) {
-    navHTML += '<a class="pn-link pn-prev" href="' + prev.f + '">' +
-      '<span class="pn-dir">\u2190 Previous</span>' +
-      '<span class="pn-title"><span class="pn-badge">' + prev.n + '</span>' + prev.t + '</span></a>';
-  } else {
-    navHTML += '<div></div>';
-  }
-  if (next) {
-    navHTML += '<a class="pn-link pn-next" href="' + next.f + '">' +
-      '<span class="pn-dir">Next \u2192</span>' +
-      '<span class="pn-title"><span class="pn-badge">' + next.n + '</span>' + next.t + '</span></a>';
-  } else {
-    navHTML += '<a class="pn-link pn-next" href="../index.html">' +
-      '<span class="pn-dir">Finish \u2192</span><span class="pn-title">Back to Index</span></a>';
-  }
-  navHTML += '</div>';
-
-  var content = document.querySelector(".content");
-  if (content) {
-    var navEl = document.createElement("div");
-    navEl.innerHTML = navHTML;
-    content.appendChild(navEl.firstChild);
+  ══════════════════════════════════════════════ */
+  function buildNavLink(topic, dir) {
+    return '<a class="pn-link pn-' + dir + '" href="' + topic.f + '">' +
+      '<span class="pn-dir">' + (dir === 'prev' ? '\u2190 Previous' : 'Next \u2192') + '</span>' +
+      '<span class="pn-title"><span class="pn-badge">' + topic.n + '</span>' + topic.t + '</span></a>';
   }
 
-  // Keyboard shortcuts
-  document.addEventListener("keydown", function (e) {
-    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT") return;
-    if (e.key === "ArrowLeft" && prev) location.href = prev.f;
-    if (e.key === "ArrowRight" && next) location.href = next.f;
-  });
+  function initNavigation(content) {
+    const prev = idx > 0 ? TOPICS[idx - 1] : null;
+    const next = idx < TOPICS.length - 1 ? TOPICS[idx + 1] : null;
+    let navHTML = '<div class="pn-nav">';
+    navHTML += prev ? buildNavLink(prev, 'prev') : '<div></div>';
+    navHTML += next ? buildNavLink(next, 'next') :
+      '<a class="pn-link pn-next" href="../index.html"><span class="pn-dir">Finish \u2192</span><span class="pn-title">Back to Index</span></a>';
+    navHTML += '</div>';
+    if (content) {
+      const navEl = document.createElement("div");
+      navEl.innerHTML = navHTML;
+      content.appendChild(navEl.firstChild);
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT") return;
+      if (e.key === "ArrowLeft" && prev) location.href = prev.f;
+      if (e.key === "ArrowRight" && next) location.href = next.f;
+    });
+  }
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* ══════════════════════════════════════════════
      3. PROGRESS TRACKER
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-  var hero = document.querySelector(".hero");
-  if (hero) {
-    var prog = getProgress();
-    var done = !!prog[currentFile];
-    var cb = document.createElement("div");
+  ══════════════════════════════════════════════ */
+  function initProgressTracker(hero) {
+    const prog = getProgress();
+    const done = !!prog[currentFile];
+    const cb = document.createElement("div");
     cb.className = "pg-tracker";
     cb.innerHTML =
       '<label class="pg-label' + (done ? " pg-done" : "") + '">' +
@@ -144,10 +134,10 @@
     hero.appendChild(cb);
 
     cb.querySelector(".pg-check").addEventListener("change", function () {
-      var p = getProgress();
-      var icon = cb.querySelector(".pg-icon");
-      var text = cb.querySelector(".pg-text");
-      var label = cb.querySelector(".pg-label");
+      const p = getProgress();
+      const icon = cb.querySelector(".pg-icon");
+      const text = cb.querySelector(".pg-text");
+      const label = cb.querySelector(".pg-label");
       if (this.checked) {
         p[currentFile] = Date.now();
         icon.textContent = "\u2705"; text.textContent = "Completed!";
@@ -161,14 +151,14 @@
     });
   }
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* ══════════════════════════════════════════════
      4. TOPBAR PROGRESS BAR
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-  if (topbar) {
-    var prog2 = getProgress();
-    var completed = 0;
-    for (var j = 0; j < TOPICS.length; j++) { if (prog2[TOPICS[j].f]) completed++; }
-    var counter = document.createElement("div");
+  ══════════════════════════════════════════════ */
+  function initTopbarProgress(topbar) {
+    const prog2 = getProgress();
+    let completed = 0;
+    for (const topic of TOPICS) { if (prog2[topic.f]) completed++; }
+    const counter = document.createElement("div");
     counter.className = "tb-progress";
     counter.innerHTML =
       '<span class="tb-prog-bar"><span class="tb-prog-fill" style="width:' +
@@ -177,51 +167,66 @@
     topbar.appendChild(counter);
   }
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* ══════════════════════════════════════════════
      5. INTERVIEW BADGES
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-  var INTERVIEW_PAGES = {
-    "variables-keywords.html": ["var-hoist", "var-scope"],
-    "operators.html": ["op-comparison"],
-    "functions.html": ["fn-arrow"],
-    "higher-order-methods.html": ["hom-map", "hom-filter", "hom-reduce"],
-    "type-narrowing.html": ["tn-typeof", "tn-instanceof"],
-    "classes-inheritance.html": ["ci-access"],
-    "promises.html": ["prom-static"],
-    "async-await.html": ["aa-syntax"],
-    "error-handling.html": ["eh-trycatch"],
-    "closures-scope.html": ["cs-what", "cs-traps"],
-    "this-keyword.html": ["this-what", "this-bca"],
-    "destructuring.html": ["dest-obj"],
-    "spread-rest.html": ["sr-diff"],
-    "generics.html": ["gen-what"],
-    "dom-manipulation.html": ["dom-events"]
-  };
-
-  var badges = INTERVIEW_PAGES[currentFile];
-  if (badges) {
-    badges.forEach(function (id) {
-      var sec = document.getElementById(id);
-      if (sec) {
-        var badge = document.createElement("span");
-        badge.className = "interview-badge";
-        badge.textContent = "\ud83c\udfaf Interview Favorite";
-        var h2 = sec.querySelector("h2");
-        if (h2) h2.appendChild(badge);
-      }
-    });
+  ══════════════════════════════════════════════ */
+  function initInterviewBadges() {
+    const INTERVIEW_PAGES = {
+      "variables-keywords.html": ["var-hoist", "var-scope"],
+      "operators.html": ["op-comparison"],
+      "functions.html": ["fn-arrow"],
+      "higher-order-methods.html": ["hom-map", "hom-filter", "hom-reduce"],
+      "type-narrowing.html": ["tn-typeof", "tn-instanceof"],
+      "classes-inheritance.html": ["ci-access"],
+      "promises.html": ["prom-static"],
+      "async-await.html": ["aa-syntax"],
+      "error-handling.html": ["eh-trycatch"],
+      "closures-scope.html": ["cs-what", "cs-traps"],
+      "this-keyword.html": ["this-what", "this-bca"],
+      "destructuring.html": ["dest-obj"],
+      "spread-rest.html": ["sr-diff"],
+      "generics.html": ["gen-what"],
+      "dom-manipulation.html": ["dom-events"]
+    };
+    const ids = INTERVIEW_PAGES[currentFile];
+    if (!ids) return;
+    for (const id of ids) {
+      const sec = document.getElementById(id);
+      if (!sec) continue;
+      const badge = document.createElement("span");
+      badge.className = "interview-badge";
+      badge.textContent = "\ud83c\udfaf Interview Favorite";
+      const h2 = sec.querySelector("h2");
+      if (h2) h2.appendChild(badge);
+    }
   }
 
-  /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  /* ══════════════════════════════════════════════
      6. MINI SELF-TEST QUIZZES (from quiz-data.js)
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-  var QUIZZES = window.TS_QUIZZES || {};
-  var questions = QUIZZES[currentFile];
+  ══════════════════════════════════════════════ */
   // Strip HTML so all options look identical before answering
-  function stripHTML(s) { return s.replace(/<[^>]*>/g, ""); }
+  function stripHTML(s) { return s.replaceAll(/<[^>]*>/g, ""); }
 
+  // ── Bootstrap all features ──
+  const topbar = document.getElementById("topbar");
+  const content = document.querySelector(".content");
+  initDarkMode(topbar);
+  initNavigation(content);
+  const hero = document.querySelector(".hero");
+  if (hero) initProgressTracker(hero);
+  if (topbar) initTopbarProgress(topbar);
+  initInterviewBadges();
+
+  const QUIZZES = globalThis.TS_QUIZZES || {};
+  const questions = QUIZZES[currentFile];
   if (questions && content) {
-    var quizHTML = '<div class="sec quiz-sec" id="self-test">' +
+    buildQuizSection(questions, content);
+    wireQuizInteractions(questions, content);
+  }
+
+  /** Build the quiz HTML and insert it into the page */
+  function buildQuizSection(questions, content) {
+    let quizHTML = '<div class="sec quiz-sec" id="self-test">' +
       '<div class="sec-label">Self Test</div>' +
       '<h2>\ud83e\uddea Quick Quiz (' + questions.length + ' Questions)</h2>' +
       '<p>Test your understanding of every topic on this page. Click an option to check.</p>' +
@@ -238,8 +243,8 @@
     });
     quizHTML += '</div></div>';
 
-    var pnNav = content.querySelector(".pn-nav");
-    var quizEl = document.createElement("div");
+    const pnNav = content.querySelector(".pn-nav");
+    const quizEl = document.createElement("div");
     quizEl.innerHTML = quizHTML;
     if (pnNav) {
       content.insertBefore(quizEl.firstChild, pnNav);
@@ -247,75 +252,93 @@
       content.appendChild(quizEl.firstChild);
     }
 
-    // Add quiz link to nav, just below cheatsheet
-    var nav = document.querySelector("nav[id]");
-    if (nav) {
-      var quizLink = document.createElement("a");
-      quizLink.href = "#self-test";
-      quizLink.textContent = "Quick Quiz (" + questions.length + ")";
-      // Find cheatsheet link and insert after it
-      var links = nav.querySelectorAll("a");
-      var cheatLink = null;
-      links.forEach(function(a) {
-        if (a.textContent.toLowerCase().indexOf("cheatsheet") >= 0) cheatLink = a;
-      });
-      if (cheatLink && cheatLink.nextSibling) {
-        nav.insertBefore(quizLink, cheatLink.nextSibling);
-      } else {
-        nav.appendChild(quizLink);
-      }
+    // Add quiz link to sidebar nav
+    addQuizNavLink(questions);
+  }
 
-      // Highlight quiz link when self-test section is visible,
-      // and deselect it when any other section becomes visible
-      var selfTest = document.getElementById("self-test");
-      if (selfTest) {
-        var quizObs = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              if (entry.target.id === "self-test") {
-                nav.querySelectorAll("a").forEach(function(a) { a.classList.remove("on"); });
-                quizLink.classList.add("on");
-              } else {
-                quizLink.classList.remove("on");
-              }
-            }
-          });
-        }, { rootMargin: "-15% 0px -75% 0px" });
-        quizObs.observe(selfTest);
-        // Also observe all content sections so we can deselect quiz link
-        document.querySelectorAll(".sec[id]").forEach(function(s) { quizObs.observe(s); });
-      }
+  /** Add the quiz sidebar link and set up its scroll-based highlighting */
+  function addQuizNavLink(questions) {
+    const nav = document.querySelector("nav[id]");
+    if (!nav) return;
+
+    const quizLink = document.createElement("a");
+    quizLink.href = "#self-test";
+    quizLink.textContent = "Quick Quiz (" + questions.length + ")";
+
+    // Find cheatsheet link and insert after it
+    let cheatLink = null;
+    for (const a of nav.querySelectorAll("a")) {
+      if (a.textContent.toLowerCase().includes("cheatsheet")) cheatLink = a;
+    }
+    if (cheatLink?.nextSibling) {
+      nav.insertBefore(quizLink, cheatLink.nextSibling);
+    } else {
+      nav.appendChild(quizLink);
     }
 
-    content.querySelectorAll(".quiz-card").forEach(function (card, ci) {
-      var correctIdx = parseInt(card.getAttribute("data-answer"));
-      var fb = card.querySelector(".quiz-fb");
-      var answered = false;
-      var origAnswer = questions[ci].o[correctIdx];
-      card.querySelectorAll(".quiz-opt").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          if (answered) return;
-          answered = true;
-          var chosen = parseInt(this.getAttribute("data-idx"));
-          var ansLetter = "ABCD"[correctIdx];
-          // Use explicit section ID from quiz data
-          var secId = questions[ci].s;
-          var sec = secId ? document.getElementById(secId) : null;
-          var secTitle = sec && sec.querySelector("h2") ? sec.querySelector("h2").textContent : "";
-          var reviewLink = sec ? ' <a class="quiz-review" href="#' + secId + '">\ud83d\udcd6 ' + secTitle + ' \u2191</a>' : '';
-          var exampleHtml = questions[ci].e ? '<div class="quiz-example"><span class="quiz-example-label">\ud83d\udca1 Example:</span> <code>' + questions[ci].e.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code></div>' : '';
-          if (chosen === correctIdx) {
-            this.classList.add("quiz-correct");
-            fb.innerHTML = "\u2705 Correct! <span class='quiz-ans'>" + ansLetter + ": " + origAnswer + "</span>" + exampleHtml + reviewLink;
-            fb.className = "quiz-fb quiz-fb-correct";
+    // Highlight quiz link when self-test section is visible,
+    // and deselect it when any other section becomes visible
+    const selfTest = document.getElementById("self-test");
+    if (!selfTest) return;
+
+    const quizObs = new IntersectionObserver(function(entries) {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          if (entry.target.id === "self-test") {
+            nav.querySelectorAll("a").forEach(function(a) { a.classList.remove("on"); });
+            quizLink.classList.add("on");
           } else {
-            this.classList.add("quiz-wrong");
-            card.querySelectorAll(".quiz-opt")[correctIdx].classList.add("quiz-correct");
-            fb.innerHTML = "\u274c The answer is <span class='quiz-ans'>" + ansLetter + ": " + origAnswer + "</span>" + exampleHtml + reviewLink;
-            fb.className = "quiz-fb quiz-fb-wrong";
+            quizLink.classList.remove("on");
           }
-        });
+        }
+      }
+    }, { rootMargin: "-15% 0px -75% 0px" });
+    quizObs.observe(selfTest);
+    // Also observe all content sections so we can deselect quiz link
+    document.querySelectorAll(".sec[id]").forEach(function(s) { quizObs.observe(s); });
+  }
+
+  /** Bind answer buttons for a single quiz card */
+  function bindCardAnswers(card, ci, questions) {
+    const correctIdx = Number.parseInt(card.dataset.answer);
+    const fb = card.querySelector(".quiz-fb");
+    let answered = false;
+    const origAnswer = questions[ci].o[correctIdx];
+    card.querySelectorAll(".quiz-opt").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (answered) return;
+        answered = true;
+        handleQuizAnswer(this, card, fb, ci, correctIdx, origAnswer, questions);
       });
     });
+  }
+
+  /** Wire up click handlers on all quiz answer buttons */
+  function wireQuizInteractions(questions, content) {
+    content.querySelectorAll(".quiz-card").forEach(function (card, ci) {
+      bindCardAnswers(card, ci, questions);
+    });
+  }
+
+  /** Process a quiz answer click */
+  function handleQuizAnswer(btn, card, fb, ci, correctIdx, origAnswer, questions) {
+    const chosen = Number.parseInt(btn.dataset.idx);
+    const ansLetter = "ABCD"[correctIdx];
+    // Use explicit section ID from quiz data
+    const secId = questions[ci].s;
+    const sec = secId ? document.getElementById(secId) : null;
+    const secTitle = sec?.querySelector("h2")?.textContent ?? "";
+    const reviewLink = sec ? ' <a class="quiz-review" href="#' + secId + '">\ud83d\udcd6 ' + secTitle + ' \u2191</a>' : '';
+    const exampleHtml = questions[ci].e ? '<div class="quiz-example"><span class="quiz-example-label">\ud83d\udca1 Example:</span> <code>' + questions[ci].e.replaceAll('<','&lt;').replaceAll('>','&gt;') + '</code></div>' : '';
+    if (chosen === correctIdx) {
+      btn.classList.add("quiz-correct");
+      fb.innerHTML = "\u2705 Correct! <span class='quiz-ans'>" + ansLetter + ": " + origAnswer + "</span>" + exampleHtml + reviewLink;
+      fb.className = "quiz-fb quiz-fb-correct";
+    } else {
+      btn.classList.add("quiz-wrong");
+      card.querySelectorAll(".quiz-opt")[correctIdx].classList.add("quiz-correct");
+      fb.innerHTML = "\u274c The answer is <span class='quiz-ans'>" + ansLetter + ": " + origAnswer + "</span>" + exampleHtml + reviewLink;
+      fb.className = "quiz-fb quiz-fb-wrong";
+    }
   }
 })();
