@@ -111,6 +111,27 @@ console.log(timestamp);        // 1718448000000</code></pre>
             </div>
           </div>
 
+          <div class="note note-tip" style="margin: 0 0 2rem">
+            <span class="note-i">✓</span>
+            <p>
+              <strong>🧠 Memory Trick — 7 Date Getters:</strong
+              ><br /><br />
+              "<strong>Y</strong>our <strong>M</strong>om
+              <strong>Da</strong>nces <strong>D</strong>aily —
+              <strong>H</strong>er <strong>M</strong>oves
+              <strong>S</strong>lay"<br />
+              → get<strong>F</strong>ull<strong>Y</strong>ear,
+              get<strong>M</strong>onth,
+              get<strong>Da</strong>te,
+              get<strong>D</strong>ay,
+              get<strong>H</strong>ours,
+              get<strong>M</strong>inutes,
+              get<strong>S</strong>econds<br /><br />
+              ⚠ <strong>Month is 0-indexed!</strong> Jan=0, Dec=11.
+              Day is also 0-indexed (Sun=0).
+            </p>
+          </div>
+
           <!-- GETTING PARTS -->
           <div class="sec" id="dt-get">
             <div class="sec-label">Basics</div>
@@ -474,5 +495,7 @@ Math.floor((d2 - d1) / (1000*60*60*24))  // diff in days</code></pre>
         document.querySelectorAll(".content [id]").forEach((s) => o.observe(s));
       })();
     </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
   </body>
 </html>

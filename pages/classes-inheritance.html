@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -485,6 +485,22 @@ c.display();
               </table>
             </div>
 
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>🧠 Memory Trick — Access Modifier
+                Visibility:</strong><br /><br />
+                🏷 <strong>public</strong> = Your
+                <strong>Name</strong> — everyone knows it<br />
+                🍳 <strong>protected</strong> = Family
+                <strong>Recipe</strong> — shared with children only<br />
+                📔 <strong>private</strong> = Your
+                <strong>Diary</strong> — only YOU can read it<br /><br />
+                💡 Visibility shrinks: <em>public → protected → private</em>
+                (everywhere → family → self)
+              </p>
+            </div>
+
             <pre><code>class Person {
   public name: string;       // accessible EVERYWHERE
   protected age: number;     // accessible in class + child class
@@ -732,5 +748,7 @@ private ssn: number;     // this class ONLY</code></pre>
           .forEach((s) => obs.observe(s));
       })();
     </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
   </body>
 </html>

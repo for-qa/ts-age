@@ -1,12 +1,12 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Arrays &amp; Tuples — TypeScript Learning Path</title>
+    <title>Arrays &amp; Tuples � TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript arrays and tuples — declaration, indexing, loops, functions, and fixed-size tuples with real-life examples."
+      content="Learn TypeScript arrays and tuples � declaration, indexing, loops, functions, and fixed-size tuples with real-life examples."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -23,7 +23,7 @@
           <div class="tb-brand-sub">Session Notes</div>
         </div>
       </div>
-      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <a class="tb-back" href="../index.html">? Back to Index</a>
       <div class="tb-topic-title">Arrays &amp; Tuples</div>
     </div>
 
@@ -39,12 +39,12 @@
           <a href="#at-concepts">Key Concepts</a>
           <div class="nav-group">Arrays</div>
           <a href="#at-declaration">Declaration &amp; Init</a>
-          <a href="#at-approach1">Approach 1 — Literal</a>
-          <a href="#at-approach2">Approach 2 — Generic</a>
+          <a href="#at-approach1">Approach 1 � Literal</a>
+          <a href="#at-approach2">Approach 2 � Generic</a>
           <a href="#at-loops">Iterating Arrays</a>
           <a href="#at-forloop">Classic for Loop</a>
-          <a href="#at-forin">for…in Loop</a>
-          <a href="#at-forof">for…of Loop</a>
+          <a href="#at-forin">for�in Loop</a>
+          <a href="#at-forof">for�of Loop</a>
           <div class="nav-group">Functions &amp; Arrays</div>
           <a href="#at-arrfn">Arrays with Functions</a>
           <a href="#at-pass">Passing Array to Fn</a>
@@ -70,7 +70,7 @@
             <h1>Arrays <span>&amp; Tuples</span></h1>
             <p>
               A complete reference to declaring, initialising, and iterating
-              arrays in TypeScript — covering both literal and generic syntax,
+              arrays in TypeScript � covering both literal and generic syntax,
               three flavors of <code>for</code> loop, passing arrays to
               functions, and the fixed-type <em>tuple</em> variant.
             </p>
@@ -102,14 +102,14 @@
             <div class="sec-label">Introduction</div>
             <h2>What is an Array?</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Imagine you have a
                 <strong>grocery list</strong> on a piece of paper. Each item is
-                written on a line — Line 1: Milk, Line 2: Bread, Line 3: Eggs.
+                written on a line � Line 1: Milk, Line 2: Bread, Line 3: Eggs.
                 That paper with multiple items is an <strong>array</strong>. A
-                normal variable is like a sticky note — it can only hold ONE
-                item. An array is like a full page — it holds MANY items in
+                normal variable is like a sticky note � it can only hold ONE
+                item. An array is like a full page � it holds MANY items in
                 order.
               </p>
             </div>
@@ -117,23 +117,23 @@
               A normal variable can hold
               <strong>only one value at a time</strong>. If you put a new value?
               The old one gets replaced. But what if you need to store a bunch
-              of things — like a list of your friends' names or your exam
+              of things � like a list of your friends' names or your exam
               scores? That's where an <strong>array</strong> comes in.
             </p>
             <div class="note note-info">
               <span class="note-i">i</span>
               <p>
                 <strong>Simple Definition:</strong> An array is a
-                <strong>list variable</strong> — it stores multiple values under
+                <strong>list variable</strong> � it stores multiple values under
                 one name, like a to-do list that holds many tasks.
               </p>
             </div>
-            <h3>TypeScript vs Java — important difference</h3>
+            <h3>TypeScript vs Java � important difference</h3>
             <p>
               In Java, there's a regular <strong>array</strong> (fixed number of
               slots, like a parking lot with 10 spots) and an
               <strong>ArrayList</strong> (can grow, like a waiting line). In
-              TypeScript, arrays work like the flexible version by default —
+              TypeScript, arrays work like the flexible version by default �
               they grow and shrink as needed. If you want a fixed-size
               collection in TypeScript, you use a
               <strong>tuple</strong> (covered later).
@@ -141,21 +141,21 @@
             <h3>Core properties</h3>
             <ul>
               <li>
-                <strong>Ordered</strong> — items stay in the order you put them
+                <strong>Ordered</strong> � items stay in the order you put them
                 in, just like songs in a playlist.
               </li>
               <li>
-                <strong>Numbered positions</strong> — each item has an
+                <strong>Numbered positions</strong> � each item has an
                 <em>index</em> (position number) starting from <code>0</code>,
                 not 1. Think of elevator floors where Ground Floor = 0.
               </li>
               <li>
-                <strong>Grows automatically</strong> — you can keep adding items
+                <strong>Grows automatically</strong> � you can keep adding items
                 without defining a size upfront.
               </li>
               <li>
-                <strong>Can mix types</strong> — you can store text, numbers,
-                true/false — all in one array if needed.
+                <strong>Can mix types</strong> � you can store text, numbers,
+                true/false � all in one array if needed.
               </li>
             </ul>
           </div>
@@ -165,7 +165,7 @@
             <h2>Key concepts before you start</h2>
             <h3>Indexing</h3>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Think of an array like
                 <strong>seats in a movie theater row</strong>. Seat numbers
@@ -174,10 +174,10 @@
               </p>
             </div>
             <p>
-              Each slot in an array has an <strong>index</strong> — think of it
+              Each slot in an array has an <strong>index</strong> � think of it
               as the slot's address. The first slot is always
               <code>0</code> (not 1!). If you have <code>n</code> items, the
-              last one sits at position <code>n − 1</code>.
+              last one sits at position <code>n - 1</code>.
             </p>
             <div class="bordered">
               <table>
@@ -193,28 +193,28 @@
                     <td>5</td>
                     <td><code>0</code></td>
                     <td>
-                      <code>4</code> &nbsp;<span class="p p-gray">n − 1</span>
+                      <code>4</code> &nbsp;<span class="p p-gray">n - 1</span>
                     </td>
                   </tr>
                   <tr>
                     <td>10</td>
                     <td><code>0</code></td>
                     <td>
-                      <code>9</code> &nbsp;<span class="p p-gray">n − 1</span>
+                      <code>9</code> &nbsp;<span class="p p-gray">n - 1</span>
                     </td>
                   </tr>
                   <tr>
                     <td>1</td>
                     <td><code>0</code></td>
                     <td>
-                      <code>0</code> &nbsp;<span class="p p-gray">n − 1</span>
+                      <code>0</code> &nbsp;<span class="p p-gray">n - 1</span>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="note note-warn">
-              <span class="note-i">⚠</span>
+              <span class="note-i">?</span>
               <p>
                 Accessing index <code>n</code> (equal to the length) is out of
                 bounds. In Java this throws
@@ -226,12 +226,12 @@
             <h3>The <code>length</code> attribute</h3>
             <p>
               <code>arrayName.length</code> returns the total number of elements
-              stored — <strong>not</strong> the last valid index. Use it in loop
+              stored � <strong>not</strong> the last valid index. Use it in loop
               conditions as <code>i &lt; arr.length</code> (or
               <code>i &lt;= arr.length - 1</code>).
             </p>
             <pre><code>let names: string[] = ["John", "Smith", "Peter", "Scott"];
-console.log(names.length); // 4  ← count of elements, NOT the last index</code></pre>
+console.log(names.length); // 4  ? count of elements, NOT the last index</code></pre>
             <h3>Concept flow</h3>
             <div class="pipe">
               <div class="pipe-step">
@@ -252,12 +252,12 @@ console.log(names.length); // 4  ← count of elements, NOT the last index</code
               <div class="pipe-step">
                 <div class="pipe-ph ph4-c">Step 4</div>
                 <div class="pipe-name">Operate</div>
-                <div class="pipe-pts">search, transform…</div>
+                <div class="pipe-pts">search, transform�</div>
               </div>
               <div class="pipe-step">
                 <div class="pipe-ph ph5-c">Step 5</div>
                 <div class="pipe-name">Methods</div>
-                <div class="pipe-pts">push, pop, map… (Day 10)</div>
+                <div class="pipe-pts">push, pop, map� (Day 10)</div>
               </div>
             </div>
           </div>
@@ -266,7 +266,7 @@ console.log(names.length); // 4  ← count of elements, NOT the last index</code
             <div class="sec-label">Arrays</div>
             <h2>Declaration &amp; initialisation</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Creating an array is like
                 getting a <strong>new notebook</strong>. You can get an empty
@@ -278,7 +278,7 @@ console.log(names.length); // 4  ← count of elements, NOT the last index</code
             </div>
             <p>
               There are <strong>two ways to write</strong> an array in
-              TypeScript. Think of them as two different styles of handwriting —
+              TypeScript. Think of them as two different styles of handwriting �
               both produce the same result.
             </p>
             <div class="agrid">
@@ -299,7 +299,7 @@ console.log(names.length); // 4  ← count of elements, NOT the last index</code
                 <div class="adesc">
                   Uses <code>Array&lt;string&gt;</code>,
                   <code>Array&lt;number | string&gt;</code> etc. Specific to
-                  JavaScript and TypeScript — not available in Java or Python.
+                  JavaScript and TypeScript � not available in Java or Python.
                 </div>
               </div>
               <div class="acard">
@@ -325,10 +325,10 @@ console.log(names.length); // 4  ← count of elements, NOT the last index</code
           </div>
 
           <div class="sec" id="at-approach1">
-            <div class="sec-label">Declaration — Approach 1</div>
+            <div class="sec-label">Declaration � Approach 1</div>
             <h2>Literal (bracket) syntax</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> This is like writing
                 <code>Friends List: []</code> on a whiteboard. The
@@ -345,12 +345,12 @@ console.log(names.length); // 4  ← count of elements, NOT the last index</code
               <div class="card-head">
                 <div class="card-num">A</div>
                 <div class="card-title">
-                  Declaration only — then assign by index
+                  Declaration only � then assign by index
                 </div>
                 <span class="card-badge">Two-step</span>
               </div>
               <div class="card-body">
-                <pre><code>let names: string[] = [];          // declaration — empty array
+                <pre><code>let names: string[] = [];          // declaration � empty array
 
 names[0] = "John";
 names[1] = "Smith";
@@ -368,7 +368,7 @@ console.log(names);                // [ 'John', 'Smith', 'Peter', 'Scott' ]</cod
               <div class="card-head">
                 <div class="card-num">B</div>
                 <div class="card-title">
-                  Declaration + initialisation — one statement
+                  Declaration + initialisation � one statement
                 </div>
                 <span class="card-badge">Preferred</span>
               </div>
@@ -376,15 +376,15 @@ console.log(names);                // [ 'John', 'Smith', 'Peter', 'Scott' ]</cod
                 <pre><code>let names: string[] = ["John", "Smith", "Peter", "Scott"];
 
 console.log(names);                // [ 'John', 'Smith', 'Peter', 'Scott' ]
-console.log(names[1]);             // Smith  ← index 1</code></pre>
+console.log(names[1]);             // Smith  ? index 1</code></pre>
                 <p class="fn">
-                  Values are auto-indexed 0, 1, 2, 3 … without needing to write
+                  Values are auto-indexed 0, 1, 2, 3 � without needing to write
                   the index explicitly.
                 </p>
               </div>
             </div>
             <div class="note note-warn">
-              <span class="note-i">⚠</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>No fixed size in TypeScript arrays.</strong> Writing
                 <code>let names: string[5]</code> causes a type error.
@@ -394,28 +394,28 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
           </div>
 
           <div class="sec" id="at-approach2">
-            <div class="sec-label">Declaration — Approach 2</div>
+            <div class="sec-label">Declaration � Approach 2</div>
             <h2>Generic array type</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> This is like using a
                 <strong>labeled container</strong>. Instead of writing
                 <code>string[]</code>, you write
-                <code>Array&lt;string&gt;</code> — it's like putting a "STRINGS
+                <code>Array&lt;string&gt;</code> � it's like putting a "STRINGS
                 ONLY" label on a container. Same result, different style.
               </p>
             </div>
             <p>
               Another way to write arrays using the
               <code>Array&lt;T&gt;</code> format. This style is
-              <strong>only available in TypeScript/JavaScript</strong> — you
+              <strong>only available in TypeScript/JavaScript</strong> � you
               won't see it in Java or Python.
             </p>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">1</div>
-                <div class="card-title">Single type — strings</div>
+                <div class="card-title">Single type � strings</div>
                 <span class="card-badge">Array&lt;string&gt;</span>
               </div>
               <div class="card-body">
@@ -425,7 +425,7 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Single type — numbers</div>
+                <div class="card-title">Single type � numbers</div>
                 <span class="card-badge">Array&lt;number&gt;</span>
               </div>
               <div class="card-body">
@@ -435,13 +435,13 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">3</div>
-                <div class="card-title">Union type — string or number</div>
+                <div class="card-title">Union type � string or number</div>
                 <span class="card-badge">Array&lt;string | number&gt;</span>
               </div>
               <div class="card-body">
                 <pre><code>let data: Array&lt;string | number&gt; = ["John", 101, "Alice", 102];</code></pre>
                 <p class="fn">
-                  The union operator <code>|</code> allows either type — but no
+                  The union operator <code>|</code> allows either type � but no
                   other type.
                 </p>
               </div>
@@ -449,13 +449,13 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
             <div class="card ph5-card">
               <div class="card-head">
                 <div class="card-num">4</div>
-                <div class="card-title">Any type — mixed data</div>
+                <div class="card-title">Any type � mixed data</div>
                 <span class="card-badge">Array&lt;any&gt;</span>
               </div>
               <div class="card-body">
                 <pre><code>let mixedData: Array&lt;any&gt; = [42, "hello", true, null];</code></pre>
                 <div class="note note-warn" style="margin-top: 0.6rem">
-                  <span class="note-i">⚠</span>
+                  <span class="note-i">?</span>
                   <p>
                     Using <code>any</code> disables TypeScript's type checking
                     for that array. Prefer specific types or unions where
@@ -506,20 +506,20 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
             <div class="sec-label">Iterating Arrays</div>
             <h2>Three ways to loop over an array</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Imagine you have a
                 <strong>tray of 10 cupcakes</strong>. You want to check each
-                one. You can: <strong>(1)</strong> count slot by slot — "Slot 0,
+                one. You can: <strong>(1)</strong> count slot by slot � "Slot 0,
                 Slot 1, Slot 2..." (classic for). <strong>(2)</strong> ask
-                "which slot am I on?" automatically (for…in).
+                "which slot am I on?" automatically (for�in).
                 <strong>(3)</strong> just grab each cupcake directly without
-                caring about the slot number (for…of).
+                caring about the slot number (for�of).
               </p>
             </div>
             <p>
               To look at each item in an array one by one, you use a
-              <strong>loop</strong>. TypeScript gives you three styles — each
+              <strong>loop</strong>. TypeScript gives you three styles � each
               works differently with the position number (index).
             </p>
             <div class="pipe">
@@ -530,19 +530,19 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
               </div>
               <div class="pipe-step">
                 <div class="pipe-ph ph2-c">Loop 2</div>
-                <div class="pipe-name"><code>for…in</code></div>
+                <div class="pipe-name"><code>for�in</code></div>
                 <div class="pipe-pts">yields index</div>
               </div>
               <div class="pipe-step">
                 <div class="pipe-ph ph3-c">Loop 3</div>
-                <div class="pipe-name"><code>for…of</code></div>
+                <div class="pipe-name"><code>for�of</code></div>
                 <div class="pipe-pts">yields value directly</div>
               </div>
             </div>
             <div class="note note-info">
               <span class="note-i">i</span>
               <p>
-                A fourth option — <code>forEach()</code> — is an array
+                A fourth option � <code>forEach()</code> � is an array
                 <em>method</em> that accepts a callback function. Covered in Day
                 10 / Day 11.
               </p>
@@ -553,16 +553,16 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
             <div class="sec-label">Loop 1</div>
             <h2>Classic <code>for</code> loop</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>security guard</strong> checking rooms in a hotel — Room
+                <strong>security guard</strong> checking rooms in a hotel � Room
                 0, Room 1, Room 2... He starts at Room 0, checks it, moves to
                 the next, and stops when there are no more rooms.
               </p>
             </div>
             <p>
-              The old-school loop where YOU control everything — where to start,
+              The old-school loop where YOU control everything � where to start,
               when to stop, and how to move forward. You always work with the
               position number (index).
             </p>
@@ -570,7 +570,7 @@ console.log(names[1]);             // Smith  ← index 1</code></pre>
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  Classic for loop — using <code>length</code>
+                  Classic for loop � using <code>length</code>
                 </div>
                 <span class="card-badge">Index-based</span>
               </div>
@@ -602,7 +602,7 @@ for (let i = 0; i &lt; empNames.length; i++) {
                         <td><code>i &lt; empNames.length</code></td>
                         <td>
                           Run while index is within bounds.
-                          <code>length</code> = 4, last index = 3 → use
+                          <code>length</code> = 4, last index = 3 ? use
                           <code>&lt;</code> not <code>&lt;=</code>
                         </td>
                       </tr>
@@ -620,10 +620,10 @@ for (let i = 0; i &lt; empNames.length; i++) {
                   </table>
                 </div>
                 <div class="note note-warn" style="margin-top: 0.75rem">
-                  <span class="note-i">⚠</span>
+                  <span class="note-i">?</span>
                   <p>
                     <code>i &lt;= empNames.length</code> causes an off-by-one
-                    error — the last iteration reads index 4 which doesn't
+                    error � the last iteration reads index 4 which doesn't
                     exist. Always use <code>&lt;</code> with
                     <code>length</code>, or <code>&lt;=</code> with
                     <code>length - 1</code>.
@@ -635,12 +635,12 @@ for (let i = 0; i &lt; empNames.length; i++) {
 
           <div class="sec" id="at-forin">
             <div class="sec-label">Loop 2</div>
-            <h2><code>for…in</code> loop</h2>
+            <h2><code>for�in</code> loop</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>postman</strong> who reads house numbers — he knows the
+                <strong>postman</strong> who reads house numbers � he knows the
                 address (index) but has to open the mailbox to see what's inside
                 (value). He gives you the <strong>house number</strong>, not the
                 letter.
@@ -655,7 +655,7 @@ for (let i = 0; i &lt; empNames.length; i++) {
               <div class="card-head">
                 <div class="card-num">2</div>
                 <div class="card-title">
-                  <code>for…in</code> — index-based, compact
+                  <code>for�in</code> � index-based, compact
                 </div>
                 <span class="card-badge">Index yielded</span>
               </div>
@@ -669,7 +669,7 @@ for (let i in empIds) {
                 <div class="note note-info" style="margin-top: 0.75rem">
                   <span class="note-i">i</span>
                   <p>
-                    <code>i</code> in a <code>for…in</code> loop is the
+                    <code>i</code> in a <code>for�in</code> loop is the
                     <strong>index</strong>, not the value. You must still write
                     <code>empIds[i]</code> to get the element. Writing
                     <code>console.log(i)</code> gives <code>0 1 2 3</code>.
@@ -681,26 +681,26 @@ for (let i in empIds) {
 
           <div class="sec" id="at-forof">
             <div class="sec-label">Loop 3</div>
-            <h2><code>for…of</code> loop</h2>
+            <h2><code>for�of</code> loop</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>waiter bringing dishes to your table</strong> — he hands
+                <strong>waiter bringing dishes to your table</strong> � he hands
                 you each dish directly. You don't care if it was Dish #1 or Dish
-                #3 — you just get the food itself. No position numbers involved!
+                #3 � you just get the food itself. No position numbers involved!
               </p>
             </div>
             <p>
               The easiest loop for getting values. The loop variable holds the
-              <strong>actual value</strong> — no index numbers, no extra steps.
+              <strong>actual value</strong> � no index numbers, no extra steps.
               Just the item itself.
             </p>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">3</div>
                 <div class="card-title">
-                  <code>for…of</code> — value-based, no index
+                  <code>for�of</code> � value-based, no index
                 </div>
                 <span class="card-badge">Value yielded</span>
               </div>
@@ -712,7 +712,7 @@ for (let value of data) {
 }
 // John  101  Alice  202</code></pre>
                 <p>
-                  The variable name (<code>value</code> here) is user-defined —
+                  The variable name (<code>value</code> here) is user-defined �
                   it is <strong>not</strong> a keyword.
                 </p>
               </div>
@@ -730,7 +730,7 @@ for (let value of data) {
                 </thead>
                 <tbody>
                   <tr>
-                    <td><code>for (let i = 0; …)</code></td>
+                    <td><code>for (let i = 0; �)</code></td>
                     <td><span class="p p-blue">Index</span></td>
                     <td>Yes</td>
                     <td>Yes</td>
@@ -739,13 +739,13 @@ for (let value of data) {
                     <td><code>for (let i in arr)</code></td>
                     <td><span class="p p-teal">Index</span></td>
                     <td>Yes</td>
-                    <td>No — auto</td>
+                    <td>No � auto</td>
                   </tr>
                   <tr>
                     <td><code>for (let v of arr)</code></td>
                     <td><span class="p p-violet">Value</span></td>
                     <td>No</td>
-                    <td>No — auto</td>
+                    <td>No � auto</td>
                   </tr>
                 </tbody>
               </table>
@@ -756,7 +756,7 @@ for (let value of data) {
             <div class="sec-label">Functions &amp; Arrays</div>
             <h2>Using arrays with functions</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Think of a function as a
                 <strong>kitchen blender</strong>. You can put in a
@@ -766,23 +766,23 @@ for (let value of data) {
               </p>
             </div>
             <p>
-              Arrays can travel in and out of functions — you can
+              Arrays can travel in and out of functions � you can
               <strong>send a list</strong> into a function and
               <strong>get a list back</strong>. This is how functions work with
               groups of data.
             </p>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Pro tip:</strong> A function can only return ONE thing.
                 So if you need to send back multiple values? Pack them in an
-                array — it's like putting multiple gifts in one bag.
+                array � it's like putting multiple gifts in one bag.
               </p>
             </div>
           </div>
 
           <div class="sec" id="at-pass">
-            <div class="sec-label">Functions — Example 4</div>
+            <div class="sec-label">Functions � Example 4</div>
             <h2>Passing an array to a function</h2>
             <div class="card ph4-card">
               <div class="card-head">
@@ -822,7 +822,7 @@ console.log(search(100, ar));  // false</code></pre>
                       <tr>
                         <td><span class="rid">Param 2</span></td>
                         <td><code>arr: number[]</code></td>
-                        <td>Array parameter — the collection to search in</td>
+                        <td>Array parameter � the collection to search in</td>
                       </tr>
                       <tr>
                         <td><span class="rid">Return</span></td>
@@ -840,13 +840,13 @@ console.log(search(100, ar));  // false</code></pre>
           </div>
 
           <div class="sec" id="at-return">
-            <div class="sec-label">Functions — Example 5</div>
+            <div class="sec-label">Functions � Example 5</div>
             <h2>Returning an array from a function</h2>
             <div class="card ph5-card">
               <div class="card-head">
                 <div class="card-num">5</div>
                 <div class="card-title">
-                  Convert all strings to uppercase — returns an array
+                  Convert all strings to uppercase � returns an array
                 </div>
                 <span class="card-badge">Array as return type</span>
               </div>
@@ -867,7 +867,7 @@ console.log(capitalizeWords(words));
                 <div class="note note-info" style="margin-top: 0.75rem">
                   <span class="note-i">i</span>
                   <p>
-                    The result is stored at <code>result[i]</code> — the
+                    The result is stored at <code>result[i]</code> � the
                     <strong>same index</strong> as the source element. Position
                     is preserved. The original <code>ar</code> array is
                     unchanged.
@@ -881,20 +881,20 @@ console.log(capitalizeWords(words));
             <div class="sec-label">Tuples</div>
             <h2>What is a Tuple?</h2>
             <div class="note note-tip">
-              <span class="note-i">✓</span>
+              <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Think of a tuple like a
-                <strong>passport</strong> — it has exactly 3 things in a fixed
+                <strong>passport</strong> � it has exactly 3 things in a fixed
                 order: <strong>Name</strong> (text),
                 <strong>Age</strong> (number), <strong>Photo</strong> (image).
                 You can't add a 4th field, you can't swap the order, and the
-                Name slot can't suddenly become a number. That's a tuple — a
+                Name slot can't suddenly become a number. That's a tuple � a
                 <strong>fixed-size box</strong> where every slot has a specific
                 type.
               </p>
             </div>
             <p>
-              A <strong>tuple</strong> is like an array's strict older sibling —
+              A <strong>tuple</strong> is like an array's strict older sibling �
               it has two rules that can't be broken:
               <strong>fixed length</strong> (you can't add or remove items) and
               <strong>fixed types per position</strong> (each slot only accepts
@@ -912,7 +912,7 @@ console.log(capitalizeWords(words));
               <div class="card-head">
                 <div class="card-num">T1</div>
                 <div class="card-title">
-                  Two-element tuple — <code>[string, number]</code>
+                  Two-element tuple � <code>[string, number]</code>
                 </div>
                 <span class="card-badge">Fixed 2 values</span>
               </div>
@@ -924,14 +924,14 @@ console.log(person[0]);   // John
 console.log(person[1]);   // 25</code></pre>
                 <p>
                   <code>[string, number]</code> is <strong>not</strong> a union
-                  operator — it is the tuple type definition.
+                  operator � it is the tuple type definition.
                 </p>
               </div>
             </div>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">T2</div>
-                <div class="card-title">Multi-element tuple — mixed types</div>
+                <div class="card-title">Multi-element tuple � mixed types</div>
                 <span class="card-badge">Fixed 5 values</span>
               </div>
               <div class="card-body">
@@ -995,7 +995,7 @@ console.log(user.length); // 5</code></pre>
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title"><code>for…in</code> on a tuple</div>
+                <div class="card-title"><code>for�in</code> on a tuple</div>
                 <span class="card-badge">Index yielded</span>
               </div>
               <div class="card-body">
@@ -1005,7 +1005,7 @@ console.log(user.length); // 5</code></pre>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">3</div>
-                <div class="card-title"><code>for…of</code> on a tuple</div>
+                <div class="card-title"><code>for�of</code> on a tuple</div>
                 <span class="card-badge">Value yielded</span>
               </div>
               <div class="card-body">
@@ -1015,7 +1015,7 @@ console.log(user.length); // 5</code></pre>
           </div>
 
           <div class="sec" id="at-arraytuple">
-            <div class="sec-label">Tuples — Advanced</div>
+            <div class="sec-label">Tuples � Advanced</div>
             <h2>Array of tuples</h2>
             <p>
               By appending <code>[]</code> to a tuple type, you create an
@@ -1025,7 +1025,7 @@ console.log(user.length); // 5</code></pre>
               <div class="card-head">
                 <div class="card-num">T3</div>
                 <div class="card-title">
-                  Array of <code>[number, string]</code> tuples — student
+                  Array of <code>[number, string]</code> tuples � student
                   records
                 </div>
                 <span class="card-badge">Array of Tuples</span>
@@ -1040,7 +1040,7 @@ console.log(user.length); // 5</code></pre>
 console.log(students.length);    // 3
 console.log(students[0]);        // [ 101, 'John' ]
 
-// Extract a single field — two-step
+// Extract a single field � two-step
 let tp = students[1];            // [ 102, 'Peter' ]
 console.log(tp[0]);              // 102
 console.log(tp[1]);              // Peter</code></pre>
@@ -1048,7 +1048,7 @@ console.log(tp[1]);              // Peter</code></pre>
                   <span class="note-i">i</span>
                   <p>
                     <code>students[1][0]</code> is <strong>not</strong> valid
-                    here — this implies a 2D array. Always extract the tuple
+                    here � this implies a 2D array. Always extract the tuple
                     first, then index into it.
                   </p>
                 </div>
@@ -1058,7 +1058,7 @@ console.log(tp[1]);              // Peter</code></pre>
 
           <div class="sec" id="at-comparison">
             <div class="sec-label">Reference</div>
-            <h2>Array vs Tuple — key differences</h2>
+            <h2>Array vs Tuple � key differences</h2>
             <div class="bordered">
               <table>
                 <thead>
@@ -1099,7 +1099,7 @@ console.log(tp[1]);              // Peter</code></pre>
                   <tr>
                     <td>All three for loops?</td>
                     <td>Yes</td>
-                    <td>Yes — identical syntax</td>
+                    <td>Yes � identical syntax</td>
                   </tr>
                   <tr>
                     <td>Common usage</td>
@@ -1134,17 +1134,17 @@ console.log(tp[1]);              // Peter</code></pre>
               </div>
               <div class="eitem">
                 <div class="eid" style="color: var(--amber)">
-                  EC-02<br />for…in value
+                  EC-02<br />for�in value
                 </div>
                 <div>
                   <div class="etitle">
-                    <code>for…in</code> yields index, not value
+                    <code>for�in</code> yields index, not value
                   </div>
                   <div class="edesc">
                     Beginners often expect <code>for (let i in arr)</code> to
                     give values. It gives <strong>indexes</strong>. Write
                     <code>arr[i]</code> to get the element. For direct values,
-                    use <code>for…of</code>.
+                    use <code>for�of</code>.
                   </div>
                 </div>
               </div>
@@ -1212,12 +1212,12 @@ console.log(tp[1]);              // Peter</code></pre>
                 </div>
                 <div>
                   <div class="etitle">
-                    Arrays are <em>reference types</em> — modifying inside a
+                    Arrays are <em>reference types</em> � modifying inside a
                     function changes the original!
                   </div>
                   <div class="edesc">
                     When you pass an array to a function, it doesn't make a copy
-                    — it passes the SAME array. So <code>push()</code>,
+                    � it passes the SAME array. So <code>push()</code>,
                     <code>pop()</code>, or <code>arr[i] = x</code> inside a
                     function will change your original array outside! Use
                     <code>[...arr]</code> (spread) to make a copy first if you
@@ -1228,18 +1228,18 @@ console.log(tp[1]);              // Peter</code></pre>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">⚠</span>
+              <span class="note-i">?</span>
               <div>
-                <strong>⚠ Array mutation — the silent surprise</strong>
+                <strong>? Array mutation � the silent surprise</strong>
                 <pre><code>function addItem(list: string[]) {
   list.push("new item");  // Modifies the ORIGINAL array!
 }
 
 const fruits = ["apple", "banana"];
 addItem(fruits);
-console.log(fruits); // ["apple", "banana", "new item"] ← changed!
+console.log(fruits); // ["apple", "banana", "new item"] ? changed!
 
-// ✅ To avoid this, copy first:
+// ? To avoid this, copy first:
 function addItemSafe(list: string[]) {
   const copy = [...list];  // Spread = shallow copy
   copy.push("new item");
@@ -1267,10 +1267,10 @@ let record:   [number, string, boolean]   = [1, "active", true];
 let students: [number, string][]          = [[101,"John"],[102,"Jane"]];</code></pre>
             <h3>Three loop patterns</h3>
             <pre><code>for (let i = 0; i &lt; arr.length; i++) { console.log(arr[i]); }  // classic
-for (let i in arr) { console.log(arr[i]); }                     // for…in (index)
-for (let val of arr) { console.log(val); }                      // for…of (value)</code></pre>
+for (let i in arr) { console.log(arr[i]); }                     // for�in (index)
+for (let val of arr) { console.log(val); }                      // for�of (value)</code></pre>
             <h3>Functions with arrays</h3>
-            <pre><code>function greet(names: string[]): void { /* … */ }
+            <pre><code>function greet(names: string[]): void { /* � */ }
 function getIds(): number[] { return [1, 2, 3]; }
 function toUpper(words: string[]): string[] {
   return words.map(w => w.toUpperCase());
@@ -1279,8 +1279,8 @@ function toUpper(words: string[]): string[] {
             <p
               style="font-size: 11.5px; color: var(--ink3); text-align: center"
             >
-              TypeScript Learning Path &nbsp;·&nbsp; Arrays &amp; Tuples
-              &nbsp;·&nbsp; Data Structures &nbsp;·&nbsp; Array Methods in Day
+              TypeScript Learning Path &nbsp;�&nbsp; Arrays &amp; Tuples
+              &nbsp;�&nbsp; Data Structures &nbsp;�&nbsp; Array Methods in Day
               10
             </p>
           </div>
@@ -1316,5 +1316,7 @@ function toUpper(words: string[]): string[] {
           .forEach((s) => obs.observe(s));
       })();
     </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
   </body>
 </html>

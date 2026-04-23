@@ -46,6 +46,30 @@
   </div>
 </div>
 
+<div class="note note-tip" style="margin: 0 0 2rem">
+  <span class="note-i">✓</span>
+  <p>
+    <strong>🧠 Memory Trick — Regex Essentials:</strong><br /><br />
+    <strong>3 Character Classes:</strong>
+    "<strong>D</strong>ogs <strong>W</strong>alk
+    <strong>S</strong>lowly"<br />
+    → <code>\<strong>d</strong></code> (digit),
+    <code>\<strong>w</strong></code> (word),
+    <code>\<strong>s</strong></code> (space)<br />
+    💡 UPPERCASE = opposite (\D = NOT digit)<br /><br />
+    <strong>3 Flags — "GIM":</strong>
+    <strong>G</strong>lobal, <strong>I</strong>nsensitive,
+    <strong>M</strong>ultiline<br /><br />
+    <strong>4 Methods:</strong>
+    "<strong>T</strong>ake <strong>M</strong>y
+    <strong>R</strong>ed <strong>S</strong>hoes"<br />
+    → <strong>T</strong>est (→ bool),
+    <strong>M</strong>atch (→ array),
+    <strong>R</strong>eplace (→ string),
+    <strong>S</strong>plit (→ array)
+  </p>
+</div>
+
 <!-- WHAT IS REGEX -->
 <div class="sec" id="rx-what">
   <div class="sec-label">Basics</div>
@@ -345,5 +369,7 @@ str.split(regex)      → array</code></pre>
   document.querySelectorAll('.content [id]').forEach(s => obs.observe(s));
 })();
 </script>
-</body>
+    <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
 </html>

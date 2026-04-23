@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -126,6 +126,21 @@ let c = identity("auto");           // c is string (type inferred!) ✅</code></
                 Element. You can use any letter, but these are standard. The
                 <code>&lt;T&gt;</code> is declared after the function name and
                 before the parentheses.
+              </p>
+            </div>
+
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>🧠 Memory Trick — Generic Letter
+                Conventions:</strong><br /><br />
+                "<strong>T</strong>ypes <strong>K</strong>eep
+                <strong>V</strong>alues
+                <strong>E</strong>verywhere"<br />
+                → <strong>T</strong> = Type,
+                <strong>K</strong> = Key,
+                <strong>V</strong> = Value,
+                <strong>E</strong> = Element
               </p>
             </div>
           </div>
@@ -585,5 +600,7 @@ function get&lt;T, K extends keyof T&gt;(obj: T, key: K) { }</code></pre>
           .forEach((s) => obs.observe(s));
       })();
     </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
   </body>
 </html>

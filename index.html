@@ -539,9 +539,73 @@
         </div>
       </a>
 
+      <a class="topic-card" href="pages/mnemonic-cheatsheet.html">
+        <div class="tc-num"><span class="tc-num-badge" style="background:var(--green);color:#fff">🧠</span> Bonus</div>
+        <div class="tc-title">🧠 Mnemonic Cheatsheet</div>
+        <div class="tc-desc">All 25 memory tricks in one printable page — acronyms, phrases, and analogies to lock every list into long-term memory.</div>
+        <div class="tc-tags">
+          <span class="tc-tag" style="background:var(--green-bg);color:var(--green)">25 tricks</span>
+          <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">printable</span>
+          <span class="tc-tag" style="background:var(--amber-bg);color:var(--amber)">revision</span>
+          <span class="tc-tag" style="background:var(--violet-bg);color:var(--violet)">interview</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
-
+<script>
+(function(){
+  var THEME_KEY="ts-theme",STORAGE_KEY="ts-learning-progress";
+  // Dark mode
+  var saved;try{saved=localStorage.getItem(THEME_KEY)}catch(_){}
+  var isDark=saved==="dark";
+  document.documentElement.setAttribute("data-theme",isDark?"dark":"light");
+  var topbar=document.getElementById("topbar");
+  if(topbar){
+    var btn=document.createElement("button");
+    btn.className="tb-theme-btn";btn.title="Toggle dark/light mode";
+    btn.textContent=isDark?"\u2600\ufe0f":"\ud83c\udf19";
+    btn.style.marginLeft="auto";
+    btn.addEventListener("click",function(){
+      isDark=!isDark;
+      document.documentElement.setAttribute("data-theme",isDark?"dark":"light");
+      try{localStorage.setItem(THEME_KEY,isDark?"dark":"light")}catch(_){}
+      btn.textContent=isDark?"\u2600\ufe0f":"\ud83c\udf19";
+    });
+    topbar.appendChild(btn);
+  }
+  // Progress checkmarks on cards
+  var prog;try{prog=JSON.parse(localStorage.getItem(STORAGE_KEY))||{}}catch(_){prog={}}
+  var cards=document.querySelectorAll(".topic-card");
+  var total=cards.length,done=0;
+  cards.forEach(function(card){
+    var href=card.getAttribute("href");
+    var file=href?href.replace("pages/",""):"";
+    if(prog[file]){
+      done++;
+      var check=document.createElement("div");
+      check.style.cssText="position:absolute;top:8px;right:10px;font-size:16px;";
+      check.textContent="\u2705";
+      card.style.position="relative";
+      card.appendChild(check);
+    }
+  });
+  // Progress summary
+  if(total>0){
+    var wrap=document.querySelector(".home-wrap");
+    if(wrap){
+      var pct=Math.round((done/total)*100);
+      var bar=document.createElement("div");
+      bar.style.cssText="margin-bottom:1.5rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:8px;background:var(--card-bg,#fff);display:flex;align-items:center;gap:1rem;";
+      bar.innerHTML='<span style="font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap">\ud83d\udcca Progress</span>'+
+        '<span style="flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden"><span style="display:block;height:100%;width:'+pct+'%;background:var(--green);border-radius:3px;transition:width .3s"></span></span>'+
+        '<span style="font-size:12px;font-family:var(--mono);color:var(--ink3);white-space:nowrap">'+done+'/'+total+' ('+pct+'%)</span>';
+      var h1=wrap.querySelector("h1");
+      if(h1&&h1.nextElementSibling){wrap.insertBefore(bar,h1.nextElementSibling.nextSibling)}
+    }
+  }
+})();
+</script>
 </body>
 </html>
