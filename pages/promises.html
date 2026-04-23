@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -511,6 +511,24 @@ Promise.any([
     console.error(err);  // AggregateError: All promises rejected
   });</code></pre>
               </div>
+            </div>
+
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>🧠 Memory Trick — Remember All 4 Static
+                Methods:</strong><br /><br />
+                "<strong>A</strong>ll <strong>R</strong>abbits
+                <strong>A</strong>re <strong>A</strong>dorable"<br />
+                → Promise.<strong>a</strong>ll(),
+                Promise.<strong>r</strong>ace(),
+                Promise.<strong>a</strong>llSettled(),
+                Promise.<strong>a</strong>ny()<br /><br />
+                💡 Tip: <em>all</em> = ALL must pass,
+                <em>race</em> = FIRST wins,
+                <em>allSettled</em> = ALL results (no fail),
+                <em>any</em> = first SUCCESS wins
+              </p>
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -472,6 +472,41 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
               </table>
             </div>
 
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>🧠 Memory Trick — How to Remember ALL Types:</strong
+                ><br /><br />
+                Use these fun sentences! The <strong>first letter</strong> of
+                each word maps to a type:<br /><br />
+                <strong>Primitive (7 types):</strong><br />
+                "<strong>N</strong>ever <strong>S</strong>kip
+                <strong>B</strong>reakfast, <strong>N</strong>ot
+                <strong>U</strong>ntil <strong>S</strong>unday
+                <strong>B</strong>runch!"<br />
+                → <strong>N</strong>umber, <strong>S</strong>tring,
+                <strong>B</strong>oolean, <strong>N</strong>ull,
+                <strong>U</strong>ndefined, <strong>S</strong>ymbol,
+                <strong>B</strong>igint<br /><br />
+                <strong>TS Special (5 types):</strong><br />
+                "<strong>A</strong>unty <strong>U</strong>ma
+                <strong>N</strong>ever <strong>V</strong>isits
+                <strong>U</strong>s"<br />
+                → <strong>A</strong>ny, <strong>U</strong>nknown,
+                <strong>N</strong>ever, <strong>V</strong>oid,
+                <strong>U</strong>nion<br /><br />
+                <strong>Non-Primitive (7 types):</strong><br />
+                "<strong>A</strong> <strong>F</strong>unny
+                <strong>C</strong>lown <strong>I</strong>nvited
+                <strong>T</strong>en <strong>O</strong>ld
+                <strong>E</strong>lephants"<br />
+                → <strong>A</strong>rray, <strong>F</strong>unction,
+                <strong>C</strong>lass, <strong>I</strong>nterface,
+                <strong>T</strong>uple, <strong>O</strong>bject,
+                <strong>E</strong>num
+              </p>
+            </div>
+
             <div class="note note-info">
               <span class="note-i">i</span>
               <p>
@@ -749,6 +784,33 @@ console.log(typeof emptyValue); // "object" (a known JavaScript quirk!)
 // null means: "I deliberately set this to nothing."
 // emptyValue = 10;  ← ❌ ERROR: can only hold null</code></pre>
               </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Why does <code>typeof null</code> return
+                <code>"object"</code> instead of
+                <code>"null"</code>?</strong><br /><br />
+                A <strong>quirk</strong> means a strange, unexpected behavior — a
+                "weird thing" that doesn't follow the rules you'd expect.
+                This is the most famous quirk in JavaScript!<br /><br />
+                <strong>The Story:</strong> In JavaScript's very first version
+                (1995), every value was stored internally as a
+                <strong>type tag + value</strong>. Objects had a type tag of
+                <code>0</code>. But <code>null</code> was stored as the
+                <strong>NULL pointer</strong> — which was literally all zeros
+                (<code>0x00</code>). So when <code>typeof</code> checked
+                <code>null</code>, it saw the tag <code>0</code> and
+                said "that's an object!" — which is <strong>wrong</strong>, but
+                it's been this way for 30+ years.<br /><br />
+                <strong>Why not fix it?</strong> A fix was proposed, but it was
+                <strong>rejected</strong> — millions of existing websites rely
+                on this behavior. Fixing it would break the internet!<br /><br />
+                <strong>✅ Correct way to check for null:</strong>
+                <code>if (value === null)</code> — use strict equality, never
+                <code>typeof</code>.
+              </p>
             </div>
 
             <div class="card ph3-card">
