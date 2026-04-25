@@ -789,21 +789,22 @@ console.log(typeof emptyValue); // "object" (a known JavaScript quirk!)
             <div class="note note-warn">
               <span class="note-i">⚠</span>
               <p>
-                <strong>Why does <code>typeof null</code> return
-                <code>"object"</code> instead of
-                <code>"null"</code>?</strong><br /><br />
-                A <strong>quirk</strong> means a strange, unexpected behavior — a
-                "weird thing" that doesn't follow the rules you'd expect.
-                This is the most famous quirk in JavaScript!<br /><br />
+                <strong
+                  >Why does <code>typeof null</code> return
+                  <code>"object"</code> instead of <code>"null"</code>?</strong
+                ><br /><br />
+                A <strong>quirk</strong> means a strange, unexpected behavior —
+                a "weird thing" that doesn't follow the rules you'd expect. This
+                is the most famous quirk in JavaScript!<br /><br />
                 <strong>The Story:</strong> In JavaScript's very first version
                 (1995), every value was stored internally as a
                 <strong>type tag + value</strong>. Objects had a type tag of
                 <code>0</code>. But <code>null</code> was stored as the
                 <strong>NULL pointer</strong> — which was literally all zeros
                 (<code>0x00</code>). So when <code>typeof</code> checked
-                <code>null</code>, it saw the tag <code>0</code> and
-                said "that's an object!" — which is <strong>wrong</strong>, but
-                it's been this way for 30+ years.<br /><br />
+                <code>null</code>, it saw the tag <code>0</code> and said
+                "that's an object!" — which is <strong>wrong</strong>, but it's
+                been this way for 30+ years.<br /><br />
                 <strong>Why not fix it?</strong> A fix was proposed, but it was
                 <strong>rejected</strong> — millions of existing websites rely
                 on this behavior. Fixing it would break the internet!<br /><br />
@@ -1154,6 +1155,17 @@ console.log(result);  // 30</code></pre>
               equal — not even if they share the same description. Mostly used
               as unique object property keys to avoid name collisions.
             </p>
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Important difference:</strong> Unlike "day-to-day"
+                primitive types (like <code>number</code> or
+                <code>string</code>), you <strong>cannot</strong> create a
+                <code>symbol</code> just by typing a literal value. You
+                <strong>must</strong> call the built-in
+                <code>Symbol()</code> function.
+              </p>
+            </div>
 
             <div class="card ph1-card">
               <div class="card-head">
@@ -1772,7 +1784,7 @@ y = "hello";         // ❌ ERROR — type can't change!</code></pre>
           .forEach((s) => obs.observe(s));
       })();
     </script>
-      <script src="../quiz-data.js"></script>
+    <script src="../quiz-data.js"></script>
     <script src="../shared.js"></script>
   </body>
 </html>
