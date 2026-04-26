@@ -1,88 +1,144 @@
 # 🧠 TypeScript Notes — Curriculum Guide
 
-> **Structure:** Separate HTML file per topic in `pages/` + practice `.ts` file per topic in `practice/` + shared `styles.css` + `index.html` landing page.
+> **Structure:** React 19 + Vite SPA with Clean Architecture. HTML content files in `public/content/` + React components in `src/` + practice `.ts` files in `practice/`.
 > **Purpose:** 40-topic TypeScript curriculum — beginner to senior level.
 > **Style:** Simple language + real-life examples (like explaining to a 10-year-old who can code).
 > **Status:** ✅ 40/40 topics complete.
 
 ---
 
-## 📋 How to Use
+## 🏗️ Architecture Overview
 
-1. **Paste a YouTube transcript** (CC text from any TypeScript tutorial video).
-2. The AI will:
-   - Identify the topic from the transcript.
-   - Assign it a **topic number** based on the learning order below.
-   - Generate a **new standalone HTML file** (e.g., `pages/objects.html`).
-   - Generate a **practice file** (e.g., `practice/15-objects.ts`).
-   - Add a **topic card** on the `index.html` landing page.
-   - Use `styles.css` for shared styling.
-3. **All content must use:**
-   - Simple, everyday language (no jargon without explanation).
-   - Real-life analogies for every concept.
-   - Code examples that relate to real scenarios (grocery lists, school marks, restaurant orders).
+This is a **React SPA** (Single Page Application), not a static HTML site. The app is structured in three clean layers:
+
+```
+src/
+├── core/               ← Domain: Entities + Use Cases (zero React/UI logic)
+├── data/               ← Infrastructure: Repos, Static data, DI container
+└── presentation/       ← UI: React components, pages, Zustand stores
+```
+
+**Content delivery:** Each of the 43 topic pages has a corresponding HTML file in `public/content/`. The React `TopicPage` component dynamically fetches and renders this HTML at runtime, keeping content and code separated.
 
 ---
 
-## 🔑 Ordering Rules
+## 📂 Current File Structure
 
-Topics must be ordered so a learner reading 1→40 **never** encounters a concept before it's taught:
-
-1. **No forward references** — never use destructuring, spread, or other syntax before its topic.
-2. **If you must preview a concept**, add a 1-line comment: `// "..." explained fully in Topic 24`.
-3. **Deep-dive topics** that expand on earlier topics must include a note: "Builds on Topic X."
-4. **Progressive disclosure** is OK — e.g., rest params introduced in Functions (#9), expanded in Spread/Rest (#24).
+```
+d:\practice\ts-age\
+├── index.html                      ← Vite entry point (DO NOT add content here)
+├── claude.md                       ← This file (AI instructions)
+├── README.md                       ← Project documentation
+├── package.json                    ← Dependencies (React, Zustand, react-router-dom)
+├── vite.config.ts                  ← Build config
+├── public/
+│   └── content/                    ← HTML content files (one per topic)
+│       ├── variables-keywords.html ← Topic 1
+│       ├── data-types.html         ← Topic 2
+│       └── ...                     ← Topics 3-43 + bonus pages
+├── practice/
+│   ├── 01-variables-and-keywords.ts
+│   ├── 02-data-types.ts
+│   └── ...                         ← 40 practice files
+└── src/
+    ├── App.tsx                      ← Router (lazy-loaded routes)
+    ├── main.tsx                     ← React entry point
+    ├── styles/
+    │   └── styles.css               ← Shared CSS design system (ALL styles live here)
+    ├── core/
+    │   ├── entities/
+    │   │   ├── Question.ts          ← Quiz question shape
+    │   │   ├── Topic.ts             ← Topic card shape
+    │   │   └── UserProgress.ts      ← Progress tracking shape
+    │   ├── repositories/
+    │   │   ├── IQuizRepository.ts
+    │   │   ├── IProgressRepository.ts
+    │   │   └── IThemeRepository.ts
+    │   └── use-cases/
+    │       ├── GetQuizQuestionsUseCase.ts
+    │       ├── SubmitQuizAnswerUseCase.ts
+    │       └── ToggleTopicCompleteUseCase.ts
+    ├── data/
+    │   ├── di/
+    │   │   └── container.ts         ← Dependency Injection wiring
+    │   ├── repositories/
+    │   │   ├── LocalStorageProgressRepo.ts
+    │   │   ├── LocalStorageThemeRepo.ts
+    │   │   └── StaticQuizRepository.ts
+    │   └── static/
+    │       ├── topics.ts            ← All 43 topic cards (used by HomePage)
+    │       └── quiz-data.ts         ← All quiz questions for all topics
+    └── presentation/
+        ├── components/
+        │   ├── content/             ← ConceptSection, CodeCard, NoteCallout
+        │   ├── layout/              ← TopBar, Sidebar, PageLayout
+        │   ├── navigation/          ← PrevNextNav, ProgressTracker
+        │   └── quiz/                ← QuizSection, QuizCard
+        ├── pages/
+        │   ├── HomePage.tsx         ← Topic grid + progress bar
+        │   ├── TopicPage.tsx        ← Fetches & renders content HTML
+        │   └── topic-content/
+        │       └── VariablesKeywordsContent.tsx  ← ✅ Only fully-migrated React topic
+        └── store/
+            ├── progressStore.ts     ← Zustand: topic completion state
+            ├── themeStore.ts        ← Zustand: dark/light mode state
+            └── sidebarContext.tsx   ← Context: sidebar section links
+```
 
 ---
 
-## 📝 Preferred Learning Order (Complete — 40/40)
+## 📋 How to Add a New Topic (React Way)
 
-| # | Topic | Page | Practice | Status |
-|---|-------|------|----------|--------|
-| 1 | **Variables & Keywords** | `pages/variables-keywords.html` | `practice/01-variables.ts` | ✅ |
-| 2 | **Data Types** | `pages/data-types.html` | `practice/02-data-types.ts` | ✅ |
-| 3 | **Strings & String Methods** | `pages/strings.html` | `practice/03-strings.ts` | ✅ |
-| 4 | **Arrays & Tuples** | `pages/arrays-tuples.html` | `practice/04-arrays.ts` | ✅ |
-| 5 | **Array Methods** | `pages/array-methods.html` | `practice/05-array-methods.ts` | ✅ |
-| 6 | **Operators** | `pages/operators.html` | `practice/06-operators.ts` | ✅ |
-| 7 | **Conditional Statements** | `pages/conditionals.html` | `practice/07-conditionals.ts` | ✅ |
-| 8 | **Loops** | `pages/loops.html` | `practice/08-loops.ts` | ✅ |
-| 9 | **Functions (Basics)** | `pages/functions.html` | `practice/09-functions.ts` | ✅ |
-| 10 | **Callback & Overloaded Functions** | `pages/functions-advanced.html` | `practice/10-callbacks.ts` | ✅ |
-| 11 | **Higher-Order Array Methods** | `pages/higher-order-methods.html` | `practice/11-higher-order.ts` | ✅ |
-| 12 | **Type Aliases & Union Types** | `pages/type-aliases.html` | `practice/12-type-aliases.ts` | ✅ |
-| 13 | **Enums** | `pages/enums.html` | `practice/13-enums.ts` | ✅ |
-| 14 | **Type Narrowing** | `pages/type-narrowing.html` | `practice/14-type-narrowing.ts` | ✅ |
-| 15 | **Objects & Object Types** | `pages/objects.html` | `practice/15-objects.ts` | ✅ |
-| 16 | **Classes (Basics)** | `pages/classes-basics.html` | `practice/16-classes.ts` | ✅ |
-| 17 | **Classes (Inheritance)** | `pages/classes-inheritance.html` | `practice/17-inheritance.ts` | ✅ |
-| 18 | **Interfaces** | `pages/interfaces.html` | `practice/18-interfaces.ts` | ✅ |
-| 19 | **Generics** | `pages/generics.html` | `practice/19-generics.ts` | ✅ |
-| 20 | **Modules** | `pages/modules.html` | `practice/20-modules.ts` | ✅ |
-| 21 | **Async/Await & Promises** | `pages/async-await.html` | `practice/21-async-await.ts` | ✅ |
-| 22 | **Error Handling** | `pages/error-handling.html` | `practice/22-error-handling.ts` | ✅ |
-| 23 | **Destructuring** | `pages/destructuring.html` | `practice/23-destructuring.ts` | ✅ |
-| 24 | **Spread & Rest** | `pages/spread-rest.html` | `practice/24-spread-rest.ts` | ✅ |
-| 25 | **Promises (Deep Dive)** | `pages/promises.html` | `practice/25-promises.ts` | ✅ |
-| 26 | **DOM Manipulation** | `pages/dom-manipulation.html` | `practice/26-dom-manipulation.ts` | ✅ |
-| 27 | **JSON Parse & Stringify** | `pages/json.html` | `practice/27-json.ts` | ✅ |
-| 28 | **Map/Filter/Reduce Practice** | `pages/map-filter-reduce.html` | `practice/28-map-filter-reduce.ts` | ✅ |
-| 29 | **Closures & Scope** | `pages/closures-scope.html` | `practice/29-closures-scope.ts` | ✅ |
-| 30 | **this Keyword** | `pages/this-keyword.html` | `practice/30-this-keyword.ts` | ✅ |
-| 31 | **Utility Types** | `pages/utility-types.html` | `practice/31-utility-types.ts` | ✅ |
-| 32 | **Date & Time** | `pages/date-time.html` | `practice/32-date-time.ts` | ✅ |
-| 33 | **Regular Expressions** | `pages/regex-basics.html` | `practice/33-regex-basics.ts` | ✅ |
-| 34 | **Advanced Type Guards** | `pages/type-guards-advanced.html` | `practice/34-type-guards-advanced.ts` | ✅ |
-| 35 | **API Calls (fetch)** | `pages/api-calls.html` | `practice/35-api-calls.ts` | ✅ |
-| 36 | **Design Patterns** | `pages/design-patterns.html` | `practice/36-design-patterns.ts` | ✅ |
-| 37 | **Decorators** | `pages/decorators.html` | `practice/37-decorators.ts` | ✅ |
-| 38 | **Mapped & Conditional Types** | `pages/mapped-conditional-types.html` | `practice/38-mapped-conditional-types.ts` | ✅ |
-| 39 | **Unit Testing** | `pages/testing.html` | `practice/39-testing.ts` | ✅ |
-| 40 | **Data Structures** | `pages/data-structures.html` | `practice/40-data-structures.ts` | ✅ |
-| ★ | **Key Comparisons** | `pages/comparisons.html` | — | ✅ |
-| ★ | **TypeScript Glossary** | `pages/glossary.html` | — | ✅ |
+Since 42 out of 43 topics are rendered via the hybrid HTML-fetch pattern, there are two paths:
 
-> **Note:** If a transcript covers a topic not listed, add it at the most logical position based on prerequisites.
+### Path A — Hybrid (Quick, Recommended for new topics)
+
+The app already fetches and renders HTML from `public/content/`. If you want to add a brand new topic:
+
+1. **Create the HTML content file** in `public/content/{slug}.html`.
+   - Copy the structure from an existing file (e.g., `public/content/variables-keywords.html`).
+   - Follow the HTML Content Rules section below.
+
+2. **Register the topic** in `src/data/static/topics.ts`:
+```typescript
+{
+  id: 41,
+  title: 'Your Topic Title',
+  file: 'your-topic.html',       // must match the filename in public/content/
+  category: 'Category Name',
+  description: 'One-line description.',
+  tags: ['tag1', 'tag2'],
+  phase: 3,
+}
+```
+
+3. **Add quiz questions** in `src/data/static/quiz-data.ts`:
+```typescript
+"your-topic.html": [
+  {
+    section: "section-id",       // must match an id="" on an element in the HTML
+    question: "Your question?",
+    options: ["A", "B", "C", "D"],
+    answerIndex: 0,
+    explanation: "Why this is correct. <code>optional code example</code>",
+  },
+]
+```
+
+4. **Create the practice file** in `practice/{##}-{slug}.ts`.
+
+---
+
+### Path B — Full React Migration (For topics being converted)
+
+If migrating an existing topic from HTML to native React components:
+
+1. Create `src/presentation/pages/topic-content/{TopicName}Content.tsx`.
+2. Use the existing `ConceptSection`, `CodeCard`, and `NoteCallout` components.
+3. In `TopicPage.tsx`, register the component so it renders instead of fetching HTML.
+4. Quiz and sidebar are automatically handled by the existing system.
+
+> **Note:** Only `VariablesKeywordsContent.tsx` is fully migrated. All others still use Path A. The migration to Path B is ongoing and optional — the app works perfectly with either approach.
 
 ---
 
@@ -121,98 +177,80 @@ Think of an array like **shelves in a supermarket**.
 
 ---
 
-## 🏗️ HTML Structure Template
+## 🔑 Ordering Rules
 
-When adding a new topic, follow this exact pattern:
+Topics must be ordered so a learner reading 1→40 **never** encounters a concept before it's taught:
 
-### Step 1: Create HTML file: `pages/{slug}.html`
-Copy the structure from an existing topic file (e.g., `pages/variables-keywords.html`).
-
-### Step 2: Create practice file: `practice/{##}-{slug}.ts`
-```typescript
-// ============================================
-// Topic {##} — {TOPIC NAME}
-// ============================================
-// Practice here! Run with: npx tsx {##}-{slug}.ts
-```
-
-### Step 3: Add a topic card in `index.html` (inside `<div class="topic-grid">`)
-```html
-<a class="topic-card" href="pages/{slug}.html">
-  <div class="tc-num"><span class="tc-num-badge">{N}</span> {Category}</div>
-  <div class="tc-title">{Topic Name}</div>
-  <div class="tc-desc">{One-line description}</div>
-  <div class="tc-tags">
-    <span class="tc-tag" style="background:var(--blue-bg);color:var(--blue)">{Tag1}</span>
-    <span class="tc-tag" style="background:var(--teal-bg);color:var(--teal)">{Tag2}</span>
-  </div>
-</a>
-```
-
-### Step 4: Topic page structure
-Each topic HTML file follows this structure:
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-<div id="topbar">
-  <!-- brand + back button (href="../index.html") -->
-</div>
-<div class="page-wrap">
-<div class="wrap">
-  <nav id="nav-{slug}">
-    <div class="nav-logo">
-      <div class="v">{Category}</div>
-      <h2>{Topic Name}</h2>
-    </div>
-    <!-- sidebar links -->
-  </nav>
-  <div class="content">
-    <!-- hero section -->
-    <!-- sections with real-life examples -->
-    <!-- ⚠ Common Mistakes section -->
-    <!-- cheatsheet -->
-  </div>
-</div>
-</div>
-<script>/* sidebar observer */</script>
-</body></html>
-```
+1. **No forward references** — never use destructuring, spread, or other syntax before its topic.
+2. **If you must preview a concept**, add a 1-line comment: `// "..." explained fully in Topic 24`.
+3. **Deep-dive topics** that expand on earlier topics must include a note: "Builds on Topic X."
+4. **Progressive disclosure** is OK — e.g., rest params introduced in Functions (#9), expanded in Spread/Rest (#24).
 
 ---
 
-## 🔄 When Updating Existing Content
+## 📝 Preferred Learning Order (Complete — 40/40)
 
-If the current content uses complex language, update it to:
-1. Add a 🏪 **Real-Life Example** box at the start of each section.
-2. Replace technical-first definitions with analogy-first definitions.
-3. Use relatable variable names in code examples.
-4. Keep all existing code examples but add a "Think of it like..." comment.
+| # | Topic | Content File | Practice | Status |
+|---|-------|------|----------|--------|
+| 1 | **Variables & Keywords** | `public/content/variables-keywords.html` | `practice/01-variables-and-keywords.ts` | ✅ |
+| 2 | **Data Types** | `public/content/data-types.html` | `practice/02-data-types.ts` | ✅ |
+| 3 | **Strings & String Methods** | `public/content/strings.html` | `practice/03-strings-and-string-methods.ts` | ✅ |
+| 4 | **Arrays & Tuples** | `public/content/arrays-tuples.html` | `practice/04-arrays-and-tuples.ts` | ✅ |
+| 5 | **Array Methods** | `public/content/array-methods.html` | `practice/05-array-methods.ts` | ✅ |
+| 6 | **Operators** | `public/content/operators.html` | `practice/06-operators.ts` | ✅ |
+| 7 | **Conditional Statements** | `public/content/conditionals.html` | `practice/07-conditional-statements.ts` | ✅ |
+| 8 | **Loops** | `public/content/loops.html` | `practice/08-loops.ts` | ✅ |
+| 9 | **Functions (Basics)** | `public/content/functions.html` | `practice/09-functions-basics.ts` | ✅ |
+| 10 | **Callback & Overloaded Functions** | `public/content/functions-advanced.html` | `practice/10-callback-and-overloaded-functions.ts` | ✅ |
+| 11 | **Higher-Order Array Methods** | `public/content/higher-order-methods.html` | `practice/11-higher-order-array-methods.ts` | ✅ |
+| 12 | **Type Aliases & Union Types** | `public/content/type-aliases.html` | `practice/12-type-aliases-and-union-types.ts` | ✅ |
+| 13 | **Enums** | `public/content/enums.html` | `practice/13-enums.ts` | ✅ |
+| 14 | **Type Narrowing** | `public/content/type-narrowing.html` | `practice/14-type-narrowing.ts` | ✅ |
+| 15 | **Objects & Object Types** | `public/content/objects.html` | `practice/15-objects-and-object-types.ts` | ✅ |
+| 16 | **Classes (Basics)** | `public/content/classes-basics.html` | `practice/16-classes-basics.ts` | ✅ |
+| 17 | **Classes (Inheritance)** | `public/content/classes-inheritance.html` | `practice/17-classes-inheritance.ts` | ✅ |
+| 18 | **Interfaces** | `public/content/interfaces.html` | `practice/18-interfaces.ts` | ✅ |
+| 19 | **Generics** | `public/content/generics.html` | `practice/19-generics.ts` | ✅ |
+| 20 | **Modules** | `public/content/modules.html` | `practice/20-modules.ts` | ✅ |
+| 21 | **Async/Await & Promises** | `public/content/async-await.html` | `practice/21-async-await-and-promises.ts` | ✅ |
+| 22 | **Error Handling** | `public/content/error-handling.html` | `practice/22-error-handling.ts` | ✅ |
+| 23 | **Destructuring** | `public/content/destructuring.html` | `practice/23-destructuring.ts` | ✅ |
+| 24 | **Spread & Rest** | `public/content/spread-rest.html` | `practice/24-spread-rest.ts` | ✅ |
+| 25 | **Promises (Deep Dive)** | `public/content/promises.html` | `practice/25-promises.ts` | ✅ |
+| 26 | **DOM Manipulation** | `public/content/dom-manipulation.html` | `practice/26-dom-manipulation.ts` | ✅ |
+| 27 | **JSON Parse & Stringify** | `public/content/json.html` | `practice/27-json.ts` | ✅ |
+| 28 | **Map/Filter/Reduce Practice** | `public/content/map-filter-reduce.html` | `practice/28-map-filter-reduce.ts` | ✅ |
+| 29 | **Closures & Scope** | `public/content/closures-scope.html` | `practice/29-closures-scope.ts` | ✅ |
+| 30 | **this Keyword** | `public/content/this-keyword.html` | `practice/30-this-keyword.ts` | ✅ |
+| 31 | **Utility Types** | `public/content/utility-types.html` | `practice/31-utility-types.ts` | ✅ |
+| 32 | **Date & Time** | `public/content/date-time.html` | `practice/32-date-time.ts` | ✅ |
+| 33 | **Regular Expressions** | `public/content/regex-basics.html` | `practice/33-regex-basics.ts` | ✅ |
+| 34 | **Advanced Type Guards** | `public/content/type-guards-advanced.html` | `practice/34-type-guards-advanced.ts` | ✅ |
+| 35 | **API Calls (fetch)** | `public/content/api-calls.html` | `practice/35-api-calls.ts` | ✅ |
+| 36 | **Design Patterns** | `public/content/design-patterns.html` | `practice/36-design-patterns.ts` | ✅ |
+| 37 | **Decorators** | `public/content/decorators.html` | `practice/37-decorators.ts` | ✅ |
+| 38 | **Mapped & Conditional Types** | `public/content/mapped-conditional-types.html` | `practice/38-mapped-conditional-types.ts` | ✅ |
+| 39 | **Unit Testing** | `public/content/testing.html` | `practice/39-testing.ts` | ✅ |
+| 40 | **Data Structures** | `public/content/data-structures.html` | `practice/40-data-structures.ts` | ✅ |
+| ★ | **Key Comparisons** | `public/content/comparisons.html` | — | ✅ |
+| ★ | **TypeScript Glossary** | `public/content/glossary.html` | — | ✅ |
+| ★ | **Mnemonic Cheatsheet** | `public/content/mnemonic-cheatsheet.html` | — | ✅ |
 
 ---
 
-## ✅ Checklist Before Finishing
+## ✅ Checklist Before Finishing a New Topic
 
-- [ ] New HTML file created in `pages/` with correct filename.
+- [ ] HTML content file created in `public/content/` with correct filename.
+- [ ] Topic registered in `src/data/static/topics.ts`.
+- [ ] Quiz questions added to `src/data/static/quiz-data.ts` with correct section IDs.
 - [ ] Practice `.ts` file created in `practice/` with topic header.
-- [ ] Topic card added to `index.html` (before bonus comparisons card).
-- [ ] Topic page uses `<link rel="stylesheet" href="../styles.css">`.
-- [ ] Page has topbar with "← Back to Index" link to `../index.html`.
-- [ ] Sidebar navigation with all section links.
 - [ ] Every concept has a real-life example BEFORE the code.
 - [ ] ⚠ Common Mistakes section with minimum 3 mistakes (❌/✅ pattern).
 - [ ] Language is simple enough for a beginner.
 - [ ] Cheatsheet section exists at the end.
-- [ ] Sidebar observer script at the bottom of the page.
 - [ ] No forward references — don't use concepts before they're taught.
-- [ ] No "Day X" labels — use topic numbers and category labels.
 - [ ] Uses `let`/`const` only — no `var` (except when teaching why `var` is bad).
 - [ ] Catch blocks use `unknown` type with narrowing (not `any`).
-- [ ] Constructor parameter shorthand preferred over verbose declare+assign.
-- [ ] `typeof` return values listed explicitly (not "etc.").
 
 ---
 
@@ -229,32 +267,6 @@ All code examples must follow modern TypeScript (TS 4.0+):
 | typeof results | `"string", "number", etc.` | List all 8: `"string"`, `"number"`, `"bigint"`, `"boolean"`, `"symbol"`, `"undefined"`, `"object"`, `"function"` |
 | Primitive types | `string`, `number`, `boolean` only | Include `bigint`, `symbol` where relevant |
 | Advanced types | `any` for unknown data | Prefer `unknown` with narrowing |
-
----
-
-## 📂 File Structure
-
-```
-d:\practice\ts-age\
-├── index.html                  ← Landing page with 40 topic cards
-├── styles.css                  ← Shared CSS for all pages
-├── plan.md                     ← Full curriculum roadmap (40/40 done)
-├── claude.md                   ← This file (AI instructions)
-├── pages/
-│   ├── variables-keywords.html ← Topic 1
-│   ├── data-types.html         ← Topic 2
-│   ├── strings.html            ← Topic 3
-│   ├── ...                     ← Topics 4-40
-│   ├── data-structures.html    ← Topic 40
-│   ├── comparisons.html        ← ★ Bonus
-│   └── glossary.html           ← ★ Bonus
-├── practice/
-│   ├── 01-variables.ts         ← Topic 1 practice
-│   ├── 02-data-types.ts        ← Topic 2 practice
-│   ├── ...                     ← Topics 3-40
-│   └── 40-data-structures.ts   ← Topic 40 practice
-└── tsconfig.json
-```
 
 ---
 
