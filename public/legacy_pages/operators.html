@@ -1,0 +1,1381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Operators — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript operators — arithmetic, assignment, relational, logical, increment/decrement, ternary. Equality vs strict equality explained with real-life examples."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Operators</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-operators">
+          <div class="nav-logo">
+            <div class="v">Fundamentals</div>
+            <h2>Operators</h2>
+          </div>
+          <div class="nav-group">Basics</div>
+          <a href="#op-intro">What are Operators?</a>
+          <div class="nav-group">Categories</div>
+          <a href="#op-arithmetic">Arithmetic</a>
+          <a href="#op-assignment">Assignment (Shorthand)</a>
+          <a href="#op-relational">Relational / Comparison</a>
+          <a href="#op-equality">== vs === (Interview!)</a>
+          <a href="#op-logical">Logical (AND, OR, NOT)</a>
+          <a href="#op-logical-combo">Logical + Relational Combo</a>
+          <a href="#op-increment">Increment &amp; Decrement</a>
+          <a href="#op-prepost">Pre vs Post (Interview!)</a>
+          <a href="#op-ternary">Ternary / Conditional</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#op-mistakes">⚠ Common Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#op-comparison">Comparison Table</a>
+          <a href="#op-cheatsheet">Cheatsheet</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="op-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Operators</span>
+              <span class="hero-tag">== vs ===</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Operators</h1>
+            <p>
+              How to do things with variables — math, comparison, logic, and
+              shortcuts. Covers all operator categories plus the critical
+              interview question: equality vs strict equality.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">6</div>
+                <div class="stat-l">Operator Categories</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">20+</div>
+                <div class="stat-l">Operators Covered</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Interview Questions</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">18+</div>
+                <div class="stat-l">Code Examples</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     INTRO
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-intro">
+            <div class="sec-label">Basics</div>
+            <h2>What are Operators?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Operators are like
+                <strong>tools in a toolbox</strong>. Variables are the raw
+                materials (wood, nails, screws). Data types tell you what KIND
+                of material you have. Operators are the tools — a hammer (+), a
+                saw (−), a measuring tape (>), a level (===) — that let you
+                <strong>DO things</strong> with those materials.
+              </p>
+            </div>
+
+            <p>
+              An <strong>operator</strong> is a symbol that tells TypeScript to
+              perform a specific action on variables or values. Without
+              operators, variables just sit there doing nothing!
+            </p>
+
+            <div class="pipe">
+              <div class="pipe-step">
+                <div class="pipe-ph ph1-c">① Arithmetic</div>
+                <div class="pipe-name">Math stuff</div>
+                <div class="pipe-pts">+ − × ÷ % **</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph2-c">② Assignment</div>
+                <div class="pipe-name">Shortcuts</div>
+                <div class="pipe-pts">+= −= *= /=</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph3-c">③ Relational</div>
+                <div class="pipe-name">Compare</div>
+                <div class="pipe-pts">> < >= <= == !=</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph4-c">④ Logical</div>
+                <div class="pipe-name">Logic</div>
+                <div class="pipe-pts">&& || !</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph5-c">⑤ Inc/Dec</div>
+                <div class="pipe-name">+1 / −1</div>
+                <div class="pipe-pts">++ −−</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph" style="color: var(--red)">⑥ Ternary</div>
+                <div class="pipe-name">Shortcut if/else</div>
+                <div class="pipe-pts">? :</div>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Quick Tip:</strong> You can declare multiple variables
+                in one line using commas:
+                <code>let a: number = 10, b: number = 20;</code>. One
+                <code>let</code>, multiple variables — saves space!
+              </p>
+            </div>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>🧠 Memory Trick — Remember All 6 Categories:</strong
+                ><br /><br />
+                "<strong>A</strong>dvanced <strong>A</strong>pplications <strong>R</strong>equire <strong>L</strong>ogical <strong>I</strong><strong>T</strong>"<br />
+                → <strong>A</strong>rithmetic, <strong>A</strong>ssignment,
+                <strong>R</strong>elational, <strong>L</strong>ogical,
+                <strong>I</strong>ncrement/Decrement,
+                <strong>T</strong>ernary
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     ARITHMETIC OPERATORS
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-arithmetic">
+            <div class="sec-label">Category ①</div>
+            <h2>Arithmetic Operators — Math Operations</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Arithmetic operators are
+                like the buttons on a <strong>calculator</strong>. You punch in
+                two numbers, press an operator button, and get a result.
+                Addition (+), subtraction (−), multiplication (×), division (÷)
+                — same buttons, same logic.
+              </p>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Name</th>
+                    <th>Example</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="cn">+</code></td>
+                    <td>Addition</td>
+                    <td><code>10 + 20</code></td>
+                    <td>30</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">-</code></td>
+                    <td>Subtraction</td>
+                    <td><code>20 - 10</code></td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">*</code></td>
+                    <td>Multiplication</td>
+                    <td><code>10 * 20</code></td>
+                    <td>200</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">/</code></td>
+                    <td>Division (quotient)</td>
+                    <td><code>20 / 10</code></td>
+                    <td>2</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">%</code></td>
+                    <td>Modular division (remainder)</td>
+                    <td><code>20 % 10</code></td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">**</code></td>
+                    <td>Exponentiation (power)</td>
+                    <td><code>5 ** 2</code></td>
+                    <td>25</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">All arithmetic operators in action</div>
+                <span class="card-badge">Calculator</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let a: number = 10, b: number = 20;
+
+console.log(a + b);   // 30   — Addition
+console.log(b - a);   // 10   — Subtraction
+console.log(a * b);   // 200  — Multiplication
+console.log(b / a);   // 2    — Division (quotient)
+console.log(b % a);   // 0    — Modular division (remainder)
+console.log(5 ** 2);  // 25   — 5 to the power of 2 (5 × 5)</code></pre>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Division vs Modular:</strong> <code>/</code> gives you
+                the <strong>quotient</strong> (how many times it fits).
+                <code>%</code> gives you the <strong>remainder</strong> (what's
+                left over). Think: 20 ÷ 10 = <strong>2</strong> remainder
+                <strong>0</strong>.
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     ASSIGNMENT OPERATORS
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-assignment">
+            <div class="sec-label">Category ②</div>
+            <h2>Assignment Operators — Shortcuts</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Assignment operators are
+                like <strong>text shortcuts on your phone</strong>. Instead of
+                typing "On my way," you type "omw" and it auto-expands. Instead
+                of writing <code>a = a + b</code>, you write
+                <code>a += b</code>. Same result, less typing!
+              </p>
+            </div>
+
+            <p>
+              The basic assignment operator is <code>=</code>. But TypeScript
+              also has <strong>shorthand operators</strong> that combine an
+              arithmetic operation with assignment:
+            </p>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Shorthand</th>
+                    <th>Full version</th>
+                    <th>What it does</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="cn">a += b</code></td>
+                    <td><code>a = a + b</code></td>
+                    <td>Add b to a, store in a</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">a -= b</code></td>
+                    <td><code>a = a - b</code></td>
+                    <td>Subtract b from a, store in a</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">a *= b</code></td>
+                    <td><code>a = a * b</code></td>
+                    <td>Multiply a by b, store in a</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">a /= b</code></td>
+                    <td><code>a = a / b</code></td>
+                    <td>Divide a by b, store in a</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">a %= b</code></td>
+                    <td><code>a = a % b</code></td>
+                    <td>Remainder of a÷b, store in a</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Shorthand operators — step by step</div>
+                <span class="card-badge">Shortcuts</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let a: number = 10, b: number = 5;
+
+a += b;   // a = 10 + 5  → a is now 15
+console.log(a);  // 15
+
+a -= b;   // a = 15 - 5  → a is now 10
+console.log(a);  // 10
+
+a *= b;   // a = 10 * 5  → a is now 50
+console.log(a);  // 50
+
+a /= b;   // a = 50 / 5  → a is now 10
+console.log(a);  // 10
+
+a %= b;   // a = 10 % 5  → a is now 0 (no remainder)
+console.log(a);  // 0</code></pre>
+                <p class="fn">
+                  ⚠ Each line CHANGES the value of <code>a</code>. The next line
+                  uses the NEW value, not the original. Track the value step by
+                  step!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     RELATIONAL / COMPARISON OPERATORS
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-relational">
+            <div class="sec-label">Category ③</div>
+            <h2>Relational / Comparison Operators</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Comparison operators are
+                like a <strong>referee at a sports event</strong>. The referee
+                compares two players and says "Yes, Player A scored more" (true)
+                or "No, Player B didn't win" (false). The result is always a
+                clear <strong>yes or no</strong> — never "maybe."
+              </p>
+            </div>
+
+            <p>
+              Relational operators <strong>compare two values</strong> and
+              always return a <strong>boolean</strong> — either
+              <code>true</code> or <code>false</code>. Nothing else.
+            </p>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Meaning</th>
+                    <th>Example (a=10, b=20)</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="cn">&gt;</code></td>
+                    <td>Greater than</td>
+                    <td><code>a > b</code></td>
+                    <td><span class="p p-red">false</span></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">&lt;</code></td>
+                    <td>Less than</td>
+                    <td><code>a < b</code></td>
+                    <td><span class="p p-green">true</span></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">&gt;=</code></td>
+                    <td>Greater than or equal</td>
+                    <td><code>a >= b</code></td>
+                    <td><span class="p p-red">false</span></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">&lt;=</code></td>
+                    <td>Less than or equal</td>
+                    <td><code>a <= b</code></td>
+                    <td><span class="p p-green">true</span></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">==</code></td>
+                    <td>Equal to (value only)</td>
+                    <td><code>a == b</code></td>
+                    <td><span class="p p-red">false</span></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">!=</code></td>
+                    <td>Not equal to</td>
+                    <td><code>a != b</code></td>
+                    <td><span class="p p-green">true</span></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">===</code></td>
+                    <td>Strict equal (value + type)</td>
+                    <td>see next section</td>
+                    <td>—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">All comparison operators</div>
+                <span class="card-badge">true / false</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let a: number = 10, b: number = 20;
+
+console.log(a > b);   // false — 10 is NOT greater than 20
+console.log(a < b);   // true  — 10 IS less than 20
+console.log(a <= b);  // true  — 10 is less than OR equal to 20
+console.log(a >= b);  // false — 10 is NOT greater than or equal to 20
+console.log(a == b);  // false — 10 is NOT equal to 20
+console.log(a != b);  // true  — 10 IS not equal to 20</code></pre>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Common Mistake:</strong> Don't confuse
+                <code>=</code> (assignment — puts a value IN) with
+                <code>==</code> (comparison — checks if values are EQUAL).
+                Single <code>=</code> assigns. Double <code>==</code> compares!
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     EQUALITY VS STRICT EQUALITY
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-equality">
+            <div class="sec-label">Category ③ — Special</div>
+            <h2>== vs === — Equality vs Strict Equality</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong><br />
+                ✓ <strong>== (Equality)</strong> = Asking "Do these two
+                containers have the <strong>same amount</strong>?" — A glass
+                with 500ml and a bottle with 500ml → "Yes, same amount!" (true).
+                It only checks the <strong>value</strong>.<br />
+                ✓ <strong>=== (Strict Equality)</strong> = Asking "Are these
+                <strong>the exact same container</strong>?" — A glass with 500ml
+                and a bottle with 500ml → "No! One's a glass, the other's a
+                bottle!" (false). It checks <strong>value AND type</strong>.
+              </p>
+            </div>
+
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">==</div>
+                <div class="card-title">Equality — compares VALUES only</div>
+                <span class="card-badge">⚠ Loose</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let num1: any = 10;     // number
+let num2: any = "10";   // string (same value, different type!)
+
+console.log(num1 == num2);  // ✅ true
+// ✓ == only checks: is 10 equal to 10? YES!
+// It ignores that one is a number and the other is a string.</code></pre>
+              </div>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">===</div>
+                <div class="card-title">
+                  Strict Equality — compares VALUES + TYPES
+                </div>
+                <span class="card-badge">✅ Strict</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let num1: any = 10;     // number
+let num2: any = "10";   // string
+
+console.log(num1 === num2);  // ❌ false
+// ✓ === checks TWO things:
+//   1. Are the values equal?  10 == 10 → YES ✅
+//   2. Are the types equal?   number == string → NO ❌
+// Since types don't match → false!</code></pre>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Name</th>
+                    <th>Checks</th>
+                    <th>10 == "10"</th>
+                    <th>10 === "10"</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="cn">==</code></td>
+                    <td>Equality</td>
+                    <td>Value only</td>
+                    <td><span class="p p-green">true</span></td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">===</code></td>
+                    <td>Strict Equality</td>
+                    <td>Value + Type</td>
+                    <td>—</td>
+                    <td><span class="p p-red">false</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Interview Question:</strong> "What's the difference
+                between <code>==</code> and <code>===</code>?" —
+                <code>==</code> compares <strong>values only</strong>.
+                <code>===</code> compares
+                <strong>values AND data types</strong>. The
+                <code>===</code> operator is
+                <strong>specific to JavaScript/TypeScript</strong> — most other
+                languages don't have it. Always prefer <code>===</code> for
+                safer comparisons.
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     LOGICAL OPERATORS
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-logical">
+            <div class="sec-label">Category ④</div>
+            <h2>Logical Operators — AND, OR, NOT</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong><br />
+                ✓ <strong>AND (&&)</strong> = To enter a VIP club, you need
+                BOTH: a ticket <strong>AND</strong> valid ID. Missing either
+                one? Rejected!<br />
+                ✓ <strong>OR (||)</strong> = To pay, you can use cash
+                <strong>OR</strong> card. Either one works — you only need
+                ONE.<br />
+                ✓ <strong>NOT (!)</strong> = A light switch. If it's ON, NOT
+                makes it OFF. If it's OFF, NOT makes it ON. Flip it!
+              </p>
+            </div>
+
+            <p>
+              Logical operators work with
+              <strong>boolean values</strong> (true/false) and return a boolean
+              result.
+            </p>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Name</th>
+                    <th>Rule</th>
+                    <th>Symbol</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="cn">&&</code></td>
+                    <td>AND</td>
+                    <td>BOTH must be true → true. Anything else → false.</td>
+                    <td>Ampersand × 2</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">||</code></td>
+                    <td>OR</td>
+                    <td>
+                      At least ONE must be true → true. Both false → false.
+                    </td>
+                    <td>Pipe × 2</td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">!</code></td>
+                    <td>NOT</td>
+                    <td>Flips the value. true → false. false → true.</td>
+                    <td>Exclamation</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>AND (&&) — Truth table</h3>
+            <div class="sgrid" style="grid-template-columns: repeat(3, 1fr)">
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 && B2</div>
+                <div class="scell-v" style="color: var(--green)">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 && B2</div>
+                <div class="scell-v" style="color: var(--red)">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 && B2</div>
+                <div class="scell-v" style="color: var(--red)">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 && B2</div>
+                <div class="scell-v" style="color: var(--red)">false</div>
+              </div>
+            </div>
+
+            <h3>OR (||) — Truth table</h3>
+            <div class="sgrid" style="grid-template-columns: repeat(3, 1fr)">
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 || B2</div>
+                <div class="scell-v" style="color: var(--green)">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 || B2</div>
+                <div class="scell-v" style="color: var(--green)">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 || B2</div>
+                <div class="scell-v" style="color: var(--green)">true</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B2</div>
+                <div class="scell-v">false</div>
+              </div>
+              <div class="scell">
+                <div class="scell-l">B1 || B2</div>
+                <div class="scell-v" style="color: var(--red)">false</div>
+              </div>
+            </div>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Logical operators in code</div>
+                <span class="card-badge">true / false</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let b1: boolean = true;
+let b2: boolean = false;
+
+console.log(b1 && b2);  // false — AND: both must be true
+console.log(b1 || b2);  // true  — OR: at least one is true
+console.log(!b1);        // false — NOT: flip true → false
+console.log(!b2);        // true  — NOT: flip false → true</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     COMBINING LOGICAL + RELATIONAL
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-logical-combo">
+            <div class="sec-label">Category ④ — Advanced</div>
+            <h2>Combining Logical + Relational Operators</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> "Can I ride this roller
+                coaster?" The rule: you must be
+                <strong>taller than 120cm AND older than 10</strong>. That's a
+                relational check (<code>></code>) combined with a logical check
+                (<code>&&</code>). Both conditions must be true!
+              </p>
+            </div>
+
+            <p>
+              You can mix relational operators (which return true/false) with
+              logical operators to build complex conditions:
+            </p>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Mixing relational + logical</div>
+                <span class="card-badge">Combo</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Both comparisons return true → AND returns true
+console.log(20 > 10 && 10 > 5);   // true && true → true
+
+// First is true, second is false → OR still returns true
+console.log(10 < 20 || 5 > 10);   // true || false → true
+
+// Real-world example: checking if someone can vote
+let age: number = 20;
+let isCitizen: boolean = true;
+
+// Must be 18+ AND a citizen to vote
+let canVote: boolean = (age >= 18) && isCitizen;
+console.log("Can vote:", canVote);  // true</code></pre>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                This combination is commonly used in
+                <strong>if statements</strong> and <strong>loops</strong> —
+                which you'll learn in upcoming topics. For now, just understand
+                how the operators work together.
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     INCREMENT & DECREMENT
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-increment">
+            <div class="sec-label">Category ⑤</div>
+            <h2>Increment &amp; Decrement Operators</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong><br />
+                ➾ <strong>++ (Increment)</strong> = A
+                <strong>clicker counter</strong> at a museum entrance. Every
+                person who walks in — click! The count goes up by exactly 1.<br />
+                ➓ <strong>-- (Decrement)</strong> = The same counter but for
+                people <strong>leaving</strong>. Each exit — click! The count
+                goes down by exactly 1.
+              </p>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Name</th>
+                    <th>What it does</th>
+                    <th>Equivalent to</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code class="cn">x++</code></td>
+                    <td>Post-increment</td>
+                    <td>Increases x by 1</td>
+                    <td><code>x = x + 1</code></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">++x</code></td>
+                    <td>Pre-increment</td>
+                    <td>Increases x by 1</td>
+                    <td><code>x = x + 1</code></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">x--</code></td>
+                    <td>Post-decrement</td>
+                    <td>Decreases x by 1</td>
+                    <td><code>x = x - 1</code></td>
+                  </tr>
+                  <tr>
+                    <td><code class="cn">--x</code></td>
+                    <td>Pre-decrement</td>
+                    <td>Decreases x by 1</td>
+                    <td><code>x = x - 1</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">
+                  Basic increment &amp; decrement — no difference when used
+                  alone
+                </div>
+                <span class="card-badge">Simple</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let x: number = 10;
+
+x++;              // x = 10 + 1 = 11
+console.log(x);   // 11
+
+x--;              // x = 11 - 1 = 10
+console.log(x);   // 10
+
+// When used alone, x++ and ++x give the same result.
+// The difference ONLY appears when you assign to another variable.</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     PRE VS POST
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-prepost">
+            <div class="sec-label">Category ⑤ — Important!</div>
+            <h2>Pre vs Post — When the Order Matters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong><br />
+                ✓ <strong>Post-increment (x++)</strong> = A mailman delivers
+                your mail FIRST, then takes the next letter from the pile.
+                <strong>Deliver first, pick up next.</strong> → Assign old
+                value, THEN increment.<br />
+                ✓ <strong>Pre-increment (++x)</strong> = The mailman picks up
+                the next letter FIRST, then delivers it.
+                <strong>Pick up first, then deliver.</strong> → Increment first,
+                THEN assign.
+              </p>
+            </div>
+
+            <p>
+              The difference between <code>x++</code> and <code>++x</code> ONLY
+              matters when you
+              <strong>store the result in another variable</strong>:
+            </p>
+
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">①</div>
+                <div class="card-title">
+                  Post-increment (x++) — assign FIRST, increment AFTER
+                </div>
+                <span class="card-badge">Old value saved</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let x: number = 10;
+let result: number = x++;  // Step 1: result = 10 (old value)
+                             // Step 2: x becomes 11
+
+console.log(result);  // 10 ← got the OLD value!
+console.log(x);       // 11 ← x was incremented AFTER assignment</code></pre>
+              </div>
+            </div>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">②</div>
+                <div class="card-title">
+                  Pre-increment (++x) — increment FIRST, assign AFTER
+                </div>
+                <span class="card-badge">New value saved</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let x: number = 10;
+let result: number = ++x;  // Step 1: x becomes 11 (increment first!)
+                             // Step 2: result = 11 (new value)
+
+console.log(result);  // 11 ← got the NEW value!
+console.log(x);       // 11 ← same, already incremented</code></pre>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Syntax</th>
+                    <th>Order of operations</th>
+                    <th>result gets</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Post-increment</td>
+                    <td><code>result = x++</code></td>
+                    <td>① Assign old value → ② Increment</td>
+                    <td><span class="p p-amber">Old value (10)</span></td>
+                  </tr>
+                  <tr>
+                    <td>Pre-increment</td>
+                    <td><code>result = ++x</code></td>
+                    <td>① Increment → ② Assign new value</td>
+                    <td><span class="p p-green">New value (11)</span></td>
+                  </tr>
+                  <tr>
+                    <td>Post-decrement</td>
+                    <td><code>result = x--</code></td>
+                    <td>① Assign old value → ② Decrement</td>
+                    <td><span class="p p-amber">Old value (10)</span></td>
+                  </tr>
+                  <tr>
+                    <td>Pre-decrement</td>
+                    <td><code>result = --x</code></td>
+                    <td>① Decrement → ② Assign new value</td>
+                    <td><span class="p p-green">New value (9)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Interview Tip:</strong> "What's the difference between
+                <code>x++</code> and <code>++x</code>?" — Post (x++): assigns
+                THEN increments. Pre (++x): increments THEN assigns. The
+                difference only shows when you store the result in another
+                variable.
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     TERNARY OPERATOR
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-ternary">
+            <div class="sec-label">Category ⑥</div>
+            <h2>Ternary / Conditional Operator</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> The ternary operator is like
+                a <strong>drive-through menu with only 2 options</strong>: "Are
+                you 18 or older? → You get coffee. Under 18? → You get juice."
+                One question, two possible outcomes, instant decision. No need
+                to park, walk inside, and talk to three people (a whole if/else
+                block).
+              </p>
+            </div>
+
+            <p>
+              The ternary operator is a
+              <strong>one-line shortcut for if/else</strong>. It takes a
+              condition and returns one of two values:
+            </p>
+
+            <h3>Syntax</h3>
+            <pre><code>condition ? valueIfTrue : valueIfFalse</code></pre>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">
+                  Basic ternary — which number is bigger?
+                </div>
+                <span class="card-badge">Simple</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let a: number = 100, b: number = 200;
+
+let result: number = a > b ? a : b;
+//                    ^^^^   ^   ^
+//                 condition ‚   ””” if false: use b
+//                           ””” if true: use a
+
+console.log(result);  // 200
+// 100 > 200 is FALSE → so b (200) is assigned to result</code></pre>
+              </div>
+            </div>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">
+                  Real-world example — adult or minor?
+                </div>
+                <span class="card-badge">Practical</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let personAge: number = 30;
+
+let status: string = personAge >= 18 ? "Adult" : "Minor";
+//                    ^^^^^^^^^^^^^     ^^^^^^^   ^^^^^^^
+//                    condition         if true   if false
+
+console.log(status);  // "Adult"
+// 30 >= 18 is TRUE → "Adult" is assigned to status</code></pre>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>When to use ternary:</strong> Simple yes/no decisions
+                where you pick between two values. For complex logic with
+                multiple conditions, stick with if/else statements (covered in a
+                future topic).
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     COMMON MISTAKES
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Beginner Mistakes</h2>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 1: Using <code>=</code> instead of
+                  <code>===</code> in conditions</strong
+                >
+                <p>
+                  A single <code>=</code> is <em>assignment</em> (putting a
+                  value into a box). A triple <code>===</code> is
+                  <em>comparison</em> (checking if two things are equal). If you
+                  accidentally use <code>=</code> inside an <code>if</code>, it
+                  ALWAYS passes — because the assignment itself is truthy!
+                </p>
+                <pre><code>let score = 50;
+
+// ❌ WRONG — this ASSIGNS 100 to score, doesn't compare!
+if (score = 100) {
+  console.log("Perfect!");  // ALWAYS runs! score is now 100
+}
+
+// ✅ CORRECT — this COMPARES score to 100
+if (score === 100) {
+  console.log("Perfect!");  // Only runs if score is actually 100
+}</code></pre>
+                <p>
+                  <strong>Rule:</strong> Inside <code>if()</code>,
+                  <code>while()</code>, or any condition — ALWAYS use
+                  <code>===</code> (three equals), NEVER <code>=</code> (one
+                  equal).
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: <code>+</code> with strings gives concatenation,
+                  not addition!</strong
+                >
+                <p>
+                  The <code>+</code> operator does MATH with numbers, but GLUES
+                  TEXT with strings. If even ONE side is a string, JavaScript
+                  converts everything to strings and joins them!
+                </p>
+                <pre><code>// ❌ Surprise! String + Number = String (concatenation)
+console.log("5" + 3);     // "53"  (not 8!)
+console.log(5 + "3");     // "53"  (not 8!)
+console.log("5" + 3 + 2); // "532" (left to right, all become string)
+console.log(5 + 3 + "2"); // "82"  (5+3=8 first, then "8"+"2"="82")
+
+// ✅ CORRECT — convert string to number first
+console.log(Number("5") + 3);   // 8
+console.log(parseInt("5") + 3); // 8</code></pre>
+                <p>
+                  <strong>Rule:</strong> If your data comes from user input
+                  (it's always a string!), convert it with
+                  <code>Number()</code> or <code>parseInt()</code> before doing
+                  math.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong>Mistake 3: Operator precedence surprises</strong>
+                <p>
+                  Just like in school math, <code>*</code> and
+                  <code>/</code> happen BEFORE <code>+</code> and
+                  <code>-</code>. Forgetting this gives wrong results!
+                </p>
+                <pre><code>// ❌ WRONG expectation
+let result = 2 + 3 * 4;
+console.log(result); // 14 (NOT 20!)
+// Why? 3 * 4 = 12 happens first, then 2 + 12 = 14
+
+// ✅ Use parentheses to force your intended order
+let result2 = (2 + 3) * 4;
+console.log(result2); // 20 ✓</code></pre>
+                <p>
+                  <strong>Rule:</strong> When in doubt, use
+                  <code>(parentheses)</code> to make the order crystal clear. It
+                  also makes your code easier to read!
+                </p>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What you wrote</th>
+                    <th>What it does</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>=</code> in condition</td>
+                    <td><code>if (x = 5)</code></td>
+                    <td>Assigns 5 to x (always true)</td>
+                    <td><code>if (x === 5)</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>+</code> with string</td>
+                    <td><code>"5" + 3</code></td>
+                    <td>Concatenates → <code>"53"</code></td>
+                    <td><code>Number("5") + 3</code></td>
+                  </tr>
+                  <tr>
+                    <td>Precedence</td>
+                    <td><code>2 + 3 * 4</code></td>
+                    <td>Gives 14, not 20</td>
+                    <td><code>(2 + 3) * 4</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     COMPARISON TABLE
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-comparison">
+            <div class="sec-label">Reference</div>
+            <h2>All Operator Categories — Summary</h2>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Operators</th>
+                    <th>Returns</th>
+                    <th>Used for</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="p p-blue">Arithmetic</span></td>
+                    <td><code>+ - * / % **</code></td>
+                    <td>Number</td>
+                    <td>Math operations</td>
+                  </tr>
+                  <tr>
+                    <td><span class="p p-teal">Assignment</span></td>
+                    <td><code>= += -= *= /= %=</code></td>
+                    <td>Number</td>
+                    <td>Shortcuts for math + assign</td>
+                  </tr>
+                  <tr>
+                    <td><span class="p p-violet">Relational</span></td>
+                    <td><code>&gt; &lt; &gt;= &lt;= == != ===</code></td>
+                    <td>Boolean</td>
+                    <td>Comparing values</td>
+                  </tr>
+                  <tr>
+                    <td><span class="p p-green">Logical</span></td>
+                    <td><code>&& || !</code></td>
+                    <td>Boolean</td>
+                    <td>Combining conditions</td>
+                  </tr>
+                  <tr>
+                    <td><span class="p p-amber">Inc / Dec</span></td>
+                    <td><code>++ --</code></td>
+                    <td>Number</td>
+                    <td>Adding/subtracting 1</td>
+                  </tr>
+                  <tr>
+                    <td><span class="p p-red">Ternary</span></td>
+                    <td><code>? :</code></td>
+                    <td>Any</td>
+                    <td>Shortcut if/else</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>TypeScript-specific:</strong> The
+                <code>===</code> (strict equality) operator exists only in
+                JavaScript/TypeScript. Other languages like Java or Python use
+                <code>==</code> differently.
+              </p>
+            </div>
+          </div>
+
+          <!-- ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     CHEATSHEET
+←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
+          <div class="sec" id="op-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
+
+            <h3>Arithmetic</h3>
+            <pre><code>let a = 10, b = 3;
+a + b   // 13   Addition
+a - b   // 7    Subtraction
+a * b   // 30   Multiplication
+a / b   // 3.33 Division (quotient)
+a % b   // 1    Remainder
+a ** b  // 1000 Exponent (10³)</code></pre>
+
+            <h3>Assignment shortcuts</h3>
+            <pre><code>a += b   // same as: a = a + b
+a -= b   // same as: a = a - b
+a *= b   // same as: a = a * b
+a /= b   // same as: a = a / b
+a %= b   // same as: a = a % b</code></pre>
+
+            <h3>Comparison / Relational</h3>
+            <pre><code>a > b    // greater than         → boolean
+a < b    // less than            → boolean
+a >= b   // greater or equal     → boolean
+a <= b   // less or equal        → boolean
+a == b   // equal (value only)   → boolean
+a != b   // not equal            → boolean
+a === b  // strict (value+type)  → boolean</code></pre>
+
+            <h3>Logical</h3>
+            <pre><code>true && true    // true  — AND: both must be true
+true && false   // false
+true || false   // true  — OR: at least one true
+false || false  // false
+!true           // false — NOT: flip the value
+!false          // true</code></pre>
+
+            <h3>Increment / Decrement</h3>
+            <pre><code>x++    // post-increment: use old value, then add 1
+++x    // pre-increment:  add 1 first, then use new value
+x--    // post-decrement: use old value, then subtract 1
+--x    // pre-decrement:  subtract 1 first, then use new value</code></pre>
+
+            <h3>Ternary</h3>
+            <pre><code>// condition ? ifTrue : ifFalse
+let result = age >= 18 ? "Adult" : "Minor";</code></pre>
+
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Operators &nbsp;·&nbsp;
+              Next: Strings &amp; String Methods
+            </p>
+          </div>
+        </div>
+        <!-- /content -->
+      </div>
+      <!-- /wrap -->
+    </div>
+    <!-- /page-wrap -->
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-operators");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

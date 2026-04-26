@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Strings &amp; String Methods — TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript strings — declaration, backtick templates, length, toUpperCase, toLowerCase, charAt, indexOf, substring, includes, startsWith, endsWith, replace, split, trim, concat, immutability."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Strings &amp; String Methods</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-strings">
+          <div class="nav-logo">
+            <div class="v">Data Type</div>
+            <h2>Strings</h2>
+          </div>
+          <div class="nav-group">Basics</div>
+          <a href="#str-what">What is a String?</a>
+          <a href="#str-backtick">Back Tick Operator</a>
+          <div class="nav-group">Methods</div>
+          <a href="#str-length">length</a>
+          <a href="#str-case">toUpperCase / toLowerCase</a>
+          <a href="#str-charat">charAt / indexOf</a>
+          <a href="#str-substring">substring</a>
+          <a href="#str-includes">includes</a>
+          <a href="#str-startend">startsWith / endsWith</a>
+          <a href="#str-replace">replace</a>
+          <a href="#str-split">split</a>
+          <a href="#str-trim">trim / trimStart / trimEnd</a>
+          <a href="#str-concat">concat</a>
+          <div class="nav-group">Concepts</div>
+          <a href="#str-immutable">String Immutability</a>
+          <a href="#str-multiline">Multi-line Strings</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#str-mistakes">⚠ Common Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#str-cheatsheet">Cheatsheet</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="str-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Strings</span>
+              <span class="hero-tag">String Methods</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Strings &amp; String <span>Methods</span></h1>
+            <p>
+              Everything about strings — declaration, template literals, 10+
+              essential methods, immutability, and multi-line strings.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">10+</div>
+                <div class="stat-l">Methods</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Declaration Styles</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">1</div>
+                <div class="stat-l">Key Concept</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT IS A STRING -->
+          <div class="sec" id="str-what">
+            <div class="sec-label">Basics</div>
+            <h2>What is a String?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A string is like a
+                <strong>necklace of beads</strong>. Each bead is one character,
+                and they're all strung together in order. Every bead has a
+                position number (index) starting from 0.
+              </p>
+            </div>
+
+            <p>
+              A string is a <strong>group of characters</strong> — letters,
+              numbers, symbols, spaces. Even numbers inside quotes become
+              strings!
+            </p>
+
+            <h3>3 ways to declare a string</h3>
+            <pre><code>let str1: string = 'Hello';            // Single quotes
+let str2: string = "Hello";            // Double quotes
+let str3: string = `Hello`;            // Back tick (template literal)
+
+// All three produce the exact same output!
+// Numbers in quotes = strings too:
+let age: string = "25";  // This is a STRING, not a number</code></pre>
+
+            <h3>String indexes</h3>
+            <pre><code>// Just like arrays, each character has an index starting from 0:
+//  H  e  l  l  o  ,     T  y  p  e  S  c  r  i  p  t  !
+//  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
+
+// Spaces, commas, and symbols count too!</code></pre>
+          </div>
+
+          <!-- BACK TICK -->
+          <div class="sec" id="str-backtick">
+            <div class="sec-label">Special</div>
+            <h2>Back Tick Operator — Template Literals</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Back ticks are like
+                <strong>fill-in-the-blank forms</strong>. The form has fixed
+                text with blank spaces where you plug in variable values.
+                <code>${variable}</code> is the blank space.
+              </p>
+            </div>
+
+            <p>
+              Use back ticks when you need to
+              <strong>embed variable values inside a string</strong>.
+            </p>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">Why single/double quotes fail</div>
+                <span class="card-badge">Backtick</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let num: number = 10;
+
+// ❌ Single/double quotes — prints literally "num", not 10
+console.log("Number is num");     // "Number is num"
+console.log("Number is ${num}");  // "Number is ${num}"
+
+// ✅ Back tick — extracts the VALUE from the variable
+console.log(`Number is ${num}`);  // "Number is 10" ✅</code></pre>
+                <p class="fn">
+                  The <code>${}</code> syntax ONLY works inside back ticks
+                  <code>` `</code>. It does NOT work with single or double
+                  quotes.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- LENGTH -->
+          <div class="sec" id="str-length">
+            <div class="sec-label">Property</div>
+            <h2>length — Count characters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>length</code> is like
+                counting <strong>beads on a necklace</strong>. Every bead counts
+                — including spacer beads (spaces) and decorative charms (special
+                characters).
+              </p>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+console.log(str.length);  // 18
+// Counts: letters + comma + space + exclamation = 18 total
+
+// ⚠ length is a PROPERTY, not a method — no parentheses!
+// ✅ str.length     (correct)
+// ❌ str.length()   (wrong)</code></pre>
+          </div>
+
+          <!-- CASE -->
+          <div class="sec" id="str-case">
+            <div class="sec-label">Methods</div>
+            <h2>toUpperCase / toLowerCase — Change case</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like switching between
+                <strong>SHOUTING (uppercase)</strong> and
+                <strong>whispering (lowercase)</strong> — same words, different
+                volume.
+              </p>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+console.log(str.toUpperCase());  // "HELLO, TYPESCRIPT!"
+console.log(str.toLowerCase());  // "hello, typescript!"
+
+// Both return a NEW string — original is unchanged!
+console.log(str);  // still "Hello, TypeScript!"</code></pre>
+          </div>
+
+          <!-- CHARAT / INDEXOF -->
+          <div class="sec" id="str-charat">
+            <div class="sec-label">Methods</div>
+            <h2>charAt / indexOf — Opposites!</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Think of a
+                <strong>train with numbered seats</strong>:<br />
+                <code>charAt(4)</code> = "Who's sitting in seat 4?" → gives you
+                the <strong>passenger (character)</strong>.<br />
+                <code>indexOf("John")</code> = "Where is John sitting?" → gives
+                you the <strong>seat number (index)</strong>.
+              </p>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>You give it</th>
+                    <th>It returns</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>charAt(index)</code></td>
+                    <td>An index (number)</td>
+                    <td>The character at that position</td>
+                  </tr>
+                  <tr>
+                    <td><code>indexOf(string)</code></td>
+                    <td>A string</td>
+                    <td>The index where it starts</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+// charAt — give index, get character
+console.log(str.charAt(4));   // "o"  (0:H 1:e 2:l 3:l 4:o)
+
+// indexOf — give string, get index
+console.log(str.indexOf("Type"));  // 7  (Type starts at position 7)</code></pre>
+          </div>
+
+          <!-- SUBSTRING -->
+          <div class="sec" id="str-substring">
+            <div class="sec-label">Method</div>
+            <h2>substring — Extract a portion</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>substring</code> is
+                like <strong>highlighting text in a book</strong>. You mark
+                where to start and where to stop, and it gives you just that
+                highlighted portion.
+              </p>
+            </div>
+
+            <pre><code>// substring(startIndex, endIndex)
+// startIndex → count from 0 (inclusive)
+// endIndex   → count from 1 (EXCLUSIVE — stops one before!)
+
+let str: string = "Welcome";
+//  W  e  l  c  o  m  e
+//  0  1  2  3  4  5  6
+
+console.log(str.substring(0, 5));  // "Welco"  (0 to 4)
+console.log(str.substring(2, 4));  // "lc"     (2 to 3)
+console.log(str.substring(3, 7));  // "come"   (3 to 6)</code></pre>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">⚠</div>
+                <div class="card-title">End index is EXCLUSIVE</div>
+                <span class="card-badge">Key rule</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let str: string = "Hello, TypeScript!";
+
+console.log(str.substring(0, 5));   // "Hello"
+// Start at 0, stop BEFORE 5 → gets characters 0,1,2,3,4
+
+console.log(str.substring(7, 17));  // "TypeScript"
+// Start at 7, stop BEFORE 17</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- INCLUDES -->
+          <div class="sec" id="str-includes">
+            <div class="sec-label">Method</div>
+            <h2>includes — "Is this inside the string?"</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>includes</code> is
+                like <strong>searching for a word in a book</strong>. "Does this
+                book contain the word 'dragon'?" → Yes (<code>true</code>) or No
+                (<code>false</code>).
+              </p>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+console.log(str.includes("TypeScript"));  // true ✅
+console.log(str.includes("abc"));         // false ❌
+console.log(str.includes("!"));           // true ✅
+
+// ⚠ CASE SENSITIVE!
+console.log(str.includes("typescript"));  // false ❌ (lowercase 't')
+console.log(str.includes("TypeScript"));  // true ✅ (exact match)</code></pre>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Automation tip:</strong> <code>includes</code> is used
+                VERY frequently in test automation to verify text content on
+                pages. Equivalent to Java's <code>contains()</code> method.
+              </p>
+            </div>
+          </div>
+
+          <!-- STARTSWITH / ENDSWITH -->
+          <div class="sec" id="str-startend">
+            <div class="sec-label">Methods</div>
+            <h2>startsWith / endsWith — Check boundaries</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like checking a
+                <strong>phone number</strong> — "Does it START with +91?" or
+                "Does the file name END with .pdf?"
+              </p>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+// startsWith — does it begin with this?
+console.log(str.startsWith("Hello"));  // true ✅
+console.log(str.startsWith("ABC"));    // false ❌
+
+// endsWith — does it end with this?
+console.log(str.endsWith("!"));        // true ✅
+console.log(str.endsWith("ABC"));      // false ❌
+
+// Both return boolean (true/false)</code></pre>
+          </div>
+
+          <!-- REPLACE -->
+          <div class="sec" id="str-replace">
+            <div class="sec-label">Method</div>
+            <h2>replace — Swap one part for another</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>replace</code> is like
+                using <strong>Find & Replace in Word</strong>. Find
+                "TypeScript", replace with "World" → you get a new document, but
+                the original stays the same.
+              </p>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+// replace(oldString, newString)
+let updated = str.replace("TypeScript", "World");
+
+console.log(updated);  // "Hello, World!"
+console.log(str);      // "Hello, TypeScript!" ← original unchanged!</code></pre>
+          </div>
+
+          <!-- SPLIT -->
+          <div class="sec" id="str-split">
+            <div class="sec-label">Method</div>
+            <h2>split — Break string into an array</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>split</code> is like
+                <strong>tearing a perforated receipt</strong> along the dotted
+                lines. The dotted line is your delimiter — wherever it appears,
+                the string breaks apart into separate pieces stored in an array.
+              </p>
+            </div>
+
+            <pre><code>let str: string = "Hello, TypeScript!";
+
+// Split by space
+let words: string[] = str.split(" ");
+console.log(words);     // ["Hello,", "TypeScript!"]
+console.log(words[0]);  // "Hello,"
+console.log(words[1]);  // "TypeScript!"</code></pre>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">Split email and password</div>
+                <span class="card-badge">Practical</span>
+              </div>
+              <div class="card-body">
+                <pre><code>let myString: string = "abc@gmail.com,xyz123";
+
+let arr: string[] = myString.split(",");
+// Splits at comma → ["abc@gmail.com", "xyz123"]
+
+console.log("Email:", arr[0]);     // "abc@gmail.com"
+console.log("Password:", arr[1]);  // "xyz123"
+
+// More commas = more parts!
+let data = "a,b,c,d".split(",");   // ["a", "b", "c", "d"]</code></pre>
+                <p class="fn">
+                  <code>split</code> always returns an <strong>array</strong>.
+                  The delimiter tells it where to cut.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRIM -->
+          <div class="sec" id="str-trim">
+            <div class="sec-label">Methods</div>
+            <h2>trim / trimStart / trimEnd — Remove spaces</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>trim</code> is like
+                <strong>cutting the crusts off bread</strong>. The bread
+                (content) stays the same — you just remove the unwanted edges
+                (spaces).
+              </p>
+            </div>
+
+            <pre><code>let myString: string = "   Welcome to TypeScript   ";
+
+// trim — removes spaces from BOTH sides
+console.log(myString.trim());       // "Welcome to TypeScript"
+
+// trimStart — removes spaces from the BEGINNING only
+console.log(myString.trimStart());  // "Welcome to TypeScript   "
+
+// trimEnd — removes spaces from the END only
+console.log(myString.trimEnd());    // "   Welcome to TypeScript"</code></pre>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Removes spaces from</th>
+                    <th>Java equivalent</th>
+                    <th>Python equivalent</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>trim()</code></td>
+                    <td>Both sides</td>
+                    <td><code>trim()</code></td>
+                    <td><code>strip()</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>trimStart()</code></td>
+                    <td>Beginning</td>
+                    <td>—</td>
+                    <td><code>lstrip()</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>trimEnd()</code></td>
+                    <td>End</td>
+                    <td>—</td>
+                    <td><code>rstrip()</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CONCAT -->
+          <div class="sec" id="str-concat">
+            <div class="sec-label">Method</div>
+            <h2>concat — Join strings together</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>concat</code> is like
+                <strong>chaining train cars together</strong>. Car 1 + Car 2 +
+                Car 3 = one long train. Each <code>.concat()</code> call links
+                another car.
+              </p>
+            </div>
+
+            <pre><code>let str1: string = "Welcome";
+let str2: string = " to TypeScript";
+
+// Using concat
+let joined = str1.concat(str2);
+console.log(joined);  // "Welcome to TypeScript"
+
+// Chaining multiple concats
+let str3: string = " and JavaScript";
+let all = str1.concat(str2).concat(str3);
+console.log(all);  // "Welcome to TypeScript and JavaScript"
+
+// Alternative: + operator (works but not recommended for strings)
+let alt = str1 + str2;  // same result
+
+// Direct strings (no variables needed)
+let direct = "Hello".concat(" World");  // "Hello World"</code></pre>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <code>concat</code> is for <strong>strings only</strong>. To
+                join numbers and strings, use the <code>+</code> operator or
+                template literals (<code>`${num}`</code>).
+              </p>
+            </div>
+          </div>
+
+          <!-- IMMUTABILITY -->
+          <div class="sec" id="str-immutable">
+            <div class="sec-label">Key Concept</div>
+            <h2>String Immutability</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Strings are like a
+                <strong>printed photograph</strong>. You can make a copy and
+                edit the copy (crop, filter), but the original print stays
+                exactly the same. No string method can change the original —
+                they all return NEW strings.
+              </p>
+            </div>
+
+            <pre><code>let str1: string = "Welcome";
+
+let modified = str1.concat(" to TypeScript");
+
+console.log(modified);  // "Welcome to TypeScript"  (new string)
+console.log(str1);      // "Welcome"  ← UNCHANGED! ✓
+
+// Same with ALL methods:
+str1.toUpperCase();     // returns "WELCOME" but str1 is still "Welcome"
+str1.replace("W", "w"); // returns "welcome" but str1 is still "Welcome"</code></pre>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Term</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Immutable</strong></td>
+                    <td>Cannot change the original value</td>
+                    <td>Strings — all methods return NEW strings</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mutable</strong></td>
+                    <td>CAN change the original value</td>
+                    <td>Arrays — <code>push()</code> modifies the original</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- MULTI-LINE -->
+          <div class="sec" id="str-multiline">
+            <div class="sec-label">Concept</div>
+            <h2>Multi-line Strings</h2>
+
+            <pre><code>// ❌ Single/double quotes — NOT allowed across lines
+let str = "Welcome
+to TypeScript";  // ERROR!
+
+// ✅ Back tick — multi-line IS allowed!
+let multiLine = `Welcome
+to TypeScript`;
+
+console.log(multiLine);
+// Output:
+// Welcome
+// to TypeScript</code></pre>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                Back ticks unlock TWO powers:
+                <strong>variable embedding</strong> (<code>${var}</code>) and
+                <strong>multi-line strings</strong>. Single/double quotes can do
+                neither.
+              </p>
+            </div>
+          </div>
+
+          <!-- COMMON MISTAKES -->
+          <div class="sec" id="str-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Beginner Mistakes</h2>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 1: <code>str.length()</code> with parentheses — it's
+                  NOT a method!</strong
+                >
+                <p>
+                  <code>length</code> is a <em>property</em> (like reading a
+                  label), NOT a <em>method</em> (like pressing a button). Adding
+                  <code>()</code> causes an error!
+                </p>
+                <pre><code>let name = "Alice";
+
+// ❌ WRONG — length is not a function!
+console.log(name.length()); // TypeError: name.length is not a function
+
+// ✅ CORRECT — no parentheses needed
+console.log(name.length);   // 5 ✓
+
+// How to remember:
+// .length    → property (just reading a value) → NO ()
+// .toUpperCase() → method (doing an action) → YES ()</code></pre>
+                <p>
+                  <strong>Rule:</strong> <code>length</code> = property (no
+                  parentheses). Methods like <code>toUpperCase()</code>,
+                  <code>includes()</code>, <code>trim()</code> = actions (need
+                  parentheses).
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: <code>includes()</code> is CASE SENSITIVE!</strong
+                >
+                <p>
+                  <code>includes()</code> checks for an EXACT match including
+                  uppercase/lowercase. <code>"Hello"</code> and
+                  <code>"hello"</code> are different!
+                </p>
+                <pre><code>let greeting = "Hello World";
+
+// ❌ WRONG — case doesn't match!
+console.log(greeting.includes("hello")); // false (lowercase h)
+console.log(greeting.includes("world")); // false (lowercase w)
+
+// ✅ CORRECT — exact case match
+console.log(greeting.includes("Hello")); // true ✓
+console.log(greeting.includes("World")); // true ✓
+
+// ✅ TRICK — convert both to lowercase for case-insensitive search
+console.log(greeting.toLowerCase().includes("hello")); // true ✓</code></pre>
+                <p>
+                  <strong>Rule:</strong> When searching strings, convert both
+                  sides to <code>.toLowerCase()</code> first if you don't care
+                  about case.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 3: <code>substring()</code> end index is
+                  EXCLUSIVE</strong
+                >
+                <p>
+                  The second number in <code>substring(start, end)</code> is NOT
+                  included in the result. It stops ONE character BEFORE that
+                  index!
+                </p>
+                <pre><code>let text = "TypeScript";
+//          T y p e S c r i p t
+// Index:   0 1 2 3 4 5 6 7 8 9
+
+// ❌ WRONG expectation — you expect 5 characters
+console.log(text.substring(0, 4)); // "Type" (only 4 chars, not 5!)
+// It gives characters at index 0, 1, 2, 3 — stops BEFORE index 4
+
+// ✅ CORRECT — to get "TypeS" (5 chars), use end = 5
+console.log(text.substring(0, 5)); // "TypeS" ✓</code></pre>
+                <p>
+                  <strong>Rule:</strong>
+                  <code>substring(start, end)</code> gives characters from
+                  <code>start</code> up to BUT NOT INCLUDING <code>end</code>.
+                  Think: <code>end - start = number of characters</code>.
+                </p>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What you wrote</th>
+                    <th>What happens</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>length()</code></td>
+                    <td><code>str.length()</code></td>
+                    <td>TypeError</td>
+                    <td><code>str.length</code> (no parens)</td>
+                  </tr>
+                  <tr>
+                    <td>Case sensitive</td>
+                    <td><code>"Hello".includes("hello")</code></td>
+                    <td><code>false</code></td>
+                    <td><code>.toLowerCase().includes()</code></td>
+                  </tr>
+                  <tr>
+                    <td>Off-by-one</td>
+                    <td><code>substring(0, 4)</code></td>
+                    <td>4 chars, not 5</td>
+                    <td>End index is exclusive</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CHEATSHEET -->
+          <div class="sec" id="str-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
+
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>🧠 Memory Trick — Remember All String Methods
+                (2 parts):</strong><br /><br />
+                <strong>Part 1 — Read &amp; Check (7):</strong><br />
+                "<strong>L</strong>arge <strong>U</strong>ploads <strong>L</strong>eave <strong>C</strong>omputers <strong>I</strong>n <strong>S</strong>erver <strong>I</strong>dle"<br />
+                → <strong>L</strong>ength, to<strong>U</strong>pperCase,
+                to<strong>L</strong>owerCase, <strong>C</strong>harAt,
+                <strong>I</strong>ndexOf, <strong>S</strong>ubstring,
+                <strong>I</strong>ncludes<br /><br />
+                <strong>Part 2 — Search &amp; Transform (6):</strong><br />
+                "<strong>S</strong>mart <strong>E</strong>lephants
+                <strong>R</strong>arely <strong>S</strong>lip,
+                <strong>T</strong>hey're <strong>C</strong>areful"<br />
+                → <strong>S</strong>tartsWith, <strong>E</strong>ndsWith,
+                <strong>R</strong>eplace, <strong>S</strong>plit,
+                <strong>T</strong>rim, <strong>C</strong>oncat
+              </p>
+            </div>
+
+            <h3>Declaration</h3>
+            <pre><code>let s1 = 'single';       // single quotes
+let s2 = "double";       // double quotes
+let s3 = `backtick`;     // template literal (${} + multi-line)</code></pre>
+
+            <h3>All methods at a glance</h3>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Returns</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>.length</code></td>
+                    <td>number</td>
+                    <td><code>"Hello".length → 5</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.toUpperCase()</code></td>
+                    <td>string</td>
+                    <td><code>"hi" → "HI"</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.toLowerCase()</code></td>
+                    <td>string</td>
+                    <td><code>"HI" → "hi"</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.charAt(i)</code></td>
+                    <td>string</td>
+                    <td><code>"Hello".charAt(1) → "e"</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.indexOf(s)</code></td>
+                    <td>number</td>
+                    <td><code>"Hello".indexOf("ll") → 2</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.substring(s,e)</code></td>
+                    <td>string</td>
+                    <td><code>"Hello".substring(0,3) → "Hel"</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.includes(s)</code></td>
+                    <td>boolean</td>
+                    <td><code>"Hello".includes("ell") → true</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.startsWith(s)</code></td>
+                    <td>boolean</td>
+                    <td><code>"Hello".startsWith("He") → true</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.endsWith(s)</code></td>
+                    <td>boolean</td>
+                    <td><code>"Hello".endsWith("lo") → true</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.replace(a,b)</code></td>
+                    <td>string</td>
+                    <td><code>"Hi".replace("Hi","Bye") → "Bye"</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.split(d)</code></td>
+                    <td>string[]</td>
+                    <td><code>"a,b".split(",") → ["a","b"]</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.trim()</code></td>
+                    <td>string</td>
+                    <td><code>" Hi ".trim() → "Hi"</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>.concat(s)</code></td>
+                    <td>string</td>
+                    <td><code>"Hi".concat(" there") → "Hi there"</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Key rules</h3>
+            <pre><code>// ✅ Strings are IMMUTABLE — methods return new strings
+// ✅ All string methods are CASE SENSITIVE
+// ✅ Back ticks for ${variable} embedding + multi-line
+// ✅ length is a PROPERTY (no parentheses)
+// ✅ substring end index is EXCLUSIVE
+// ✅ split returns an ARRAY
+// ✅ includes = Java's contains()</code></pre>
+
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Strings &amp; String
+              Methods
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-strings");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

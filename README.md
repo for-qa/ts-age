@@ -12,32 +12,35 @@ A comprehensive, beginner-to-senior TypeScript curriculum built as a static site
 - **Real-Life Analogies** — every concept linked to an everyday scenario
 - **Code Snippets** — copy-paste-ready TypeScript examples in every section
 - **Practice Files** — 40 numbered `.ts` files to write and run your own code
-- **No frameworks** — pure HTML + CSS, open `index.html` in any browser
+- **Modern Web App** — Built entirely as a React 19 + Vite SPA with Clean Architecture
+- **Interactive Quizzes** — Context-aware, auto-shuffling quizzes with dynamic local storage tracking
+- **Light/Dark Mode** — Persistent theme toggle using Zustand state management
+- **No Forward References** — Every topic builds strictly on the previous one
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 ts-age/
-├── index.html              # Dashboard — 40 topics as clickable cards
-├── styles.css              # Shared design system
-├── plan.md                 # Full curriculum roadmap
-├── claude.md               # AI prompt guide & content rules
-├── pages/                  # One HTML file per topic (40 + 2 bonus = 42)
-│   ├── variables-keywords.html   # Topic 1
-│   ├── data-types.html           # Topic 2
-│   ├── ...                       # Topics 3–39
-│   ├── data-structures.html      # Topic 40
-│   ├── comparisons.html          # ★ Bonus — 24 A-vs-B comparisons
-│   └── glossary.html             # ★ Bonus — 48 terms A-Z
+├── public/                 # Static assets
+│   └── legacy_pages/       # Original HTML content served dynamically
 ├── practice/               # Blank .ts files for hands-on coding
-│   ├── 01-variables.ts
-│   ├── 02-data-types.ts
-│   ├── ...
-│   └── 40-data-structures.ts
-└── tsconfig.json
+├── src/                    # React SPA Source Code
+│   ├── core/               # Domain Layer (Entities, Use Cases)
+│   ├── data/               # Infrastructure Layer (Repositories, DI)
+│   ├── presentation/       # UI Layer (React Components, Pages, Zustand Stores)
+│   ├── styles/             # Shared CSS design system and variables
+│   ├── App.tsx             # Main router configuration
+│   └── main.tsx            # React entry point
+└── package.json            # Vite, React, and Zustand dependencies
 ```
+
+### Clean Architecture & SOLID
+This application strictly adheres to Clean Architecture principles:
+- **Core:** Contains zero UI logic. It defines data shapes (`Question.ts`) and pure business logic (`SubmitQuizAnswerUseCase`).
+- **Data:** Implements local storage and static data retrieval via interfaces, utilizing Dependency Injection to prevent tight coupling.
+- **Presentation:** React components only render the UI and call Use Cases. No data-fetching logic is hardcoded into the views.
 
 ---
 
@@ -114,20 +117,18 @@ The topics are sequenced so each one builds on the previous — **no forward ref
 
 ## 🚀 Getting Started
 
-### View the Notes
+### View the Notes (Web App)
 
-Just open `index.html` in your browser — no server needed:
+This platform is now a modern React + TypeScript application! To run the curriculum app locally:
 
 ```bash
-# Windows
-start index.html
+# Install dependencies (only needed once)
+npm install
 
-# macOS
-open index.html
-
-# Linux
-xdg-open index.html
+# Start the development server
+npm run dev
 ```
+Then, open the provided `localhost` URL in your browser.
 
 ### Practice TypeScript
 
