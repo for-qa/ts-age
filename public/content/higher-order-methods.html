@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Higher-Order Array Methods — TypeScript Learning Path</title>
+    <title>Higher-Order Array Methods  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Master TypeScript higher-order array methods — forEach, map, filter, reduce, some, every. Understand when to use each with real-life analogies and code examples."
+      content="Master TypeScript higher-order array methods  --  forEach, map, filter, reduce, some, every. Understand when to use each with real-life analogies and code examples."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -31,7 +31,7 @@
       <div class="wrap">
         <nav id="nav-hoam">
           <div class="nav-logo">
-            <div class="v">Arrays — Advanced</div>
+            <div class="v">Arrays  --  Advanced</div>
             <h2>HO Methods</h2>
           </div>
           <div class="nav-group">Common Behavior</div>
@@ -59,7 +59,7 @@
             <h1>Higher-Order <span>Array Methods</span></h1>
             <p>
               Six powerful methods that accept a function as a parameter and
-              apply it to every element in an array — forEach, map, filter,
+              apply it to every element in an array  --  forEach, map, filter,
               reduce, some, every.
             </p>
             <div class="hero-stats">
@@ -97,7 +97,7 @@
               Every method takes a
               <strong>function as a parameter</strong> (callback). That function
               runs <strong>once per element</strong>. You can pass any function
-              type — named, anonymous, or arrow.
+              type  --  named, anonymous, or arrow.
             </p>
 
             <h3>Standard callback parameters</h3>
@@ -120,7 +120,7 @@
                   <tr>
                     <td><span class="p p-blue">forEach</span></td>
                     <td>Nothing (<code>void</code>)</td>
-                    <td>Just runs the function — no output</td>
+                    <td>Just runs the function  --  no output</td>
                   </tr>
                   <tr>
                     <td><span class="p p-green">map</span></td>
@@ -154,7 +154,7 @@
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember The Big Six:</strong
+                <strong>🧠 Memory Trick  --  Remember The Big Six:</strong
                 ><br /><br />
                 "<strong>F</strong>unctions <strong>M</strong>ake <strong>F</strong>iltering <strong>R</strong>ecords <strong>S</strong>uper <strong>E</strong>asy"<br />
                 → <strong>for</strong>Each, <strong>m</strong>ap,
@@ -169,14 +169,14 @@
           <!-- forEach -->
           <div class="sec" id="ho-foreach">
             <div class="sec-label">Method 1</div>
-            <h2>forEach — "Do something for each item"</h2>
+            <h2>forEach  --  "Do something for each item"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>forEach</code> is like
                 a <strong>teacher taking attendance</strong>. She goes through
                 each student name, calls it out loud, and moves to the next. She
-                doesn't write a new list — she just performs an action for each
+                doesn't write a new list  --  she just performs an action for each
                 name.
               </p>
             </div>
@@ -227,7 +227,7 @@ fruits.forEach((element, index) => {
 });
 
 // Output: APPLE, BANANA, ORANGE, MANGO, GRAPE
-// forEach just DOES something — it doesn't create a new array</code></pre>
+// forEach just DOES something  --  it doesn't create a new array</code></pre>
                 <p class="fn">
                   If <code>index</code> isn't needed, just pass the element
                   parameter alone.
@@ -240,7 +240,7 @@ fruits.forEach((element, index) => {
               <p>
                 <strong>When to use forEach:</strong> When you want to
                 <strong>perform a side effect</strong> (print, log, update DOM)
-                for each element — and you do NOT need a new array back.
+                for each element  --  and you do NOT need a new array back.
               </p>
             </div>
           </div>
@@ -248,14 +248,14 @@ fruits.forEach((element, index) => {
           <!-- map -->
           <div class="sec" id="ho-map">
             <div class="sec-label">Method 2</div>
-            <h2>map — "Transform and collect"</h2>
+            <h2>map  --  "Transform and collect"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>map</code> is like a
                 <strong>photo filter app</strong>. You give it 10 photos, it
                 applies a filter to EACH one, and gives back 10 new filtered
-                photos. Same count in, same count out — but every item is
+                photos. Same count in, same count out  --  but every item is
                 transformed.
               </p>
             </div>
@@ -303,7 +303,7 @@ let doubled = numbers.map((element) => {
   return element * 2;
 });
 
-// Simplified — single return = no { } and no 'return' keyword!
+// Simplified  --  single return = no { } and no 'return' keyword!
 let doubled = numbers.map(element => element * 2);
 
 console.log(doubled);  // [2, 4, 6, 8, 10]</code></pre>
@@ -324,7 +324,7 @@ console.log(doubled);  // [2, 4, 6, 8, 10]</code></pre>
           <!-- filter -->
           <div class="sec" id="ho-filter">
             <div class="sec-label">Method 3</div>
-            <h2>filter — "Keep only what passes the test"</h2>
+            <h2>filter  --  "Keep only what passes the test"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -390,7 +390,7 @@ console.log(filtered);  // [4, 5]</code></pre>
           <!-- reduce -->
           <div class="sec" id="ho-reduce">
             <div class="sec-label">Method 4</div>
-            <h2>reduce — "Boil everything down to one value"</h2>
+            <h2>reduce  --  "Boil everything down to one value"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -405,7 +405,7 @@ console.log(filtered);  // [4, 5]</code></pre>
             <p>
               <strong>Definition:</strong> Applies a function on every element
               and returns a <strong>single value</strong>. Uses an
-              <strong>accumulator</strong> — a running total that builds up with
+              <strong>accumulator</strong>  --  a running total that builds up with
               each iteration.
             </p>
 
@@ -495,7 +495,7 @@ console.log(total);  // 15</code></pre>
           <!-- some -->
           <div class="sec" id="ho-some">
             <div class="sec-label">Method 5</div>
-            <h2>some — "Is at least ONE element passing?"</h2>
+            <h2>some  --  "Is at least ONE element passing?"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -523,10 +523,10 @@ console.log(total);  // 15</code></pre>
                 <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
 
 let hasNegative = numbers.some(element => element < 0);
-console.log(hasNegative);  // false — no negatives!
+console.log(hasNegative);  // false  --  no negatives!
 
 let hasPositive = numbers.some(element => element > 0);
-console.log(hasPositive);  // true — at least one positive!</code></pre>
+console.log(hasPositive);  // true  --  at least one positive!</code></pre>
               </div>
             </div>
           </div>
@@ -534,7 +534,7 @@ console.log(hasPositive);  // true — at least one positive!</code></pre>
           <!-- every -->
           <div class="sec" id="ho-every">
             <div class="sec-label">Method 6</div>
-            <h2>every — "Do ALL elements pass?"</h2>
+            <h2>every  --  "Do ALL elements pass?"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -561,13 +561,13 @@ console.log(hasPositive);  // true — at least one positive!</code></pre>
                 <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
 
 let allEven = numbers.every(element => element % 2 === 0);
-console.log(allEven);  // false — 1, 3, 5 are odd!
+console.log(allEven);  // false  --  1, 3, 5 are odd!
 
 let allPositive = numbers.every(element => element > 0);
-console.log(allPositive);  // true — all are positive!
+console.log(allPositive);  // true  --  all are positive!
 
 let allGTE1 = numbers.every(element => element >= 1);
-console.log(allGTE1);  // true — all are ≥ 1</code></pre>
+console.log(allGTE1);  // true  --  all are ≥ 1</code></pre>
               </div>
             </div>
 
@@ -613,7 +613,7 @@ console.log(allGTE1);  // true — all are ≥ 1</code></pre>
                   </tr>
                   <tr>
                     <td><strong>Output size</strong></td>
-                    <td>—</td>
+                    <td> -- </td>
                     <td>Same</td>
                     <td>Same or less</td>
                     <td>1 value</td>
@@ -640,12 +640,12 @@ console.log(allGTE1);  // true — all are ≥ 1</code></pre>
                   </tr>
                   <tr>
                     <td><strong>Extra param?</strong></td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td> -- </td>
+                    <td> -- </td>
+                    <td> -- </td>
                     <td>accumulator</td>
-                    <td>—</td>
-                    <td>—</td>
+                    <td> -- </td>
+                    <td> -- </td>
                   </tr>
                   <tr>
                     <td><strong>Use case</strong></td>
@@ -676,29 +676,29 @@ console.log(allGTE1);  // true — all are ≥ 1</code></pre>
             <div class="sec-label">Reference</div>
             <h2>Quick Reference Cheatsheet</h2>
 
-            <h3>forEach — do something, return nothing</h3>
+            <h3>forEach  --  do something, return nothing</h3>
             <pre><code>fruits.forEach(item => console.log(item));</code></pre>
 
-            <h3>map — transform each element, get new array</h3>
+            <h3>map  --  transform each element, get new array</h3>
             <pre><code>let doubled = nums.map(n => n * 2);        // [2,4,6,8,10]</code></pre>
 
-            <h3>filter — keep elements that pass the test</h3>
+            <h3>filter  --  keep elements that pass the test</h3>
             <pre><code>let evens = nums.filter(n => n % 2 === 0);  // [2,4]</code></pre>
 
-            <h3>reduce — accumulate into single value</h3>
+            <h3>reduce  --  accumulate into single value</h3>
             <pre><code>let sum = nums.reduce((acc, n) => acc + n, 0);  // 15</code></pre>
 
-            <h3>some — at least one passes?</h3>
+            <h3>some  --  at least one passes?</h3>
             <pre><code>let hasNeg = nums.some(n => n < 0);        // false</code></pre>
 
-            <h3>every — do ALL pass?</h3>
+            <h3>every  --  do ALL pass?</h3>
             <pre><code>let allPos = nums.every(n => n > 0);       // true</code></pre>
 
             <h3>Arrow function shortcut</h3>
             <pre><code>// If only ONE return statement inside arrow function:
 // ❌ Verbose
 nums.map((n) => { return n * 2; });
-// ✅ Concise — remove { } and 'return'
+// ✅ Concise  --  remove { } and 'return'
 nums.map(n => n * 2);</code></pre>
 
             <hr />

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Decorators — TypeScript Learning Path</title>
+    <title>Decorators  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="TypeScript decorators — class, method, property, parameter decorators with real-world examples: logging, validation, memoization."
+      content="TypeScript decorators  --  class, method, property, parameter decorators with real-world examples: logging, validation, memoization."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -55,7 +55,7 @@
             </div>
             <h1>Decorators</h1>
             <p>
-              Special functions that modify classes, methods, and properties —
+              Special functions that modify classes, methods, and properties  -- 
               used extensively in Angular, NestJS, and TypeORM. The
               <code>@</code> syntax.
             </p>
@@ -140,9 +140,9 @@ class User {
   name: string;
   constructor(name: string) { this.name = name; }
 }
-// Logs: "User is sealed!" — at class definition time
+// Logs: "User is sealed!"  --  at class definition time
 
-// Decorator factory — decorator that takes arguments
+// Decorator factory  --  decorator that takes arguments
 function Component(config: { selector: string }) {
   return function(constructor: Function) {
     console.log(`Component ${config.selector} registered`);
@@ -209,7 +209,7 @@ calc.add(2, 3);
                 <span class="card-badge">@Property</span>
               </div>
               <div class="card-body">
-                <pre><code>// Property decorator — track which fields are required
+                <pre><code>// Property decorator  --  track which fields are required
 const requiredFields: string[] = [];
 
 function Required(target: any, propertyKey: string) {
@@ -344,16 +344,16 @@ class X { }
           <div class="sec" id="dec-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Cheatsheet</h2>
-            <pre><code>// CLASS — receives constructor
+            <pre><code>// CLASS  --  receives constructor
 function Dec(constructor: Function) { }
 
-// METHOD — receives target, name, descriptor
+// METHOD  --  receives target, name, descriptor
 function Dec(t: any, key: string, desc: PropertyDescriptor) { }
 
-// PROPERTY — receives target, name
+// PROPERTY  --  receives target, name
 function Dec(target: any, key: string) { }
 
-// FACTORY — decorator that takes args
+// FACTORY  --  decorator that takes args
 function Dec(args) { return function(target) { }; }
 
 // ORDER: bottom-up for multiple decorators
@@ -364,10 +364,10 @@ function Dec(args) { return function(target) { }; }
               <p>
                 <strong>TS 5.0+ Update:</strong> TypeScript 5.0 introduced
                 <strong>native ECMAScript decorators</strong> (Stage 3 proposal)
-                — no <code>experimentalDecorators</code> flag needed. The syntax
+                 --  no <code>experimentalDecorators</code> flag needed. The syntax
                 is nearly identical but uses the new TC39 standard. If you're on
                 TS 5.0+, you can use decorators without the tsconfig flag. Both
-                APIs coexist — the flag controls which spec you target.
+                APIs coexist  --  the flag controls which spec you target.
               </p>
             </div>
 

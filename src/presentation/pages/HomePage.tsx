@@ -40,7 +40,7 @@ export function HomePage() {
       <div className="page-wrap">
         <div className="home-wrap animate-page-enter">
           <h1>TypeScript <em style={{ fontWeight: 400, color: 'var(--ink3)' }}>Learning Path</em></h1>
-          <p>Beginner-friendly notes with real-life examples. Each topic builds on the previous one — start from the top and work your way down. Click any topic to open its full notes.</p>
+          <p>Beginner-friendly notes with real-life examples. Each topic builds on the previous one  --  start from the top and work your way down. Click any topic to open its full notes.</p>
 
           {totalCount > 0 && (
             <div style={{ marginBottom: '1.5rem', padding: '1rem 1.2rem', border: '1px solid var(--border)', borderRadius: '8px', background: 'var(--card-bg, #fff)', display: 'flex', alignItems: 'center', gap: '1rem' }}>

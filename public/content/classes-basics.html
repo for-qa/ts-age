@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Classes (Basics) — TypeScript Learning Path</title>
+    <title>Classes (Basics)  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript classes — readonly properties, optional properties, static variables and methods, constructor overloading, and method overloading with real-life analogies."
+      content="Learn TypeScript classes  --  readonly properties, optional properties, static variables and methods, constructor overloading, and method overloading with real-life analogies."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -60,7 +60,7 @@
             </div>
             <h1>Classes <span>(Basics)</span></h1>
             <p>
-              Deep dive into class properties — readonly, optional, and static —
+              Deep dive into class properties  --  readonly, optional, and static  -- 
               plus constructor and method overloading inside classes.
             </p>
             <div class="hero-stats">
@@ -82,7 +82,7 @@
           <!-- READONLY -->
           <div class="sec" id="cls-readonly">
             <div class="sec-label">Property Modifier</div>
-            <h2>readonly — Assign Once, Read Forever</h2>
+            <h2>readonly  --  Assign Once, Read Forever</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -96,7 +96,7 @@
 
             <p>
               A <code>readonly</code> property can be assigned a value
-              <strong>only once</strong> — inside the constructor. After that,
+              <strong>only once</strong>  --  inside the constructor. After that,
               it can be read but never modified.
             </p>
 
@@ -105,16 +105,16 @@
   name: string;
 
   constructor(id: number, name: string) {
-    this.studentID = id;   // ✅ Assigning ONCE in constructor — allowed
+    this.studentID = id;   // ✅ Assigning ONCE in constructor  --  allowed
     this.name = name;
   }
 }
 
 let s1 = new Student(101, "John");
 
-console.log(s1.studentID);  // ✅ Reading — allowed (101)
-s1.studentID = 999;         // ❌ ERROR: Cannot assign — it's readonly!
-s1.name = "Jane";           // ✅ Regular property — can be changed</code></pre>
+console.log(s1.studentID);  // ✅ Reading  --  allowed (101)
+s1.studentID = 999;         // ❌ ERROR: Cannot assign  --  it's readonly!
+s1.name = "Jane";           // ✅ Regular property  --  can be changed</code></pre>
 
             <div class="bordered">
               <table>
@@ -149,14 +149,14 @@ s1.name = "Jane";           // ✅ Regular property — can be changed</code></p
           <!-- OPTIONAL -->
           <div class="sec" id="cls-optional">
             <div class="sec-label">Property Modifier</div>
-            <h2>Optional (?) — Value Not Required</h2>
+            <h2>Optional (?)  --  Value Not Required</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> An optional property is like
                 the <strong>"Middle Name" field</strong> on a form. Some people
                 have one, some don't. If left blank, it's just
-                <code>undefined</code> — and that's perfectly fine.
+                <code>undefined</code>  --  and that's perfectly fine.
               </p>
             </div>
 
@@ -178,8 +178,8 @@ s1.name = "Jane";           // ✅ Regular property — can be changed</code></p
   }
 }
 
-let s1 = new Student(101, "John");              // no email — OK!
-let s2 = new Student(102, "Bob", "b@mail.com"); // with email — OK!
+let s1 = new Student(101, "John");              // no email  --  OK!
+let s2 = new Student(102, "Bob", "b@mail.com"); // with email  --  OK!
 
 console.log(s1.email);  // undefined
 console.log(s2.email);  // "b@mail.com"</code></pre>
@@ -197,7 +197,7 @@ console.log(s2.email);  // "b@mail.com"</code></pre>
           <!-- STATIC -->
           <div class="sec" id="cls-static">
             <div class="sec-label">Property &amp; Method Modifier</div>
-            <h2>static — Shared Across ALL Objects</h2>
+            <h2>static  --  Shared Across ALL Objects</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -205,7 +205,7 @@ console.log(s2.email);  // "b@mail.com"</code></pre>
                 the <strong>school name on a student ID card</strong>. Every
                 student at "Greenwood High" has the SAME school name. If the
                 school changes its name, EVERY student's card reflects the new
-                name. The school name isn't personal to one student — it's
+                name. The school name isn't personal to one student  --  it's
                 shared.
               </p>
             </div>
@@ -231,7 +231,7 @@ console.log(s2.email);  // "b@mail.com"</code></pre>
     this.name = name;
   }
 
-  // Static method — changes the shared property
+  // Static method  --  changes the shared property
   static changeSchoolName(newName: string): void {
     Student.schoolName = newName;  // use CLASS name, not 'this'
   }
@@ -248,7 +248,7 @@ let s2 = new Student("Bob");
 s1.displayInfo();  // "John - Greenwood High"
 s2.displayInfo();  // "Bob - Greenwood High"
 
-// Change school name — affects ALL objects!
+// Change school name  --  affects ALL objects!
 Student.changeSchoolName("Sunrise Academy");
 
 s1.displayInfo();  // "John - Sunrise Academy" ← changed!
@@ -284,7 +284,7 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
                     <td>3</td>
                     <td>
                       <strong>Cannot</strong> use <code>this</code> keyword for
-                      static — use class name instead
+                      static  --  use class name instead
                     </td>
                   </tr>
                   <tr>
@@ -312,7 +312,7 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
           <!-- FULL STUDENT CLASS -->
           <div class="sec" id="cls-student">
             <div class="sec-label">Complete Example</div>
-            <h2>Student Class — All Property Types</h2>
+            <h2>Student Class  --  All Property Types</h2>
 
             <div class="card ph2-card">
               <div class="card-head">
@@ -385,7 +385,7 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
               <div class="card-head">
                 <div class="card-num">!</div>
                 <div class="card-title">
-                  Verbose way — declare + assign separately
+                  Verbose way  --  declare + assign separately
                 </div>
                 <span class="card-badge">❌ Verbose</span>
               </div>
@@ -408,7 +408,7 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
               <div class="card-head">
                 <div class="card-num">✓</div>
                 <div class="card-title">
-                  Shorthand — declare + assign in ONE line
+                  Shorthand  --  declare + assign in ONE line
                 </div>
                 <span class="card-badge">✅ Clean TS</span>
               </div>
@@ -430,15 +430,15 @@ s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
 }
 
 const p = new Person("Alice", 25, 101);
-console.log(p.name);    // "Alice" ✅ public — accessible
-// console.log(p.age);  // ❌ Error — private
-// p.id = 999;          // ❌ Error — readonly</code></pre>
+console.log(p.name);    // "Alice" ✅ public  --  accessible
+// console.log(p.age);  // ❌ Error  --  private
+// p.id = 999;          // ❌ Error  --  readonly</code></pre>
                 <p class="fn">
                   The modifier keyword (<code>public</code>,
                   <code>private</code>, <code>protected</code>,
                   <code>readonly</code>) in the constructor parameter is what
                   triggers this behavior. Without it, the parameter is just a
-                  regular parameter — no property is created.
+                  regular parameter  --  no property is created.
                 </p>
               </div>
             </div>
@@ -460,10 +460,10 @@ console.log(p.name);    // "Alice" ✅ public — accessible
             <div class="sec-label">Using the Class</div>
             <h2>Creating Objects &amp; Testing Behavior</h2>
 
-            <pre><code>// Object 1 — no email (optional skipped)
+            <pre><code>// Object 1  --  no email (optional skipped)
 let s1 = new Student(101, "John");
 
-// Object 2 — email provided
+// Object 2  --  email provided
 let s2 = new Student(102, "Bob", "bob@gmail.com");
 
 s1.displayInfo();
@@ -484,7 +484,7 @@ s1.studentID = 999;  // ERROR: Cannot assign to readonly
 // ✅ Modify regular property
 s1.name = "Jane";    // Works fine
 
-// ✅ Change static — affects BOTH objects
+// ✅ Change static  --  affects BOTH objects
 Student.changeSchoolName("Sunrise Academy");
 
 s1.displayInfo();  // School: Sunrise Academy
@@ -528,7 +528,7 @@ s2.displayInfo();  // School: Sunrise Academy</code></pre>
   // Signature 2: two parameters
   constructor(a: number, b: number);
 
-  // ONE implementation — must match BOTH signatures
+  // ONE implementation  --  must match BOTH signatures
   constructor(a?: number, b?: number) {
     //         → optional    → optional
     if (a !== undefined && b !== undefined) {
@@ -575,7 +575,7 @@ let calc2 = new Calculator(10, 20);  // "Sum: 30"</code></pre>
             </div>
 
             <p>
-              Same concept as function overloading — multiple
+              Same concept as function overloading  --  multiple
               <strong>method signatures</strong>, one
               <strong>implementation</strong>. Inside a class, it's called
               method overloading instead of function overloading.
@@ -597,7 +597,7 @@ let calc2 = new Calculator(10, 20);  // "Sum: 30"</code></pre>
   // Signature 2: three numbers
   add(a: number, b: number, c: number): number;
 
-  // ONE implementation — satisfies both
+  // ONE implementation  --  satisfies both
   add(a: number, b: number, c?: number): number {
     if (c !== undefined) {
       return a + b + c;  // 3 params → Signature 2
@@ -656,7 +656,7 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
           <!-- COMPARISON TABLE -->
           <div class="sec" id="cls-compare">
             <div class="sec-label">Reference</div>
-            <h2>Property Modifiers — Compared</h2>
+            <h2>Property Modifiers  --  Compared</h2>
 
             <div class="bordered">
               <table>
@@ -677,7 +677,7 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
                     <td>Anytime</td>
                     <td>✅</td>
                     <td>✅</td>
-                    <td>No — per object</td>
+                    <td>No  --  per object</td>
                   </tr>
                   <tr>
                     <td><strong>readonly</strong></td>
@@ -685,7 +685,7 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
                     <td>Once (constructor)</td>
                     <td>✅</td>
                     <td>❌</td>
-                    <td>No — per object</td>
+                    <td>No  --  per object</td>
                   </tr>
                   <tr>
                     <td><strong>Optional</strong></td>
@@ -693,7 +693,7 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
                     <td>Optional</td>
                     <td>✅</td>
                     <td>✅</td>
-                    <td>No — per object</td>
+                    <td>No  --  per object</td>
                   </tr>
                   <tr>
                     <td><strong>Static</strong></td>
@@ -701,7 +701,7 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
                     <td>Default or class</td>
                     <td>✅ (via class)</td>
                     <td>✅ (via class)</td>
-                    <td>Yes — ALL objects</td>
+                    <td>Yes  --  ALL objects</td>
                   </tr>
                 </tbody>
               </table>
@@ -716,21 +716,21 @@ console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
             <h3>Property modifiers</h3>
             <pre><code>class Example {
   readonly id: number;          // assign once in constructor
-  name: string;                 // regular — read/write anytime
-  email?: string;               // optional — can be undefined
+  name: string;                 // regular  --  read/write anytime
+  email?: string;               // optional  --  can be undefined
   static company: string = "X"; // shared across all objects
 }</code></pre>
 
             <h3>Accessing static members</h3>
-            <pre><code>// ✅ Correct — use CLASS name
+            <pre><code>// ✅ Correct  --  use CLASS name
 Example.company;
 Example.staticMethod();
 
-// ❌ Wrong — cannot use object
+// ❌ Wrong  --  cannot use object
 let obj = new Example();
 obj.company;          // ERROR in TypeScript!
 
-// ❌ Wrong — cannot use 'this'
+// ❌ Wrong  --  cannot use 'this'
 this.company;         // ERROR for static!</code></pre>
 
             <h3>Constructor overloading</h3>

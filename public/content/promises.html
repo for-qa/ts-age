@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Promises — TypeScript Learning Path</title>
+    <title>Promises  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Deep dive into JavaScript Promises — states, .then/.catch, chaining, Promise.all, Promise.race, allSettled, any, and common mistakes."
+      content="Deep dive into JavaScript Promises  --  states, .then/.catch, chaining, Promise.all, Promise.race, allSettled, any, and common mistakes."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -68,7 +68,7 @@
             <h1>Promises (Deep Dive)</h1>
             <p>
               Promises are the foundation of all asynchronous JavaScript. Master
-              them before async/await — because async/await is just sugar on top
+              them before async/await  --  because async/await is just sugar on top
               of promises.
             </p>
             <div class="note note-info">
@@ -76,7 +76,7 @@
               <p>
                 <strong>Builds on Topic 21:</strong> You met Promises and
                 async/await in <em>Async/Await &amp; Promises</em>. This page
-                goes <strong>DEEPER</strong> — advanced chaining,
+                goes <strong>DEEPER</strong>  --  advanced chaining,
                 <code>Promise.allSettled()</code>, <code>Promise.any()</code>,
                 and 5 common mistakes you'll face in real projects.
               </p>
@@ -113,7 +113,7 @@
                 <strong>tracking number</strong> (= the promise). The food is
                 either <strong>delivered</strong> (= resolved/fulfilled) or the
                 order is <strong>cancelled</strong> (= rejected). You don't
-                stand at the door waiting — you do other things while the order
+                stand at the door waiting  --  you do other things while the order
                 is being processed.
               </p>
             </div>
@@ -142,7 +142,7 @@ const order = new Promise&lt;string&gt;((resolve, reject) => {
   }, 2000);
 });
 
-// Right now, 'order' is PENDING — the pizza is on its way
+// Right now, 'order' is PENDING  --  the pizza is on its way
 console.log(order);  // Promise { &lt;pending&gt; }</code></pre>
               </div>
             </div>
@@ -157,17 +157,17 @@ console.log(order);  // Promise { &lt;pending&gt; }</code></pre>
               <div class="pipe-step">
                 <div class="pipe-ph ph3-c">⏳</div>
                 <div class="pipe-name">Pending</div>
-                <div class="pipe-pts">Waiting — operation in progress</div>
+                <div class="pipe-pts">Waiting  --  operation in progress</div>
               </div>
               <div class="pipe-step">
                 <div class="pipe-ph ph1-c">✅</div>
                 <div class="pipe-name">Fulfilled</div>
-                <div class="pipe-pts">Success — value is ready</div>
+                <div class="pipe-pts">Success  --  value is ready</div>
               </div>
               <div class="pipe-step">
                 <div class="pipe-ph ph5-c">❌</div>
                 <div class="pipe-name">Rejected</div>
-                <div class="pipe-pts">Failed — error occurred</div>
+                <div class="pipe-pts">Failed  --  error occurred</div>
               </div>
             </div>
 
@@ -196,7 +196,7 @@ const confused = new Promise((resolve, reject) => {
   resolve("third");   // ← ignored! Already settled
 });</code></pre>
                 <p class="fn">
-                  A promise is like a one-way door — once it goes through
+                  A promise is like a one-way door  --  once it goes through
                   <strong>fulfilled</strong> or <strong>rejected</strong>, it
                   stays there forever.
                 </p>
@@ -275,7 +275,7 @@ fetchUser(1)
     throw new Error("Processing failed!");  // error in .then()
   })
   .catch(e => {
-    console.error(e.message);  // "Processing failed!" — caught!
+    console.error(e.message);  // "Processing failed!"  --  caught!
   });</code></pre>
               </div>
             </div>
@@ -290,7 +290,7 @@ fetchUser(1)
               <div class="card-head">
                 <div class="card-num">3</div>
                 <div class="card-title">
-                  Chain .then() calls — each passes result to the next
+                  Chain .then() calls  --  each passes result to the next
                 </div>
                 <span class="card-badge">Pipeline</span>
               </div>
@@ -313,7 +313,7 @@ fetchUser(1)
     console.error(err);      // catches ANY error above
   });
 
-// ❌ WRONG — nesting .then() inside .then() (callback hell!)
+// ❌ WRONG  --  nesting .then() inside .then() (callback hell!)
 fetchUser(1).then(user => {
   fetchUser(2).then(user2 => {
     fetchUser(3).then(user3 => {
@@ -322,7 +322,7 @@ fetchUser(1).then(user => {
   });
 });
 
-// ✅ RIGHT — flat chain
+// ✅ RIGHT  --  flat chain
 fetchUser(1)
   .then(u1 => { console.log(u1); return fetchUser(2); })
   .then(u2 => { console.log(u2); return fetchUser(3); })
@@ -335,7 +335,7 @@ fetchUser(1)
           <!-- .finally() -->
           <div class="sec" id="pm-finally">
             <div class="sec-label">Consuming</div>
-            <h2>.finally() — Always Runs</h2>
+            <h2>.finally()  --  Always Runs</h2>
 
             <div class="card ph3-card">
               <div class="card-head">
@@ -365,7 +365,7 @@ fetchUser(1)
           <!-- PROMISE.ALL -->
           <div class="sec" id="pm-all">
             <div class="sec-label">Static Methods</div>
-            <h2>Promise.all() — Wait for ALL</h2>
+            <h2>Promise.all()  --  Wait for ALL</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -399,7 +399,7 @@ const p4 = Promise.reject("Out of stock!");
 
 Promise.all([p1, p2, p4])
   .catch(err => {
-    console.error(err);  // "Out of stock!" — all failed
+    console.error(err);  // "Out of stock!"  --  all failed
   });</code></pre>
                 <p class="fn">
                   <strong>Use when:</strong> you need ALL results and can't
@@ -412,7 +412,7 @@ Promise.all([p1, p2, p4])
           <!-- PROMISE.RACE -->
           <div class="sec" id="pm-race">
             <div class="sec-label">Static Methods</div>
-            <h2>Promise.race() — First One Wins</h2>
+            <h2>Promise.race()  --  First One Wins</h2>
 
             <div class="card ph2-card">
               <div class="card-head">
@@ -426,7 +426,7 @@ const fast = new Promise(r => setTimeout(() => r("Fast"), 1000));
 
 Promise.race([slow, fast])
   .then(winner => {
-    console.log(winner);  // "Fast" — settled first!
+    console.log(winner);  // "Fast"  --  settled first!
   });
 
 // Real use: timeout pattern
@@ -445,13 +445,13 @@ Promise.race([fetchData, timeout])
           <!-- PROMISE.ALLSETTLED -->
           <div class="sec" id="pm-settled">
             <div class="sec-label">Static Methods</div>
-            <h2>Promise.allSettled() — Get ALL Results</h2>
+            <h2>Promise.allSettled()  --  Get ALL Results</h2>
 
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">3</div>
                 <div class="card-title">
-                  Waits for all — never short-circuits
+                  Waits for all  --  never short-circuits
                 </div>
                 <span class="card-badge">All results</span>
               </div>
@@ -470,7 +470,7 @@ Promise.allSettled([p1, p2, p3])
     // ]
   });
 
-// Unlike .all(), it NEVER rejects — you get every result</code></pre>
+// Unlike .all(), it NEVER rejects  --  you get every result</code></pre>
                 <p class="fn">
                   <strong>Use when:</strong> you want results from ALL promises,
                   even if some fail.
@@ -482,7 +482,7 @@ Promise.allSettled([p1, p2, p3])
           <!-- PROMISE.ANY -->
           <div class="sec" id="pm-any">
             <div class="sec-label">Static Methods</div>
-            <h2>Promise.any() — First SUCCESS Wins</h2>
+            <h2>Promise.any()  --  First SUCCESS Wins</h2>
 
             <div class="card ph3-card">
               <div class="card-head">
@@ -499,7 +499,7 @@ const p3 = new Promise(r => setTimeout(() => r("Server 3 OK"), 200));
 
 Promise.any([p1, p2, p3])
   .then(first => {
-    console.log(first);  // "Server 3 OK" — first SUCCESS
+    console.log(first);  // "Server 3 OK"  --  first SUCCESS
   });
 
 // Only rejects if ALL promises reject
@@ -516,7 +516,7 @@ Promise.any([
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember All 4 Static
+                <strong>🧠 Memory Trick  --  Remember All 4 Static
                 Methods:</strong><br /><br />
                 "<strong>A</strong>lways <strong>R</strong>eview <strong>A</strong>sync <strong>A</strong>ctions"<br />
                 → Promise.<strong>a</strong>ll(),
@@ -562,7 +562,7 @@ Promise.any([
                   </tr>
                   <tr>
                     <td>Return value</td>
-                    <td>Nothing — fire and forget</td>
+                    <td>Nothing  --  fire and forget</td>
                     <td>Returns a Promise (chainable)</td>
                   </tr>
                   <tr>
@@ -609,7 +609,7 @@ async function main() {
 // await just PAUSES until the promise settles
 // Under the hood, it's still using .then() and .catch()</code></pre>
                 <p class="fn">
-                  Learn promises FIRST — async/await won't make sense without
+                  Learn promises FIRST  --  async/await won't make sense without
                   understanding what it's built on.
                 </p>
               </div>
@@ -625,17 +625,17 @@ async function main() {
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 1: Forgetting .catch() — unhandled rejection</strong
+                  >Mistake 1: Forgetting .catch()  --  unhandled rejection</strong
                 >
                 <p>
                   If a promise rejects and there's no <code>.catch()</code>,
                   Node.js will crash or show a warning!
                 </p>
-                <pre><code>// ❌ WRONG — no error handling
+                <pre><code>// ❌ WRONG  --  no error handling
 fetchUser(-1).then(u => console.log(u));
 // UnhandledPromiseRejectionWarning!
 
-// ✅ CORRECT — always add .catch()
+// ✅ CORRECT  --  always add .catch()
 fetchUser(-1)
   .then(u => console.log(u))
   .catch(err => console.error("Error:", err));</code></pre>
@@ -650,10 +650,10 @@ fetchUser(-1)
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 2: Not returning inside .then() — chain
+                  >Mistake 2: Not returning inside .then()  --  chain
                   breaks</strong
                 >
-                <pre><code>// ❌ WRONG — forgot return, next .then() gets undefined
+                <pre><code>// ❌ WRONG  --  forgot return, next .then() gets undefined
 fetchUser(1)
   .then(user => {
     user.toUpperCase();  // no return!
@@ -662,7 +662,7 @@ fetchUser(1)
     console.log(upper);  // undefined 😱
   });
 
-// ✅ CORRECT — return the value
+// ✅ CORRECT  --  return the value
 fetchUser(1)
   .then(user => {
     return user.toUpperCase();  // pass to next
@@ -681,10 +681,10 @@ fetchUser(1)
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 3: Nesting .then() inside .then() — callback hell
+                  >Mistake 3: Nesting .then() inside .then()  --  callback hell
                   returns!</strong
                 >
-                <pre><code>// ❌ WRONG — nested pyramid (defeats the purpose of promises!)
+                <pre><code>// ❌ WRONG  --  nested pyramid (defeats the purpose of promises!)
 fetchUser(1).then(u1 => {
   fetchUser(2).then(u2 => {
     fetchUser(3).then(u3 => {
@@ -693,7 +693,7 @@ fetchUser(1).then(u1 => {
   });
 });
 
-// ✅ CORRECT — flat chain
+// ✅ CORRECT  --  flat chain
 fetchUser(1)
   .then(u1 => { console.log(u1); return fetchUser(2); })
   .then(u2 => { console.log(u2); return fetchUser(3); })
@@ -701,7 +701,7 @@ fetchUser(1)
   .catch(err => console.error(err));</code></pre>
                 <p>
                   <strong>Rule:</strong> Return the next promise from
-                  <code>.then()</code> — chain flat, don't nest.
+                  <code>.then()</code>  --  chain flat, don't nest.
                 </p>
               </div>
             </div>
@@ -710,12 +710,12 @@ fetchUser(1)
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 4: Promise.all() fails if ANY one fails</strong>
-                <pre><code>// ❌ SURPRISE — one failure kills everything
+                <pre><code>// ❌ SURPRISE  --  one failure kills everything
 Promise.all([
   Promise.resolve("OK"),
   Promise.reject("FAIL"),
   Promise.resolve("Also OK"),
-]).catch(e => console.error(e));  // "FAIL" — all lost!
+]).catch(e => console.error(e));  // "FAIL"  --  all lost!
 
 // ✅ Use allSettled() if you want ALL results regardless
 Promise.allSettled([
@@ -738,12 +738,12 @@ Promise.allSettled([
                 <strong
                   >Mistake 5: Creating a promise but never consuming it</strong
                 >
-                <pre><code>// ❌ WRONG — promise created but ignored
+                <pre><code>// ❌ WRONG  --  promise created but ignored
 function loadData() {
   fetchUser(1);  // returns a Promise... which is ignored!
 }
 
-// ✅ CORRECT — consume the promise
+// ✅ CORRECT  --  consume the promise
 function loadData() {
   return fetchUser(1);  // return it so caller can handle it
 }
@@ -801,7 +801,7 @@ loadData().then(d => console.log(d));</code></pre>
           <!-- COMPARISON TABLE -->
           <div class="sec" id="pm-compare">
             <div class="sec-label">Reference</div>
-            <h2>Promise Static Methods — Comparison</h2>
+            <h2>Promise Static Methods  --  Comparison</h2>
             <div class="bordered">
               <table>
                 <thead>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Spread &amp; Rest Operators — TypeScript Learning Path</title>
+    <title>Spread &amp; Rest Operators  --  TypeScript Learning Path</title>
     <meta
       name="description"
       content="Learn the spread and rest operators in TypeScript. Copy arrays, merge objects, collect function arguments, and avoid shallow-copy pitfalls."
@@ -60,7 +60,7 @@
             </div>
             <h1>Spread &amp; Rest Operators</h1>
             <p>
-              The same <code>...</code> syntax used for two opposite jobs —
+              The same <code>...</code> syntax used for two opposite jobs  -- 
               spreading values OUT and collecting values IN. Used everywhere in
               modern TypeScript.
             </p>
@@ -93,7 +93,7 @@
               <p>
                 <strong>Real-Life Example:</strong> Imagine you have a
                 <strong>jar of beads</strong>. The spread operator is like
-                <strong>pouring all the beads onto the table</strong> — they're
+                <strong>pouring all the beads onto the table</strong>  --  they're
                 no longer inside the jar, they're spread out individually. You
                 can then pick them up and put them into a new jar (a new array
                 or object).
@@ -124,11 +124,11 @@
                 <span class="card-badge">Key Concept</span>
               </div>
               <div class="card-body">
-                <pre><code>// SPREAD — expanding items OUT
+                <pre><code>// SPREAD  --  expanding items OUT
 const arr = [1, 2, 3];
-const copy = [...arr];        // [1, 2, 3] — poured out, then into new array
+const copy = [...arr];        // [1, 2, 3]  --  poured out, then into new array
 
-// REST — collecting items IN
+// REST  --  collecting items IN
 function sum(...nums: number[]) {  // collects ALL arguments into one array
   return nums.reduce((a, b) => a + b, 0);
 }
@@ -165,7 +165,7 @@ const food = [...fruits, ...veggies];
 // ✅ Clone an array (not the same reference!)
 const fruitsCopy = [...fruits];
 fruitsCopy.push("mango");
-console.log(fruits);      // ["apple", "banana"] — original untouched!
+console.log(fruits);      // ["apple", "banana"]  --  original untouched!
 console.log(fruitsCopy);  // ["apple", "banana", "mango"]
 
 // ✅ Insert in the middle
@@ -204,7 +204,7 @@ const withEnd = [...nums, 7, 8];       // [1, 2, 5, 6, 7, 8]</code></pre>
                 <pre><code>const defaults = { theme: "dark", lang: "en", font: 14 };
 const userPrefs = { lang: "hi", font: 18 };
 
-// ✅ Merge — user overrides defaults (LAST ONE WINS)
+// ✅ Merge  --  user overrides defaults (LAST ONE WINS)
 const settings = { ...defaults, ...userPrefs };
 // { theme: "dark", lang: "hi", font: 18 }
 //   ↑ kept from defaults   ↑ overwritten by user
@@ -231,7 +231,7 @@ const updated = { ...defaults, theme: "light" };
           <!-- SHALLOW COPY -->
           <div class="sec" id="sr-copy">
             <div class="sec-label">Spread Operator</div>
-            <h2>Shallow Copy — The Trap!</h2>
+            <h2>Shallow Copy  --  The Trap!</h2>
 
             <div class="card ph5-card">
               <div class="card-head">
@@ -247,15 +247,15 @@ const updated = { ...defaults, theme: "light" };
 
 const copy = { ...original };
 
-// Changing a primitive — safe, independent
+// Changing a primitive  --  safe, independent
 copy.name = "Bob";
 console.log(original.name);  // "Alice" ✅ untouched
 
-// Changing nested data — DANGER! SHARED reference
+// Changing nested data  --  DANGER! SHARED reference
 copy.scores.push(100);
 console.log(original.scores);  // [90, 85, 78, 100] 😱 MUTATED!
 
-// ✅ FIX — deep copy nested values manually
+// ✅ FIX  --  deep copy nested values manually
 const safeCopy = {
   ...original,
   scores: [...original.scores]  // spread the inner array too!
@@ -288,10 +288,10 @@ console.log(original.scores);  // [90, 85, 78] ✅ safe!</code></pre>
               <div class="card-body">
                 <pre><code>const numbers = [5, 12, 3, 8, 1];
 
-// ❌ Without spread — doesn't work!
-// Math.max(numbers);  // NaN — expects individual numbers, not an array
+// ❌ Without spread  --  doesn't work!
+// Math.max(numbers);  // NaN  --  expects individual numbers, not an array
 
-// ✅ With spread — unpacks the array into separate arguments
+// ✅ With spread  --  unpacks the array into separate arguments
 console.log(Math.max(...numbers));  // 12
 console.log(Math.min(...numbers));  // 1
 
@@ -313,7 +313,7 @@ greet(...names);  // "Hello Alice Smith"</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Rest is like a
-                <strong>bag at a buffet</strong> — "I'll take the first two
+                <strong>bag at a buffet</strong>  --  "I'll take the first two
                 items individually, and throw everything else into this bag."
                 The bag (<code>...rest</code>) holds whatever is left.
               </p>
@@ -368,23 +368,23 @@ function log(level: string, ...messages: string[]) {
                 <span class="card-badge">Destructuring</span>
               </div>
               <div class="card-body">
-                <pre><code>// ✅ Array — grab first, collect the rest
+                <pre><code>// ✅ Array  --  grab first, collect the rest
 const [gold, silver, ...others] = ["India", "USA", "UK", "Japan", "France"];
 console.log(gold);    // "India"
 console.log(silver);  // "USA"
 console.log(others);  // ["UK", "Japan", "France"]
 
-// ✅ Object — pick some, collect the rest
+// ✅ Object  --  pick some, collect the rest
 const user = { name: "Alice", age: 25, role: "admin", city: "Mumbai" };
 const { name, ...profile } = user;
 console.log(name);     // "Alice"
 console.log(profile);  // { age: 25, role: "admin", city: "Mumbai" }
 
-// ✅ Practical — remove sensitive data
+// ✅ Practical  --  remove sensitive data
 const fullUser = { id: 1, password: "secret", email: "a@b.com", name: "Bob" };
 const { password, ...safeUser } = fullUser;
 console.log(safeUser);  // { id: 1, email: "a@b.com", name: "Bob" }
-// 'password' is extracted and discarded — safeUser is clean!</code></pre>
+// 'password' is extracted and discarded  --  safeUser is clean!</code></pre>
               </div>
             </div>
           </div>
@@ -403,13 +403,13 @@ console.log(safeUser);  // { id: 1, email: "a@b.com", name: "Bob" }
                   copy. Changing nested data in the copy changes the original
                   too!
                 </p>
-                <pre><code>// ❌ WRONG — nested array is shared
+                <pre><code>// ❌ WRONG  --  nested array is shared
 const original = { name: "A", tags: ["ts", "js"] };
 const copy = { ...original };
 copy.tags.push("react");
 console.log(original.tags);  // ["ts", "js", "react"] 😱
 
-// ✅ CORRECT — spread nested values too
+// ✅ CORRECT  --  spread nested values too
 const safeCopy = { ...original, tags: [...original.tags] };
 safeCopy.tags.push("react");
 console.log(original.tags);  // ["ts", "js"] ✅</code></pre>
@@ -425,7 +425,7 @@ console.log(original.tags);  // ["ts", "js"] ✅</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 2: Object spread — LAST one wins (silent
+                  >Mistake 2: Object spread  --  LAST one wins (silent
                   overwrite)</strong
                 >
                 <p>
@@ -435,11 +435,11 @@ console.log(original.tags);  // ["ts", "js"] ✅</code></pre>
                 <pre><code>const config1 = { port: 3000, host: "localhost" };
 const config2 = { port: 8080, debug: true };
 
-// ❌ Surprise — port got overwritten silently!
+// ❌ Surprise  --  port got overwritten silently!
 const merged = { ...config1, ...config2 };
 console.log(merged.port);  // 8080 (NOT 3000!)
 
-// ✅ Be intentional — put important values LAST
+// ✅ Be intentional  --  put important values LAST
 const safe = { ...config2, ...config1 };
 console.log(safe.port);  // 3000 (config1 wins)</code></pre>
                 <p>
@@ -454,7 +454,7 @@ console.log(safe.port);  // 3000 (config1 wins)</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 3: Spreading a string — surprise characters!</strong
+                  >Mistake 3: Spreading a string  --  surprise characters!</strong
                 >
                 <p>
                   Strings are iterable, so spreading them gives individual
@@ -465,7 +465,7 @@ const word = "hello";
 const chars = [...word];
 console.log(chars);  // ["h", "e", "l", "l", "o"]
 
-// This is technically correct — but often unexpected!
+// This is technically correct  --  but often unexpected!
 // Be careful when spreading variables that might be strings.</code></pre>
                 <p>
                   <strong>Rule:</strong> <code>[...string]</code> splits into
@@ -480,14 +480,14 @@ console.log(chars);  // ["h", "e", "l", "l", "o"]
               <div>
                 <strong>Mistake 4: Rest must be the LAST parameter</strong>
                 <p>
-                  You cannot put anything after a rest parameter — it collects
+                  You cannot put anything after a rest parameter  --  it collects
                   everything remaining.
                 </p>
-                <pre><code>// ❌ WRONG — rest is not last
+                <pre><code>// ❌ WRONG  --  rest is not last
 // function bad(...nums: number[], label: string) { }
 // Error: A rest parameter must be last in a parameter list.
 
-// ✅ CORRECT — rest is last
+// ✅ CORRECT  --  rest is last
 function good(label: string, ...nums: number[]) {
   console.log(label, nums);
 }
@@ -495,7 +495,7 @@ good("scores", 90, 85, 78);
 // "scores" [90, 85, 78]</code></pre>
                 <p>
                   <strong>Rule:</strong> <code>...rest</code> is always the LAST
-                  parameter — it's greedy and grabs everything.
+                  parameter  --  it's greedy and grabs everything.
                 </p>
               </div>
             </div>
@@ -504,14 +504,14 @@ good("scores", 90, 85, 78);
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 5: Confusing spread vs rest — same symbol, opposite
+                  >Mistake 5: Confusing spread vs rest  --  same symbol, opposite
                   jobs</strong
                 >
-                <pre><code>// SPREAD (right side / call site) — expands OUT
+                <pre><code>// SPREAD (right side / call site)  --  expands OUT
 const merged = [...arr1, ...arr2];  // spread
 Math.max(...numbers);               // spread
 
-// REST (left side / definition) — collects IN
+// REST (left side / definition)  --  collects IN
 const [first, ...rest] = arr;                 // rest
 function fn(...args: number[]) { }            // rest</code></pre>
                 <p>
@@ -567,7 +567,7 @@ function fn(...args: number[]) { }            // rest</code></pre>
           <!-- COMPARISON TABLE -->
           <div class="sec" id="sr-compare">
             <div class="sec-label">Reference</div>
-            <h2>Spread vs Rest — Side by Side</h2>
+            <h2>Spread vs Rest  --  Side by Side</h2>
             <div class="bordered">
               <table>
                 <thead>

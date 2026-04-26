@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Date &amp; Time — TypeScript Learning Path</title>
+    <title>Date &amp; Time  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Master Date in TypeScript — creating, getting/setting parts, formatting, comparing, timestamps, and the classic month-is-zero trap."
+      content="Master Date in TypeScript  --  creating, getting/setting parts, formatting, comparing, timestamps, and the classic month-is-zero trap."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -114,7 +114,7 @@ console.log(timestamp);        // 1718448000000</code></pre>
           <div class="note note-tip" style="margin: 0 0 2rem">
             <span class="note-i">✓</span>
             <p>
-              <strong>🧠 Memory Trick — 7 Date Getters:</strong
+              <strong>🧠 Memory Trick  --  7 Date Getters:</strong
               ><br /><br />
               "<strong>Y</strong>early <strong>M</strong>eetings <strong>D</strong>emand <strong>D</strong>evelopers <strong>H</strong>ave <strong>M</strong>ultiple <strong>S</strong>kills"<br />
               → get<strong>F</strong>ull<strong>Y</strong>ear,
@@ -210,7 +210,7 @@ date.toDateString();      // "Sat Jun 15 2024"
 date.toTimeString();      // "10:30:00 GMT+0530"
 date.toISOString();       // "2024-06-15T05:00:00.000Z"
 
-// ✅ BEST: toLocaleDateString() — locale-aware formatting
+// ✅ BEST: toLocaleDateString()  --  locale-aware formatting
 date.toLocaleDateString("en-IN");
 // "15/6/2024"
 
@@ -244,12 +244,12 @@ date.toLocaleTimeString("en-IN", {
                 <span class="card-badge">ISO/Unix</span>
               </div>
               <div class="card-body">
-                <pre><code>// ISO 8601 — the universal date format for APIs
+                <pre><code>// ISO 8601  --  the universal date format for APIs
 const date = new Date();
 date.toISOString();  // "2024-06-15T10:30:00.000Z"
-// Always UTC, always consistent — best for storage & APIs
+// Always UTC, always consistent  --  best for storage & APIs
 
-// Unix Timestamp — milliseconds since Jan 1, 1970
+// Unix Timestamp  --  milliseconds since Jan 1, 1970
 Date.now();            // 1718448000000  (current time)
 date.getTime();        // 1718448000000  (specific date)
 +date;                 // 1718448000000  (shortcut)
@@ -345,10 +345,10 @@ console.log(getAge(new Date("1999-03-15")));  // 25</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 1: Months are 0-INDEXED</strong>
-                <pre><code>// ❌ WRONG — this creates JULY, not June!
+                <pre><code>// ❌ WRONG  --  this creates JULY, not June!
 const june = new Date(2024, 6, 15);  // July 15!
 
-// ✅ CORRECT — June = month 5
+// ✅ CORRECT  --  June = month 5
 const juneCorrect = new Date(2024, 5, 15);</code></pre>
                 <p>
                   <strong>Rule:</strong> Jan=0, Feb=1, ... Dec=11. Always
@@ -391,7 +391,7 @@ copy.setFullYear(2025);</code></pre>
                 <pre><code>const obj = { created: new Date() };
 const json = JSON.stringify(obj);
 const parsed = JSON.parse(json);
-console.log(typeof parsed.created);  // "string" — NOT a Date!
+console.log(typeof parsed.created);  // "string"  --  NOT a Date!
 
 // ✅ Convert back manually
 parsed.created = new Date(parsed.created);</code></pre>

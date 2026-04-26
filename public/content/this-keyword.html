@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>this Keyword — TypeScript Learning Path</title>
+    <title>this Keyword  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Master the this keyword — global, function, method, arrow, class contexts, bind/call/apply, and the 4 classic mistakes that trip up every developer."
+      content="Master the this keyword  --  global, function, method, arrow, class contexts, bind/call/apply, and the 4 classic mistakes that trip up every developer."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -81,7 +81,7 @@
           <div class="note note-tip" style="margin: 0 0 2rem">
             <span class="note-i">✓</span>
             <p>
-              <strong>🧠 Memory Trick — Remember All 5
+              <strong>🧠 Memory Trick  --  Remember All 5
               <code>this</code> Contexts:</strong><br /><br />
               "<strong>G</strong>lobal <strong>R</strong>ules <strong>O</strong>verride <strong>A</strong>ll <strong>C</strong>lasses"<br />
               → <strong>G</strong>lobal, <strong>R</strong>egular
@@ -129,7 +129,7 @@ const user = {
   }
 };
 
-user.greet();  // "Alice" — user is left of the dot
+user.greet();  // "Alice"  --  user is left of the dot
 //  ↑ this = user</code></pre>
               </div>
             </div>
@@ -268,7 +268,7 @@ const bad = {
     console.log(this.name);  // undefined! Arrow has no own 'this'
   }
 };
-bad.greet();  // undefined — inherits global this, not 'bad'</code></pre>
+bad.greet();  // undefined  --  inherits global this, not 'bad'</code></pre>
               </div>
             </div>
           </div>
@@ -291,7 +291,7 @@ bad.greet();  // undefined — inherits global this, not 'bad'</code></pre>
     console.log(`Hi, I'm ${this.name}`);
   }
 
-  // ✅ Arrow method — binds this to instance automatically
+  // ✅ Arrow method  --  binds this to instance automatically
   greetArrow = () => {
     console.log(`Hi, I'm ${this.name}`);
   };
@@ -302,11 +302,11 @@ alice.greet();       // "Hi, I'm Alice" ✅
 
 // ⚠ But passing as callback...
 const fn = alice.greet;
-fn();  // undefined — 'this' is lost!
+fn();  // undefined  --  'this' is lost!
 
 // ✅ Arrow method survives extraction:
 const fn2 = alice.greetArrow;
-fn2();  // "Hi, I'm Alice" ✅ — arrow binds 'this' at creation</code></pre>
+fn2();  // "Hi, I'm Alice" ✅  --  arrow binds 'this' at creation</code></pre>
               </div>
             </div>
           </div>
@@ -329,14 +329,14 @@ fn2();  // "Hi, I'm Alice" ✅ — arrow binds 'this' at creation</code></pre>
 const alice = { name: "Alice" };
 const bob = { name: "Bob" };
 
-// CALL — invoke immediately, args one by one
+// CALL  --  invoke immediately, args one by one
 greet.call(alice, "Hello", "!");    // "Hello, Alice!"
 greet.call(bob, "Namaste", ".");    // "Namaste, Bob."
 
-// APPLY — invoke immediately, args as array
+// APPLY  --  invoke immediately, args as array
 greet.apply(alice, ["Hi", "!!"]);   // "Hi, Alice!!"
 
-// BIND — returns NEW function with this permanently set
+// BIND  --  returns NEW function with this permanently set
 const aliceGreet = greet.bind(alice);
 aliceGreet("Hey", "~");             // "Hey, Alice~"
 
@@ -364,7 +364,7 @@ setTimeout(user.greet.bind(user), 100);  // "Alice" ✅</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 1: Arrow function as object method</strong>
-                <pre><code>// ❌ Arrow has no own 'this' — inherits from outer scope
+                <pre><code>// ❌ Arrow has no own 'this'  --  inherits from outer scope
 const obj = {
   name: "Alice",
   greet: () => console.log(this.name),  // undefined!
@@ -410,12 +410,12 @@ const obj2 = {
                 <pre><code>const user = {
   name: "Alice",
   delayedGreet() {
-    // ❌ regular function — this = undefined
+    // ❌ regular function  --  this = undefined
     setTimeout(function() {
       console.log(this.name);  // undefined!
     }, 100);
 
-    // ✅ arrow function — inherits this
+    // ✅ arrow function  --  inherits this
     setTimeout(() => {
       console.log(this.name);  // "Alice" ✅
     }, 100);
@@ -436,7 +436,7 @@ const obj2 = {
 }
 const logger = new Logger();
 
-// ❌ Extracted — this is lost
+// ❌ Extracted  --  this is lost
 const logFn = logger.log;
 logFn("test");  // undefined test
 
@@ -548,7 +548,7 @@ boundLog("test");  // [LOG] test</code></pre>
 obj.method()     // this = obj
 func()           // this = undefined (strict) or global
 
-// ARROW: no own this — inherits from parent scope
+// ARROW: no own this  --  inherits from parent scope
 // Use arrows INSIDE methods, not AS methods
 
 // CONTROL:

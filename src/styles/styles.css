@@ -300,6 +300,7 @@ hr{border:none;border-top:1px solid var(--border);margin:1.75rem 0}
 .quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .quiz-opt{display:flex;align-items:center;gap:.5rem;padding:.55rem .8rem;border:1px solid var(--border);border-radius:6px;background:var(--surface);cursor:pointer;font-size:12.5px;color:var(--ink2);font-family:var(--sans);text-align:left;transition:all .12s}
 .quiz-opt code, .quiz-opt b, .quiz-opt strong {background:transparent;padding:0;font-family:inherit;font-size:inherit;color:inherit;font-weight:inherit;}
+.quiz-q code{background:var(--surface2);border:1px solid var(--border);color:var(--blue);font-size:13.2px;padding:2px 6px;border-radius:4px;font-weight:500;margin:0 2px;display:inline-block;line-height:1.2}
 .quiz-opt:hover{border-color:#aaa;background:var(--surface)}
 .quiz-letter{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:10px;font-weight:700;background:var(--surface);color:var(--ink3);flex-shrink:0}
 .quiz-correct{border-color:var(--green)!important;background:var(--green-bg)!important;color:var(--green)!important}

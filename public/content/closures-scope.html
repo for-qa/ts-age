@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Closures &amp; Scope — TypeScript Learning Path</title>
+    <title>Closures &amp; Scope  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Deep dive into closures and scope — lexical scope, closure patterns, private variables, factory functions, the var-in-loop trap, and memory considerations."
+      content="Deep dive into closures and scope  --  lexical scope, closure patterns, private variables, factory functions, the var-in-loop trap, and memory considerations."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -106,15 +106,15 @@
                 <span class="card-badge">Scope</span>
               </div>
               <div class="card-body">
-                <pre><code>// GLOBAL scope — visible everywhere
+                <pre><code>// GLOBAL scope  --  visible everywhere
 const globalVar = "I'm global";
 
 function demo() {
-  // FUNCTION scope — only visible inside this function
+  // FUNCTION scope  --  only visible inside this function
   const funcVar = "I'm local to demo()";
 
   if (true) {
-    // BLOCK scope — only visible inside this { }
+    // BLOCK scope  --  only visible inside this { }
     const blockVar = "I'm local to this block";
     let blockLet = "me too";
     var funcScoped = "BUT var is function-scoped!";
@@ -149,7 +149,7 @@ function demo() {
                 <strong>Real-Life:</strong> Lexical scope is like
                 <strong>family inheritance</strong>. A child has access to
                 everything in their parent's house, the grandparent's house, and
-                so on — but the parent can't access the child's room.
+                so on  --  but the parent can't access the child's room.
               </p>
             </div>
             <div class="card ph2-card">
@@ -262,7 +262,7 @@ counter.increment();
 counter.decrement();
 console.log(counter.getCount());  // 2
 
-// count is PRIVATE — no one can access it directly
+// count is PRIVATE  --  no one can access it directly
 // counter.count  → undefined (doesn't exist on the object)
 
 // Each counter is independent:
@@ -287,7 +287,7 @@ console.log(counter2.getCount());  // 1 (separate from counter)</code></pre>
               </div>
               <div class="card-body">
                 <pre><code>function createBankAccount(initialBalance: number) {
-  let balance = initialBalance;  // PRIVATE — closure variable
+  let balance = initialBalance;  // PRIVATE  --  closure variable
   const transactions: string[] = [];
 
   return {
@@ -370,12 +370,12 @@ error("Disk full");        // [ERROR] Disk full</code></pre>
               <div class="card-head">
                 <div class="card-num">!</div>
                 <div class="card-title">
-                  var creates SHARED closure — let creates separate ones
+                  var creates SHARED closure  --  let creates separate ones
                 </div>
                 <span class="card-badge">Interview Classic</span>
               </div>
               <div class="card-body">
-                <pre><code>// ❌ THE TRAP — var is function-scoped, NOT block-scoped
+                <pre><code>// ❌ THE TRAP  --  var is function-scoped, NOT block-scoped
 for (var i = 0; i < 3; i++) {
   setTimeout(() => {
     console.log(i);  // What prints?
@@ -385,14 +385,14 @@ for (var i = 0; i < 3; i++) {
 // WHY? All 3 callbacks share the SAME 'i' (var = function scope)
 // By the time setTimeout fires, i is already 3
 
-// ✅ FIX 1 — use 'let' (block-scoped = separate closure each iteration)
+// ✅ FIX 1  --  use 'let' (block-scoped = separate closure each iteration)
 for (let i = 0; i < 3; i++) {
   setTimeout(() => {
     console.log(i);  // 0, 1, 2 ✅
   }, 100);
 }
 
-// ✅ FIX 2 — IIFE (old school, creates manual closure)
+// ✅ FIX 2  --  IIFE (old school, creates manual closure)
 for (var i = 0; i < 3; i++) {
   ((j) => {
     setTimeout(() => {
@@ -428,9 +428,9 @@ function createHeavyClosure() {
 }
 
 const fn = createHeavyClosure();
-// hugeArray is NOT garbage collected — fn still references it!
+// hugeArray is NOT garbage collected  --  fn still references it!
 
-// ✅ FIX — only close over what you need
+// ✅ FIX  --  only close over what you need
 function createLightClosure() {
   const hugeArray = new Array(1_000_000).fill("data");
   const length = hugeArray.length;  // extract what you need
@@ -457,7 +457,7 @@ function createLightClosure() {
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 100);
 }
-// 5, 5, 5, 5, 5 — NOT 0, 1, 2, 3, 4
+// 5, 5, 5, 5, 5  --  NOT 0, 1, 2, 3, 4
 // FIX: use let instead of var</code></pre>
               </div>
             </div>

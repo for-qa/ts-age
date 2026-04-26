@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TypeScript Glossary — Learning Path</title>
+    <title>TypeScript Glossary  --  Learning Path</title>
     <meta
       name="description"
       content="TypeScript glossary grouped by topic with simple definitions, real-life analogies, and code examples for every key term."
@@ -122,7 +122,7 @@
             <div class="sec-label">Variables</div>
             <h2>const</h2>
             <p>
-              <strong>Real life:</strong> A name carved in stone — you can't
+              <strong>Real life:</strong> A name carved in stone  --  you can't
               erase and write a new name.
             </p>
             <p>
@@ -133,37 +133,37 @@
             <pre><code>const PI = 3.14;
 // PI = 3.15; // Error! Cannot reassign
 const arr = [1, 2];
-arr.push(3); // OK — contents can change</code></pre>
+arr.push(3); // OK  --  contents can change</code></pre>
           </div>
 
           <div class="sec" id="g-hoisting">
             <h2>Hoisting</h2>
             <p>
               <strong>Real life:</strong> A student who raises their hand before
-              the teacher calls on them — JS moves <code>var</code> and
+              the teacher calls on them  --  JS moves <code>var</code> and
               <code>function</code> declarations to the top.
             </p>
             <pre><code>console.log(x); // undefined (hoisted, but no value yet)
 var x = 10;
 
-// let/const are NOT hoisted — they throw ReferenceError</code></pre>
+// let/const are NOT hoisted  --  they throw ReferenceError</code></pre>
           </div>
 
           <div class="sec" id="g-let">
             <h2>let</h2>
             <p>
-              <strong>Real life:</strong> A notebook page — you can update it,
+              <strong>Real life:</strong> A notebook page  --  you can update it,
               but it stays within its chapter (block scope).
             </p>
             <pre><code>let count = 0;
-count = 5;     // OK — can reassign
+count = 5;     // OK  --  can reassign
 // let count = 10; // Error! Cannot redeclare</code></pre>
           </div>
 
           <div class="sec" id="g-scope">
             <h2>Scope</h2>
             <p>
-              <strong>Real life:</strong> Rooms in a house — a variable in the
+              <strong>Real life:</strong> Rooms in a house  --  a variable in the
               kitchen can't be seen from the bedroom.
             </p>
             <pre><code>if (true) {
@@ -175,7 +175,7 @@ count = 5;     // OK — can reassign
           <div class="sec" id="g-var">
             <h2>var</h2>
             <p>
-              <strong>Real life:</strong> An old whiteboard in a shared room —
+              <strong>Real life:</strong> An old whiteboard in a shared room  -- 
               anyone can see and erase it. Avoid in modern code.
             </p>
             <pre><code>var x = 10;   // function-scoped, hoisted, can redeclare
@@ -188,7 +188,7 @@ count = 5;     // OK — can reassign
             <div class="sec-label">Data Types</div>
             <h2>any</h2>
             <p>
-              <strong>Real life:</strong> A bag with no label — could be
+              <strong>Real life:</strong> A bag with no label  --  could be
               anything, no safety checks.
             </p>
             <p>
@@ -197,13 +197,13 @@ count = 5;     // OK — can reassign
             </p>
             <pre><code>let x: any = "hello";
 x = 42;       // no error
-x.foo.bar();  // no error at compile — crashes at runtime!</code></pre>
+x.foo.bar();  // no error at compile  --  crashes at runtime!</code></pre>
           </div>
 
           <div class="sec" id="g-bigint">
             <h2>bigint</h2>
             <p>
-              <strong>Real life:</strong> A calculator with infinite digits —
+              <strong>Real life:</strong> A calculator with infinite digits  -- 
               for numbers too large for <code>number</code> to handle precisely
               (beyond 2⁵³).
             </p>
@@ -216,7 +216,7 @@ const also: bigint = BigInt("9007199254740993");
           <div class="sec" id="g-immutable">
             <h2>Immutable</h2>
             <p>
-              <strong>Real life:</strong> A printed book — you can't change the
+              <strong>Real life:</strong> A printed book  --  you can't change the
               words. You can only buy a new edition.
             </p>
             <pre><code>let name = "hello";
@@ -227,7 +227,7 @@ name.toUpperCase(); // returns "HELLO" but name is still "hello"
           <div class="sec" id="g-never">
             <h2>never</h2>
             <p>
-              <strong>Real life:</strong> A black hole — nothing ever comes out.
+              <strong>Real life:</strong> A black hole  --  nothing ever comes out.
               Used for functions that never return (throw or infinite loop) and
               exhaustive checks.
             </p>
@@ -235,7 +235,7 @@ name.toUpperCase(); // returns "HELLO" but name is still "hello"
   throw new Error(msg); // never returns
 }
 
-// Exhaustive check — if you reach this, you missed a case
+// Exhaustive check  --  if you reach this, you missed a case
 type Shape = "circle" | "square";
 function area(s: Shape): number {
   switch (s) {
@@ -255,19 +255,19 @@ function area(s: Shape): number {
               spot (nobody parked). <code>null</code> = spot with "Reserved"
               sign (intentionally empty).
             </p>
-            <pre><code>let x;              // undefined — never assigned
-let y: string | null = null; // null — intentionally empty</code></pre>
+            <pre><code>let x;              // undefined  --  never assigned
+let y: string | null = null; // null  --  intentionally empty</code></pre>
           </div>
 
           <div class="sec" id="g-symbol">
             <h2>symbol</h2>
             <p>
               <strong>Real life:</strong> A unique serial number stamped on each
-              item — even two symbols with the same description are never equal.
+              item  --  even two symbols with the same description are never equal.
             </p>
             <pre><code>const id1: symbol = Symbol("id");
 const id2: symbol = Symbol("id");
-console.log(id1 === id2); // false — always unique!
+console.log(id1 === id2); // false  --  always unique!
 
 // Used as unique object keys:
 const KEY = Symbol("secret");
@@ -292,7 +292,7 @@ if (typeof val === "string") {
           <div class="sec" id="g-unknown">
             <h2>unknown</h2>
             <p>
-              <strong>Real life:</strong> A new employee — must show ID before
+              <strong>Real life:</strong> A new employee  --  must show ID before
               accessing any room. Safer than <code>any</code>.
             </p>
             <pre><code>let val: unknown = "hello";
@@ -305,7 +305,7 @@ if (typeof val === "string") {
           <div class="sec" id="g-void">
             <h2>void</h2>
             <p>
-              <strong>Real life:</strong> A doorbell — it does something (rings)
+              <strong>Real life:</strong> A doorbell  --  it does something (rings)
               but doesn't give you anything back.
             </p>
             <pre><code>function logMessage(msg: string): void {
@@ -318,7 +318,7 @@ if (typeof val === "string") {
             <div class="sec-label">Strings &amp; Arrays</div>
             <h2>Array</h2>
             <p>
-              <strong>Real life:</strong> A grocery list — items in order, each
+              <strong>Real life:</strong> A grocery list  --  items in order, each
               with a position number starting from 0.
             </p>
             <pre><code>let fruits: string[] = ["apple", "banana", "cherry"];
@@ -329,7 +329,7 @@ fruits.push("date");    // add to end</code></pre>
           <div class="sec" id="g-destructuring">
             <h2>Destructuring</h2>
             <p>
-              <strong>Real life:</strong> Unpacking a gift box — you pull out
+              <strong>Real life:</strong> Unpacking a gift box  --  you pull out
               each item and give it its own name.
             </p>
             <pre><code>const user = { name: "Alice", age: 25 };
@@ -342,7 +342,7 @@ const [first, second] = [10, 20]; // array version</code></pre>
           <div class="sec" id="g-rest">
             <h2>Rest Parameters (...)</h2>
             <p>
-              <strong>Real life:</strong> A buffet — take as many items as you
+              <strong>Real life:</strong> A buffet  --  take as many items as you
               want; they all go on one plate (array).
             </p>
             <pre><code>function sum(...nums: number[]): number {
@@ -354,7 +354,7 @@ sum(1, 2, 3, 4); // 10</code></pre>
           <div class="sec" id="g-spread">
             <h2>Spread Operator (...)</h2>
             <p>
-              <strong>Real life:</strong> Pouring a box of LEGO onto the floor —
+              <strong>Real life:</strong> Pouring a box of LEGO onto the floor  -- 
               all pieces spread out individually.
             </p>
             <pre><code>const a = [1, 2];
@@ -367,7 +367,7 @@ const obj2 = { ...obj, y: 2 }; // { x: 1, y: 2 }</code></pre>
           <div class="sec" id="g-template">
             <h2>Template Literal</h2>
             <p>
-              <strong>Real life:</strong> A fill-in-the-blank form — "Hello,
+              <strong>Real life:</strong> A fill-in-the-blank form  --  "Hello,
               ____!" where you plug in the name.
             </p>
             <pre><code>const name = "Alice";
@@ -378,7 +378,7 @@ console.log(`Hello, ${name}!`); // "Hello, Alice!"
           <div class="sec" id="g-tuple">
             <h2>Tuple</h2>
             <p>
-              <strong>Real life:</strong> A fixed meal combo — exactly 1 burger,
+              <strong>Real life:</strong> A fixed meal combo  --  exactly 1 burger,
               1 fries, 1 drink. No more, no less, in that order.
             </p>
             <pre><code>let meal: [string, number, boolean] = ["Burger", 299, true];
@@ -390,7 +390,7 @@ console.log(`Hello, ${name}!`); // "Hello, Alice!"
             <div class="sec-label">Operators</div>
             <h2>Ternary Operator</h2>
             <p>
-              <strong>Real life:</strong> A quick yes/no decision — "Is it
+              <strong>Real life:</strong> A quick yes/no decision  --  "Is it
               raining? Take umbrella : wear sunglasses."
             </p>
             <pre><code>const age = 20;
@@ -403,7 +403,7 @@ const status = age >= 18 ? "adult" : "minor";
             <div class="sec-label">Functions</div>
             <h2>Arrow Function</h2>
             <p>
-              <strong>Real life:</strong> A sticky note — short, quick, borrows
+              <strong>Real life:</strong> A sticky note  --  short, quick, borrows
               context from its surroundings.
             </p>
             <pre><code>const add = (a: number, b: number) => a + b;
@@ -414,7 +414,7 @@ const status = age >= 18 ? "adult" : "minor";
           <div class="sec" id="g-callback">
             <h2>Callback</h2>
             <p>
-              <strong>Real life:</strong> Giving your phone number to a shop —
+              <strong>Real life:</strong> Giving your phone number to a shop  -- 
               "call me BACK when my order is ready."
             </p>
             <pre><code>function greet(name: string, done: () => void) {
@@ -427,7 +427,7 @@ greet("Alice", () => console.log("Done!"));</code></pre>
           <div class="sec" id="g-function">
             <h2>Function</h2>
             <p>
-              <strong>Real life:</strong> A coffee machine — put in ingredients
+              <strong>Real life:</strong> A coffee machine  --  put in ingredients
               (parameters), get coffee (return value).
             </p>
             <pre><code>function greet(name: string): string {
@@ -439,7 +439,7 @@ greet("Bob"); // "Hello, Bob"</code></pre>
           <div class="sec" id="g-optional">
             <h2>Optional (?)</h2>
             <p>
-              <strong>Real life:</strong> A pizza order form — name is required,
+              <strong>Real life:</strong> A pizza order form  --  name is required,
               but "extra toppings" is optional.
             </p>
             <pre><code>function greet(name: string, title?: string) {
@@ -452,7 +452,7 @@ greet("Alice", "Dr.");   // also OK</code></pre>
           <div class="sec" id="g-overloading">
             <h2>Overloading</h2>
             <p>
-              <strong>Real life:</strong> A Swiss Army knife — one tool, many
+              <strong>Real life:</strong> A Swiss Army knife  --  one tool, many
               uses depending on what you need.
             </p>
             <pre><code>function format(val: string): string;
@@ -467,7 +467,7 @@ function format(val: any): string {
             <div class="sec-label">Type System</div>
             <h2>Enum</h2>
             <p>
-              <strong>Real life:</strong> A TV remote with fixed buttons —
+              <strong>Real life:</strong> A TV remote with fixed buttons  -- 
               Power, Volume, Channel. Only these options exist.
             </p>
             <pre><code>enum Color { Red, Green, Blue }
@@ -478,7 +478,7 @@ enum Status { Active = "ACTIVE", Inactive = "INACTIVE" }</code></pre>
           <div class="sec" id="g-generic">
             <h2>Generic &lt;T&gt;</h2>
             <p>
-              <strong>Real life:</strong> A universal bottle — it works with
+              <strong>Real life:</strong> A universal bottle  --  it works with
               water, juice, or milk. You decide what goes in.
             </p>
             <pre><code>function wrap&lt;T&gt;(value: T): T[] {
@@ -492,7 +492,7 @@ wrap(42);    // number[]</code></pre>
             <h2>Type Inference</h2>
             <p>
               <strong>Real life:</strong> A smart friend who guesses your order
-              — "You always get coffee, so I ordered it for you."
+               --  "You always get coffee, so I ordered it for you."
             </p>
             <pre><code>let x = 10;       // TS infers: number
 let y = "hello";  // TS infers: string
@@ -503,7 +503,7 @@ let y = "hello";  // TS infers: string
             <h2>Intersection Type (&amp;)</h2>
             <p>
               <strong>Real life:</strong> A person who is BOTH a doctor AND a
-              teacher — has skills of both.
+              teacher  --  has skills of both.
             </p>
             <pre><code>type HasName = { name: string };
 type HasAge = { age: number };
@@ -515,7 +515,7 @@ const p: Person = { name: "Alice", age: 25 };</code></pre>
             <h2>Literal Type</h2>
             <p>
               <strong>Real life:</strong> A vending machine with only 3 buttons
-              — you can ONLY pick from those exact options.
+               --  you can ONLY pick from those exact options.
             </p>
             <pre><code>type Direction = "up" | "down" | "left" | "right";
 let d: Direction = "up"; // OK
@@ -525,7 +525,7 @@ let d: Direction = "up"; // OK
           <div class="sec" id="g-narrowing">
             <h2>Narrowing</h2>
             <p>
-              <strong>Real life:</strong> Airport security — checking your ID
+              <strong>Real life:</strong> Airport security  --  checking your ID
               narrows "unknown person" to "verified passenger."
             </p>
             <pre><code>function print(val: string | number) {
@@ -540,7 +540,7 @@ let d: Direction = "up"; // OK
           <div class="sec" id="g-type">
             <h2>type (alias)</h2>
             <p>
-              <strong>Real life:</strong> A nickname — instead of saying "string
+              <strong>Real life:</strong> A nickname  --  instead of saying "string
               or number" every time, you say "ID".
             </p>
             <pre><code>type ID = string | number;
@@ -551,7 +551,7 @@ let userId: ID = "abc123";</code></pre>
           <div class="sec" id="g-union">
             <h2>Union Type (|)</h2>
             <p>
-              <strong>Real life:</strong> A gift that can be a book OR a toy —
+              <strong>Real life:</strong> A gift that can be a book OR a toy  -- 
               one value, multiple possible types.
             </p>
             <pre><code>let id: string | number;
@@ -563,7 +563,7 @@ id = 123;    // also OK
           <div class="sec" id="g-utility">
             <h2>Utility Types</h2>
             <p>
-              <strong>Real life:</strong> Pre-made templates — instead of
+              <strong>Real life:</strong> Pre-made templates  --  instead of
               building from scratch, use a ready-made form and customize.
             </p>
             <pre><code>interface User { name: string; age: number; email: string; }
@@ -580,7 +580,7 @@ Record&lt;string, number&gt;      // { [key: string]: number }</code></pre>
             <div class="sec-label">OOP</div>
             <h2>abstract</h2>
             <p>
-              <strong>Real life:</strong> A recipe title with no instructions —
+              <strong>Real life:</strong> A recipe title with no instructions  -- 
               someone else must write the steps.
             </p>
             <p>
@@ -589,7 +589,7 @@ Record&lt;string, number&gt;      // { [key: string]: number }</code></pre>
               code.
             </p>
             <pre><code>abstract class Shape {
-  abstract area(): number; // no body — child MUST implement
+  abstract area(): number; // no body  --  child MUST implement
 }
 class Circle extends Shape {
   constructor(public r: number) { super(); }
@@ -600,7 +600,7 @@ class Circle extends Shape {
           <div class="sec" id="g-class">
             <h2>Class</h2>
             <p>
-              <strong>Real life:</strong> A cookie cutter — one mold, many
+              <strong>Real life:</strong> A cookie cutter  --  one mold, many
               cookies. The class is the blueprint, objects are the cookies.
             </p>
             <pre><code>class Car {
@@ -613,7 +613,7 @@ const myCar = new Car("Toyota", 120);</code></pre>
           <div class="sec" id="g-constructor">
             <h2>Constructor</h2>
             <p>
-              <strong>Real life:</strong> The factory assembly line — runs once
+              <strong>Real life:</strong> The factory assembly line  --  runs once
               when a new product (object) is built.
             </p>
             <pre><code>class Student {
@@ -628,7 +628,7 @@ const myCar = new Car("Toyota", 120);</code></pre>
             <h2>extends</h2>
             <p>
               <strong>Real life:</strong> A child inheriting traits from a
-              parent — you GET everything automatically.
+              parent  --  you GET everything automatically.
             </p>
             <pre><code>class Animal { move() { console.log("moving"); } }
 class Dog extends Animal { bark() { console.log("woof!"); } }
@@ -638,7 +638,7 @@ class Dog extends Animal { bark() { console.log("woof!"); } }
           <div class="sec" id="g-implements">
             <h2>implements</h2>
             <p>
-              <strong>Real life:</strong> Signing a contract — you PROMISE to
+              <strong>Real life:</strong> Signing a contract  --  you PROMISE to
               provide everything listed.
             </p>
             <pre><code>interface Printable { print(): void; }
@@ -650,7 +650,7 @@ class Report implements Printable {
           <div class="sec" id="g-interface">
             <h2>Interface</h2>
             <p>
-              <strong>Real life:</strong> A job description — it lists what
+              <strong>Real life:</strong> A job description  --  it lists what
               skills are needed but doesn't do the work itself.
             </p>
             <pre><code>interface User {
@@ -664,7 +664,7 @@ const u: User = { name: "Alice", age: 25 };</code></pre>
           <div class="sec" id="g-method">
             <h2>Method</h2>
             <p>
-              <strong>Real life:</strong> An action a person can do — a chef can
+              <strong>Real life:</strong> An action a person can do  --  a chef can
               <em>cook()</em>, a driver can <em>drive()</em>.
             </p>
             <pre><code>class Dog {
@@ -676,7 +676,7 @@ new Dog().bark();</code></pre>
           <div class="sec" id="g-object">
             <h2>Object</h2>
             <p>
-              <strong>Real life:</strong> A person's ID card — has properties
+              <strong>Real life:</strong> A person's ID card  --  has properties
               (name, age) and actions (walk, talk).
             </p>
             <pre><code>const user = {
@@ -689,7 +689,7 @@ new Dog().bark();</code></pre>
           <div class="sec" id="g-readonly">
             <h2>readonly</h2>
             <p>
-              <strong>Real life:</strong> A museum exhibit — look but don't
+              <strong>Real life:</strong> A museum exhibit  --  look but don't
               touch. You can read the value but can't change it.
             </p>
             <pre><code>class User {
@@ -703,20 +703,20 @@ const u = new User(1);
           <div class="sec" id="g-static">
             <h2>static</h2>
             <p>
-              <strong>Real life:</strong> A school's principal — belongs to the
+              <strong>Real life:</strong> A school's principal  --  belongs to the
               school (class) itself, not to any single student (instance).
             </p>
             <pre><code>class MathHelper {
   static PI = 3.14159;
   static square(n: number) { return n * n; }
 }
-MathHelper.square(5); // 25 — no "new" needed</code></pre>
+MathHelper.square(5); // 25  --  no "new" needed</code></pre>
           </div>
 
           <div class="sec" id="g-super">
             <h2>super</h2>
             <p>
-              <strong>Real life:</strong> Calling your parent for help — "Hey
+              <strong>Real life:</strong> Calling your parent for help  --  "Hey
               Mom, I need your recipe before I add my twist."
             </p>
             <pre><code>class Animal {
@@ -734,7 +734,7 @@ class Dog extends Animal {
             <div class="sec-label">Modules &amp; Async</div>
             <h2>async / await</h2>
             <p>
-              <strong>Real life:</strong> Ordering food at a restaurant — you
+              <strong>Real life:</strong> Ordering food at a restaurant  --  you
               place the order (async), do other things, and the food arrives
               later (await).
             </p>
@@ -747,7 +747,7 @@ class Dog extends Animal {
           <div class="sec" id="g-export">
             <h2>export / import</h2>
             <p>
-              <strong>Real life:</strong> A library lending system — the library
+              <strong>Real life:</strong> A library lending system  --  the library
               exports books, you import the ones you need.
             </p>
             <pre><code>// utils.ts
@@ -761,7 +761,7 @@ console.log(add(2, 3)); // 5</code></pre>
           <div class="sec" id="g-module">
             <h2>Module</h2>
             <p>
-              <strong>Real life:</strong> Separate LEGO boxes — each box has
+              <strong>Real life:</strong> Separate LEGO boxes  --  each box has
               specific pieces. You pick the box you need.
             </p>
             <p>
@@ -773,7 +773,7 @@ console.log(add(2, 3)); // 5</code></pre>
           <div class="sec" id="g-promise">
             <h2>Promise</h2>
             <p>
-              <strong>Real life:</strong> A food delivery order — pending
+              <strong>Real life:</strong> A food delivery order  --  pending
               (cooking), fulfilled (delivered), or rejected (cancelled).
             </p>
             <pre><code>const p = new Promise&lt;string&gt;((resolve, reject) => {

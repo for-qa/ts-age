@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Utility Types — TypeScript Learning Path</title>
+    <title>Utility Types  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Master TypeScript utility types — Partial, Required, Readonly, Pick, Omit, Record, Exclude, Extract, ReturnType with real-world use cases."
+      content="Master TypeScript utility types  --  Partial, Required, Readonly, Pick, Omit, Record, Exclude, Extract, ReturnType with real-world use cases."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -123,7 +123,7 @@ type UserUpdate = Partial&lt;User&gt;;
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember All 9 Utility
+                <strong>🧠 Memory Trick  --  Remember All 9 Utility
                 Types:</strong><br /><br />
                 <strong>Object Types (6):</strong><br />
                 "<strong>P</strong>oorly <strong>R</strong>efactored <strong>R</strong>epos <strong>P</strong>roduce <strong>O</strong>bvious <strong>R</strong>egressions"<br />
@@ -141,7 +141,7 @@ type UserUpdate = Partial&lt;User&gt;;
           <!-- PARTIAL -->
           <div class="sec" id="ut-partial">
             <div class="sec-label">Object Types</div>
-            <h2>Partial&lt;T&gt; — Make All Optional</h2>
+            <h2>Partial&lt;T&gt;  --  Make All Optional</h2>
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">1</div>
@@ -174,12 +174,12 @@ updateUser(1, {});                           // ✅ nothing</code></pre>
           <!-- REQUIRED -->
           <div class="sec" id="ut-required">
             <div class="sec-label">Object Types</div>
-            <h2>Required&lt;T&gt; — Make All Required</h2>
+            <h2>Required&lt;T&gt;  --  Make All Required</h2>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">2</div>
                 <div class="card-title">
-                  Opposite of Partial — removes all ?
+                  Opposite of Partial  --  removes all ?
                 </div>
                 <span class="card-badge">Required</span>
               </div>
@@ -204,7 +204,7 @@ function startServer(config: Required&lt;Config&gt;) {
           <!-- READONLY -->
           <div class="sec" id="ut-readonly">
             <div class="sec-label">Object Types</div>
-            <h2>Readonly&lt;T&gt; — Freeze All Properties</h2>
+            <h2>Readonly&lt;T&gt;  --  Freeze All Properties</h2>
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">3</div>
@@ -222,7 +222,7 @@ const user: Readonly&lt;User&gt; = { name: "Alice", age: 25 };
 // ✅ Real use: function that should NOT modify input
 function displayUser(user: Readonly&lt;User&gt;) {
   console.log(user.name);  // read ✅
-  // user.name = "X";      // write ❌ — compile error!
+  // user.name = "X";      // write ❌  --  compile error!
 }
 
 // ⚠ WARNING: Readonly is SHALLOW!
@@ -236,7 +236,7 @@ obj.data.value = 99;  // ✅ This WORKS! Nested is still mutable!</code></pre>
           <!-- PICK -->
           <div class="sec" id="ut-pick">
             <div class="sec-label">Object Types</div>
-            <h2>Pick&lt;T, K&gt; — Select Properties</h2>
+            <h2>Pick&lt;T, K&gt;  --  Select Properties</h2>
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">4</div>
@@ -256,7 +256,7 @@ obj.data.value = 99;  // ✅ This WORKS! Nested is still mutable!</code></pre>
 type ProfileCard = Pick&lt;User, "name" | "email"&gt;;
 // { name: string; email: string; }
 
-// ✅ Real use: API response — don't expose everything
+// ✅ Real use: API response  --  don't expose everything
 type PublicUser = Pick&lt;User, "id" | "name" | "email"&gt;;
 // Excludes password and createdAt</code></pre>
               </div>
@@ -266,12 +266,12 @@ type PublicUser = Pick&lt;User, "id" | "name" | "email"&gt;;
           <!-- OMIT -->
           <div class="sec" id="ut-omit">
             <div class="sec-label">Object Types</div>
-            <h2>Omit&lt;T, K&gt; — Remove Properties</h2>
+            <h2>Omit&lt;T, K&gt;  --  Remove Properties</h2>
             <div class="card ph5-card">
               <div class="card-head">
                 <div class="card-num">5</div>
                 <div class="card-title">
-                  Opposite of Pick — exclude properties
+                  Opposite of Pick  --  exclude properties
                 </div>
                 <span class="card-badge">Omit</span>
               </div>
@@ -302,7 +302,7 @@ type CreateUser = Omit&lt;User, "id" | "password"&gt;;
           <!-- RECORD -->
           <div class="sec" id="ut-record">
             <div class="sec-label">Object Types</div>
-            <h2>Record&lt;K, V&gt; — Key-Value Map</h2>
+            <h2>Record&lt;K, V&gt;  --  Key-Value Map</h2>
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">6</div>
@@ -321,7 +321,7 @@ const scores: Record&lt;string, number&gt; = {
   english: 78,
 };
 
-// Union keys — ensures ALL keys exist:
+// Union keys  --  ensures ALL keys exist:
 type Status = "active" | "inactive" | "banned";
 const statusColors: Record&lt;Status, string&gt; = {
   active: "green",
@@ -354,11 +354,11 @@ const permissions: Record&lt;Role, string[]&gt; = {
               <div class="card-body">
                 <pre><code>type Status = "active" | "inactive" | "banned" | "pending";
 
-// EXCLUDE — remove from union
+// EXCLUDE  --  remove from union
 type ActiveStatuses = Exclude&lt;Status, "banned" | "inactive"&gt;;
 // "active" | "pending"
 
-// EXTRACT — keep only matching
+// EXTRACT  --  keep only matching
 type BadStatuses = Extract&lt;Status, "banned" | "inactive"&gt;;
 // "banned" | "inactive"
 
@@ -377,7 +377,7 @@ type Primitives = Extract&lt;AllTypes, string | number&gt;;  // string | number
           <!-- RETURNTYPE -->
           <div class="sec" id="ut-return">
             <div class="sec-label">Function Types</div>
-            <h2>ReturnType&lt;T&gt; — Get Function's Return</h2>
+            <h2>ReturnType&lt;T&gt;  --  Get Function's Return</h2>
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">8</div>
@@ -413,7 +413,7 @@ type CreateParams = Parameters&lt;typeof createUser&gt;;
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 1: Using Partial when you need Pick</strong>
-                <pre><code>// ❌ Partial makes ALL optional — too loose
+                <pre><code>// ❌ Partial makes ALL optional  --  too loose
 function updateName(data: Partial&lt;User&gt;) { }
 updateName({});  // ✅ compiles... but name is missing!
 
@@ -484,7 +484,7 @@ type NoNull = Exclude&lt;string | null, null&gt;;  // string
           <!-- COMPARISON TABLE -->
           <div class="sec" id="ut-compare">
             <div class="sec-label">Reference</div>
-            <h2>All Utility Types — Comparison</h2>
+            <h2>All Utility Types  --  Comparison</h2>
             <div class="bordered">
               <table>
                 <thead>

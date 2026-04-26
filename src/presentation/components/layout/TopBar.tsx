@@ -13,7 +13,7 @@ export function TopBar({ mode = 'home' }: TopBarProps) {
 
   return (
     <div id="topbar">
-      {/* Brand — always shown */}
+      {/* Brand  --  always shown */}
       <div className="tb-brand">
         <div className="tb-brand-icon">TS</div>
         <div>
@@ -31,7 +31,7 @@ export function TopBar({ mode = 'home' }: TopBarProps) {
         </>
       ) : null}
 
-      {/* Theme toggle — always on the far right */}
+      {/* Theme toggle  --  always on the far right */}
       <button
         className="tb-theme-btn"
         title="Toggle dark/light mode"

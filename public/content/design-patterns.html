@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Design Patterns — TypeScript Learning Path</title>
+    <title>Design Patterns  --  TypeScript Learning Path</title>
     <meta
       name="description"
       content="Learn Singleton, Factory, Observer, and Strategy design patterns in TypeScript with real-world examples and when to use each."
@@ -55,7 +55,7 @@
             <h1>Design Patterns</h1>
             <p>
               Reusable solutions to common software problems. These patterns
-              appear in every professional codebase — knowing them makes you
+              appear in every professional codebase  --  knowing them makes you
               think like a senior dev.
             </p>
             <div class="hero-stats">
@@ -79,7 +79,7 @@
               <p>
                 <strong>Real-Life:</strong> Design patterns are like
                 <strong>recipes</strong> 📖. You don't invent a new way to make
-                roti every time — you follow a proven recipe. Design patterns
+                roti every time  --  you follow a proven recipe. Design patterns
                 are proven recipes for solving common coding problems.
               </p>
             </div>
@@ -88,7 +88,7 @@
           <div class="note note-tip" style="margin: 0 0 2rem">
             <span class="note-i">✓</span>
             <p>
-              <strong>🧠 Memory Trick — Remember All 4
+              <strong>🧠 Memory Trick  --  Remember All 4
               Patterns:</strong><br /><br />
               "<strong>S</strong>mart <strong>F</strong>actories <strong>O</strong>ptimize <strong>S</strong>ystems"<br />
               → <strong>S</strong>ingleton, <strong>F</strong>actory,
@@ -99,7 +99,7 @@
           <!-- SINGLETON -->
           <div class="sec" id="dp-singleton">
             <div class="sec-label">Patterns</div>
-            <h2>Singleton — Only One Instance</h2>
+            <h2>Singleton  --  Only One Instance</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -119,7 +119,7 @@
   private static instance: Database;
   private connectionCount = 0;
 
-  // Private constructor — can't use 'new Database()' outside!
+  // Private constructor  --  can't use 'new Database()' outside!
   private constructor() {
     console.log("Database connection created");
   }
@@ -141,7 +141,7 @@
 // Usage:
 const db1 = Database.getInstance();
 const db2 = Database.getInstance();
-console.log(db1 === db2);  // true — same instance!
+console.log(db1 === db2);  // true  --  same instance!
 
 db1.query("SELECT * FROM users");
 db2.query("INSERT INTO logs");  // uses same connection
@@ -157,12 +157,12 @@ db2.query("INSERT INTO logs");  // uses same connection
           <!-- FACTORY -->
           <div class="sec" id="dp-factory">
             <div class="sec-label">Patterns</div>
-            <h2>Factory — Create Without Knowing the Class</h2>
+            <h2>Factory  --  Create Without Knowing the Class</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> You go to a car dealership and say "I
-                want an SUV." You don't build the car yourself — the factory
+                want an SUV." You don't build the car yourself  --  the factory
                 builds the right car based on your request.
               </p>
             </div>
@@ -189,7 +189,7 @@ class PushNotification implements Notification {
   send(message: string) { console.log(`🔔 Push: ${message}`); }
 }
 
-// The Factory — creates the right type based on input
+// The Factory  --  creates the right type based on input
 type NotifType = "email" | "sms" | "push";
 
 function createNotification(type: NotifType): Notification {
@@ -200,7 +200,7 @@ function createNotification(type: NotifType): Notification {
   }
 }
 
-// Usage — caller doesn't know which class is created
+// Usage  --  caller doesn't know which class is created
 const notif = createNotification("email");
 notif.send("Hello!");  // 📧 Email: Hello!
 
@@ -213,13 +213,13 @@ notif.send("Hello!");  // 📧 Email: Hello!
           <!-- OBSERVER -->
           <div class="sec" id="dp-observer">
             <div class="sec-label">Patterns</div>
-            <h2>Observer — Subscribe to Events</h2>
+            <h2>Observer  --  Subscribe to Events</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> Like subscribing to a YouTube channel.
                 When a new video (event) is uploaded, ALL subscribers get
-                notified automatically. You don't check manually — the
+                notified automatically. You don't check manually  --  the
                 notification comes to you.
               </p>
             </div>
@@ -274,12 +274,12 @@ cartEvents.emit({ item: "Mouse", price: 500 });
           <!-- STRATEGY -->
           <div class="sec" id="dp-strategy">
             <div class="sec-label">Patterns</div>
-            <h2>Strategy — Swappable Algorithms</h2>
+            <h2>Strategy  --  Swappable Algorithms</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> Like choosing a payment method at
-                checkout — UPI, credit card, or cash. The checkout process is
+                checkout  --  UPI, credit card, or cash. The checkout process is
                 the same, but the payment <strong>strategy</strong> is
                 swappable.
               </p>
@@ -408,16 +408,16 @@ const greet = (name: string) => `Hello ${name}`;</code></pre>
           <div class="sec" id="dp-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Cheatsheet</h2>
-            <pre><code>// SINGLETON — private constructor + static getInstance()
+            <pre><code>// SINGLETON  --  private constructor + static getInstance()
 class S { private static i: S; static get() { return S.i ??= new S(); } }
 
-// FACTORY — function that returns different types
+// FACTORY  --  function that returns different types
 function create(type: string): Base { switch(type) { ... } }
 
-// OBSERVER — subscribe/emit
+// OBSERVER  --  subscribe/emit
 emitter.subscribe(fn);  emitter.emit(data);
 
-// STRATEGY — swappable interface implementation
+// STRATEGY  --  swappable interface implementation
 class Ctx { constructor(private s: Strategy) {} setStrategy(s) { this.s = s; } }</code></pre>
             <hr />
             <p

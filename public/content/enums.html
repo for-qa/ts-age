@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Enums — TypeScript Learning Path</title>
+    <title>Enums  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript enums — numeric enums, string enums, heterogeneous enums, const enums, reverse mapping, and when to use enums vs union literal types."
+      content="Learn TypeScript enums  --  numeric enums, string enums, heterogeneous enums, const enums, reverse mapping, and when to use enums vs union literal types."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -60,7 +60,7 @@
             </div>
             <h1>Enums</h1>
             <p>
-              Define named sets of constants — numeric, string, and const enums
+              Define named sets of constants  --  numeric, string, and const enums
               with reverse mapping and real-world patterns.
             </p>
             <div class="hero-stats">
@@ -101,10 +101,10 @@
               descriptive names.
             </p>
 
-            <pre><code>// ❌ Without enums — magic numbers (unreadable!)
+            <pre><code>// ❌ Without enums  --  magic numbers (unreadable!)
 let status = 0;  // What does 0 mean? Active? Pending? ✓
 
-// ✅ With enums — clear, readable names
+// ✅ With enums  --  clear, readable names
 enum Status {
   Active,    // 0
   Inactive,  // 1
@@ -117,7 +117,7 @@ let userStatus: Status = Status.Active;  // Clear! ✅</code></pre>
               <span class="note-i">i</span>
               <p>
                 <strong>Syntax:</strong>
-                <code>enum EnumName { Member1, Member2, Member3 }</code> — use
+                <code>enum EnumName { Member1, Member2, Member3 }</code>  --  use
                 PascalCase for both the enum name and its members by convention.
               </p>
             </div>
@@ -126,7 +126,7 @@ let userStatus: Status = Status.Active;  // Clear! ✅</code></pre>
           <div class="note note-tip" style="margin: 0 0 2rem">
             <span class="note-i">✓</span>
             <p>
-              <strong>🧠 Memory Trick — Remember All 4 Enum
+              <strong>🧠 Memory Trick  --  Remember All 4 Enum
               Types:</strong><br /><br />
               "<strong>N</strong>etwork <strong>S</strong>ervers <strong>H</strong>andle <strong>C</strong>lients"<br />
               → <strong>N</strong>umeric, <strong>S</strong>tring,
@@ -138,7 +138,7 @@ let userStatus: Status = Status.Active;  // Clear! ✅</code></pre>
           <!-- NUMERIC ENUMS -->
           <div class="sec" id="en-numeric">
             <div class="sec-label">Default Behavior</div>
-            <h2>Numeric Enums — Auto-Incrementing Numbers</h2>
+            <h2>Numeric Enums  --  Auto-Incrementing Numbers</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -199,7 +199,7 @@ console.log(StatusCode.OK);          // 200
 console.log(StatusCode.NotFound);    // 404
 console.log(StatusCode.ServerError); // 500
 
-// Partially custom — auto-increments from last value
+// Partially custom  --  auto-increments from last value
 enum Priority {
   Low = 1,     // 1
   Medium,      // 2 (auto-incremented)
@@ -214,7 +214,7 @@ console.log(Priority.Critical); // 4</code></pre>
           <!-- STRING ENUMS -->
           <div class="sec" id="en-string">
             <div class="sec-label">String Values</div>
-            <h2>String Enums — Named String Constants</h2>
+            <h2>String Enums  --  Named String Constants</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -227,7 +227,7 @@ console.log(Priority.Critical); // 4</code></pre>
 
             <p>
               Each member must be <strong>explicitly assigned</strong> a string
-              value — no auto-increment for strings.
+              value  --  no auto-increment for strings.
             </p>
 
             <pre><code>enum Color {
@@ -262,7 +262,7 @@ console.log(currentEnv);  // "development"</code></pre>
           <!-- HETEROGENEOUS -->
           <div class="sec" id="en-hetero">
             <div class="sec-label">Mixed Types</div>
-            <h2>Heterogeneous Enums — Mixing Numbers &amp; Strings</h2>
+            <h2>Heterogeneous Enums  --  Mixing Numbers &amp; Strings</h2>
 
             <pre><code>// Mix number and string values (not recommended, but possible)
 enum Mixed {
@@ -286,14 +286,14 @@ console.log(Mixed.Yes);  // "YES"</code></pre>
           <!-- CONST ENUMS -->
           <div class="sec" id="en-const">
             <div class="sec-label">Optimization</div>
-            <h2>const Enums — Compile-Time Only</h2>
+            <h2>const Enums  --  Compile-Time Only</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Regular enums are like
                 <strong>printed menus</strong> that stay on the table. Const
                 enums are like the
-                <strong>waiter reading the menu aloud</strong> — the info is
+                <strong>waiter reading the menu aloud</strong>  --  the info is
                 delivered, but no menu card is left behind (no JavaScript
                 output).
               </p>
@@ -354,7 +354,7 @@ let s = Speed.Fast;
           <!-- REVERSE MAPPING -->
           <div class="sec" id="en-reverse">
             <div class="sec-label">Feature</div>
-            <h2>Reverse Mapping — Value → Name</h2>
+            <h2>Reverse Mapping  --  Value → Name</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -505,10 +505,10 @@ runTest(Browser.Chrome, TestEnv.Staging);
               </table>
             </div>
 
-            <pre><code>// Enum — when you need runtime values
+            <pre><code>// Enum  --  when you need runtime values
 enum Direction { Up, Down, Left, Right }
 
-// Union — lighter alternative for type checking
+// Union  --  lighter alternative for type checking
 type Direction2 = "up" | "down" | "left" | "right";</code></pre>
           </div>
 
@@ -533,7 +533,7 @@ enum Priority { Low = 1, Medium, High }     // 1, 2, 3</code></pre>
             <h3>Key rules</h3>
             <pre><code>// ✅ Numeric enums auto-increment from 0 (or custom start)
 // ✅ String enums require explicit values for EVERY member
-// ✅ const enums are inlined — no runtime object generated
+// ✅ const enums are inlined  --  no runtime object generated
 // ✅ Reverse mapping works for numeric enums ONLY
 // ✅ Use enums for fixed sets of related constants
 // ❌ Avoid mixing numbers and strings in one enum</code></pre>

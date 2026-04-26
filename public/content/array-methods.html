@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Array Methods — TypeScript Learning Path</title>
+    <title>Array Methods  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript array methods — push, pop, shift, unshift, concat, slice, splice, indexOf, includes, toString with real-life examples."
+      content="Learn TypeScript array methods  --  push, pop, shift, unshift, concat, slice, splice, indexOf, includes, toString with real-life examples."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -67,7 +67,7 @@
             <h1>Array <span>Methods</span></h1>
             <p>
               TypeScript arrays come with 20+ built-in methods. This session
-              covers the first 10 — the fundamental add/remove, combine,
+              covers the first 10  --  the fundamental add/remove, combine,
               extract, search, and convert methods. Higher-order methods
               (<code>forEach</code>, <code>map</code>, <code>filter</code>,
               <code>reduce</code>) are covered in the next session.
@@ -100,21 +100,21 @@
               <p>
                 <strong>Real-Life Example:</strong> Think of array methods as
                 <strong>tools in a toolbox</strong>. Your array (the list) is a
-                piece of wood. You have tools like a hammer (push — add a nail),
-                pliers (pop — pull out a nail), a saw (slice — cut a piece), and
-                a drill (splice — make holes and add things). Each tool does a
+                piece of wood. You have tools like a hammer (push  --  add a nail),
+                pliers (pop  --  pull out a nail), a saw (slice  --  cut a piece), and
+                a drill (splice  --  make holes and add things). Each tool does a
                 specific job so you don't have to do everything by hand!
               </p>
             </div>
             <p>
               Array methods are <strong>ready-made tools</strong> that every
               array comes with. Instead of writing loops to add, remove, or find
-              items, you just call a method — one line does the work.
+              items, you just call a method  --  one line does the work.
             </p>
             <div class="note note-info">
               <span class="note-i">i</span>
               <p>
-                <strong>Method vs attribute — what's the difference?</strong>
+                <strong>Method vs attribute  --  what's the difference?</strong>
                 <code>arr.length</code> is like checking a label (no parentheses
                 needed). <code>arr.push()</code> is like pressing a button
                 (needs parentheses <code>()</code> to work). This comes up in
@@ -151,11 +151,11 @@
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember All 10 Methods:</strong
+                <strong>🧠 Memory Trick  --  Remember All 10 Methods:</strong
                 ><br /><br />
                 "<strong>P</strong>eople <strong>P</strong>lease
                 <strong>S</strong>top <strong>U</strong>sing
-                <strong>C</strong>heap <strong>S</strong>oap —
+                <strong>C</strong>heap <strong>S</strong>oap  -- 
                 <strong>S</strong>mell <strong>I</strong>s
                 <strong>I</strong>mportant <strong>T</strong>oo!"<br />
                 → <strong>P</strong>ush, <strong>P</strong>op,
@@ -175,7 +175,7 @@ let fruits: string[]  = ["apple", "banana", "orange", "mango"];</code></pre>
             <h2><code>length</code></h2>
             <p>
               Returns the total number of elements in the array. It is an
-              <strong>attribute</strong>, not a method — no parentheses.
+              <strong>attribute</strong>, not a method  --  no parentheses.
             </p>
             <pre><code>let numbers: number[] = [1, 2, 3, 4, 5];
 console.log(numbers.length); // 5
@@ -192,7 +192,7 @@ console.log(fruits.length);  // 4</code></pre>
             </div>
           </div>
 
-          <!-- ”” PUSH ”” -->
+          <!-- "" PUSH "" -->
           <div class="sec" id="am-push">
             <div class="sec-label">Method 1</div>
             <h2><code>push()</code></h2>
@@ -202,7 +202,7 @@ console.log(fruits.length);  // 4</code></pre>
                 <strong>Real-Life Example:</strong> Like
                 <strong>adding people to the end of a queue</strong> at a movie
                 theater. New people always join at the back. That's
-                <code>push()</code> — it adds items to the END of the list.
+                <code>push()</code>  --  it adds items to the END of the list.
               </p>
             </div>
             <p>
@@ -213,7 +213,7 @@ console.log(fruits.length);  // 4</code></pre>
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">1</div>
-                <div class="card-title">push() — add to end</div>
+                <div class="card-title">push()  --  add to end</div>
                 <span class="card-badge">Modifies original</span>
               </div>
               <div class="card-body">
@@ -261,7 +261,7 @@ console.log(numbers);
             </div>
           </div>
 
-          <!-- ”” POP ”” -->
+          <!-- "" POP "" -->
           <div class="sec" id="am-pop">
             <div class="sec-label">Method 2</div>
             <h2><code>pop()</code></h2>
@@ -283,7 +283,7 @@ console.log(numbers);
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">pop() — remove from end</div>
+                <div class="card-title">pop()  --  remove from end</div>
                 <span class="card-badge">Returns removed element</span>
               </div>
               <div class="card-body">
@@ -321,7 +321,7 @@ console.log("Removed:", lastFruit); // Removed: mango</code></pre>
             </div>
           </div>
 
-          <!-- ”” SHIFT ”” -->
+          <!-- "" SHIFT "" -->
           <div class="sec" id="am-shift">
             <div class="sec-label">Method 3</div>
             <h2><code>shift()</code></h2>
@@ -329,9 +329,9 @@ console.log("Removed:", lastFruit); // Removed: mango</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>bus stop queue</strong> — the person at the FRONT gets
+                <strong>bus stop queue</strong>  --  the person at the FRONT gets
                 on the bus and leaves the queue. Everyone else shifts forward by
-                one position. That's <code>shift()</code> — it removes the FIRST
+                one position. That's <code>shift()</code>  --  it removes the FIRST
                 item.
               </p>
             </div>
@@ -342,7 +342,7 @@ console.log("Removed:", lastFruit); // Removed: mango</code></pre>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">3</div>
-                <div class="card-title">shift() — remove from start</div>
+                <div class="card-title">shift()  --  remove from start</div>
                 <span class="card-badge">Returns removed element</span>
               </div>
               <div class="card-body">
@@ -356,7 +356,7 @@ console.log("Removed:", firstNum);  // Removed: 1</code></pre>
             </div>
           </div>
 
-          <!-- ”” UNSHIFT ”” -->
+          <!-- "" UNSHIFT "" -->
           <div class="sec" id="am-unshift">
             <div class="sec-label">Method 4</div>
             <h2><code>unshift()</code></h2>
@@ -377,7 +377,7 @@ console.log("Removed:", firstNum);  // Removed: 1</code></pre>
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">4</div>
-                <div class="card-title">unshift() — add to start</div>
+                <div class="card-title">unshift()  --  add to start</div>
                 <span class="card-badge">Modifies original</span>
               </div>
               <div class="card-body">
@@ -390,7 +390,7 @@ console.log(fruits);
               </div>
             </div>
 
-            <h3>push / pop / shift / unshift — comparison</h3>
+            <h3>push / pop / shift / unshift  --  comparison</h3>
             <div class="bordered">
               <table>
                 <thead>
@@ -439,14 +439,14 @@ console.log(fruits);
               <p>
                 <strong>Common interview question:</strong> "What is the
                 difference between <code>push</code>/<code>pop</code> and
-                <code>shift</code>/<code>unshift</code>?" — Answer: push/pop
+                <code>shift</code>/<code>unshift</code>?"  --  Answer: push/pop
                 operate on the <strong>end</strong> of the array; shift/unshift
                 operate on the <strong>start</strong>.
               </p>
             </div>
           </div>
 
-          <!-- ”” CONCAT ”” -->
+          <!-- "" CONCAT "" -->
           <div class="sec" id="am-concat">
             <div class="sec-label">Method 5</div>
             <h2><code>concat()</code></h2>
@@ -455,19 +455,19 @@ console.log(fruits);
               <p>
                 <strong>Real-Life Example:</strong> Like
                 <strong>merging two playlists</strong> into a new one. Your
-                original playlists stay untouched — you just get a new combined
+                original playlists stay untouched  --  you just get a new combined
                 playlist. That's <code>concat()</code>.
               </p>
             </div>
             <p>
               Joins two or more arrays together into a
-              <strong>brand new array</strong>. The originals stay the same —
+              <strong>brand new array</strong>. The originals stay the same  -- 
               <code>concat</code> doesn't mess with your existing lists.
             </p>
             <div class="card ph5-card">
               <div class="card-head">
                 <div class="card-num">5</div>
-                <div class="card-title">concat() — combine multiple arrays</div>
+                <div class="card-title">concat()  --  combine multiple arrays</div>
                 <span class="card-badge">Returns new array</span>
               </div>
               <div class="card-body">
@@ -492,7 +492,7 @@ console.log(numbers);       // original unchanged: [ 2, 3, 4, 5, 6, 7 ]</code></
             </div>
           </div>
 
-          <!-- ”” SLICE ”” -->
+          <!-- "" SLICE "" -->
           <div class="sec" id="am-slice">
             <div class="sec-label">Method 6</div>
             <h2><code>slice()</code></h2>
@@ -501,7 +501,7 @@ console.log(numbers);       // original unchanged: [ 2, 3, 4, 5, 6, 7 ]</code></
               <p>
                 <strong>Real-Life Example:</strong> Like
                 <strong>photocopying a few pages from a book</strong>. The book
-                stays complete — you just get copies of pages 2 to 5.
+                stays complete  --  you just get copies of pages 2 to 5.
                 <code>slice()</code> copies a portion of your array without
                 damaging the original.
               </p>
@@ -515,7 +515,7 @@ console.log(numbers);       // original unchanged: [ 2, 3, 4, 5, 6, 7 ]</code></
               <div class="card-head">
                 <div class="card-num">6</div>
                 <div class="card-title">
-                  slice(start, end) — extract a section
+                  slice(start, end)  --  extract a section
                 </div>
                 <span class="card-badge"
                   >Returns new array · non-destructive</span
@@ -544,33 +544,33 @@ console.log(last3);       // [ 'apple', 'banana', 'orange' ]</code></pre>
                       <tr>
                         <td><code>start</code></td>
                         <td>
-                          <span class="p p-green">Inclusive</span> — element at
+                          <span class="p p-green">Inclusive</span>  --  element at
                           this index IS included
                         </td>
-                        <td><code>slice(1, …)</code> starts from index 1</td>
+                        <td><code>slice(1, ...)</code> starts from index 1</td>
                       </tr>
                       <tr>
                         <td><code>end</code></td>
                         <td>
-                          <span class="p p-red">Exclusive</span> — element at
+                          <span class="p p-red">Exclusive</span>  --  element at
                           this index is NOT included (takes
                           <code>end − 1</code>)
                         </td>
-                        <td><code>slice(…, 3)</code> takes up to index 2</td>
+                        <td><code>slice(..., 3)</code> takes up to index 2</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <p class="fn">
                   Memory aid: <code>slice(1, 3)</code> gives you elements at
-                  positions 1 and 2 — think of it as "from 1, up to but not
+                  positions 1 and 2  --  think of it as "from 1, up to but not
                   including 3".
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- ”” SPLICE ”” -->
+          <!-- "" SPLICE "" -->
           <div class="sec" id="am-splice">
             <div class="sec-label">Method 7</div>
             <h2><code>splice()</code></h2>
@@ -583,7 +583,7 @@ console.log(last3);       // [ 'apple', 'banana', 'orange' ]</code></pre>
                 <strong>add</strong> new items (insert new parts), or
                 <strong>replace</strong> items (swap out old for new). Unlike
                 <code>slice</code>, this one actually changes your original
-                array — it's like actual surgery, not just an X-ray.
+                array  --  it's like actual surgery, not just an X-ray.
               </p>
             </div>
             <p>
@@ -594,7 +594,7 @@ console.log(last3);       // [ 'apple', 'banana', 'orange' ]</code></pre>
             <div class="note note-info">
               <span class="note-i">i</span>
               <p>
-                <strong>slice vs splice — how to remember:</strong>
+                <strong>slice vs splice  --  how to remember:</strong>
                 <code>slice</code> = safe photocopy (original untouched).
                 <code>splice</code> = surgery (original gets modified). The
                 extra <code>p</code> stands for "<strong>p</strong>ermanent
@@ -636,7 +636,7 @@ fruits.splice(1, 0, "pineapple", "grape");
 console.log(fruits);
 // [ 'kiwi', 'pineapple', 'grape', 'banana', 'orange' ]</code></pre>
                 <p>
-                  Delete count <code>0</code> means nothing is removed — only
+                  Delete count <code>0</code> means nothing is removed  --  only
                   the new items are inserted at the given position.
                 </p>
               </div>
@@ -695,7 +695,7 @@ console.log(fruits);
                   </tr>
                   <tr>
                     <td>Returns</td>
-                    <td>—</td>
+                    <td> -- </td>
                     <td>
                       Array of removed elements (empty array if none removed)
                     </td>
@@ -704,7 +704,7 @@ console.log(fruits);
               </table>
             </div>
 
-            <h3>slice vs splice — key distinction</h3>
+            <h3>slice vs splice  --  key distinction</h3>
             <div class="bordered">
               <table>
                 <thead>
@@ -721,7 +721,7 @@ console.log(fruits);
                     <td><span class="p p-red">Yes</span></td>
                   </tr>
                   <tr>
-                    <td>Second parameter is…</td>
+                    <td>Second parameter is...</td>
                     <td>End index (exclusive)</td>
                     <td>Delete count (how many)</td>
                   </tr>
@@ -740,7 +740,7 @@ console.log(fruits);
             </div>
           </div>
 
-          <!-- ”” INDEXOF ”” -->
+          <!-- "" INDEXOF "" -->
           <div class="sec" id="am-indexof">
             <div class="sec-label">Method 8</div>
             <h2><code>indexOf()</code></h2>
@@ -762,7 +762,7 @@ console.log(fruits);
               <div class="card-head">
                 <div class="card-num">8</div>
                 <div class="card-title">
-                  indexOf() — find the index of an element
+                  indexOf()  --  find the index of an element
                 </div>
                 <span class="card-badge">Returns index or −1</span>
               </div>
@@ -810,7 +810,7 @@ console.log(idx);                              // 3</code></pre>
             </div>
           </div>
 
-          <!-- ”” INCLUDES ”” -->
+          <!-- "" INCLUDES "" -->
           <div class="sec" id="am-includes">
             <div class="sec-label">Method 9</div>
             <h2><code>includes()</code></h2>
@@ -821,19 +821,19 @@ console.log(idx);                              // 3</code></pre>
                   >Is pizza on the menu?</strong
                 >" The answer is simply <strong>Yes</strong> (<code>true</code>)
                 or <strong>No</strong> (<code>false</code>). You don't care
-                WHERE it is on the menu — you just want to know if it exists.
+                WHERE it is on the menu  --  you just want to know if it exists.
                 That's <code>includes()</code>.
               </p>
             </div>
             <p>
               Checks if a specific item <strong>exists</strong> in the array.
-              Gives you a simple yes/no answer — <code>true</code> or
+              Gives you a simple yes/no answer  --  <code>true</code> or
               <code>false</code>. No position number, just existence.
             </p>
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">9</div>
-                <div class="card-title">includes() — existence check</div>
+                <div class="card-title">includes()  --  existence check</div>
                 <span class="card-badge">Returns boolean</span>
               </div>
               <div class="card-body">
@@ -844,14 +844,14 @@ let isBananaExist = fruits.includes("banana");
 console.log("Has banana?", isBananaExist);  // true</code></pre>
               </div>
             </div>
-            <h3>indexOf vs includes — when to use which</h3>
+            <h3>indexOf vs includes  --  when to use which</h3>
             <div class="bordered">
               <table>
                 <thead>
                   <tr>
                     <th>Method</th>
                     <th>Returns</th>
-                    <th>Use when…</th>
+                    <th>Use when...</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -870,7 +870,7 @@ console.log("Has banana?", isBananaExist);  // true</code></pre>
             </div>
           </div>
 
-          <!-- ”” TOSTRING ”” -->
+          <!-- "" TOSTRING "" -->
           <div class="sec" id="am-tostring">
             <div class="sec-label">Method 10</div>
             <h2><code>toString()</code></h2>
@@ -878,22 +878,22 @@ console.log("Has banana?", isBananaExist);  // true</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Like reading out your
-                <strong>grocery list to someone on the phone</strong> — instead
+                <strong>grocery list to someone on the phone</strong>  --  instead
                 of handing them the paper list (array), you say the items as one
                 sentence separated by commas: "milk, bread, eggs." That's
-                <code>toString()</code> — it turns your list into a single text
+                <code>toString()</code>  --  it turns your list into a single text
                 string.
               </p>
             </div>
             <p>
               Converts your array into a single
               <strong>text string</strong> with commas between each item. The
-              original array stays as-is — you just get a text version.
+              original array stays as-is  --  you just get a text version.
             </p>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">10</div>
-                <div class="card-title">toString() — array to string</div>
+                <div class="card-title">toString()  --  array to string</div>
                 <span class="card-badge">Returns string</span>
               </div>
               <div class="card-body">
@@ -903,7 +903,7 @@ let numbersStr = numbers.toString();
 console.log(numbers);     // [ 2, 3, 4, 5, 6, 7 ]   ← still an array
 console.log(numbersStr);  // "2,3,4,5,6,7"           ← string representation
 
-// Another example — character array
+// Another example  --  character array
 let myArray: string[] = ["W", "E", "L", "C", "O", "M", "E"];
 let strArray = myArray.toString();
 console.log(strArray);    // "W,E,L,C,O,M,E"</code></pre>
@@ -911,7 +911,7 @@ console.log(strArray);    // "W,E,L,C,O,M,E"</code></pre>
             </div>
           </div>
 
-          <!-- ”” COMPARISON TABLE ”” -->
+          <!-- "" COMPARISON TABLE "" -->
           <div class="sec" id="am-comparison">
             <div class="sec-label">Reference</div>
             <h2>All 10 methods at a glance</h2>
@@ -928,7 +928,7 @@ console.log(strArray);    // "W,E,L,C,O,M,E"</code></pre>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>—</td>
+                    <td> -- </td>
                     <td><code>length</code></td>
                     <td>Count of elements</td>
                     <td>No (attribute)</td>
@@ -1009,35 +1009,35 @@ console.log(strArray);    // "W,E,L,C,O,M,E"</code></pre>
             </div>
           </div>
 
-          <!-- ”” CHEATSHEET ”” -->
+          <!-- "" CHEATSHEET "" -->
           <div class="sec" id="am-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Quick reference cheatsheet</h2>
             <pre><code>let arr = [1, 2, 3, 4, 5];
 
-// ”” Add / Remove ””””””””””””””””””””””””””””””””””””””””””””””
-arr.push(6, 7);                  // [1,2,3,4,5,6,7]   — add to end
-arr.pop();                       // [1,2,3,4,5,6]     — remove last
-arr.shift();                     // [2,3,4,5,6]       — remove first
-arr.unshift(0, 1);               // [0,1,2,3,4,5,6]   — add to start
+// "" Add / Remove """"""""""""""""""""""""""""""""""""""""""""""
+arr.push(6, 7);                  // [1,2,3,4,5,6,7]    --  add to end
+arr.pop();                       // [1,2,3,4,5,6]      --  remove last
+arr.shift();                     // [2,3,4,5,6]        --  remove first
+arr.unshift(0, 1);               // [0,1,2,3,4,5,6]    --  add to start
 
-// ”” Combine / Extract ”””””””””””””””””””””””””””””””””””””””””
+// "" Combine / Extract """""""""""""""""""""""""""""""""""""""""
 let combined = arr.concat([7,8], [9]);   // new merged array
 let subset   = arr.slice(1, 4);          // elements at index 1, 2, 3
 arr.splice(2, 1);                        // delete 1 element at index 2
 arr.splice(2, 0, 99);                    // insert 99 at index 2
 arr.splice(2, 2, 10, 20);               // replace 2 elements with 10, 20
 
-// ”” Search ”””””””””””””””””””””””””””””””””””””””””””””””””””
+// "" Search """""""""""""""""""""""""""""""""""""""""""""""""""
 arr.indexOf(3);                  // returns index, or -1 if not found
 arr.indexOf(3, 2);               // search starting from index 2
 arr.includes(3);                 // true / false
 arr.includes(3, 2);              // search starting from index 2
 
-// ”” Convert ””””””””””””””””””””””””””””””””””””””””””””””””””
+// "" Convert """"""""""""""""""""""""""""""""""""""""""""""""""
 let str = arr.toString();        // "0,1,2,3,4,5,6"</code></pre>
 
-            <h3>Coming next — higher-order methods</h3>
+            <h3>Coming next  --  higher-order methods</h3>
             <div class="agrid">
               <div class="acard">
                 <div class="aschema">Next session</div>

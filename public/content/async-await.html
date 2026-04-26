@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Async/Await & Promises — TypeScript Learning Path</title>
+    <title>Async/Await & Promises  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript async programming — callbacks, promises, async/await, error handling with try-catch, Promise.all, Promise.race, and real-world API patterns."
+      content="Learn TypeScript async programming  --  callbacks, promises, async/await, error handling with try-catch, Promise.all, Promise.race, and real-world API patterns."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -62,8 +62,8 @@
             </div>
             <h1>Async/Await <span>&amp; Promises</span></h1>
             <p>
-              Handle asynchronous operations — API calls, file reads, and timers
-              — with promises and the modern async/await syntax.
+              Handle asynchronous operations  --  API calls, file reads, and timers
+               --  with promises and the modern async/await syntax.
             </p>
             <div class="hero-stats">
               <div class="stat">
@@ -97,13 +97,13 @@
               </p>
             </div>
 
-            <pre><code>// Synchronous — each line waits for the previous one
+            <pre><code>// Synchronous  --  each line waits for the previous one
 console.log("Step 1");  // runs first
 console.log("Step 2");  // runs second
 console.log("Step 3");  // runs third
 // Output: Step 1, Step 2, Step 3 (in order)
 
-// Asynchronous — some tasks run "in the background"
+// Asynchronous  --  some tasks run "in the background"
 console.log("Step 1");
 setTimeout(() => console.log("Step 2 (delayed)"), 2000);
 console.log("Step 3");
@@ -125,7 +125,7 @@ console.log("Step 3");
                   </tr>
                   <tr>
                     <td>Blocks until each line completes</td>
-                    <td>Doesn't block — continues executing</td>
+                    <td>Doesn't block  --  continues executing</td>
                   </tr>
                   <tr>
                     <td>Simple but slow for I/O</td>
@@ -143,7 +143,7 @@ console.log("Step 3");
           <!-- CALLBACKS -->
           <div class="sec" id="as-callback">
             <div class="sec-label">Old Way</div>
-            <h2>Callbacks — The Original Approach</h2>
+            <h2>Callbacks  --  The Original Approach</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -153,7 +153,7 @@ console.log("Step 3");
               </p>
             </div>
 
-            <pre><code>// Callback pattern — pass a function to call when done
+            <pre><code>// Callback pattern  --  pass a function to call when done
 function fetchUser(id: number, callback: (user: string) => void): void {
   setTimeout(() => {
     callback(`User_${id}`);  // "call back" with the result
@@ -164,7 +164,7 @@ fetchUser(1, (user) => {
   console.log(`Got: ${user}`);  // "Got: User_1" (after 1 second)
 });</code></pre>
 
-            <pre><code>// ❌ Callback Hell — nested callbacks become unreadable!
+            <pre><code>// ❌ Callback Hell  --  nested callbacks become unreadable!
 fetchUser(1, (user) => {
   fetchOrders(user, (orders) => {
     fetchDetails(orders[0], (details) => {
@@ -219,7 +219,7 @@ fetchUser(1, (user) => {
                   <tr>
                     <td><strong>Pending</strong></td>
                     <td>Operation still in progress</td>
-                    <td>—</td>
+                    <td> -- </td>
                   </tr>
                   <tr>
                     <td><strong>Fulfilled</strong></td>
@@ -284,7 +284,7 @@ fetchUser(1)
           <!-- CHAINING -->
           <div class="sec" id="as-chain">
             <div class="sec-label">Chaining</div>
-            <h2>Chaining <code>.then()</code> — Sequential Steps</h2>
+            <h2>Chaining <code>.then()</code>  --  Sequential Steps</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -318,7 +318,7 @@ fetchUser(1)
           <!-- ASYNC/AWAIT -->
           <div class="sec" id="as-await">
             <div class="sec-label">Modern Syntax</div>
-            <h2><code>async</code> / <code>await</code> — Cleaner Promises</h2>
+            <h2><code>async</code> / <code>await</code>  --  Cleaner Promises</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -361,13 +361,13 @@ async function processUserOrder(): Promise&lt;void&gt; {
                   <tr>
                     <td><code>async</code></td>
                     <td>
-                      Put before <code>function</code> keyword — function now
+                      Put before <code>function</code> keyword  --  function now
                       returns a Promise
                     </td>
                   </tr>
                   <tr>
                     <td><code>await</code></td>
-                    <td>Put before a Promise — pauses until it resolves</td>
+                    <td>Put before a Promise  --  pauses until it resolves</td>
                   </tr>
                   <tr>
                     <td><code>await</code> location</td>
@@ -422,7 +422,7 @@ async function main(): Promise&lt;void&gt; {
     // Catches ANY error from the try block
     console.log(`Failed: ${error}`);
   } finally {
-    // Runs ALWAYS — success or failure
+    // Runs ALWAYS  --  success or failure
     console.log("Loading complete");
   }
 }
@@ -446,7 +446,7 @@ loadUserData(-1);  // Error path → catch block runs</code></pre>
           <!-- PROMISE.ALL -->
           <div class="sec" id="as-all">
             <div class="sec-label">Utility</div>
-            <h2><code>Promise.all()</code> — Run in Parallel</h2>
+            <h2><code>Promise.all()</code>  --  Run in Parallel</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -484,17 +484,17 @@ loadUserData(-1);  // Error path → catch block runs</code></pre>
           <!-- PROMISE.RACE -->
           <div class="sec" id="as-race">
             <div class="sec-label">Utility</div>
-            <h2><code>Promise.race()</code> — First One Wins</h2>
+            <h2><code>Promise.race()</code>  --  First One Wins</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
                 <strong>100m sprint</strong>. Multiple runners start together.
-                Whoever finishes FIRST wins — the rest don't matter.
+                Whoever finishes FIRST wins  --  the rest don't matter.
               </p>
             </div>
 
-            <pre><code>// Timeout pattern — cancel if too slow
+            <pre><code>// Timeout pattern  --  cancel if too slow
 function timeout(ms: number): Promise&lt;never&gt; {
   return new Promise((_, reject) =>
     setTimeout(() => reject("Timeout!"), ms)
@@ -592,7 +592,7 @@ async function main() {
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Automation — Wait for Element</div>
+                <div class="card-title">Automation  --  Wait for Element</div>
                 <span class="card-badge">Testing</span>
               </div>
               <div class="card-body">
@@ -660,7 +660,7 @@ finally { cleanup(); }</code></pre>
 // ✅ Always wrap await in try/catch for error handling
 // ✅ Promise.all = parallel execution (faster!)
 // ✅ Promise.race = first one wins (timeout patterns)
-// ❌ Don't forget error handling — unhandled rejections crash apps</code></pre>
+// ❌ Don't forget error handling  --  unhandled rejections crash apps</code></pre>
 
             <hr />
             <p

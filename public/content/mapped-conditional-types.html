@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Mapped &amp; Conditional Types — TypeScript Learning Path</title>
+    <title>Mapped &amp; Conditional Types  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Build custom utility types — mapped types with keyof, conditional types with extends, infer keyword, and real-world type transformations."
+      content="Build custom utility types  --  mapped types with keyof, conditional types with extends, infer keyword, and real-world type transformations."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -56,7 +56,7 @@
             </div>
             <h1>Mapped &amp; Conditional Types</h1>
             <p>
-              The type system's power tools — build your own Partial, Required,
+              The type system's power tools  --  build your own Partial, Required,
               and any custom transformation. This is how utility types work
               under the hood.
             </p>
@@ -86,7 +86,7 @@
                 <strong>Real-Life:</strong> Like a
                 <strong>photocopier with settings</strong> 🖨. You feed in a
                 document (type), and the copier creates a new version where
-                every page (property) is modified the same way — make all pages
+                every page (property) is modified the same way  --  make all pages
                 read-only, all pages optional, etc.
               </p>
             </div>
@@ -143,20 +143,20 @@ type NullableUser = Nullable&lt;User&gt;;
                 <span class="card-badge">Under the Hood</span>
               </div>
               <div class="card-body">
-                <pre><code>// Partial — add ? to every property
+                <pre><code>// Partial  --  add ? to every property
 type Partial&lt;T&gt; = { [K in keyof T]?: T[K] };
 
-// Required — remove ? from every property
+// Required  --  remove ? from every property
 type Required&lt;T&gt; = { [K in keyof T]-?: T[K] };
 //                                    ^^ -? removes optional
 
-// Readonly — add readonly to every property
+// Readonly  --  add readonly to every property
 type Readonly&lt;T&gt; = { readonly [K in keyof T]: T[K] };
 
-// Pick — keep only listed keys
+// Pick  --  keep only listed keys
 type Pick&lt;T, K extends keyof T&gt; = { [P in K]: T[P] };
 
-// Record — create from key type and value type
+// Record  --  create from key type and value type
 type Record&lt;K extends string, V&gt; = { [P in K]: V };
 
 // All utility types are just mapped types! 🤯</code></pre>
@@ -326,16 +326,16 @@ type X = Exclude&lt;"a" | "b" | "c", "a"&gt;;
           <div class="sec" id="mc-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Cheatsheet</h2>
-            <pre><code>// MAPPED — transform all properties
+            <pre><code>// MAPPED  --  transform all properties
 { [K in keyof T]: NewType }        // loop over keys
 { [K in keyof T]?: T[K] }         // add optional (Partial)
 { readonly [K in keyof T]: T[K] }  // add readonly
 { [K in keyof T]-?: T[K] }        // remove optional (Required)
 
-// CONDITIONAL — if/else for types
+// CONDITIONAL  --  if/else for types
 T extends U ? X : Y
 
-// INFER — extract inner type
+// INFER  --  extract inner type
 T extends Array&lt;infer E&gt; ? E : never    // array element
 T extends (...args: any[]) => infer R ? R : never  // return type
 T extends Promise&lt;infer V&gt; ? V : T      // unwrap promise</code></pre>

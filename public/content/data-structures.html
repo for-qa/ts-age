@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Data Structures — TypeScript Learning Path</title>
+    <title>Data Structures  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Data structures in TypeScript — Stack, Queue, LinkedList, Map, Set, Big-O basics, and when to use which structure."
+      content="Data structures in TypeScript  --  Stack, Queue, LinkedList, Map, Set, Big-O basics, and when to use which structure."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -59,7 +59,7 @@
             <p>
               The final topic! Choosing the right data structure is what
               separates juniors from seniors. Know when to use Stack, Queue,
-              Map, or Set — and WHY.
+              Map, or Set  --  and WHY.
             </p>
             <div class="hero-stats">
               <div class="stat">
@@ -80,7 +80,7 @@
           <div class="note note-tip" style="margin: 0 0 2rem">
             <span class="note-i">✓</span>
             <p>
-              <strong>🧠 Memory Trick — Remember All 5
+              <strong>🧠 Memory Trick  --  Remember All 5
               Structures:</strong><br /><br />
               "<strong>S</strong>imple <strong>Q</strong>ueries <strong>L</strong>oad <strong>M</strong>uch <strong>S</strong>lower"<br />
               → <strong>S</strong>tack, <strong>Q</strong>ueue,
@@ -92,7 +92,7 @@
           <!-- STACK -->
           <div class="sec" id="ds-stack">
             <div class="sec-label">Structures</div>
-            <h2>Stack — Last In, First Out (LIFO)</h2>
+            <h2>Stack  --  Last In, First Out (LIFO)</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -104,7 +104,7 @@
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">1</div>
-                <div class="card-title">push() and pop() — that's it!</div>
+                <div class="card-title">push() and pop()  --  that's it!</div>
                 <span class="card-badge">Stack</span>
               </div>
               <div class="card-body">
@@ -122,8 +122,8 @@ const stack = new Stack&lt;number&gt;();
 stack.push(1);  // [1]
 stack.push(2);  // [1, 2]
 stack.push(3);  // [1, 2, 3]
-stack.pop();    // 3 — last in, first out!
-stack.peek();   // 2 — look without removing
+stack.pop();    // 3  --  last in, first out!
+stack.peek();   // 2  --  look without removing
 
 // Real uses: undo/redo, browser back button,
 // function call stack, expression parsing</code></pre>
@@ -134,7 +134,7 @@ stack.peek();   // 2 — look without removing
           <!-- QUEUE -->
           <div class="sec" id="ds-queue">
             <div class="sec-label">Structures</div>
-            <h2>Queue — First In, First Out (FIFO)</h2>
+            <h2>Queue  --  First In, First Out (FIFO)</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -171,7 +171,7 @@ const q = new Queue&lt;string&gt;();
 q.enqueue("Alice");  // [Alice]
 q.enqueue("Bob");    // [Alice, Bob]
 q.enqueue("Charlie");// [Alice, Bob, Charlie]
-q.dequeue();         // "Alice" — first in, first out!
+q.dequeue();         // "Alice"  --  first in, first out!
 
 // ⚠ Why not use array.shift()? It's O(n)! See mistakes section.
 // Real uses: task queues, print queue, BFS, message queues</code></pre>
@@ -188,7 +188,7 @@ q.dequeue();         // "Alice" — first in, first out!
               <p>
                 <strong>Real-Life:</strong> Like a
                 <strong>treasure hunt</strong> 🗺. Each clue tells you where the
-                next clue is. You can only follow the chain — no jumping to the
+                next clue is. You can only follow the chain  --  no jumping to the
                 middle.
               </p>
             </div>
@@ -242,7 +242,7 @@ console.log(list.toArray());  // [0, 1, 2]
           <!-- MAP -->
           <div class="sec" id="ds-map">
             <div class="sec-label">Structures</div>
-            <h2>Map — Key-Value Pairs</h2>
+            <h2>Map  --  Key-Value Pairs</h2>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">4</div>
@@ -252,7 +252,7 @@ console.log(list.toArray());  // [0, 1, 2]
                 <span class="card-badge">Map</span>
               </div>
               <div class="card-body">
-                <pre><code>// Map vs Object — Map is better for dynamic key-value storage
+                <pre><code>// Map vs Object  --  Map is better for dynamic key-value storage
 const userCache = new Map&lt;number, string&gt;();
 
 userCache.set(1, "Alice");
@@ -284,7 +284,7 @@ const map = new Map(Object.entries(obj));</code></pre>
           <!-- SET -->
           <div class="sec" id="ds-set">
             <div class="sec-label">Structures</div>
-            <h2>Set — Unique Values Only</h2>
+            <h2>Set  --  Unique Values Only</h2>
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">5</div>
@@ -295,7 +295,7 @@ const map = new Map(Object.entries(obj));</code></pre>
                 <pre><code>const tags = new Set&lt;string&gt;();
 tags.add("typescript");
 tags.add("javascript");
-tags.add("typescript");  // ignored — already exists!
+tags.add("typescript");  // ignored  --  already exists!
 console.log(tags.size);  // 2
 
 tags.has("typescript");  // true
@@ -436,12 +436,12 @@ const diff = new Set([...a].filter(x => !b.has(x)));        // {1}</code></pre>
                   <tr>
                     <td>Undo/redo, backtracking</td>
                     <td><span class="p p-green">Stack</span></td>
-                    <td>LIFO — last action first</td>
+                    <td>LIFO  --  last action first</td>
                   </tr>
                   <tr>
                     <td>Task queue, BFS</td>
                     <td><span class="p p-amber">Queue</span></td>
-                    <td>FIFO — fair ordering</td>
+                    <td>FIFO  --  fair ordering</td>
                   </tr>
                   <tr>
                     <td>Frequent insert at start</td>
@@ -476,12 +476,12 @@ const diff = new Set([...a].filter(x => !b.has(x)));        // {1}</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 1: Using array.shift() as a queue — it's
+                  >Mistake 1: Using array.shift() as a queue  --  it's
                   O(n)!</strong
                 >
                 <pre><code>// ❌ shift() re-indexes the ENTIRE array!
 const q = [1, 2, 3, 4, 5];
-q.shift();  // O(n) — moves every element left
+q.shift();  // O(n)  --  moves every element left
 
 // ✅ Use a Map-based queue (see Queue class above)
 // or a linked list for O(1) dequeue</code></pre>
@@ -521,16 +521,16 @@ seen2.add(item);  // auto-deduplicates, O(1)</code></pre>
           <div class="sec" id="ds-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Cheatsheet</h2>
-            <pre><code>// STACK (LIFO) — push/pop
+            <pre><code>// STACK (LIFO)  --  push/pop
 stack.push(x);  stack.pop();  stack.peek();
 
-// QUEUE (FIFO) — enqueue/dequeue
+// QUEUE (FIFO)  --  enqueue/dequeue
 q.enqueue(x);  q.dequeue();  q.peek();
 
-// MAP — key-value (any key type)
+// MAP  --  key-value (any key type)
 map.set(k, v);  map.get(k);  map.has(k);  map.delete(k);
 
-// SET — unique values
+// SET  --  unique values
 set.add(v);  set.has(v);  set.delete(v);  [...new Set(arr)];
 
 // BIG-O: O(1) best → O(log n) → O(n) → O(n²) worst

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Generics — TypeScript Learning Path</title>
+    <title>Generics  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript generics — generic functions, generic interfaces, generic classes, constraints with extends, default types, and real-world utility patterns."
+      content="Learn TypeScript generics  --  generic functions, generic interfaces, generic classes, constraints with extends, default types, and real-world utility patterns."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -61,7 +61,7 @@
             <h1>Generics</h1>
             <p>
               Write flexible, reusable code that works with ANY type while
-              keeping type safety — the most powerful feature of TypeScript.
+              keeping type safety  --  the most powerful feature of TypeScript.
             </p>
             <div class="hero-stats">
               <div class="stat">
@@ -87,7 +87,7 @@
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Generics are like a
-                <strong>gift box</strong>. The box doesn't care what's inside —
+                <strong>gift box</strong>. The box doesn't care what's inside  -- 
                 it could hold a book, a phone, or shoes. The box design
                 (function) stays the same, but the content (type) changes
                 depending on what you put in. The box adapts to whatever you
@@ -103,15 +103,15 @@
               <code>&lt;T&gt;</code>.
             </p>
 
-            <pre><code>// ❌ Without generics — need separate functions for each type
+            <pre><code>// ❌ Without generics  --  need separate functions for each type
 function identityString(value: string): string { return value; }
 function identityNumber(value: number): number { return value; }
 
-// ❌ Using 'any' — loses type safety
+// ❌ Using 'any'  --  loses type safety
 function identityAny(value: any): any { return value; }
-let result = identityAny("hello");  // result is 'any' — no autocomplete!
+let result = identityAny("hello");  // result is 'any'  --  no autocomplete!
 
-// ✅ With generics — ONE function, works with ALL types, keeps safety
+// ✅ With generics  --  ONE function, works with ALL types, keeps safety
 function identity&lt;T&gt;(value: T): T { return value; }
 
 let a = identity&lt;string&gt;("hello");  // a is string ✅
@@ -132,7 +132,7 @@ let c = identity("auto");           // c is string (type inferred!) ✅</code></
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Generic Letter
+                <strong>🧠 Memory Trick  --  Generic Letter
                 Conventions:</strong><br /><br />
                 "<strong>T</strong>ypes <strong>K</strong>eep
                 <strong>V</strong>alues
@@ -148,7 +148,7 @@ let c = identity("auto");           // c is string (type inferred!) ✅</code></
           <!-- GENERIC FUNCTIONS -->
           <div class="sec" id="gn-func">
             <div class="sec-label">Functions</div>
-            <h2>Generic Functions — Flexible Parameters</h2>
+            <h2>Generic Functions  --  Flexible Parameters</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -192,7 +192,7 @@ console.log(wrapInArray("hello"));  // ["hello"]</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>shipping label</strong> with two fields — "From" (one
+                <strong>shipping label</strong> with two fields  --  "From" (one
                 type) and "To" (another type). Both are flexible but independent
                 of each other.
               </p>
@@ -228,12 +228,12 @@ console.log(entry);  // { key: "name", value: "John" }</code></pre>
                 <strong>Real-Life Example:</strong> Like a
                 <strong>standardized report template</strong>. The format is
                 always the same (title, date, data), but the "data" section can
-                hold anything — sales numbers, student marks, inventory counts.
+                hold anything  --  sales numbers, student marks, inventory counts.
                 The template adapts to the data type.
               </p>
             </div>
 
-            <pre><code>// Generic interface — T can be anything
+            <pre><code>// Generic interface  --  T can be anything
 interface ApiResponse&lt;T&gt; {
   status: number;
   message: string;
@@ -266,7 +266,7 @@ console.log(listResponse.data[0]);    // "Alice"</code></pre>
               <p>
                 <strong>Real-Life Example:</strong> Like a
                 <strong>storage locker</strong>. The locker design is the same,
-                but you decide what goes inside — clothes, tools, books. A
+                but you decide what goes inside  --  clothes, tools, books. A
                 generic class is a reusable container that adapts to whatever
                 type you store in it.
               </p>
@@ -321,7 +321,7 @@ console.log(numStack.peek());  // 10</code></pre>
           <div class="sec" id="gn-constraint">
             <div class="sec-label">Advanced</div>
             <h2>
-              Constraints — Limiting <code>T</code> with <code>extends</code>
+              Constraints  --  Limiting <code>T</code> with <code>extends</code>
             </h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
@@ -334,17 +334,17 @@ console.log(numStack.peek());  // 10</code></pre>
             </div>
 
             <p>
-              Sometimes <code>T</code> can be "too flexible" — you need to
+              Sometimes <code>T</code> can be "too flexible"  --  you need to
               guarantee it has certain properties. Use <code>extends</code> to
               add constraints.
             </p>
 
-            <pre><code>// ❌ Problem — T could be anything (no .length guarantee)
+            <pre><code>// ❌ Problem  --  T could be anything (no .length guarantee)
 function logLength&lt;T&gt;(item: T): void {
   console.log(item.length);  // ERROR: Property 'length' doesn't exist on type T
 }
 
-// ✅ Solution — constrain T to types that have 'length'
+// ✅ Solution  --  constrain T to types that have 'length'
 interface HasLength {
   length: number;
 }
@@ -358,14 +358,14 @@ logLength([1, 2, 3]);    // 3 ✅ (arrays have .length)
 logLength({ length: 7 }); // 7 ✅ (object with .length)
 logLength(42);           // ❌ ERROR (numbers don't have .length)</code></pre>
 
-            <pre><code>// Constraint with keyof — ensure key exists in object
+            <pre><code>// Constraint with keyof  --  ensure key exists in object
 function getProperty&lt;T, K extends keyof T&gt;(obj: T, key: K): T[K] {
   return obj[key];
 }
 
 let person = { name: "Alice", age: 30 };
 console.log(getProperty(person, "name"));  // "Alice" ✅
-console.log(getProperty(person, "email")); // ❌ ERROR — "email" not in person</code></pre>
+console.log(getProperty(person, "email")); // ❌ ERROR  --  "email" not in person</code></pre>
           </div>
 
           <!-- DEFAULT TYPES -->
@@ -386,8 +386,8 @@ function createArray&lt;T = number&gt;(length: number, value: T): T[] {
   return Array(length).fill(value);
 }
 
-console.log(createArray(3, 0));        // [0, 0, 0]  — T = number (default)
-console.log(createArray(3, "hi"));     // ["hi", "hi", "hi"] — T = string</code></pre>
+console.log(createArray(3, 0));        // [0, 0, 0]   --  T = number (default)
+console.log(createArray(3, "hi"));     // ["hi", "hi", "hi"]  --  T = string</code></pre>
           </div>
 
           <!-- BUILT-IN GENERICS -->
@@ -455,18 +455,18 @@ console.log(createArray(3, "hi"));     // ["hi", "hi", "hi"] — T = string</cod
 
             <pre><code>type User = { name: string; age: number; email: string };
 
-// Partial — all fields optional
+// Partial  --  all fields optional
 let update: Partial&lt;User&gt; = { name: "Bob" };  // ✅ age & email optional
 
-// Pick — select specific fields
+// Pick  --  select specific fields
 type NameOnly = Pick&lt;User, "name"&gt;;
 let n: NameOnly = { name: "Alice" };
 
-// Omit — exclude specific fields
+// Omit  --  exclude specific fields
 type NoEmail = Omit&lt;User, "email"&gt;;
 let u: NoEmail = { name: "Alice", age: 30 };
 
-// Record — key-value map
+// Record  --  key-value map
 let scores: Record&lt;string, number&gt; = {
   math: 95,
   science: 88
@@ -497,7 +497,7 @@ async function fetchData&lt;T&gt;(url: string): Promise&lt;ApiResponse&lt;T&gt;&
   return { success: true, data };
 }
 
-// Usage — TS knows the exact shape of data!
+// Usage  --  TS knows the exact shape of data!
 type User = { name: string; age: number };
 const result = await fetchData&lt;User&gt;("/api/user/1");
 console.log(result.data.name);  // ✅ autocomplete works!</code></pre>
@@ -512,7 +512,7 @@ console.log(result.data.name);  // ✅ autocomplete works!</code></pre>
               </div>
               <div class="card-body">
                 <pre><code>function createTestData&lt;T&gt;(defaults: T, overrides: Partial&lt;T&gt;): T {
-  // "..." copies all properties from one object into another — covered fully in Topic 24 (Spread &amp; Rest)
+  // "..." copies all properties from one object into another  --  covered fully in Topic 24 (Spread &amp; Rest)
   return { ...defaults, ...overrides };
 }
 
@@ -560,7 +560,7 @@ function get&lt;T, K extends keyof T&gt;(obj: T, key: K) { }</code></pre>
 // ✅ Use constraints (extends) to limit what T can be
 // ✅ Default types: &lt;T = string&gt; if no type provided
 // ✅ Built-in utilities: Partial, Required, Pick, Omit, Record
-// ❌ Don't use 'any' — use generics for type-safe flexibility</code></pre>
+// ❌ Don't use 'any'  --  use generics for type-safe flexibility</code></pre>
 
             <hr />
             <p

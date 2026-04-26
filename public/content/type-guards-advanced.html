@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Advanced Type Guards — TypeScript Learning Path</title>
+    <title>Advanced Type Guards  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Master advanced type guards — custom is predicates, discriminated unions, exhaustive never checks, assertion functions, and real-world API patterns."
+      content="Master advanced type guards  --  custom is predicates, discriminated unions, exhaustive never checks, assertion functions, and real-world API patterns."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -57,7 +57,7 @@
             </div>
             <h1>Advanced Type Guards</h1>
             <p>
-              Go beyond typeof and instanceof — custom predicates, discriminated
+              Go beyond typeof and instanceof  --  custom predicates, discriminated
               unions, exhaustive checks, and assertion functions for bulletproof
               type safety.
             </p>
@@ -85,12 +85,12 @@
               <div class="card-head">
                 <div class="card-num">0</div>
                 <div class="card-title">
-                  Quick recap — typeof, instanceof, in
+                  Quick recap  --  typeof, instanceof, in
                 </div>
                 <span class="card-badge">Recap</span>
               </div>
               <div class="card-body">
-                <pre><code>// typeof — for primitives
+                <pre><code>// typeof  --  for primitives
 function process(value: string | number) {
   if (typeof value === "string") {
     console.log(value.toUpperCase());  // TS knows it's string
@@ -99,14 +99,14 @@ function process(value: string | number) {
   }
 }
 
-// instanceof — for classes
+// instanceof  --  for classes
 function handleError(err: Error | TypeError) {
   if (err instanceof TypeError) {
     console.log("Type error:", err.message);
   }
 }
 
-// in — check if property exists
+// in  --  check if property exists
 interface Dog { bark(): void; }
 interface Cat { meow(): void; }
 function speak(pet: Dog | Cat) {
@@ -149,7 +149,7 @@ function speak(pet: Dog | Cat) {
   email: string;
 }
 
-// Custom type guard — returns "value is User"
+// Custom type guard  --  returns "value is User"
 function isUser(value: unknown): value is User {
   return (
     typeof value === "object" &&
@@ -176,7 +176,7 @@ function processData(data: unknown) {
 // Works great with filter:
 const mixed: unknown[] = [{ name: "A", age: 1, email: "a@b" }, "not user", 42];
 const users = mixed.filter(isUser);
-// users is User[] — TypeScript knows! ✅</code></pre>
+// users is User[]  --  TypeScript knows! ✅</code></pre>
               </div>
             </div>
           </div>
@@ -203,9 +203,9 @@ const users = mixed.filter(isUser);
                 <span class="card-badge">Discriminant</span>
               </div>
               <div class="card-body">
-                <pre><code>// Each shape has a 'kind' property — the discriminant
+                <pre><code>// Each shape has a 'kind' property  --  the discriminant
 interface Circle {
-  kind: "circle";     // literal type — the label!
+  kind: "circle";     // literal type  --  the label!
   radius: number;
 }
 interface Rectangle {
@@ -292,7 +292,7 @@ function area(shape: Shape): number {
               <div class="card-head">
                 <div class="card-num">4</div>
                 <div class="card-title">
-                  Throw if wrong type — narrow if correct
+                  Throw if wrong type  --  narrow if correct
                 </div>
                 <span class="card-badge">asserts</span>
               </div>
@@ -409,7 +409,7 @@ function isObj2(val: unknown): val is object {
                   >Mistake 2: Missing return/break in discriminated
                   switch</strong
                 >
-                <pre><code>// ❌ Forgot return — falls through!
+                <pre><code>// ❌ Forgot return  --  falls through!
 function area(s: Shape): number {
   switch (s.kind) {
     case "circle":
@@ -428,7 +428,7 @@ function area(s: Shape): number {
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 3: No default/never case — new types go
+                  >Mistake 3: No default/never case  --  new types go
                   unchecked</strong
                 >
                 <pre><code>// ❌ If you add "pentagon" to Shape, no error!
@@ -477,7 +477,7 @@ default: return assertNever(shape);
           <!-- COMPARISON TABLE -->
           <div class="sec" id="tg-compare">
             <div class="sec-label">Reference</div>
-            <h2>All Guard Types — Comparison</h2>
+            <h2>All Guard Types  --  Comparison</h2>
             <div class="bordered">
               <table>
                 <thead>
@@ -532,18 +532,18 @@ default: return assertNever(shape);
           <div class="sec" id="tg-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Cheatsheet</h2>
-            <pre><code>// CUSTOM GUARD — returns boolean, narrows type
+            <pre><code>// CUSTOM GUARD  --  returns boolean, narrows type
 function isX(val: unknown): val is X { return check; }
 
-// DISCRIMINATED UNION — tagged with literal type
+// DISCRIMINATED UNION  --  tagged with literal type
 type Result = { status: "ok"; data: T } | { status: "err"; msg: string }
 switch (result.status) { case "ok": ... case "err": ... }
 
-// EXHAUSTIVE CHECK — catch missing cases
+// EXHAUSTIVE CHECK  --  catch missing cases
 function assertNever(x: never): never { throw new Error(); }
 default: return assertNever(value);
 
-// ASSERTION — throw or narrow
+// ASSERTION  --  throw or narrow
 function assert(val: unknown): asserts val is string {
   if (typeof val !== "string") throw new Error();
 }</code></pre>

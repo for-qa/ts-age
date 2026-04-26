@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Data Types — TypeScript Learning Path</title>
+    <title>Data Types  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript data types — number, string, boolean, null, undefined, any, union, void. Understand type annotation vs type inference with real-life examples."
+      content="Learn TypeScript data types  --  number, string, boolean, null, undefined, any, union, void. Understand type annotation vs type inference with real-life examples."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -70,10 +70,10 @@
             <h1>Data <span>Types</span></h1>
             <p>
               What kind of data can a variable hold? This session covers
-              TypeScript's full type system — true primitive types (number,
+              TypeScript's full type system  --  true primitive types (number,
               string, boolean, null, undefined, symbol, bigint), TS-only special
               types (any, unknown, never, union, void), and an overview of
-              non-primitive types — plus type annotation vs type inference.
+              non-primitive types  --  plus type annotation vs type inference.
             </p>
             <div class="hero-stats">
               <div class="stat">
@@ -107,11 +107,11 @@
                 <strong>Real-Life Example:</strong> Imagine two types of
                 containers:<br />
                 ✓ <strong>JavaScript (Dynamic)</strong> = A
-                <strong>magic box</strong> — you put apples in it today, shoes
+                <strong>magic box</strong>  --  you put apples in it today, shoes
                 tomorrow, water next week. The box doesn't care what's inside.
                 It changes shape to fit anything.<br />
                 ✓ <strong>TypeScript (Static)</strong> = A
-                <strong>labeled drawer</strong> — it says "SOCKS ONLY" on the
+                <strong>labeled drawer</strong>  --  it says "SOCKS ONLY" on the
                 front. If you try to put a book in the sock drawer, it refuses.
                 Once labeled, only that type goes in.
               </p>
@@ -121,7 +121,7 @@
               <div class="card-head">
                 <div class="card-num">JS</div>
                 <div class="card-title">
-                  JavaScript — dynamically typed (anything goes!)
+                  JavaScript  --  dynamically typed (anything goes!)
                 </div>
                 <span class="card-badge">⚠ Flexible</span>
               </div>
@@ -132,7 +132,7 @@ age = true;          // ✅ No error! Now age is a boolean
 
 console.log(age);    // true
 // ✓ JavaScript doesn't complain. The type keeps changing.
-// This is "dynamic typing" — types are decided at RUNTIME.</code></pre>
+// This is "dynamic typing"  --  types are decided at RUNTIME.</code></pre>
               </div>
             </div>
 
@@ -140,17 +140,17 @@ console.log(age);    // true
               <div class="card-head">
                 <div class="card-num">TS</div>
                 <div class="card-title">
-                  TypeScript — statically typed (locked in!)
+                  TypeScript  --  statically typed (locked in!)
                 </div>
                 <span class="card-badge">✅ Safe</span>
               </div>
               <div class="card-body">
-                <pre><code>let age: number = 30;  // age is a number — locked!
+                <pre><code>let age: number = 30;  // age is a number  --  locked!
 age = "thirty";        // ❌ ERROR: Type 'string' is not assignable to type 'number'
 age = true;            // ❌ ERROR: Type 'boolean' is not assignable to type 'number'
 
 // ✓ TypeScript catches the mistake BEFORE your code runs.
-// This is "static typing" — types are decided at COMPILE TIME.</code></pre>
+// This is "static typing"  --  types are decided at COMPILE TIME.</code></pre>
               </div>
             </div>
 
@@ -181,8 +181,8 @@ age = true;            // ❌ ERROR: Type 'boolean' is not assignable to type 'n
                   </tr>
                   <tr>
                     <td>Catches type bugs?</td>
-                    <td>No — finds them at runtime</td>
-                    <td>Yes — catches them early</td>
+                    <td>No  --  finds them at runtime</td>
+                    <td>Yes  --  catches them early</td>
                   </tr>
                 </tbody>
               </table>
@@ -194,16 +194,16 @@ age = true;            // ❌ ERROR: Type 'boolean' is not assignable to type 'n
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-safety">
             <div class="sec-label">Concepts</div>
-            <h2>Type Safety — TypeScript's Superpower</h2>
+            <h2>Type Safety  --  TypeScript's Superpower</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Think of
                 <strong>type safety</strong> like a
                 <strong>blood type test</strong> before a transfusion. You can't
-                give Type A blood to a Type B patient — the hospital checks
+                give Type A blood to a Type B patient  --  the hospital checks
                 BEFORE the procedure. JavaScript is like a hospital with no
-                checks — it just gives whatever blood is available and hopes for
+                checks  --  it just gives whatever blood is available and hopes for
                 the best. TypeScript is the careful hospital that verifies
                 everything first.
               </p>
@@ -219,17 +219,17 @@ age = true;            // ❌ ERROR: Type 'boolean' is not assignable to type 'n
               <div class="card-head">
                 <div class="card-num">JS</div>
                 <div class="card-title">
-                  JavaScript — NOT type safe (silent bugs!)
+                  JavaScript  --  NOT type safe (silent bugs!)
                 </div>
                 <span class="card-badge">⚠ Risky</span>
               </div>
               <div class="card-body">
                 <pre><code>let result = "5" + 3;
-console.log(result);  // "53" — NOT 8!
+console.log(result);  // "53"  --  NOT 8!
 
 // ✓ "5" is a string, 3 is a number.
 // JavaScript silently CONCATENATES them instead of adding.
-// No error, no warning — just a wrong answer. This is a HIDDEN BUG.</code></pre>
+// No error, no warning  --  just a wrong answer. This is a HIDDEN BUG.</code></pre>
               </div>
             </div>
 
@@ -237,7 +237,7 @@ console.log(result);  // "53" — NOT 8!
               <div class="card-head">
                 <div class="card-num">TS</div>
                 <div class="card-title">
-                  TypeScript — type safe (catches bugs early!)
+                  TypeScript  --  type safe (catches bugs early!)
                 </div>
                 <span class="card-badge">✅ Protected</span>
               </div>
@@ -257,7 +257,7 @@ let result = num1 + num2;
               <p>
                 <strong>Interview Tip:</strong> Dynamic typing = NOT type safe
                 (JavaScript). Static typing = type safe (TypeScript). These two
-                features are connected — one implies the other.
+                features are connected  --  one implies the other.
               </p>
             </div>
           </div>
@@ -275,9 +275,9 @@ let result = num1 + num2;
                 ✓ <strong>Type</strong> = The LABEL on the drawer (number,
                 string, boolean).<br />
                 ✓ <strong>Annotation</strong> = YOU write the label yourself
-                with a marker — "This drawer is for socks."<br />
+                with a marker  --  "This drawer is for socks."<br />
                 ✓ <strong>Type Inference</strong> = The drawer READS what you
-                put inside and writes its OWN label — "Oh, you put socks in me?
+                put inside and writes its OWN label  --  "Oh, you put socks in me?
                 I must be a sock drawer!"
               </p>
             </div>
@@ -299,7 +299,7 @@ let result = num1 + num2;
                 <span class="atype at-kw">You Tell TypeScript</span>
                 <div class="adesc">
                   YOU explicitly write the type using a colon. Example:
-                  <code>let age: number = 30</code>. You're the boss — you
+                  <code>let age: number = 30</code>. You're the boss  --  you
                   decide the type.
                 </div>
               </div>
@@ -309,7 +309,7 @@ let result = num1 + num2;
                 <span class="atype at-fn">TypeScript Guesses</span>
                 <div class="adesc">
                   You DON'T write the type. TypeScript looks at the value and
-                  figures it out itself. Example: <code>let age = 30</code> — TS
+                  figures it out itself. Example: <code>let age = 30</code>  --  TS
                   knows it's a number.
                 </div>
               </div>
@@ -319,7 +319,7 @@ let result = num1 + num2;
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  Annotation — you specify the type explicitly
+                  Annotation  --  you specify the type explicitly
                 </div>
                 <span class="card-badge">You → TS</span>
               </div>
@@ -339,7 +339,7 @@ let active: boolean = true; // YOU said: "this is a boolean"
               <div class="card-head">
                 <div class="card-num">2</div>
                 <div class="card-title">
-                  Type Inference — TypeScript figures it out
+                  Type Inference  --  TypeScript figures it out
                 </div>
                 <span class="card-badge">TS → Auto</span>
               </div>
@@ -348,7 +348,7 @@ let active: boolean = true; // YOU said: "this is a boolean"
 let name = "John";  // TypeScript says: "John is text, so name = string"
 let active = true;  // TypeScript says: "true is boolean, so active = boolean"
 
-// No colon, no type written — TypeScript INFERS it from the value!
+// No colon, no type written  --  TypeScript INFERS it from the value!
 // Hover over the variable in VS Code to see what type TS assigned.</code></pre>
               </div>
             </div>
@@ -377,12 +377,12 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
                   </tr>
                   <tr>
                     <td>Colon used?</td>
-                    <td>Yes — <code>: type</code></td>
+                    <td>Yes  --  <code>: type</code></td>
                     <td>No colon needed</td>
                   </tr>
                   <tr>
                     <td>When to use?</td>
-                    <td>Recommended — clearer code</td>
+                    <td>Recommended  --  clearer code</td>
                     <td>Okay for simple, obvious cases</td>
                   </tr>
                 </tbody>
@@ -393,7 +393,7 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
               <span class="note-i">⚠</span>
               <p>
                 <strong>Interview Question:</strong> "What is the difference
-                between annotation and type inference?" — Annotation = you
+                between annotation and type inference?"  --  Annotation = you
                 EXPLICITLY set the type. Inference = TypeScript AUTOMATICALLY
                 detects the type from the value. They're opposites!
               </p>
@@ -410,9 +410,9 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong><br />
-                ✓ <strong>Primitive</strong> = A single item — ONE apple, ONE
+                ✓ <strong>Primitive</strong> = A single item  --  ONE apple, ONE
                 book, ONE number. The box holds exactly one thing.<br />
-                ✓ <strong>Non-Primitive</strong> = A basket of items — a fruit
+                ✓ <strong>Non-Primitive</strong> = A basket of items  --  a fruit
                 basket with apples AND oranges AND bananas. It holds MANY things
                 together.
               </p>
@@ -457,7 +457,7 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
                       <code>any</code>, <code>unknown</code>,
                       <code>never</code>, <code>void</code>, <code>union</code>
                     </td>
-                    <td>Type-level concepts — not runtime values</td>
+                    <td>Type-level concepts  --  not runtime values</td>
                   </tr>
                   <tr>
                     <td><span class="p p-violet">Non-Primitive</span></td>
@@ -475,7 +475,7 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — How to Remember ALL Types:</strong
+                <strong>🧠 Memory Trick  --  How to Remember ALL Types:</strong
                 ><br /><br />
                 Use these fun sentences! The <strong>first letter</strong> of
                 each word maps to a type:<br /><br />
@@ -519,15 +519,15 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-number">
             <div class="sec-label">Primitive Types</div>
-            <h2>number — Integers &amp; Decimals</h2>
+            <h2>number  --  Integers &amp; Decimals</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Think of
                 <code>number</code> as a <strong>calculator display</strong>. It
-                shows whole numbers (42) and decimal numbers (3.14) — there's no
+                shows whole numbers (42) and decimal numbers (3.14)  --  there's no
                 separate button for "integer" or "decimal." It's all just
-                <strong>numbers</strong>. Same in TypeScript — one type handles
+                <strong>numbers</strong>. Same in TypeScript  --  one type handles
                 both!
               </p>
             </div>
@@ -543,14 +543,14 @@ let active = true;  // TypeScript says: "true is boolean, so active = boolean"
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  number examples — integers &amp; decimals
+                  number examples  --  integers &amp; decimals
                 </div>
                 <span class="card-badge">One type for all</span>
               </div>
               <div class="card-body">
                 <pre><code>let age: number = 30;               // integer (whole number)
 let price: number = 25.5;           // decimal (floating point)
-let bigNumber: number = 9999999;    // large number — no limit!
+let bigNumber: number = 9999999;    // large number  --  no limit!
 
 console.log("Age:", age);           // Age: 30
 console.log("Price:", price);       // Price: 25.5
@@ -567,7 +567,7 @@ console.log(typeof age);            // "number"</code></pre>
               <span class="note-i">i</span>
               <p>
                 <strong>Console Tip:</strong> To print a label with a value, use
-                a comma: <code>console.log("Age:", age)</code> — the string
+                a comma: <code>console.log("Age:", age)</code>  --  the string
                 prints as-is, followed by the variable's value.
               </p>
             </div>
@@ -578,29 +578,29 @@ console.log(typeof age);            // "number"</code></pre>
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-string">
             <div class="sec-label">Primitive Types</div>
-            <h2>string — Text Data</h2>
+            <h2>string  --  Text Data</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A <code>string</code> is
                 like a <strong>text message on your phone</strong>. It can
-                contain letters, numbers, emojis, spaces — anything you type.
+                contain letters, numbers, emojis, spaces  --  anything you type.
                 Whether it's "Hello" or "Room 404" or "✓ Party!", it's all just
                 text. And just like messages, you can write them in three
-                different ways — like texting, emailing, or handwriting a
+                different ways  --  like texting, emailing, or handwriting a
                 letter.
               </p>
             </div>
 
             <p>
-              Strings represent <strong>text</strong> — any sequence of
+              Strings represent <strong>text</strong>  --  any sequence of
               characters. You can create them in <strong>three ways</strong>:
             </p>
 
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">1</div>
-                <div class="card-title">Double quotes — the standard way</div>
+                <div class="card-title">Double quotes  --  the standard way</div>
                 <span class="card-badge">"text"</span>
               </div>
               <div class="card-body">
@@ -612,7 +612,7 @@ console.log(firstName);  // John</code></pre>
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Single quotes — also valid</div>
+                <div class="card-title">Single quotes  --  also valid</div>
                 <span class="card-badge">'text'</span>
               </div>
               <div class="card-body">
@@ -625,7 +625,7 @@ console.log(lastName);  // Kennedy</code></pre>
               <div class="card-head">
                 <div class="card-num">3</div>
                 <div class="card-title">
-                  Backticks — for combining text + variables (template literals)
+                  Backticks  --  for combining text + variables (template literals)
                 </div>
                 <span class="card-badge">`text ${var}`</span>
               </div>
@@ -699,12 +699,12 @@ console.log(greeting);  // Hello John Kennedy
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-boolean">
             <div class="sec-label">Primitive Types</div>
-            <h2>boolean — True or False</h2>
+            <h2>boolean  --  True or False</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A <code>boolean</code> is
-                like a <strong>light switch</strong> — it's either
+                like a <strong>light switch</strong>  --  it's either
                 <strong>ON (true)</strong> or <strong>OFF (false)</strong>.
                 There's no "maybe." No "half on." Just two options: yes or no,
                 on or off, true or false.
@@ -714,7 +714,7 @@ console.log(greeting);  // Hello John Kennedy
             <p>
               Boolean variables hold only <strong>two possible values</strong>:
               <code>true</code> or <code>false</code>. They're used for
-              decisions — is the user logged in? Is the score passing? Is it
+              decisions  --  is the user logged in? Is the score passing? Is it
               raining?
             </p>
 
@@ -722,7 +722,7 @@ console.log(greeting);  // Hello John Kennedy
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  boolean examples — yes/no questions
+                  boolean examples  --  yes/no questions
                 </div>
                 <span class="card-badge">true / false</span>
               </div>
@@ -737,7 +737,7 @@ console.log(typeof isStudent);          // "boolean"</code></pre>
                 <p class="fn">
                   Common naming convention: start boolean variable names with
                   <code>is</code>, <code>has</code>, <code>can</code>, or
-                  <code>should</code> — like <code>isActive</code>,
+                  <code>should</code>  --  like <code>isActive</code>,
                   <code>hasPermission</code>, <code>canEdit</code>.
                 </p>
               </div>
@@ -749,16 +749,16 @@ console.log(typeof isStudent);          // "boolean"</code></pre>
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-null">
             <div class="sec-label">Primitive Types</div>
-            <h2>null &amp; undefined — Empty Values</h2>
+            <h2>null &amp; undefined  --  Empty Values</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong><br />
-                ✓ <strong>null</strong> = An <strong>empty mailbox</strong> —
+                ✓ <strong>null</strong> = An <strong>empty mailbox</strong>  -- 
                 the mailbox exists, but there's nothing inside. You KNOW it's
                 empty.<br />
                 ❝ <strong>undefined</strong> = A
-                <strong>mailbox that was never built</strong> — there's no
+                <strong>mailbox that was never built</strong>  --  there's no
                 mailbox at all. Nobody set it up yet.
               </p>
             </div>
@@ -769,7 +769,7 @@ console.log(typeof isStudent);          // "boolean"</code></pre>
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  null — intentionally empty ("I know there's nothing")
+                  null  --  intentionally empty ("I know there's nothing")
                 </div>
                 <span class="card-badge">Known empty</span>
               </div>
@@ -790,23 +790,23 @@ console.log(typeof emptyValue); // "object" (a known JavaScript quirk!)
                   >Why does <code>typeof null</code> return
                   <code>"object"</code> instead of <code>"null"</code>?</strong
                 ><br /><br />
-                A <strong>quirk</strong> means a strange, unexpected behavior —
+                A <strong>quirk</strong> means a strange, unexpected behavior  -- 
                 a "weird thing" that doesn't follow the rules you'd expect. This
                 is the most famous quirk in JavaScript!<br /><br />
                 <strong>The Story:</strong> In JavaScript's very first version
                 (1995), every value was stored internally as a
                 <strong>type tag + value</strong>. Objects had a type tag of
                 <code>0</code>. But <code>null</code> was stored as the
-                <strong>NULL pointer</strong> — which was literally all zeros
+                <strong>NULL pointer</strong>  --  which was literally all zeros
                 (<code>0x00</code>). So when <code>typeof</code> checked
                 <code>null</code>, it saw the tag <code>0</code> and said
-                "that's an object!" — which is <strong>wrong</strong>, but it's
+                "that's an object!"  --  which is <strong>wrong</strong>, but it's
                 been this way for 30+ years.<br /><br />
                 <strong>Why not fix it?</strong> A fix was proposed, but it was
-                <strong>rejected</strong> — millions of existing websites rely
+                <strong>rejected</strong>  --  millions of existing websites rely
                 on this behavior. Fixing it would break the internet!<br /><br />
                 <strong>✅ Correct way to check for null:</strong>
-                <code>if (value === null)</code> — use strict equality, never
+                <code>if (value === null)</code>  --  use strict equality, never
                 <code>typeof</code>.
               </p>
             </div>
@@ -815,7 +815,7 @@ console.log(typeof emptyValue); // "object" (a known JavaScript quirk!)
               <div class="card-head">
                 <div class="card-num">2</div>
                 <div class="card-title">
-                  undefined — never assigned ("Nobody put anything here")
+                  undefined  --  never assigned ("Nobody put anything here")
                 </div>
                 <span class="card-badge">Not set</span>
               </div>
@@ -825,7 +825,7 @@ console.log(notAssigned);     // undefined
 
 // More commonly, undefined appears when you FORGET to assign a value:
 let price: number;
-console.log(price);  // undefined — no value was assigned yet!
+console.log(price);  // undefined  --  no value was assigned yet!
 // TypeScript warns: "Variable 'price' is used before being assigned"</code></pre>
               </div>
             </div>
@@ -875,14 +875,14 @@ console.log(price);  // undefined — no value was assigned yet!
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-any">
             <div class="sec-label">Primitive Types</div>
-            <h2>any — The "I Don't Care" Type</h2>
+            <h2>any  --  The "I Don't Care" Type</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>any</code> is like a
                 <strong>junk drawer</strong> in your kitchen. You can put
-                ANYTHING in there — scissors, batteries, tape, candy, keys.
-                There are no rules. It's convenient but messy — and you'll never
+                ANYTHING in there  --  scissors, batteries, tape, candy, keys.
+                There are no rules. It's convenient but messy  --  and you'll never
                 find what you need quickly. That's why organized people (and
                 good code) avoid junk drawers!
               </p>
@@ -891,7 +891,7 @@ console.log(price);  // undefined — no value was assigned yet!
             <p>
               <code>any</code> is a special type that
               <strong>turns off TypeScript's type checking</strong>. The
-              variable accepts ANY type of data — numbers, strings, booleans,
+              variable accepts ANY type of data  --  numbers, strings, booleans,
               anything. It's like going back to JavaScript mode.
             </p>
 
@@ -899,22 +899,22 @@ console.log(price);  // undefined — no value was assigned yet!
               <div class="card-head">
                 <div class="card-num">!</div>
                 <div class="card-title">
-                  any — accepts everything, checks nothing
+                  any  --  accepts everything, checks nothing
                 </div>
                 <span class="card-badge">⚠ Use Carefully</span>
               </div>
               <div class="card-body">
-                <pre><code>let value: any = "Hello";     // string — OK
+                <pre><code>let value: any = "Hello";     // string  --  OK
 console.log(typeof value);    // "string"
 
-value = 42;                   // number — also OK!
+value = 42;                   // number  --  also OK!
 console.log(typeof value);    // "number"
 
-value = true;                 // boolean — still OK!
+value = true;                 // boolean  --  still OK!
 console.log(typeof value);    // "boolean"
 
 // ✓ No errors at all! any turns off ALL type checking.
-// This BREAKS type safety — use only when absolutely necessary.</code></pre>
+// This BREAKS type safety  --  use only when absolutely necessary.</code></pre>
               </div>
             </div>
 
@@ -927,7 +927,7 @@ console.log(typeof value);    // "boolean"
                 smartphone and only using it as a paperweight.<br /><br /><strong
                   >Interview Question:</strong
                 >
-                "Can you break TypeScript's type safety?" — Yes, using the
+                "Can you break TypeScript's type safety?"  --  Yes, using the
                 <code>any</code> type. But it's not recommended because it loses
                 TypeScript's core benefits.
               </p>
@@ -939,12 +939,12 @@ console.log(typeof value);    // "boolean"
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-union">
             <div class="sec-label">Primitive Types</div>
-            <h2>Union Type — "This OR That"</h2>
+            <h2>Union Type  --  "This OR That"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A union type is like a
-                <strong>parking spot that accepts both cars AND bikes</strong> —
+                <strong>parking spot that accepts both cars AND bikes</strong>  -- 
                 but ONLY cars and bikes. Not trucks, not boats. You specify
                 exactly which types are allowed. It's like <code>any</code> but
                 with rules.
@@ -953,7 +953,7 @@ console.log(typeof value);    // "boolean"
 
             <p>
               A union type lets a variable hold
-              <strong>multiple specific types</strong> — but only the ones YOU
+              <strong>multiple specific types</strong>  --  but only the ones YOU
               list. It's the sweet spot between strict single-type and chaotic
               <code>any</code>.
             </p>
@@ -962,12 +962,12 @@ console.log(typeof value);    // "boolean"
               <div class="card-head">
                 <div class="card-num">|</div>
                 <div class="card-title">
-                  Union — combine types with the pipe | operator
+                  Union  --  combine types with the pipe | operator
                 </div>
                 <span class="card-badge">Controlled flexibility</span>
               </div>
               <div class="card-body">
-                <pre><code>// ID can be a number OR a string — nothing else
+                <pre><code>// ID can be a number OR a string  --  nothing else
 let userId: number | string | boolean;
 
 userId = "ABC123";     // ✅ string is allowed
@@ -980,7 +980,7 @@ userId = true;         // ✅ boolean is allowed
 console.log(userId);   // true
 
 userId = [1, 2, 3];   // ❌ ERROR: array is NOT in the union!
-// Only number, string, boolean are allowed — you listed them.</code></pre>
+// Only number, string, boolean are allowed  --  you listed them.</code></pre>
               </div>
             </div>
 
@@ -1021,8 +1021,8 @@ userId = [1, 2, 3];   // ❌ ERROR: array is NOT in the union!
               <span class="note-i">i</span>
               <p>
                 <strong>Union vs Any:</strong> Union is like ordering "coffee OR
-                tea" — you get a choice, but it's limited. <code>any</code> is
-                like ordering "whatever you have" — no control at all.
+                tea"  --  you get a choice, but it's limited. <code>any</code> is
+                like ordering "whatever you have"  --  no control at all.
                 <strong>Prefer union when you know the options!</strong>
               </p>
             </div>
@@ -1033,7 +1033,7 @@ userId = [1, 2, 3];   // ❌ ERROR: array is NOT in the union!
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-void">
             <div class="sec-label">Primitive Types</div>
-            <h2>void — "Returns Nothing"</h2>
+            <h2>void  --  "Returns Nothing"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -1042,7 +1042,7 @@ userId = [1, 2, 3];   // ❌ ERROR: array is NOT in the union!
                   >vending machine that takes your money but gives you nothing
                   back</strong
                 >
-                — it DOES something (plays a sound, shows a message), but it
+                 --  it DOES something (plays a sound, shows a message), but it
                 doesn't return any product. The function
                 <strong>does work</strong> but
                 <strong>doesn't give back a result</strong>.
@@ -1051,7 +1051,7 @@ userId = [1, 2, 3];   // ❌ ERROR: array is NOT in the union!
 
             <p>
               <code>void</code> is used specifically with
-              <strong>functions</strong> — not variables. It means: "this
+              <strong>functions</strong>  --  not variables. It means: "this
               function does something but doesn't return a value."
             </p>
 
@@ -1059,7 +1059,7 @@ userId = [1, 2, 3];   // ❌ ERROR: array is NOT in the union!
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  void — function that prints but returns nothing
+                  void  --  function that prints but returns nothing
                 </div>
                 <span class="card-badge">No return</span>
               </div>
@@ -1121,7 +1121,7 @@ console.log(result);  // 30</code></pre>
             <div class="note note-info">
               <span class="note-i">i</span>
               <p>
-                <code>void</code> is <strong>optional</strong> in TypeScript —
+                <code>void</code> is <strong>optional</strong> in TypeScript  -- 
                 if you skip it, TypeScript infers the return type. But writing
                 it explicitly makes your code clearer: "I intentionally made
                 this function return nothing."
@@ -1134,12 +1134,12 @@ console.log(result);  // 30</code></pre>
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-symbol">
             <div class="sec-label">Primitive Types</div>
-            <h2>symbol — Unique Identifiers</h2>
+            <h2>symbol  --  Unique Identifiers</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A <code>symbol</code> is
-                like a <strong>fingerprint</strong> — every fingerprint is
+                like a <strong>fingerprint</strong>  --  every fingerprint is
                 unique, even if two people look alike. Every
                 <code>Symbol()</code> you create is guaranteed to be 100%
                 unique, even if you give two symbols the same description label.
@@ -1149,7 +1149,7 @@ console.log(result);  // 30</code></pre>
             <p>
               <code>symbol</code> is a true JavaScript primitive that creates
               <strong>completely unique values</strong>. No two symbols are ever
-              equal — not even if they share the same description. Mostly used
+              equal  --  not even if they share the same description. Mostly used
               as unique object property keys to avoid name collisions.
             </p>
             <div class="note note-warn">
@@ -1168,7 +1168,7 @@ console.log(result);  // 30</code></pre>
               <div class="card-head">
                 <div class="card-num">S</div>
                 <div class="card-title">
-                  symbol — always unique, even with the same label
+                  symbol  --  always unique, even with the same label
                 </div>
                 <span class="card-badge">Rarely used by beginners</span>
               </div>
@@ -1176,7 +1176,7 @@ console.log(result);  // 30</code></pre>
                 <pre><code>const id1: symbol = Symbol("id");
 const id2: symbol = Symbol("id");  // same description
 
-console.log(id1 === id2);  // false — ALWAYS unique!
+console.log(id1 === id2);  // false  --  ALWAYS unique!
 console.log(typeof id1);   // "symbol"
 
 // Common use: unique keys on objects to prevent accidental overwrite
@@ -1192,7 +1192,7 @@ console.log(obj[KEY]);  // "hidden value"</code></pre>
                 <strong>Beginner Note:</strong> You won't use
                 <code>symbol</code> in everyday TypeScript. It appears in
                 library code and advanced patterns. Just know it exists and is a
-                genuine JS/TS primitive —
+                genuine JS/TS primitive  -- 
                 <code>typeof Symbol() === "symbol"</code>.
               </p>
             </div>
@@ -1203,15 +1203,15 @@ console.log(obj[KEY]);  // "hidden value"</code></pre>
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-bigint">
             <div class="sec-label">Primitive Types</div>
-            <h2>bigint — Very Large Integers</h2>
+            <h2>bigint  --  Very Large Integers</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Normal
-                <code>number</code> is like a pocket calculator — accurate for
+                <code>number</code> is like a pocket calculator  --  accurate for
                 everyday math, but it breaks for astronomically large integers.
                 <code>bigint</code> is like a
-                <strong>scientific calculator</strong> — it can handle numbers
+                <strong>scientific calculator</strong>  --  it can handle numbers
                 with hundreds of digits without losing precision.
               </p>
             </div>
@@ -1228,7 +1228,7 @@ console.log(obj[KEY]);  // "hidden value"</code></pre>
               <div class="card-head">
                 <div class="card-num">n</div>
                 <div class="card-title">
-                  bigint — huge integers with the 'n' suffix
+                  bigint  --  huge integers with the 'n' suffix
                 </div>
                 <span class="card-badge">Use 'n' suffix</span>
               </div>
@@ -1252,7 +1252,7 @@ big + 1n;     // ✓ works fine</code></pre>
                 <strong>Beginner Note:</strong> You'll rarely use
                 <code>bigint</code> unless working with cryptography, very large
                 IDs, or financial systems. Just remember: add an
-                <code>n</code> suffix to the integer literal —
+                <code>n</code> suffix to the integer literal  -- 
                 <code>100n</code> not <code>100</code>.
               </p>
             </div>
@@ -1263,16 +1263,16 @@ big + 1n;     // ✓ works fine</code></pre>
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-unknown">
             <div class="sec-label">TS Special Types</div>
-            <h2>unknown — The Safe Version of any</h2>
+            <h2>unknown  --  The Safe Version of any</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>unknown</code> is like
-                receiving a <strong>sealed mystery box</strong> — you can store
+                receiving a <strong>sealed mystery box</strong>  --  you can store
                 it and pass it around, but before you open it and use what's
                 inside, you MUST check what's in there first.
                 <code>any</code> is like opening the box blindly and assuming
-                it's fine — risky!
+                it's fine  --  risky!
               </p>
             </div>
 
@@ -1291,14 +1291,14 @@ big + 1n;     // ✓ works fine</code></pre>
               <div class="card-head">
                 <div class="card-num">?</div>
                 <div class="card-title">
-                  unknown — must narrow the type before use
+                  unknown  --  must narrow the type before use
                 </div>
                 <span class="card-badge">Prefer over any</span>
               </div>
               <div class="card-body">
                 <pre><code>let value: unknown = "Hello";
 
-// ❌ Can't use directly — TypeScript doesn't know the type yet:
+// ❌ Can't use directly  --  TypeScript doesn't know the type yet:
 // value.toUpperCase();  ← ERROR!
 
 // ✅ Narrow the type first with typeof:
@@ -1306,7 +1306,7 @@ if (typeof value === "string") {
   console.log(value.toUpperCase()); // HELLO ← safe!
 }
 
-value = 42;    // ✓ can hold any type — like any
+value = 42;    // ✓ can hold any type  --  like any
 value = true;  // ✓ still fine</code></pre>
               </div>
             </div>
@@ -1329,7 +1329,7 @@ value = true;  // ✓ still fine</code></pre>
                   <tr>
                     <td>Can use directly without a type check?</td>
                     <td><span class="p p-red">Yes (dangerous!)</span></td>
-                    <td><span class="p p-blue">No — must check first</span></td>
+                    <td><span class="p p-blue">No  --  must check first</span></td>
                   </tr>
                   <tr>
                     <td>Type safe?</td>
@@ -1351,12 +1351,12 @@ value = true;  // ✓ still fine</code></pre>
 ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← -->
           <div class="sec" id="dt-never">
             <div class="sec-label">TS Special Types</div>
-            <h2>never — This Can Never Happen</h2>
+            <h2>never  --  This Can Never Happen</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>never</code> is like a
-                <strong>dead-end road sign</strong> — if you reach it, something
+                <strong>dead-end road sign</strong>  --  if you reach it, something
                 has gone very wrong. It represents code paths that should
                 <em>never</em> be reached, like a function that always throws an
                 error before it can return anything.
@@ -1366,7 +1366,7 @@ value = true;  // ✓ still fine</code></pre>
             <p>
               <code>never</code> represents values that
               <strong>never occur</strong>. It's assigned to functions that
-              always throw errors or run infinite loops — they never produce a
+              always throw errors or run infinite loops  --  they never produce a
               return value. TypeScript also uses <code>never</code> internally
               for exhaustive type checking.
             </p>
@@ -1375,17 +1375,17 @@ value = true;  // ✓ still fine</code></pre>
               <div class="card-head">
                 <div class="card-num">✗</div>
                 <div class="card-title">
-                  never — functions that never return normally
+                  never  --  functions that never return normally
                 </div>
                 <span class="card-badge">Advanced</span>
               </div>
               <div class="card-body">
-                <pre><code>// A function that always throws — never returns:
+                <pre><code>// A function that always throws  --  never returns:
 function crash(msg: string): never {
   throw new Error(msg);  // execution stops here, never completes
 }
 
-// A function with an infinite loop — also never returns:
+// A function with an infinite loop  --  also never returns:
 function loop(): never {
   while (true) {
     console.log("running...");
@@ -1405,7 +1405,7 @@ function loop(): never {
                 <code>never</code> yourself very often. TypeScript uses it
                 internally. If TypeScript tells you a variable is
                 <code>never</code>, it means every possible type has already
-                been handled — that's a <em>good</em> thing! It means your code
+                been handled  --  that's a <em>good</em> thing! It means your code
                 is airtight.
               </p>
             </div>
@@ -1432,7 +1432,7 @@ function loop(): never {
                   use <code>typeof</code> to check for null, you'll get the
                   WRONG answer!
                 </p>
-                <pre><code>// ❌ WRONG — typeof null is "object", not "null"!
+                <pre><code>// ❌ WRONG  --  typeof null is "object", not "null"!
 let data = null;
 console.log(typeof data); // "object" ← SURPRISE!
 
@@ -1440,7 +1440,7 @@ if (typeof data === "null") {
   console.log("It's null!"); // NEVER runs!
 }
 
-// ✅ CORRECT — use === null to check for null
+// ✅ CORRECT  --  use === null to check for null
 if (data === null) {
   console.log("It's null!"); // ✓ Works!
 }</code></pre>
@@ -1467,12 +1467,12 @@ if (data === null) {
                 <pre><code>let price: number = 100;
 let tax: string = "20";
 
-// ❌ WRONG — string + number = concatenation!
+// ❌ WRONG  --  string + number = concatenation!
 let total = price + tax;
 console.log(total);       // "10020" (not 120!)
 console.log(typeof total); // "string" ← it became a string!
 
-// ✅ CORRECT — convert string to number first
+// ✅ CORRECT  --  convert string to number first
 let totalFixed = price + Number(tax);
 console.log(totalFixed);       // 120 ✓
 console.log(typeof totalFixed); // "number" ✓</code></pre>
@@ -1496,13 +1496,13 @@ console.log(typeof totalFixed); // "number" ✓</code></pre>
                   variable completely. No autocomplete, no error warnings, no
                   safety. It's like wearing a seatbelt but not buckling it.
                 </p>
-                <pre><code>// ❌ BAD — any removes all type safety
+                <pre><code>// ❌ BAD  --  any removes all type safety
 let data: any = "hello";
 data = 42;          // No error (but is this intentional?)
 data.toUpperCase(); // No error in editor, CRASHES at runtime!
 // TypeError: data.toUpperCase is not a function
 
-// ✅ BETTER — use union types for flexibility WITH safety
+// ✅ BETTER  --  use union types for flexibility WITH safety
 let data2: string | number = "hello";
 data2 = 42;            // ✓ Allowed
 data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</code></pre>
@@ -1510,7 +1510,7 @@ data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</co
                   <strong>Rule:</strong> Avoid <code>any</code> whenever
                   possible. If a variable can hold multiple types, use a
                   <strong>union type</strong> (<code>string | number</code>)
-                  instead — you get flexibility AND safety.
+                  instead  --  you get flexibility AND safety.
                 </p>
               </div>
             </div>
@@ -1607,7 +1607,7 @@ data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</co
                     <td><span class="p p-blue">Primitive</span></td>
                     <td>Unique identifier</td>
                     <td><code>Symbol("id")</code></td>
-                    <td>Always unique — no two are equal</td>
+                    <td>Always unique  --  no two are equal</td>
                   </tr>
                   <tr>
                     <td><code class="cn">bigint</code></td>
@@ -1628,14 +1628,14 @@ data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</co
                   <tr>
                     <td><code class="cn">unknown</code></td>
                     <td><span class="p p-amber">TS Special</span></td>
-                    <td>Anything — but must check type first</td>
+                    <td>Anything  --  but must check type first</td>
                     <td><code>unknown</code></td>
                     <td>✅ Safe version of <code>any</code></td>
                   </tr>
                   <tr>
                     <td><code class="cn">never</code></td>
                     <td><span class="p p-amber">TS Special</span></td>
-                    <td>Nothing — unreachable code</td>
+                    <td>Nothing  --  unreachable code</td>
                     <td><code>never</code></td>
                     <td>Functions that always throw</td>
                   </tr>
@@ -1666,34 +1666,34 @@ data2.toUpperCase();   // ❌ TypeScript catches this! Error at compile time</co
             <h2>Quick Reference Cheatsheet</h2>
 
             <h3>All primitive types at a glance</h3>
-            <pre><code>// ”” number ”””””””””””””””””””””””””””””””””””””
+            <pre><code>// "" number """""""""""""""""""""""""""""""""""""
 let age: number = 30;
 let price: number = 9.99;
 
-// ”” string ””””””””””””””””””””””””””””””””””””
+// "" string """"""""""""""""""""""""""""""""""""
 let name: string = "John";           // double quotes
 let city: string = 'Tokyo';          // single quotes
 let msg: string = `Hello ${name}`;   // backtick (template literal)
 
-// ”” boolean ”””””””””””””””””””””””””””””””””””
+// "" boolean """""""""""""""""""""""""""""""""""
 let isActive: boolean = true;
 let isDeleted: boolean = false;
 
-// ”” null ””””””””””””””””””””””””””””””””””””””
+// "" null """"""""""""""""""""""""""""""""""""""
 let empty: null = null;
 
-// ”” undefined ”””””””””””””””””””””””””””””””””
+// "" undefined """""""""""""""""""""""""""""""""
 let notSet: undefined = undefined;
 
-// ”” any (avoid!) ””””””””””””””””””””””””””””””
+// "" any (avoid!) """"""""""""""""""""""""""""""
 let flexible: any = "text";
-flexible = 42;      // no error — type safety OFF
+flexible = 42;      // no error  --  type safety OFF
 
-// ”” union type ””””””””””””””””””””””””””””””””
+// "" union type """"""""""""""""""""""""""""""""
 let id: number | string = "ABC123";
 id = 456;           // also valid
 
-// ”” void (functions) ””””””””””””””””””””””””””
+// "" void (functions) """"""""""""""""""""""""""
 function greet(): void {
   console.log("Hi!");      // prints but returns nothing
 }
@@ -1704,7 +1704,7 @@ function add(a: number, b: number): number {
 // -- symbol (primitive) -----------------------------------
 const key1: symbol = Symbol("id");
 const key2: symbol = Symbol("id");
-console.log(key1 === key2);  // false — always unique!
+console.log(key1 === key2);  // false  --  always unique!
 
 // -- bigint (primitive) -----------------------------------
 let huge: bigint = 9007199254740993n;  // 'n' suffix!
@@ -1722,23 +1722,23 @@ function fail(msg: string): never {
 }</code></pre>
 
             <h3>Key terms</h3>
-            <pre><code>// Annotation — YOU write the type
+            <pre><code>// Annotation  --  YOU write the type
 let score: number = 100;  // ✓ ": number" is the annotation
 
-// Type Inference — TypeScript DETECTS the type
+// Type Inference  --  TypeScript DETECTS the type
 let score = 100;          // ✓ TS knows it's a number automatically
 
-// typeof — check the type at runtime
+// typeof  --  check the type at runtime
 console.log(typeof score);  // "number"</code></pre>
 
             <h3>Dynamic vs Static typing</h3>
-            <pre><code>// JavaScript (Dynamic) — type can change anytime
+            <pre><code>// JavaScript (Dynamic)  --  type can change anytime
 let x = 10;       // number
-x = "hello";      // ✅ now it's a string — allowed!
+x = "hello";      // ✅ now it's a string  --  allowed!
 
-// TypeScript (Static) — type is LOCKED
+// TypeScript (Static)  --  type is LOCKED
 let y: number = 10;  // number
-y = "hello";         // ❌ ERROR — type can't change!</code></pre>
+y = "hello";         // ❌ ERROR  --  type can't change!</code></pre>
 
             <hr />
             <p

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Regular Expressions — TypeScript Learning Path</title>
-<meta name="description" content="Learn regex basics — patterns, quantifiers, anchors, flags, test/match/replace, and 5 practical patterns for email, phone, URL validation.">
+<title>Regular Expressions  --  TypeScript Learning Path</title>
+<meta name="description" content="Learn regex basics  --  patterns, quantifiers, anchors, flags, test/match/replace, and 5 practical patterns for email, phone, URL validation.">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -38,7 +38,7 @@
 <div class="hero" id="rx-top">
   <div class="hero-tags"><span class="hero-tag">TypeScript</span><span class="hero-tag">Regex</span><span class="hero-tag">Validation</span></div>
   <h1>Regular Expressions</h1>
-  <p>Pattern-matching superpowers for strings. Validate emails, extract numbers, search-and-replace — all with a single expression.</p>
+  <p>Pattern-matching superpowers for strings. Validate emails, extract numbers, search-and-replace  --  all with a single expression.</p>
   <div class="hero-stats">
     <div class="stat"><div class="stat-n">6</div><div class="stat-l">Character Classes</div></div>
     <div class="stat"><div class="stat-n">5</div><div class="stat-l">Practical Patterns</div></div>
@@ -49,14 +49,14 @@
 <div class="note note-tip" style="margin: 0 0 2rem">
   <span class="note-i">✓</span>
   <p>
-    <strong>🧠 Memory Trick — Regex Essentials:</strong><br /><br />
+    <strong>🧠 Memory Trick  --  Regex Essentials:</strong><br /><br />
     <strong>3 Character Classes:</strong>
     "<strong>D</strong>evelopers <strong>W</strong>rite <strong>S</strong>cripts"<br />
     → <code>\<strong>d</strong></code> (digit),
     <code>\<strong>w</strong></code> (word),
     <code>\<strong>s</strong></code> (space)<br />
     💡 UPPERCASE = opposite (\D = NOT digit)<br /><br />
-    <strong>3 Flags — "GIM":</strong>
+    <strong>3 Flags  --  "GIM":</strong>
     <strong>G</strong>lobal, <strong>I</strong>nsensitive,
     <strong>M</strong>ultiline<br /><br />
     <strong>4 Methods:</strong>
@@ -94,10 +94,10 @@ const clean = "hello   world".replace(/\s+/g, " ");  // "hello world"</code></pr
   <h2>Creating a Regex</h2>
   <div class="card ph2-card">
     <div class="card-head"><div class="card-num">1</div><div class="card-title">Two ways to create</div><span class="card-badge">Create</span></div>
-    <div class="card-body"><pre><code>// 1. Literal (most common) — /pattern/flags
+    <div class="card-body"><pre><code>// 1. Literal (most common)  --  /pattern/flags
 const regex1 = /hello/i;  // case-insensitive
 
-// 2. Constructor — new RegExp("pattern", "flags")
+// 2. Constructor  --  new RegExp("pattern", "flags")
 const regex2 = new RegExp("hello", "i");
 
 // Use constructor when pattern is DYNAMIC:
@@ -131,7 +131,7 @@ dynamic.test("Hello Alice");  // true</code></pre>
 // \W = NOT a word character
 // \S = NOT whitespace
 
-// Character sets — [abc] matches a, b, or c
+// Character sets  --  [abc] matches a, b, or c
 /[aeiou]/.test("hello");   // true (has 'e' and 'o')
 /[0-9]/.test("abc5");      // true (same as \d)
 /[a-zA-Z]/.test("Hello");  // true (any letter)
@@ -175,14 +175,14 @@ dynamic.test("Hello Alice");  // true</code></pre>
   <div class="card ph1-card">
     <div class="card-head"><div class="card-num">4</div><div class="card-title">Match position, not characters</div><span class="card-badge">Anchors</span></div>
     <div class="card-body"><pre><code>// ^ = start of string
-/^hello/.test("hello world");  // true — starts with "hello"
+/^hello/.test("hello world");  // true  --  starts with "hello"
 /^hello/.test("say hello");    // false
 
 // $ = end of string
-/world$/.test("hello world");  // true — ends with "world"
+/world$/.test("hello world");  // true  --  ends with "world"
 
 // Both = exact match
-/^hello$/.test("hello");       // true — ONLY "hello"
+/^hello$/.test("hello");       // true  --  ONLY "hello"
 /^hello$/.test("hello world"); // false
 
 // \b = word boundary
@@ -208,10 +208,10 @@ dynamic.test("Hello Alice");  // true</code></pre>
   </div>
   <div class="card ph2-card">
     <div class="card-head"><div class="card-num">5</div><div class="card-title">Flags change matching behavior</div><span class="card-badge">Flags</span></div>
-    <div class="card-body"><pre><code>// Without g — only first match
+    <div class="card-body"><pre><code>// Without g  --  only first match
 "aaa".match(/a/);    // ["a"]
 
-// With g — all matches
+// With g  --  all matches
 "aaa".match(/a/g);   // ["a", "a", "a"]
 
 // Case insensitive
@@ -231,19 +231,19 @@ dynamic.test("Hello Alice");  // true</code></pre>
     <div class="card-head"><div class="card-num">6</div><div class="card-title">4 ways to use regex</div><span class="card-badge">Methods</span></div>
     <div class="card-body"><pre><code>const text = "Call 123-456 or 789-012";
 
-// TEST — does it match? → boolean
+// TEST  --  does it match? → boolean
 /\d{3}/.test(text);         // true
 
-// MATCH — find matches → array | null
+// MATCH  --  find matches → array | null
 text.match(/\d{3}-\d{3}/g); // ["123-456", "789-012"]
 
-// REPLACE — swap matches → new string
+// REPLACE  --  swap matches → new string
 text.replace(/\d/g, "X");   // "Call XXX-XXX or XXX-XXX"
 
-// SPLIT — split by pattern → array
+// SPLIT  --  split by pattern → array
 "one,  two,three".split(/,\s*/);  // ["one", "two", "three"]
 
-// SEARCH — find position → index | -1
+// SEARCH  --  find position → index | -1
 text.search(/\d{3}/);       // 5 (index of first match)</code></pre>
     </div>
   </div>
@@ -286,26 +286,26 @@ const numbers = "Price: ₹1,200 and ₹350".match(/\d+/g);
 
   <div class="note note-warn"><span class="note-i">⚠</span><div>
     <strong>Mistake 1: Forgetting the g flag</strong>
-    <pre><code>"aaa".match(/a/);   // ["a"]     — only first!
-"aaa".match(/a/g);  // ["a","a","a"] — all matches ✅</code></pre>
+    <pre><code>"aaa".match(/a/);   // ["a"]      --  only first!
+"aaa".match(/a/g);  // ["a","a","a"]  --  all matches ✅</code></pre>
   </div></div>
   <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 2: test() vs match() — different returns</strong>
+    <strong>Mistake 2: test() vs match()  --  different returns</strong>
     <pre><code>/\d/.test("abc1");   // true (boolean)
 "abc1".match(/\d/);  // ["1"] (array)
 // Don't use match() when you just need true/false!</code></pre>
   </div></div>
   <div class="note note-warn"><span class="note-i">⚠</span><div>
-    <strong>Mistake 3: . matches ANY character — escape it!</strong>
+    <strong>Mistake 3: . matches ANY character  --  escape it!</strong>
     <pre><code>/file.txt/.test("fileXtxt");   // true! . = any char
 /file\.txt/.test("fileXtxt");  // false ✅ \. = literal dot</code></pre>
   </div></div>
   <div class="note note-warn"><span class="note-i">⚠</span><div>
     <strong>Mistake 4: Greedy vs Lazy</strong>
-    <pre><code>// Greedy (default) — matches as MUCH as possible
-"<b>bold</b>".match(/<.*>/);    // ["<b>bold</b>"] — too much!
+    <pre><code>// Greedy (default)  --  matches as MUCH as possible
+"<b>bold</b>".match(/<.*>/);    // ["<b>bold</b>"]  --  too much!
 
-// Lazy (add ?) — matches as LITTLE as possible
+// Lazy (add ?)  --  matches as LITTLE as possible
 "<b>bold</b>".match(/<.*?>/);   // ["<b>"] ✅</code></pre>
   </div></div>
 

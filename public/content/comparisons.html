@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Key Comparisons — TypeScript Learning Path</title>
+    <title>Key Comparisons  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Essential TypeScript comparisons — primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, any vs unknown, and more with real-life analogies."
+      content="Essential TypeScript comparisons  --  primitive vs non-primitive, sync vs async, type vs interface, union vs tuple, any vs unknown, and more with real-life analogies."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -79,7 +79,7 @@
             <h1>Key Comparisons</h1>
             <p>
               25 essential "A vs B" comparisons ordered from beginner to
-              advanced — the exact learning path every TypeScript developer
+              advanced  --  the exact learning path every TypeScript developer
               should follow, with real-life analogies, code snippets, and clear
               tables.
             </p>
@@ -98,7 +98,7 @@
           <div class="note note-tip" style="margin: 0 0 2rem">
             <span class="note-i">✓</span>
             <p>
-              <strong>🧠 Memory Trick — Remember All 6 Comparison
+              <strong>🧠 Memory Trick  --  Remember All 6 Comparison
               Categories:</strong><br /><br />
               "<strong>V</strong>alid <strong>D</strong>ata <strong>T</strong>ypes <strong>F</strong>ix <strong>O</strong>ld <strong>A</strong>pplications"<br />
               → <strong>V</strong>ariables & Scope,
@@ -111,7 +111,7 @@
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-     CATEGORY 1 — VARIABLES & SCOPE
+     CATEGORY 1  --  VARIABLES & SCOPE
      ═══════════════════════════════════════════════════════ -->
 
           <!-- 1. LET VS CONST VS VAR -->
@@ -125,7 +125,7 @@
                 anyone can erase (old style, leaks everywhere).
                 <strong>let</strong> = a notebook page you can update but only
                 inside the room you're in. <strong>const</strong> = a carved
-                stone tablet — permanent, can't be overwritten.
+                stone tablet  --  permanent, can't be overwritten.
               </p>
             </div>
             <div class="bordered">
@@ -192,10 +192,10 @@ if (true) { let b = 10; }
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Block scope</strong> = a
-                locker that only exists inside a specific classroom — gone when
+                locker that only exists inside a specific classroom  --  gone when
                 you leave the room (the <code>{ }</code>).
                 <strong>Local scope</strong> = a personal bag you carry for the
-                entire length of a function call — alive until the function
+                entire length of a function call  --  alive until the function
                 returns.
               </p>
             </div>
@@ -211,7 +211,7 @@ if (true) { let b = 10; }
                 <tbody>
                   <tr>
                     <td>Created by</td>
-                    <td>Any <code>{ }</code> — if, for, while, bare blocks</td>
+                    <td>Any <code>{ }</code>  --  if, for, while, bare blocks</td>
                     <td>A <code>function</code> body</td>
                   </tr>
                   <tr>
@@ -257,7 +257,7 @@ function demo() {
     const blockConst = 42;
     console.log(blockVar);   // ✅ works here
   }
-  // console.log(blockVar);  // ❌ ReferenceError — out of block!
+  // console.log(blockVar);  // ❌ ReferenceError  --  out of block!
 }
 
 // ─── var LEAKS out of blocks (but NOT out of functions) ──
@@ -265,23 +265,23 @@ function leakyDemo() {
   if (true) {
     var leaked = "I escape the block!";
   }
-  console.log(leaked); // ✅ "I escape the block!" — bad practice!
+  console.log(leaked); // ✅ "I escape the block!"  --  bad practice!
 }
-// console.log(leaked); // ❌ ReferenceError — var IS bound to function
+// console.log(leaked); // ❌ ReferenceError  --  var IS bound to function
 
 // ─── LOCAL (FUNCTION) SCOPE ──────────────────────────────
 function calcTax(price: number) {
-  const rate = 0.18;          // local to calcTax — not visible outside
+  const rate = 0.18;          // local to calcTax  --  not visible outside
   return price * (1 + rate);
 }
-// console.log(rate); // ❌ ReferenceError — local scope!
+// console.log(rate); // ❌ ReferenceError  --  local scope!
 
-// ─── Nested scopes — inner can see outer, not vice versa ─
+// ─── Nested scopes  --  inner can see outer, not vice versa ─
 function outer() {
   let x = 10;                 // outer scope
   function inner() {
     let y = 20;               // inner (block/local) scope
-    console.log(x + y);      // ✅ 30 — inner sees outer
+    console.log(x + y);      // ✅ 30  --  inner sees outer
   }
   inner();
   // console.log(y);          // ❌ outer cannot see inner's y
@@ -307,10 +307,10 @@ function outer() {
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Hoisted</strong> = a student
-                who raises their hand before the teacher even asks — JS moves
+                who raises their hand before the teacher even asks  --  JS moves
                 the declaration to the top automatically.
                 <strong>Non-hoisted</strong> = a student who waits to be called
-                — you must declare it first or you get an error.
+                 --  you must declare it first or you get an error.
               </p>
             </div>
             <div class="bordered">
@@ -350,18 +350,18 @@ function outer() {
                 </tbody>
               </table>
             </div>
-            <pre><code>// ✅ HOISTED — var declaration is moved to the top
+            <pre><code>// ✅ HOISTED  --  var declaration is moved to the top
 console.log(x);  // undefined (not an error!)
 var x = 10;
 console.log(x);  // 10
 
-// ❌ NON-HOISTED — let/const stay in place (TDZ)
+// ❌ NON-HOISTED  --  let/const stay in place (TDZ)
 // console.log(y);  // ✓ ReferenceError: Cannot access 'y' before initialization
 let y = 20;
 console.log(y);  // 20
 
 // ✅ Function declarations ARE hoisted
-greet();  // "Hello!" — works even before definition!
+greet();  // "Hello!"  --  works even before definition!
 function greet() { console.log("Hello!"); }
 
 // ❌ Arrow functions are NOT hoisted
@@ -373,7 +373,7 @@ const sayBye = () => console.log("Bye!");</code></pre>
                 <strong>TDZ (Temporal Dead Zone):</strong> The space between the
                 start of a block and where <code>let</code>/<code>const</code>
                 is declared. Accessing the variable in the TDZ causes a
-                ReferenceError — this is by design to catch bugs early.
+                ReferenceError  --  this is by design to catch bugs early.
               </p>
             </div>
           </div>
@@ -386,7 +386,7 @@ const sayBye = () => console.log("Bye!");</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>==</strong> = "Do these look
-                similar?" (a photo vs a painting of the same person — close
+                similar?" (a photo vs a painting of the same person  --  close
                 enough). <strong>===</strong> = "Are these the EXACT same
                 thing?" (same person, same fingerprint, same ID).
               </p>
@@ -430,7 +430,7 @@ const sayBye = () => console.log("Bye!");</code></pre>
               </table>
             </div>
             <pre><code>console.log(5 == "5");    // true  (string → number coercion)
-console.log(5 === "5");   // false (different types — no coercion)
+console.log(5 === "5");   // false (different types  --  no coercion)
 console.log(0 == false);  // true  (false → 0)
 console.log(0 === false); // false (number ≠ boolean)
 console.log("" == false); // true  (both → 0)
@@ -438,7 +438,7 @@ console.log("" === false);// false</code></pre>
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-     CATEGORY 2 — DATA TYPES
+     CATEGORY 2  --  DATA TYPES
      ═══════════════════════════════════════════════════════ -->
 
           <!-- 5. PRIMITIVE VS NON-PRIMITIVE -->
@@ -451,7 +451,7 @@ console.log("" === false);// false</code></pre>
                 <strong>Analogy:</strong> <strong>Primitive</strong> = a single
                 coin (one value, copied directly).
                 <strong>Non-primitive</strong> = a wallet (holds many things,
-                you share the wallet itself — not a copy).
+                you share the wallet itself  --  not a copy).
               </p>
             </div>
             <div class="bordered">
@@ -494,13 +494,13 @@ console.log("" === false);// false</code></pre>
                 </tbody>
               </table>
             </div>
-            <pre><code>// Primitive — copied by VALUE
+            <pre><code>// Primitive  --  copied by VALUE
 let a = 10;
 let b = a;
 b = 20;
-console.log(a); // 10 (unchanged — b got its own copy)
+console.log(a); // 10 (unchanged  --  b got its own copy)
 
-// Non-Primitive — copied by REFERENCE
+// Non-Primitive  --  copied by REFERENCE
 let arr1 = [1, 2, 3];
 let arr2 = arr1;       // both point to the SAME array in memory
 arr2.push(4);
@@ -515,8 +515,8 @@ console.log(arr1);     // [1, 2, 3, 4] (changed! same reference)</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Immutable</strong> = a printed
-                book — once printed, you can't change the words. You have to
-                print a new edition. <strong>Mutable</strong> = a whiteboard —
+                book  --  once printed, you can't change the words. You have to
+                print a new edition. <strong>Mutable</strong> = a whiteboard  -- 
                 erase and rewrite anytime.
               </p>
             </div>
@@ -532,8 +532,8 @@ console.log(arr1);     // [1, 2, 3, 4] (changed! same reference)</code></pre>
                 <tbody>
                   <tr>
                     <td>Can be changed?</td>
-                    <td>❌ No — creates a new value</td>
-                    <td>✅ Yes — modifies in place</td>
+                    <td>❌ No  --  creates a new value</td>
+                    <td>✅ Yes  --  modifies in place</td>
                   </tr>
                   <tr>
                     <td>Examples</td>
@@ -561,13 +561,13 @@ console.log(arr1);     // [1, 2, 3, 4] (changed! same reference)</code></pre>
                 </tbody>
               </table>
             </div>
-            <pre><code>// IMMUTABLE — strings cannot be changed in place
+            <pre><code>// IMMUTABLE  --  strings cannot be changed in place
 let name = "hello";
 let upper = name.toUpperCase();  // returns NEW string
 console.log(name);   // "hello"  (original unchanged!)
 console.log(upper);  // "HELLO"  (new value)
 
-// MUTABLE — arrays CAN be changed in place
+// MUTABLE  --  arrays CAN be changed in place
 let nums = [1, 2, 3];
 nums.push(4);         // modifies the ORIGINAL array
 console.log(nums);    // [1, 2, 3, 4] (changed!)
@@ -577,11 +577,11 @@ const config: Readonly<{ port: number; host: string }> = {
   port: 3000,
   host: "localhost"
 };
-// config.port = 8080;  // ❌ ERROR — readonly!
+// config.port = 8080;  // ❌ ERROR  --  readonly!
 
 // Immutable array
 const colors: readonly string[] = ["red", "green"];
-// colors.push("blue");  // ❌ ERROR — readonly array!</code></pre>
+// colors.push("blue");  // ❌ ERROR  --  readonly array!</code></pre>
           </div>
 
           <!-- 7. NULL VS UNDEFINED -->
@@ -593,7 +593,7 @@ const colors: readonly string[] = ["red", "green"];
               <p>
                 <strong>Analogy:</strong> <strong>undefined</strong> = an empty
                 parking spot where nobody has parked yet.
-                <strong>null</strong> = a parking spot with a "Reserved —
+                <strong>null</strong> = a parking spot with a "Reserved  -- 
                 intentionally kept empty" sign.
               </p>
             </div>
@@ -640,10 +640,10 @@ const colors: readonly string[] = ["red", "green"];
             <pre><code>let x;                        // undefined (never assigned)
 let y: string | null = null;  // null (intentionally empty)
 
-console.log(x == y);   // true  (loose equality — both "empty")
-console.log(x === y);  // false (strict — different types)
+console.log(x == y);   // true  (loose equality  --  both "empty")
+console.log(x === y);  // false (strict  --  different types)
 
-// Nullish coalescing ?? — handles both null and undefined
+// Nullish coalescing ??  --  handles both null and undefined
 const name = null ?? "Guest";    // "Guest"
 const age  = undefined ?? 18;    // 18</code></pre>
           </div>
@@ -656,9 +656,9 @@ const age  = undefined ?? 18;    // 18</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>string</strong> = a labelled
-                drawer that only accepts paper documents — you always know
+                drawer that only accepts paper documents  --  you always know
                 what's inside. <strong>any</strong> = a mystery box where
-                anything can go in or out — you never know what you'll pull out
+                anything can go in or out  --  you never know what you'll pull out
                 until it blows up.
               </p>
             </div>
@@ -674,8 +674,8 @@ const age  = undefined ?? 18;    // 18</code></pre>
                 <tbody>
                   <tr>
                     <td>Type safety</td>
-                    <td>✅ Full — TS validates every operation</td>
-                    <td>❌ None — TS ignores all checks</td>
+                    <td>✅ Full  --  TS validates every operation</td>
+                    <td>❌ None  --  TS ignores all checks</td>
                   </tr>
                   <tr>
                     <td>Autocomplete / IntelliSense</td>
@@ -685,53 +685,53 @@ const age  = undefined ?? 18;    // 18</code></pre>
                   <tr>
                     <td>Reassign to other types?</td>
                     <td>❌ Only string values allowed</td>
-                    <td>✅ Can hold number, object, array — anything</td>
+                    <td>✅ Can hold number, object, array  --  anything</td>
                   </tr>
                   <tr>
                     <td>Calling wrong methods</td>
                     <td>❌ Compile error (caught before run)</td>
-                    <td>✅ No error at compile — 💥 crash at runtime</td>
+                    <td>✅ No error at compile  --  💥 crash at runtime</td>
                   </tr>
                   <tr>
                     <td>Refactor safety</td>
                     <td>✅ TS highlights all broken usages</td>
-                    <td>❌ Silent breakage — bugs discovered in production</td>
+                    <td>❌ Silent breakage  --  bugs discovered in production</td>
                   </tr>
                   <tr>
                     <td>Use case</td>
-                    <td>✅ Default — always prefer specific types</td>
+                    <td>✅ Default  --  always prefer specific types</td>
                     <td>⚠ Migration from JS, quick prototyping only</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <pre><code>// ─── string — safe and predictable ──────────────────────
+            <pre><code>// ─── string  --  safe and predictable ──────────────────────
 let greeting: string = "Hello, TypeScript!";
 console.log(greeting.toUpperCase());  // ✅ "HELLO, TYPESCRIPT!"
 console.log(greeting.length);         // ✅ 18
 // greeting = 42;                     // ❌ TS Error: Type 'number' is not assignable to type 'string'
 // greeting.toFixed(2);               // ❌ TS Error: Property 'toFixed' does not exist on type 'string'
 
-// ─── any — dangerous wildcard ──────────────────────────
+// ─── any  --  dangerous wildcard ──────────────────────────
 let data: any = "Hello";
 console.log(data.toUpperCase());  // ✅ works (for now...)
-data = 42;                        // ✅ no error — any accepts everything
+data = 42;                        // ✅ no error  --  any accepts everything
 console.log(data.toUpperCase());  // 💥 RUNTIME CRASH: data.toUpperCase is not a function
 
 // ─── Real-world danger: API responses ──────────────────
-// ❌ BAD — no safety net
+// ❌ BAD  --  no safety net
 function processData(input: any) {
   return input.trim().toLowerCase();  // 💥 crashes if input is not a string!
 }
 
-// ✅ GOOD — type-safe
+// ✅ GOOD  --  type-safe
 function processDataSafe(input: string) {
   return input.trim().toLowerCase();  // TS guarantees input is always a string
 }
 
 // ─── Migration tip: use unknown instead of any ─────────
 let mystery: unknown = getApiResponse();
-// mystery.trim();            // ❌ TS Error — must narrow first
+// mystery.trim();            // ❌ TS Error  --  must narrow first
 if (typeof mystery === "string") {
   mystery.trim();             // ✅ safe after typeof check
 }</code></pre>
@@ -739,7 +739,7 @@ if (typeof mystery === "string") {
               <span class="note-i">⚠</span>
               <p>
                 <strong>Rule of thumb:</strong> If you're tempted to use
-                <code>any</code>, ask yourself — do I know the type? If yes, use
+                <code>any</code>, ask yourself  --  do I know the type? If yes, use
                 it (<code>string</code>, <code>number</code>, etc.). If no, use
                 <code>unknown</code> and narrow. Reserve <code>any</code> only
                 for legacy JS migration where fixing types is impractical.
@@ -754,7 +754,7 @@ if (typeof mystery === "string") {
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>Analogy:</strong> <strong>any</strong> = a wild card —
+                <strong>Analogy:</strong> <strong>any</strong> = a wild card  -- 
                 does whatever it wants, no checks. <strong>unknown</strong> = a
                 new employee who must show their ID and pass verification before
                 accessing anything.
@@ -772,8 +772,8 @@ if (typeof mystery === "string") {
                 <tbody>
                   <tr>
                     <td>Type safety</td>
-                    <td>❌ None — escapes TS checking</td>
-                    <td>✅ Full — must narrow first</td>
+                    <td>❌ None  --  escapes TS checking</td>
+                    <td>✅ Full  --  must narrow first</td>
                   </tr>
                   <tr>
                     <td>Access properties</td>
@@ -798,13 +798,13 @@ if (typeof mystery === "string") {
                 </tbody>
               </table>
             </div>
-            <pre><code>// any — no safety (dangerous!)
+            <pre><code>// any  --  no safety (dangerous!)
 let a: any = "hello";
 a.toFixed(2);  // No TS error but CRASHES at runtime!
 
-// unknown — must check first (safe!)
+// unknown  --  must check first (safe!)
 let b: unknown = "hello";
-// b.toUpperCase();  // ❌ TS ERROR — must narrow!
+// b.toUpperCase();  // ❌ TS ERROR  --  must narrow!
 if (typeof b === "string") {
   b.toUpperCase();   // ✅ Safe after narrowing
 }</code></pre>
@@ -821,7 +821,7 @@ if (typeof b === "string") {
                 that finishes its job but doesn't hand you anything back (like a
                 postman who delivers but gives you no receipt).
                 <strong>never</strong> = a function that never comes back at all
-                — it crashes, loops forever, or throws before it can return.
+                 --  it crashes, loops forever, or throws before it can return.
               </p>
             </div>
             <div class="bordered">
@@ -842,7 +842,7 @@ if (typeof b === "string") {
                   <tr>
                     <td>Value allowed</td>
                     <td><code>undefined</code> only</td>
-                    <td>Nothing — no value possible</td>
+                    <td>Nothing  --  no value possible</td>
                   </tr>
                   <tr>
                     <td>Used for</td>
@@ -862,15 +862,15 @@ if (typeof b === "string") {
                 </tbody>
               </table>
             </div>
-            <pre><code>// void — function finishes, returns nothing
+            <pre><code>// void  --  function finishes, returns nothing
 function logMessage(msg: string): void {
   console.log(msg);
   // no return needed
 }
 
-// never — function NEVER reaches a return
+// never  --  function NEVER reaches a return
 function crash(msg: string): never {
-  throw new Error(msg);  // always throws — never returns
+  throw new Error(msg);  // always throws  --  never returns
 }
 
 function infiniteLoop(): never {
@@ -891,7 +891,7 @@ function area(s: Shape): number {
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-     CATEGORY 3 — TYPE SYSTEM
+     CATEGORY 3  --  TYPE SYSTEM
      ═══════════════════════════════════════════════════════ -->
 
           <!-- 10. TYPE VS INTERFACE -->
@@ -903,7 +903,7 @@ function area(s: Shape): number {
               <p>
                 <strong>Analogy:</strong> <strong>interface</strong> = a formal
                 contract (can be extended and merged). <strong>type</strong> = a
-                nickname/alias (can alias anything — unions, primitives,
+                nickname/alias (can alias anything  --  unions, primitives,
                 intersections).
               </p>
             </div>
@@ -955,12 +955,12 @@ function area(s: Shape): number {
                 </tbody>
               </table>
             </div>
-            <pre><code>// type — flexible (unions, primitives, computed)
+            <pre><code>// type  --  flexible (unions, primitives, computed)
 type ID = string | number;
 type Point = { x: number; y: number };
 type ReadonlyPoint = Readonly&lt;Point&gt;;
 
-// interface — extendable (OOP contracts, merging)
+// interface  --  extendable (OOP contracts, merging)
 interface Animal { name: string; }
 interface Dog extends Animal { breed: string; }
 
@@ -978,7 +978,7 @@ interface Window { myCustomProp: string; }  // adds to existing Window type!</co
                 <strong>Analogy:</strong> <strong>Union</strong> = "this gift
                 can be a book OR a toy" (one slot, many possible types).
                 <strong>Tuple</strong> = "this box must contain exactly: 1 book
-                in slot 0, 1 pen in slot 1, 1 eraser in slot 2" — fixed
+                in slot 0, 1 pen in slot 1, 1 eraser in slot 2"  --  fixed
                 positions, fixed types.
               </p>
             </div>
@@ -1010,16 +1010,16 @@ interface Window { myCustomProp: string; }  // adds to existing Window type!</co
                   <tr>
                     <td>Access</td>
                     <td>Narrow first, then use</td>
-                    <td>By index — type known immediately</td>
+                    <td>By index  --  type known immediately</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <pre><code>// Union — ONE slot, multiple possible types
+            <pre><code>// Union  --  ONE slot, multiple possible types
 let id: string | number = "ABC";
 id = 123;  // ✅ also valid
 
-// Tuple — FIXED structure: position 0=string, 1=number, 2=boolean
+// Tuple  --  FIXED structure: position 0=string, 1=number, 2=boolean
 let record: [string, number, boolean] = ["Alice", 25, true];
 console.log(record[0]); // "Alice" (TypeScript knows it's a string)
 console.log(record[1]); // 25     (TypeScript knows it's a number)
@@ -1039,7 +1039,7 @@ console.log(record[1]); // 25     (TypeScript knows it's a number)
                 <strong>Analogy:</strong> <strong>Enum</strong> = a physical
                 menu card on the table (exists at runtime, you can pick it up).
                 <strong>Union literal</strong> = the waiter reads options aloud
-                (only exists at order time — no card remains).
+                (only exists at order time  --  no card remains).
               </p>
             </div>
             <div class="bordered">
@@ -1080,17 +1080,17 @@ console.log(record[1]); // 25     (TypeScript knows it's a number)
                 </tbody>
               </table>
             </div>
-            <pre><code>// Enum — generates a real JS object at runtime
+            <pre><code>// Enum  --  generates a real JS object at runtime
 enum Direction { Up, Down, Left, Right }
 console.log(Direction.Up);      // 0
 console.log(Direction[0]);      // "Up" (reverse mapping!)
 let d = Direction.Up;
 
-// Union literal — zero runtime cost, better inference
+// Union literal  --  zero runtime cost, better inference
 type Direction2 = "up" | "down" | "left" | "right";
 let d2: Direction2 = "up";
 
-// const enum — inline, even smaller bundle (no reverse mapping)
+// const enum  --  inline, even smaller bundle (no reverse mapping)
 const enum Status { Active = "active", Inactive = "inactive" }
 let s: Status = Status.Active;  // compiles to just "active"</code></pre>
           </div>
@@ -1103,8 +1103,8 @@ let s: Status = Status.Active;  // compiles to just "active"</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Literal</strong> = a vending
-                machine with 3 fixed buttons (Coke, Pepsi, Water — nothing
-                else). <strong>Generic</strong> = a universal dispenser — you
+                machine with 3 fixed buttons (Coke, Pepsi, Water  --  nothing
+                else). <strong>Generic</strong> = a universal dispenser  --  you
                 load ANY drink and it adapts.
               </p>
             </div>
@@ -1136,12 +1136,12 @@ let s: Status = Status.Active;  // compiles to just "active"</code></pre>
                 </tbody>
               </table>
             </div>
-            <pre><code>// Literal — ONLY these exact string values allowed
+            <pre><code>// Literal  --  ONLY these exact string values allowed
 type Theme = "light" | "dark" | "system";
 let t: Theme = "light";   // ✅
 // let t2: Theme = "blue"; // ❌ not in the literal set
 
-// Generic — works with ANY type — decided at call site
+// Generic  --  works with ANY type  --  decided at call site
 function wrap&lt;T&gt;(val: T): T[] { return [val]; }
 wrap("hello");   // inferred as string[]
 wrap(42);        // inferred as number[]
@@ -1158,9 +1158,9 @@ wrap({ id: 1 }); // inferred as { id: number }[]
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Type assertion</strong> =
-                telling the bouncer "Trust me, I'm 18" without showing ID — you
+                telling the bouncer "Trust me, I'm 18" without showing ID  --  you
                 override the check, which can be wrong.
-                <strong>Type narrowing</strong> = actually showing your ID — the
+                <strong>Type narrowing</strong> = actually showing your ID  --  the
                 bouncer (TypeScript) verifies it themselves.
               </p>
             </div>
@@ -1181,8 +1181,8 @@ wrap({ id: 1 }); // inferred as { id: number }[]
                   </tr>
                   <tr>
                     <td>Safety</td>
-                    <td>⚠ Unsafe — you could be wrong</td>
-                    <td>✅ Safe — proven at runtime</td>
+                    <td>⚠ Unsafe  --  you could be wrong</td>
+                    <td>✅ Safe  --  proven at runtime</td>
                   </tr>
                   <tr>
                     <td>Syntax</td>
@@ -1205,14 +1205,14 @@ wrap({ id: 1 }); // inferred as { id: number }[]
                 </tbody>
               </table>
             </div>
-            <pre><code>// TYPE ASSERTION — you override TS (risky!)
+            <pre><code>// TYPE ASSERTION  --  you override TS (risky!)
 const input = document.getElementById("name") as HTMLInputElement;
-input.value = "Alice";  // TS trusts you — but if it's not an input, runtime crash!
+input.value = "Alice";  // TS trusts you  --  but if it's not an input, runtime crash!
 
-// Double assertion (worst case — code smell!)
+// Double assertion (worst case  --  code smell!)
 const bad = "hello" as unknown as number;  // ❌ Avoid this pattern
 
-// TYPE NARROWING — TS verifies it (safe!)
+// TYPE NARROWING  --  TS verifies it (safe!)
 function printId(id: string | number) {
   if (typeof id === "string") {
     console.log(id.toUpperCase());  // ✅ TS knows it's string here
@@ -1241,7 +1241,7 @@ function makeSound(animal: Cat | Dog) {
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-     CATEGORY 4 — FUNCTIONS
+     CATEGORY 4  --  FUNCTIONS
      ═══════════════════════════════════════════════════════ -->
 
           <!-- 15. FUNCTION VS ARROW -->
@@ -1296,10 +1296,10 @@ function makeSound(animal: Cat | Dog) {
                 </tbody>
               </table>
             </div>
-            <pre><code>// Regular — hoisted, own 'this'
+            <pre><code>// Regular  --  hoisted, own 'this'
 function greet(name: string) { return `Hi ${name}`; }
 
-// Arrow — shorter, inherits parent 'this'
+// Arrow  --  shorter, inherits parent 'this'
 const greet2 = (name: string) => `Hi ${name}`;
 
 // 'this' difference matters critically in classes
@@ -1373,7 +1373,7 @@ for (let f of fruits) console.log(f);        // "apple", "banana", "cherry" (val
 
 let obj = { a: 1, b: 2, c: 3 };
 for (let key in obj) console.log(key);       // "a", "b", "c"
-// for (let val of obj) { }                  // ❌ ERROR — plain objects not iterable
+// for (let val of obj) { }                  // ❌ ERROR  --  plain objects not iterable
 
 // Strings work with for...of
 for (let ch of "hi") console.log(ch);        // "h", "i"</code></pre>
@@ -1387,9 +1387,9 @@ for (let ch of "hi") console.log(ch);        // "h", "i"</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Optional parameter</strong> =
-                a form field marked "optional" — you may leave it blank (value
+                a form field marked "optional"  --  you may leave it blank (value
                 is <code>undefined</code> if skipped).
-                <strong>Default parameter</strong> = a pre-filled form field —
+                <strong>Default parameter</strong> = a pre-filled form field  -- 
                 it has a sensible value already, but you can override it.
               </p>
             </div>
@@ -1431,7 +1431,7 @@ for (let ch of "hi") console.log(ch);        // "h", "i"</code></pre>
                 </tbody>
               </table>
             </div>
-            <pre><code>// Optional — might be undefined inside the function
+            <pre><code>// Optional  --  might be undefined inside the function
 function greet(name?: string): string {
   // Must handle the undefined case!
   return `Hello, ${name ?? "stranger"}!`;
@@ -1439,14 +1439,14 @@ function greet(name?: string): string {
 greet("Alice");  // "Hello, Alice!"
 greet();         // "Hello, stranger!"
 
-// Default — always has a value, simpler to use
+// Default  --  always has a value, simpler to use
 function greet2(name: string = "Guest"): string {
   return `Hello, ${name}!`;  // no undefined check needed
 }
 greet2("Bob");   // "Hello, Bob!"
 greet2();        // "Hello, Guest!"
 
-// Mixing — required, then default, then optional
+// Mixing  --  required, then default, then optional
 function createUser(
   id: number,                   // required
   role: string = "viewer",      // default
@@ -1460,7 +1460,7 @@ createUser(3, "admin", "Alex"); // 3, "admin",  "Alex"</code></pre>
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-     CATEGORY 5 — OOP
+     CATEGORY 5  --  OOP
      ═══════════════════════════════════════════════════════ -->
 
           <!-- 18. CLASS VS INTERFACE -->
@@ -1471,9 +1471,9 @@ createUser(3, "admin", "Alex"); // 3, "admin",  "Alex"</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Class</strong> = a factory
-                that builds cars — it has the blueprint AND the machines to
+                that builds cars  --  it has the blueprint AND the machines to
                 produce them. <strong>Interface</strong> = just the blueprint on
-                paper — no machines, someone else builds it.
+                paper  --  no machines, someone else builds it.
               </p>
             </div>
             <div class="bordered">
@@ -1519,10 +1519,10 @@ createUser(3, "admin", "Alex"); // 3, "admin",  "Alex"</code></pre>
                 </tbody>
               </table>
             </div>
-            <pre><code>// Interface — structure / contract only
+            <pre><code>// Interface  --  structure / contract only
 interface Shape { area(): number; color: string; }
 
-// Class — full implementation with state and logic
+// Class  --  full implementation with state and logic
 class Circle implements Shape {
   color = "red";
   constructor(public radius: number) {}
@@ -1541,9 +1541,9 @@ const c = new Circle(5);  // ✅ new works on class
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>extends</strong> = inheriting
-                your parent's house — you GET the furniture already inside.
+                your parent's house  --  you GET the furniture already inside.
                 <strong>implements</strong> = signing a contract that says
-                you'll furnish your own house — you PROMISE to provide
+                you'll furnish your own house  --  you PROMISE to provide
                 everything yourself.
               </p>
             </div>
@@ -1580,12 +1580,12 @@ const c = new Circle(5);  // ✅ new works on class
                 </tbody>
               </table>
             </div>
-            <pre><code>// extends — inherits everything automatically
+            <pre><code>// extends  --  inherits everything automatically
 class Animal { move() { console.log("moving"); } }
 class Dog extends Animal { }  // Dog already HAS move()!
 new Dog().move();  // "moving" ✅
 
-// implements — must write everything yourself
+// implements  --  must write everything yourself
 interface Flyable { fly(): void; }
 interface Swimmable { swim(): void; }
 
@@ -1603,9 +1603,9 @@ class Duck implements Flyable, Swimmable {  // ✅ multiple OK!
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>public</strong> = the front
-                porch — anyone can visit. <strong>private</strong> = your
-                bedroom — only you (the class itself) can enter.
-                <strong>protected</strong> = the family room — only you and your
+                porch  --  anyone can visit. <strong>private</strong> = your
+                bedroom  --  only you (the class itself) can enter.
+                <strong>protected</strong> = the family room  --  only you and your
                 family members (subclasses) can enter.
               </p>
             </div>
@@ -1676,24 +1676,24 @@ class Duck implements Flyable, Swimmable {  // ✅ multiple OK!
 class SavingsAccount extends BankAccount {
   showAccount() {
     console.log(this.accountNo);  // ✅ protected OK in subclass
-    // console.log(this.balance); // ❌ private — not accessible in subclass!
+    // console.log(this.balance); // ❌ private  --  not accessible in subclass!
   }
 }
 
 const acc = new BankAccount("Alice", 1000, "ACC123");
 console.log(acc.owner);         // ✅ public
-// console.log(acc.balance);    // ❌ TS Error — private!
-// console.log(acc.accountNo);  // ❌ TS Error — protected!
+// console.log(acc.balance);    // ❌ TS Error  --  private!
+// console.log(acc.accountNo);  // ❌ TS Error  --  protected!
 
 // True JS private with # (ES2022)
 class Secret {
-  #pin: number = 1234;   // real JS private — not just TS!
+  #pin: number = 1234;   // real JS private  --  not just TS!
   getPin() { return this.#pin; }
 }</code></pre>
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-     CATEGORY 6 — ASYNC
+     CATEGORY 6  --  ASYNC
      ═══════════════════════════════════════════════════════ -->
 
           <!-- 21. SYNC VS ASYNC -->
@@ -1703,9 +1703,9 @@ class Secret {
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>Analogy:</strong> <strong>Sync</strong> = a bank queue —
+                <strong>Analogy:</strong> <strong>Sync</strong> = a bank queue  -- 
                 each person waits for the one in front before getting served.
-                <strong>Async</strong> = a restaurant — you order food, chat
+                <strong>Async</strong> = a restaurant  --  you order food, chat
                 while the kitchen cooks, and food arrives when ready without you
                 waiting frozen at the table.
               </p>
@@ -1751,12 +1751,12 @@ class Secret {
                 </tbody>
               </table>
             </div>
-            <pre><code>// Sync — blocks until done, order guaranteed
+            <pre><code>// Sync  --  blocks until done, order guaranteed
 console.log("1");
 console.log("2");
 console.log("3");  // Output: 1, 2, 3
 
-// Async — doesn't block
+// Async  --  doesn't block
 console.log("1");
 setTimeout(() => console.log("2"), 1000);
 console.log("3");  // Output: 1, 3, 2  (2 comes last!)</code></pre>
@@ -1770,9 +1770,9 @@ console.log("3");  // Output: 1, 3, 2  (2 comes last!)</code></pre>
               <span class="note-i">✓</span>
               <p>
                 <strong>Analogy:</strong> <strong>Promise + .then()</strong> = a
-                callback chain — you hand the baton to the next runner at each
+                callback chain  --  you hand the baton to the next runner at each
                 step. <strong>async/await</strong> = you write the relay race as
-                if all runners are YOU, one after the other — same async
+                if all runners are YOU, one after the other  --  same async
                 underneath, but reads like sync code.
               </p>
             </div>
@@ -1839,20 +1839,20 @@ async function fetchUser2(id: number): Promise&lt;string&gt; {
   }
 }
 
-// ── PARALLEL — run multiple at once (don't await in sequence!) ──
+// ── PARALLEL  --  run multiple at once (don't await in sequence!) ──
 async function fetchAll() {
-  // ❌ Sequential (slow) — waits one by one
+  // ❌ Sequential (slow)  --  waits one by one
   const a = await fetchUser2(1);
   const b = await fetchUser2(2);
 
-  // ✅ Parallel (fast) — both fire simultaneously
+  // ✅ Parallel (fast)  --  both fire simultaneously
   const [c, d] = await Promise.all([fetchUser2(1), fetchUser2(2)]);
 }</code></pre>
             <div class="note note-warn">
               <span class="note-i">⚠</span>
               <p>
                 <strong>Common mistake:</strong> Calling <code>await</code> in a
-                loop one by one is sequential — use
+                loop one by one is sequential  --  use
                 <code>Promise.all()</code> to run them in parallel and get a
                 significant speed boost.
               </p>

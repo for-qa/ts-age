@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Unit Testing — TypeScript Learning Path</title>
+    <title>Unit Testing  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn unit testing in TypeScript — describe, it, expect, matchers, setup/teardown, mocking, and common testing mistakes."
+      content="Learn unit testing in TypeScript  --  describe, it, expect, matchers, setup/teardown, mocking, and common testing mistakes."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -187,7 +187,7 @@ expect([1, 2, 3]).toHaveLength(3);
 expect(() => { throw new Error("boom"); }).toThrow("boom");
 expect(() => JSON.parse("invalid")).toThrow();
 
-// NEGATION — .not
+// NEGATION  --  .not
 expect(5).not.toBe(3);
 expect([1, 2]).not.toContain(5);</code></pre>
               </div>
@@ -208,12 +208,12 @@ expect([1, 2]).not.toContain(5);</code></pre>
                 <pre><code>describe("UserService", () => {
   let users: string[];
 
-  // Runs BEFORE each test — fresh state every time
+  // Runs BEFORE each test  --  fresh state every time
   beforeEach(() => {
     users = ["Alice", "Bob"];
   });
 
-  // Runs AFTER each test — cleanup
+  // Runs AFTER each test  --  cleanup
   afterEach(() => {
     users = [];
   });
@@ -224,12 +224,12 @@ expect([1, 2]).not.toContain(5);</code></pre>
   });
 
   it("should start with 2 users (fresh state!)", () => {
-    // beforeEach ran again — users reset to ["Alice", "Bob"]
+    // beforeEach ran again  --  users reset to ["Alice", "Bob"]
     expect(users).toHaveLength(2);
   });
 });
 
-// Also: beforeAll / afterAll — run once for entire describe block</code></pre>
+// Also: beforeAll / afterAll  --  run once for entire describe block</code></pre>
               </div>
             </div>
           </div>
@@ -245,7 +245,7 @@ expect([1, 2]).not.toContain(5);</code></pre>
                 <span class="card-badge">Mocks</span>
               </div>
               <div class="card-body">
-                <pre><code>// Mock function — track calls and set return values
+                <pre><code>// Mock function  --  track calls and set return values
 const mockFn = jest.fn();
 mockFn("hello");
 expect(mockFn).toHaveBeenCalledWith("hello");
@@ -261,7 +261,7 @@ const data = await fetchData();
 expect(data).toEqual({ id: 1 });
 
 // WHY mock?
-// Don't call REAL APIs in tests — they're slow and unreliable
+// Don't call REAL APIs in tests  --  they're slow and unreliable
 // Mock the API function, test YOUR logic around it</code></pre>
               </div>
             </div>
@@ -308,7 +308,7 @@ it("should throw on invalid id", async () => {
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 1: Testing implementation, not behavior</strong>
-                <pre><code>// ❌ Testing HOW it works (fragile — breaks when refactored)
+                <pre><code>// ❌ Testing HOW it works (fragile  --  breaks when refactored)
 expect(calculator.internalSum).toBe(5);
 
 // ✅ Testing WHAT it does (stable)
@@ -320,7 +320,7 @@ expect(calculator.getTotal()).toBe(5);</code></pre>
               <div>
                 <strong>Mistake 2: Tests sharing state</strong>
                 <pre><code>// ❌ Test 2 depends on test 1's data
-// Tests should be INDEPENDENT — use beforeEach to reset</code></pre>
+// Tests should be INDEPENDENT  --  use beforeEach to reset</code></pre>
               </div>
             </div>
             <div class="note note-warn">

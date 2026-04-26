@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Loops — TypeScript Learning Path</title>
+    <title>Loops  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript loops — while, do-while, for, break, continue. Understand iteration with real-life examples and interview tips."
+      content="Learn TypeScript loops  --  while, do-while, for, break, continue. Understand iteration with real-life examples and interview tips."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -39,7 +39,7 @@
           <a href="#lp-three">3 Key Parts</a>
           <div class="nav-group">Loop Types</div>
           <a href="#lp-while">while Loop</a>
-          <a href="#lp-dowhile">do … while Loop</a>
+          <a href="#lp-dowhile">do ... while Loop</a>
           <a href="#lp-for">for Loop</a>
           <a href="#lp-scope">Scope in for Loop</a>
           <a href="#lp-for-mistake">⚠ Common Mistake</a>
@@ -61,7 +61,7 @@
             </div>
             <h1>Loops</h1>
             <p>
-              How to repeat actions — while, do-while, for loops, plus break &
+              How to repeat actions  --  while, do-while, for loops, plus break &
               continue jumping statements. Covers ascending, descending,
               even/odd filtering, and infinite loop warnings.
             </p>
@@ -90,7 +90,7 @@
               <p>
                 <strong>Real-Life Example:</strong> Imagine you need to stamp
                 100 envelopes. Without a loop, you'd write 100 separate
-                instructions: "stamp envelope 1," "stamp envelope 2," … all the
+                instructions: "stamp envelope 1," "stamp envelope 2," ... all the
                 way to 100. With a loop, you write ONE instruction: "stamp the
                 next envelope" and repeat it 100 times. Same work, way less
                 writing!
@@ -101,12 +101,12 @@
               <div class="card-head">
                 <div class="card-num">!</div>
                 <div class="card-title">
-                  Without loops — repetitive and painful
+                  Without loops  --  repetitive and painful
                 </div>
                 <span class="card-badge">❌ Bad</span>
               </div>
               <div class="card-body">
-                <pre><code>// Printing 1 to 5 WITHOUT a loop — 5 statements!
+                <pre><code>// Printing 1 to 5 WITHOUT a loop  --  5 statements!
 console.log(1);
 console.log(2);
 console.log(3);
@@ -120,12 +120,12 @@ console.log(5);
               <div class="card-head">
                 <div class="card-num">✓</div>
                 <div class="card-title">
-                  With a loop — write once, repeat many times
+                  With a loop  --  write once, repeat many times
                 </div>
                 <span class="card-badge">✅ Smart</span>
               </div>
               <div class="card-body">
-                <pre><code>// Printing 1 to 5 WITH a loop — just 3 lines!
+                <pre><code>// Printing 1 to 5 WITH a loop  --  just 3 lines!
 for (let i = 1; i <= 5; i++) {
   console.log(i);
 }
@@ -143,11 +143,11 @@ for (let i = 1; i <= 5; i++) {
               <p>
                 <strong>Real-Life Example:</strong> A loop is like climbing
                 stairs:<br />
-                ✓ <strong>Start</strong> — Which step do you begin on? (step
+                ✓ <strong>Start</strong>  --  Which step do you begin on? (step
                 1)<br />
-                ✓ <strong>Stop</strong> — Which step do you stop at? (step
+                ✓ <strong>Stop</strong>  --  Which step do you stop at? (step
                 10)<br />
-                ✓ <strong>Step size</strong> — How many steps at a time? (1 at a
+                ✓ <strong>Step size</strong>  --  How many steps at a time? (1 at a
                 time, or 2 at a time)
               </p>
             </div>
@@ -174,12 +174,12 @@ for (let i = 1; i <= 5; i++) {
           <!-- WHILE LOOP -->
           <div class="sec" id="lp-while">
             <div class="sec-label">Loop Type 1</div>
-            <h2>while Loop — Check FIRST, Then Run</h2>
+            <h2>while Loop  --  Check FIRST, Then Run</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A <code>while</code> loop is
-                like a <strong>security guard at a gate</strong> — "BEFORE you
+                like a <strong>security guard at a gate</strong>  --  "BEFORE you
                 enter, show me your pass." If your pass is valid (condition
                 true), you enter. If not, you don't get in at all. The guard
                 checks EVERY time before letting anyone through.
@@ -214,7 +214,7 @@ while (i <= 5) {
             <div class="card ph2-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Print only even numbers (1—10)</div>
+                <div class="card-title">Print only even numbers (1 -- 10)</div>
                 <span class="card-badge">Filter</span>
               </div>
               <div class="card-body">
@@ -266,12 +266,12 @@ while (i >= 1) {
           <!-- DO-WHILE LOOP -->
           <div class="sec" id="lp-dowhile">
             <div class="sec-label">Loop Type 2</div>
-            <h2>do … while Loop — Run FIRST, Then Check</h2>
+            <h2>do ... while Loop  --  Run FIRST, Then Check</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A <code>do-while</code> loop
-                is like a <strong>food tasting station</strong> — you get ONE
+                is like a <strong>food tasting station</strong>  --  you get ONE
                 free sample BEFORE they ask "Do you want more?" You always taste
                 at least once, even if you decide not to buy. The
                 <strong>action happens first</strong>, the question comes after.
@@ -290,19 +290,19 @@ do {
               <div class="card-head">
                 <div class="card-num">!</div>
                 <div class="card-title">
-                  Key difference — runs even when condition is false!
+                  Key difference  --  runs even when condition is false!
                 </div>
                 <span class="card-badge">At least once</span>
               </div>
               <div class="card-body">
-                <pre><code>// while loop — condition checked FIRST
+                <pre><code>// while loop  --  condition checked FIRST
 let i: number = 10;
 while (i <= 5) {
   console.log(i);  // ❌ NEVER runs! 10 <= 5 is false
   i++;
 }
 
-// do-while — runs ONCE before checking
+// do-while  --  runs ONCE before checking
 let j: number = 10;
 do {
   console.log(j);  // ✅ Prints 10! (runs before checking)
@@ -345,12 +345,12 @@ do {
           <!-- FOR LOOP -->
           <div class="sec" id="lp-for">
             <div class="sec-label">Loop Type 3</div>
-            <h2>for Loop — All-in-One (Most Popular!)</h2>
+            <h2>for Loop  --  All-in-One (Most Popular!)</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A <code>for</code> loop is
-                like programming a <strong>washing machine</strong> — you set
+                like programming a <strong>washing machine</strong>  --  you set
                 everything upfront in ONE panel: start temperature, number of
                 cycles, rinse speed. Press start and it handles everything. No
                 separate buttons. The <code>for</code> loop puts all 3 parts
@@ -403,17 +403,17 @@ for (let i = 1; i <= 10; i++) {
                   A very common beginner mistake is writing
                   <code>j + 1</code> in the increment section of a
                   <code>for</code> loop. This <em>looks</em> like it adds 1 to
-                  <code>j</code>, but it does NOT — it just calculates a result
+                  <code>j</code>, but it does NOT  --  it just calculates a result
                   and immediately throws it away. The variable <code>j</code> is
                   never updated, so the condition never becomes false and the
                   loop runs forever!
                 </p>
-                <pre><code>// ❌ WRONG — infinite loop! j stays 1 forever
+                <pre><code>// ❌ WRONG  --  infinite loop! j stays 1 forever
 for (let j = 1; j &lt;= 10; j + 1) {
   console.log(j);  // prints 1... 1... 1... forever
 }
 
-// ✅ CORRECT — j is actually saved each time
+// ✅ CORRECT  --  j is actually saved each time
 for (let j = 1; j &lt;= 10; j++) {
   console.log(j);  // 1, 2, 3, ... 10
 }</code></pre>
@@ -500,10 +500,10 @@ for (let i = 1; i <= 10; i++) {
               <p>
                 <strong>Real-Life Example:</strong> A variable declared with
                 <code>let</code> inside the <code>for()</code> is like a
-                <strong>wristband at a concert</strong> — it only works inside
+                <strong>wristband at a concert</strong>  --  it only works inside
                 the venue. Once you leave (loop ends), the wristband is invalid.
                 A variable declared outside is like a
-                <strong>government ID</strong> — it works everywhere.
+                <strong>government ID</strong>  --  it works everywhere.
               </p>
             </div>
 
@@ -534,7 +534,7 @@ console.log(i);    // ❌ ERROR! 'i' doesn't exist here
               </div>
               <div class="card-body">
                 <pre><code>let i: number;                // declared OUTSIDE (global)
-for (i = 1; i <= 5; i++) {   // no 'let' here — reusing global
+for (i = 1; i <= 5; i++) {   // no 'let' here  --  reusing global
   console.log(i);             // 1, 2, 3, 4, 5
 }
 console.log(i);               // 6 ← accessible! (last value after loop exits)</code></pre>
@@ -550,14 +550,14 @@ console.log(i);               // 6 ← accessible! (last value after loop exits)
           <!-- BREAK -->
           <div class="sec" id="lp-break">
             <div class="sec-label">Jumping Statements</div>
-            <h2>break — "Emergency Exit!"</h2>
+            <h2>break  --  "Emergency Exit!"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>break</code> is like
-                pulling the <strong>fire alarm</strong> in a building — everyone
+                pulling the <strong>fire alarm</strong> in a building  --  everyone
                 stops what they're doing and EXITS immediately. The loop doesn't
-                finish naturally — it's forced to stop.
+                finish naturally  --  it's forced to stop.
               </p>
             </div>
 
@@ -575,7 +575,7 @@ console.log(i);               // 6 ← accessible! (last value after loop exits)
   console.log(i);
 }
 // Output: 1, 2, 3, 4
-// 5 is NOT printed — break fires BEFORE console.log
+// 5 is NOT printed  --  break fires BEFORE console.log
 
 // Move console.log BEFORE the if to print 5 too:
 // Output would be: 1, 2, 3, 4, 5</code></pre>
@@ -586,12 +586,12 @@ console.log(i);               // 6 ← accessible! (last value after loop exits)
           <!-- CONTINUE -->
           <div class="sec" id="lp-continue">
             <div class="sec-label">Jumping Statements</div>
-            <h2>continue — "Skip This One!"</h2>
+            <h2>continue  --  "Skip This One!"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>continue</code> is
-                like <strong>skipping a song</strong> on a playlist — you don't
+                like <strong>skipping a song</strong> on a playlist  --  you don't
                 stop listening to music (the loop continues), you just skip that
                 one track and move to the next one.
               </p>
@@ -611,7 +611,7 @@ console.log(i);               // 6 ← accessible! (last value after loop exits)
   console.log(i);
 }
 // Output: 1, 2, 3, 4, 6, 7, 8, 9, 10
-// 5 is MISSING — it was skipped!
+// 5 is MISSING  --  it was skipped!
 
 // Skip multiple values (3, 5, 7):
 for (let i = 1; i <= 10; i++) {
@@ -622,7 +622,7 @@ for (let i = 1; i <= 10; i++) {
 }
 // Output: 1, 2, 4, 6, 8, 9, 10</code></pre>
                 <p class="fn">
-                  Use <code>||</code> (OR) to skip multiple values — because
+                  Use <code>||</code> (OR) to skip multiple values  --  because
                   <code>i</code> can only be ONE number at a time.
                   <code>&&</code> (AND) would never be true!
                 </p>
@@ -642,7 +642,7 @@ for (let i = 1; i <= 10; i++) {
                   <tr>
                     <td><code class="cn">break</code></td>
                     <td>EXIT the entire loop immediately</td>
-                    <td>💥 Fire alarm — everyone out!</td>
+                    <td>💥 Fire alarm  --  everyone out!</td>
                   </tr>
                   <tr>
                     <td><code class="cn">continue</code></td>
@@ -706,7 +706,7 @@ for (let i = 1; i <= 10; i++) {
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember All Loop Types + Jump
+                <strong>🧠 Memory Trick  --  Remember All Loop Types + Jump
                 Statements:</strong><br /><br />
                 "<strong>W</strong>hile <strong>D</strong>oing <strong>F</strong>rontend, <strong>B</strong>uild <strong>C</strong>omponents"<br />
                 → <strong>W</strong>hile, <strong>D</strong>o-while,
@@ -751,10 +751,10 @@ do {
 }</code></pre>
 
             <h3>break &amp; continue</h3>
-            <pre><code>// break — exit entire loop
+            <pre><code>// break  --  exit entire loop
 if (i === 5) break;
 
-// continue — skip this iteration
+// continue  --  skip this iteration
 if (i === 5) continue;</code></pre>
 
             <hr />

@@ -91,8 +91,8 @@ export function TopicPage() {
             <span className="hero-tag">var / let / const</span>
             <span className="hero-tag">Session Notes</span>
           </div>
-          <h1>Variables <span>&amp; Keywords</span></h1>
-          <p>Everything about creating, naming, and managing variables in TypeScript — covering comments, the three keywords (var, let, const), and the five key differences between them.</p>
+          <h1>Variables <span>& Keywords</span></h1>
+          <p>Everything about creating, naming, and managing variables in TypeScript  --  covering comments, the three keywords (var, let, const), and the five key differences between them.</p>
         </div>
         <VariablesKeywordsContent />
         <QuizSection topicFile={topicFile} />

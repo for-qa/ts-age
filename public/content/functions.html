@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Functions — TypeScript Learning Path</title>
+    <title>Functions  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript functions — named, anonymous, arrow/lambda. Covers rest, optional, default parameters, implicit return, and interview tips."
+      content="Learn TypeScript functions  --  named, anonymous, arrow/lambda. Covers rest, optional, default parameters, implicit return, and interview tips."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -64,7 +64,7 @@
             </div>
             <h1>Functions</h1>
             <p>
-              Reusable blocks of code — named, anonymous, and arrow/lambda
+              Reusable blocks of code  --  named, anonymous, and arrow/lambda
               functions. Covers rest, optional, and default parameters with
               real-life examples.
             </p>
@@ -95,7 +95,7 @@
                 <strong>coffee machine</strong>. You put in ingredients
                 (parameters), press a button (call the function), and it gives
                 you coffee (return value). You don't rebuild the machine every
-                time — you just press the button again. That's
+                time  --  you just press the button again. That's
                 <strong>reusability</strong>!
               </p>
             </div>
@@ -165,7 +165,7 @@
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember All Function Types +
+                <strong>🧠 Memory Trick  --  Remember All Function Types +
                 Parameter Styles:</strong><br /><br />
                 <strong>3 Types:</strong> "<strong>N</strong>ode <strong>A</strong>lways <strong>A</strong>synchronous"<br />
                 → <strong>N</strong>amed, <strong>A</strong>nonymous,
@@ -186,7 +186,7 @@
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A named function is like a
-                <strong>restaurant with a signboard</strong> — it has a clear
+                <strong>restaurant with a signboard</strong>  --  it has a clear
                 name ("Pizza Palace"), and anyone can find it and visit (call
                 it) by that name.
               </p>
@@ -241,12 +241,12 @@ console.log(result);  // 30</code></pre>
           <!-- REST PARAMETERS -->
           <div class="sec" id="fn-rest">
             <div class="sec-label">Parameter Style 1</div>
-            <h2>Rest Parameters — "Pass as many as you want"</h2>
+            <h2>Rest Parameters  --  "Pass as many as you want"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Rest parameters are like an
-                <strong>all-you-can-eat buffet</strong> — bring 2 friends or 20
+                <strong>all-you-can-eat buffet</strong>  --  bring 2 friends or 20
                 friends, the restaurant accepts everyone. There's no fixed limit
                 on how many "guests" (values) you can pass.
               </p>
@@ -275,7 +275,7 @@ console.log(result);  // 30</code></pre>
 addNumbers(1, 2);          // Sum: 3
 addNumbers(1, 2, 3);       // Sum: 6
 addNumbers(10, 20, 30, 40, 50);  // Sum: 150
-// Pass 2 values or 50 values — it works!</code></pre>
+// Pass 2 values or 50 values  --  it works!</code></pre>
               </div>
             </div>
 
@@ -293,7 +293,7 @@ addNumbers(10, 20, 30, 40, 50);  // Sum: 150
 console.log(findElements(3, "John", 42, 99, "test"));  // 5
 console.log(findElements(10, 20, 30, 40, 50, 60, 70)); // 7
 console.log(findElements("a", "b"));  // 2
-// Accepts numbers AND strings — union type!</code></pre>
+// Accepts numbers AND strings  --  union type!</code></pre>
               </div>
             </div>
           </div>
@@ -301,12 +301,12 @@ console.log(findElements("a", "b"));  // 2
           <!-- OPTIONAL PARAMETERS -->
           <div class="sec" id="fn-optional">
             <div class="sec-label">Parameter Style 2</div>
-            <h2>Optional Parameters — "Pass it or don't"</h2>
+            <h2>Optional Parameters  --  "Pass it or don't"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Optional parameters are like
-                <strong>toppings on a pizza</strong> — crust and sauce are
+                <strong>toppings on a pizza</strong>  --  crust and sauce are
                 mandatory, but extra cheese is optional. You can order with or
                 without it, and the pizza still works!
               </p>
@@ -334,7 +334,7 @@ displayDetails(123, "Scott", "scott@gmail.com");
 // ID: 123, Name: Scott, Email: scott@gmail.com
 
 displayDetails(456, "John");
-// ID: 456, Name: John   (no email — no error!)</code></pre>
+// ID: 456, Name: John   (no email  --  no error!)</code></pre>
                 <p class="fn">
                   If not passed, the optional parameter is
                   <code>undefined</code>. Use an <code>if</code> check before
@@ -352,25 +352,25 @@ displayDetails(456, "John");
               </p>
             </div>
 
-            <pre><code>// ✅ CORRECT — optional at the end
+            <pre><code>// ✅ CORRECT  --  optional at the end
 function fn(a: number, b: string, c?: string): void { }
 
-// ❌ ERROR — required 'b' follows optional 'a'
+// ❌ ERROR  --  required 'b' follows optional 'a'
 function fn(a?: number, b: string): void { }
 
-// ✅ FIX — make 'b' optional too
+// ✅ FIX  --  make 'b' optional too
 function fn(a?: number, b?: string): void { }</code></pre>
           </div>
 
           <!-- DEFAULT PARAMETERS -->
           <div class="sec" id="fn-default">
             <div class="sec-label">Parameter Style 3</div>
-            <h2>Default Parameters — "Use this if nothing is passed"</h2>
+            <h2>Default Parameters  --  "Use this if nothing is passed"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Default parameters are like
-                a <strong>thermostat preset</strong> — it's set to 22°C by
+                a <strong>thermostat preset</strong>  --  it's set to 22°C by
                 default. You CAN change it, but if you don't touch it, it stays
                 at 22°C.
               </p>
@@ -439,12 +439,12 @@ calculateDiscount(1000);        // Discount: 500  (uses default 0.50)</code></pr
           <!-- ANONYMOUS FUNCTIONS -->
           <div class="sec" id="fn-anon">
             <div class="sec-label">Type 2</div>
-            <h2>Anonymous Functions — "No name, stored in a variable"</h2>
+            <h2>Anonymous Functions  --  "No name, stored in a variable"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> An anonymous function is
-                like a <strong>food truck with no signboard</strong> — it
+                like a <strong>food truck with no signboard</strong>  --  it
                 doesn't have an official name, but everyone knows it by where it
                 parks (the variable). You visit "the truck at the corner" (the
                 variable name) instead of a restaurant name.
@@ -462,7 +462,7 @@ variableName();  // call using the variable name</code></pre>
               <div class="card-head">
                 <div class="card-num">1</div>
                 <div class="card-title">
-                  Anonymous function — no params, returns string
+                  Anonymous function  --  no params, returns string
                 </div>
                 <span class="card-badge">Anonymous</span>
               </div>
@@ -478,7 +478,7 @@ console.log(msg());  // "Hello TypeScript"</code></pre>
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Anonymous function — with params</div>
+                <div class="card-title">Anonymous function  --  with params</div>
                 <span class="card-badge">With params</span>
               </div>
               <div class="card-body">
@@ -489,7 +489,7 @@ console.log(msg());  // "Hello TypeScript"</code></pre>
 console.log(multiply(10, 20));  // 200</code></pre>
                 <p class="fn">
                   All parameter styles (rest, optional, default) work with
-                  anonymous functions too — same syntax!
+                  anonymous functions too  --  same syntax!
                 </p>
               </div>
             </div>
@@ -498,12 +498,12 @@ console.log(multiply(10, 20));  // 200</code></pre>
           <!-- ARROW FUNCTIONS -->
           <div class="sec" id="fn-arrow">
             <div class="sec-label">Type 3 (Most Used!)</div>
-            <h2>Arrow Functions / Lambda — "Short & sweet"</h2>
+            <h2>Arrow Functions / Lambda  --  "Short & sweet"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Arrow functions are like
-                <strong>text message abbreviations</strong> — instead of writing
+                <strong>text message abbreviations</strong>  --  instead of writing
                 "laughing out loud," you write "lol." Same meaning, way shorter.
                 Arrow functions are the shorthand version of anonymous
                 functions.
@@ -577,12 +577,12 @@ let findLength = (...items: (number | string)[]): number => {
           <!-- IMPLICIT RETURN -->
           <div class="sec" id="fn-implicit">
             <div class="sec-label">Arrow Bonus</div>
-            <h2>Implicit Return — One-liner arrow functions</h2>
+            <h2>Implicit Return  --  One-liner arrow functions</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Implicit return is like a
-                <strong>drive-through</strong> — you don't park, go inside,
+                <strong>drive-through</strong>  --  you don't park, go inside,
                 order, sit down. You just drive up and get your food in ONE
                 step. If your function has only ONE return statement, you can
                 skip the <code>{ }</code> and <code>return</code> keyword
@@ -602,10 +602,10 @@ let add = (a: number, b: number): number => {
   return a + b;
 };
 
-// ✅ Implicit return (concise!) — same result
+// ✅ Implicit return (concise!)  --  same result
 let add = (a: number, b: number): number => a + b;
 
-// No { }, no 'return' keyword — just the expression!
+// No { }, no 'return' keyword  --  just the expression!
 
 let multiply = (a: number, b: number): number => a * b;
 
@@ -629,22 +629,22 @@ console.log(multiply(10, 20));  // 200</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 1: Forgetting <code>return</code> — function silently
+                  >Mistake 1: Forgetting <code>return</code>  --  function silently
                   gives <code>undefined</code></strong
                 >
                 <p>
                   If your function calculates something but doesn't use
                   <code>return</code>, the result is thrown away and the
                   function gives back <code>undefined</code> (nothing). No
-                  error, no warning — just a silent bug!
+                  error, no warning  --  just a silent bug!
                 </p>
-                <pre><code>// ❌ WRONG — calculates but doesn't return!
+                <pre><code>// ❌ WRONG  --  calculates but doesn't return!
 function add(a: number, b: number): number {
   a + b;  // This calculates 30... and throws it away
 }
 console.log(add(10, 20)); // undefined (not 30!)
 
-// ✅ CORRECT — use return to send the result back
+// ✅ CORRECT  --  use return to send the result back
 function addFixed(a: number, b: number): number {
   return a + b;  // Sends 30 back to whoever called it
 }
@@ -661,12 +661,12 @@ console.log(addFixed(10, 20)); // 30 ✓</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 2: <code>fn</code> vs <code>fn()</code> — referencing
+                  >Mistake 2: <code>fn</code> vs <code>fn()</code>  --  referencing
                   vs calling</strong
                 >
                 <p>
                   Writing the function name WITHOUT <code>()</code> doesn't run
-                  it — it just points to the function itself (like reading a
+                  it  --  it just points to the function itself (like reading a
                   recipe without cooking). You need <code>()</code> to actually
                   call/execute it.
                 </p>
@@ -674,10 +674,10 @@ console.log(addFixed(10, 20)); // 30 ✓</code></pre>
   console.log("Hello!");
 }
 
-// ❌ WRONG — no parentheses = not called!
+// ❌ WRONG  --  no parentheses = not called!
 console.log(sayHello);   // [Function: sayHello] (prints the recipe, not the food)
 
-// ✅ CORRECT — parentheses = function runs!
+// ✅ CORRECT  --  parentheses = function runs!
 sayHello();              // "Hello!" (actually executes)</code></pre>
                 <p>
                   <strong>Rule:</strong> Always use
@@ -700,13 +700,13 @@ sayHello();              // "Hello!" (actually executes)</code></pre>
                   required parameters. TypeScript will give an error if you put
                   them first!
                 </p>
-                <pre><code>// ❌ ERROR — optional param before required
+                <pre><code>// ❌ ERROR  --  optional param before required
 function greet(greeting?: string, name: string) {
   console.log(`${greeting} ${name}`);
 }
 // TypeScript says: "A required parameter cannot follow an optional parameter."
 
-// ✅ CORRECT — required first, optional last
+// ✅ CORRECT  --  required first, optional last
 function greetFixed(name: string, greeting?: string) {
   console.log(`${greeting || "Hi"} ${name}`);
 }
@@ -714,7 +714,7 @@ greetFixed("Alice");          // "Hi Alice"
 greetFixed("Alice", "Hey");  // "Hey Alice"</code></pre>
                 <p>
                   <strong>Rule:</strong> Required parameters first, optional
-                  parameters last. Think of it like a form — mandatory fields
+                  parameters last. Think of it like a form  --  mandatory fields
                   come before optional ones!
                 </p>
               </div>
@@ -823,13 +823,13 @@ greetFixed("Alice", "Hey");  // "Hey Alice"</code></pre>
           <!-- VOID VS NEVER -->
           <div class="sec" id="fn-void-never">
             <div class="sec-label">Reference</div>
-            <h2>void vs never — What's the Difference?</h2>
+            <h2>void vs never  --  What's the Difference?</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life:</strong> <code>void</code> = a vending
                 machine that takes your money and gives you nothing back (but it
-                finishes). <code>never</code> = a black hole — the function
+                finishes). <code>never</code> = a black hole  --  the function
                 never finishes (throws or loops forever).
               </p>
             </div>
@@ -841,12 +841,12 @@ greetFixed("Alice", "Hey");  // "Hey Alice"</code></pre>
                 <span class="card-badge">Key Distinction</span>
               </div>
               <div class="card-body">
-                <pre><code>// void — function completes, returns nothing
+                <pre><code>// void  --  function completes, returns nothing
 function logMessage(msg: string): void {
   console.log(msg);  // runs and finishes
 }
 
-// never — function NEVER completes
+// never  --  function NEVER completes
 function throwError(msg: string): never {
   throw new Error(msg);  // always throws, never returns
 }
@@ -855,7 +855,7 @@ function infiniteLoop(): never {
   while (true) { }  // never ends
 }
 
-// WHY IT MATTERS — exhaustive checking:
+// WHY IT MATTERS  --  exhaustive checking:
 type Status = "active" | "inactive";
 
 function handleStatus(s: Status): string {
@@ -930,13 +930,13 @@ console.log(greet("Bob"));</code></pre>
 let greet = (name: string): string => `Hello, ${name}`;</code></pre>
 
             <h3>Parameter styles</h3>
-            <pre><code>// Rest — unlimited params
+            <pre><code>// Rest  --  unlimited params
 function sum(...nums: number[]) { }
 
-// Optional — pass or skip
+// Optional  --  pass or skip
 function fn(a: number, b?: string) { }
 
-// Default — fallback value
+// Default  --  fallback value
 function fn(a: number, b: number = 10) { }</code></pre>
 
             <h3>Key rules</h3>

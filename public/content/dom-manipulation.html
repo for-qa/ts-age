@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>DOM Manipulation — TypeScript Learning Path</title>
+    <title>DOM Manipulation  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn DOM manipulation with TypeScript — selecting elements, type assertions, events, creating elements, form handling, and common null-safety mistakes."
+      content="Learn DOM manipulation with TypeScript  --  selecting elements, type assertions, events, creating elements, form handling, and common null-safety mistakes."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -63,7 +63,7 @@
             </div>
             <h1>DOM Manipulation</h1>
             <p>
-              How TypeScript interacts with HTML pages — selecting elements,
+              How TypeScript interacts with HTML pages  --  selecting elements,
               changing content, handling events, and building interactive UIs
               with type safety.
             </p>
@@ -99,7 +99,7 @@
                 <strong>blueprint</strong> with labels on every room, door, and
                 window. JavaScript/TypeScript lets you
                 <strong>rearrange the furniture</strong>, paint walls, add
-                rooms, or remove doors — all through this blueprint.
+                rooms, or remove doors  --  all through this blueprint.
               </p>
             </div>
 
@@ -144,18 +144,18 @@
                 <span class="card-badge">Selection</span>
               </div>
               <div class="card-body">
-                <pre><code>// 1. By ID — returns ONE element or null
+                <pre><code>// 1. By ID  --  returns ONE element or null
 const app = document.getElementById("app");
 // Type: HTMLElement | null
 
-// 2. By CSS selector — returns FIRST match or null
+// 2. By CSS selector  --  returns FIRST match or null
 const title = document.querySelector("h1");
 // Type: Element | null
 
 const desc = document.querySelector(".desc");
 const btn = document.querySelector("#submit-btn");
 
-// 3. By CSS selector — returns ALL matches (NodeList)
+// 3. By CSS selector  --  returns ALL matches (NodeList)
 const items = document.querySelectorAll(".item");
 // Type: NodeListOf&lt;Element&gt;
 
@@ -175,7 +175,7 @@ items.forEach(item => {
           <!-- TYPE ASSERTIONS -->
           <div class="sec" id="dom-assert">
             <div class="sec-label">Basics</div>
-            <h2>Type Assertions — TypeScript-Specific!</h2>
+            <h2>Type Assertions  --  TypeScript-Specific!</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -197,11 +197,11 @@ items.forEach(item => {
                 <span class="card-badge">as Type</span>
               </div>
               <div class="card-body">
-                <pre><code>// ❌ ERROR — generic Element has no .value property
+                <pre><code>// ❌ ERROR  --  generic Element has no .value property
 const input = document.querySelector("#email");
 // console.log(input.value);  // TS Error: Property 'value' not on Element
 
-// ✅ Type assertion — tell TS it's an input
+// ✅ Type assertion  --  tell TS it's an input
 const emailInput = document.querySelector("#email") as HTMLInputElement;
 console.log(emailInput.value);  // ✅ works!
 
@@ -213,7 +213,7 @@ const form = document.querySelector("form") as HTMLFormElement;
 const div = document.querySelector("#box") as HTMLDivElement;
 const select = document.querySelector("select") as HTMLSelectElement;
 
-// ✅ Safer way — check for null first!
+// ✅ Safer way  --  check for null first!
 const el = document.querySelector("#email");
 if (el) {
   const input = el as HTMLInputElement;
@@ -237,10 +237,10 @@ if (el) {
               <div class="card-body">
                 <pre><code>const heading = document.querySelector("h1") as HTMLHeadingElement;
 
-// ✅ textContent — safe, plain text only
+// ✅ textContent  --  safe, plain text only
 heading.textContent = "New Title";
 
-// ⚠ innerHTML — parses HTML (security risk with user input!)
+// ⚠ innerHTML  --  parses HTML (security risk with user input!)
 heading.innerHTML = "&lt;em&gt;Styled&lt;/em&gt; Title";
 
 // Reading content:
@@ -316,7 +316,7 @@ list.prepend(newItem);                // add at START
 list.insertBefore(newItem, list.firstChild);  // add before specific child
 
 // REMOVE an element
-newItem.remove();                     // modern way — remove itself
+newItem.remove();                     // modern way  --  remove itself
 
 // REPLACE an element
 const oldItem = list.querySelector(".old") as HTMLLIElement;
@@ -332,7 +332,7 @@ list.replaceChild(newItem, oldItem);  // replace old with new</code></pre>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>Real-Life:</strong> Events are like a doorbell — you set
+                <strong>Real-Life:</strong> Events are like a doorbell  --  you set
                 up a <strong>listener</strong> ("when the bell rings, open the
                 door"). <code>addEventListener</code> sets up the listener. The
                 event (click, keypress) is the bell ringing.
@@ -367,22 +367,22 @@ btn.addEventListener("click", handleClick);
 btn.removeEventListener("click", handleClick);
 
 // Common events:
-// "click"     — mouse click
-// "dblclick"  — double click
-// "mouseover" — hover enter
-// "mouseout"  — hover leave
-// "keydown"   — key pressed
-// "keyup"     — key released
-// "submit"    — form submitted
-// "change"    — input value changed
-// "input"     — input value changing (real-time)</code></pre>
+// "click"      --  mouse click
+// "dblclick"   --  double click
+// "mouseover"  --  hover enter
+// "mouseout"   --  hover leave
+// "keydown"    --  key pressed
+// "keyup"      --  key released
+// "submit"     --  form submitted
+// "change"     --  input value changed
+// "input"      --  input value changing (real-time)</code></pre>
               </div>
             </div>
 
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember 9 Common
+                <strong>🧠 Memory Trick  --  Remember 9 Common
                 Events:</strong><br /><br />
                 "<strong>C</strong>lean <strong>D</strong>evelopers <strong>M</strong>ake <strong>M</strong>aintainable <strong>K</strong>nowledge <strong>K</strong>eeping <strong>S</strong>ystems <strong>C</strong>ompletely <strong>I</strong>ntact"<br />
                 → <strong>C</strong>lick, <strong>D</strong>blclick,
@@ -455,7 +455,7 @@ input.addEventListener("blur", (e: FocusEvent) => { });</code></pre>
                 <pre><code>const form = document.querySelector("#login-form") as HTMLFormElement;
 
 form.addEventListener("submit", (e: SubmitEvent) => {
-  e.preventDefault();  // ⚠ MUST DO — stops page reload!
+  e.preventDefault();  // ⚠ MUST DO  --  stops page reload!
 
   const email = (document.querySelector("#email") as HTMLInputElement).value;
   const pass = (document.querySelector("#pass") as HTMLInputElement).value;
@@ -488,18 +488,18 @@ console.log(dropdown.value);    // selected option's value</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 1: querySelector returns null — not checking!</strong
+                  >Mistake 1: querySelector returns null  --  not checking!</strong
                 >
                 <p>
                   If the element doesn't exist, you get <code>null</code>.
                   Calling methods on <code>null</code> crashes your app.
                 </p>
-                <pre><code>// ❌ CRASH — element might not exist
+                <pre><code>// ❌ CRASH  --  element might not exist
 const btn = document.querySelector("#btn");
 btn.addEventListener("click", () => {});
 // TypeError: Cannot read properties of null
 
-// ✅ SAFE — null check first
+// ✅ SAFE  --  null check first
 const btn2 = document.querySelector("#btn");
 if (btn2) {
   btn2.addEventListener("click", () => {});
@@ -519,15 +519,15 @@ const btn3 = document.querySelector("#btn")!;  // ! = "trust me, it's there"</co
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 2: Forgetting type assertion — .value doesn't exist
+                  >Mistake 2: Forgetting type assertion  --  .value doesn't exist
                   on Element</strong
                 >
-                <pre><code>// ❌ ERROR — generic Element has no .value
+                <pre><code>// ❌ ERROR  --  generic Element has no .value
 const input = document.querySelector("#name");
 console.log(input.value);
 // Property 'value' does not exist on type 'Element'
 
-// ✅ CORRECT — assert the specific type
+// ✅ CORRECT  --  assert the specific type
 const input2 = document.querySelector("#name") as HTMLInputElement;
 console.log(input2.value);  // works!</code></pre>
                 <p>
@@ -542,14 +542,14 @@ console.log(input2.value);  // works!</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 3: innerHTML with user input — XSS
+                  >Mistake 3: innerHTML with user input  --  XSS
                   vulnerability!</strong
                 >
-                <pre><code>// ❌ DANGEROUS — user can inject scripts!
+                <pre><code>// ❌ DANGEROUS  --  user can inject scripts!
 const userInput = '&lt;img src=x onerror="alert(1)"&gt;';
 div.innerHTML = userInput;  // 🚨 XSS attack!
 
-// ✅ SAFE — textContent escapes HTML
+// ✅ SAFE  --  textContent escapes HTML
 div.textContent = userInput;  // Displays as plain text</code></pre>
                 <p>
                   <strong>Rule:</strong> NEVER use <code>innerHTML</code> with
@@ -597,7 +597,7 @@ const items2 = document.getElementsByClassName("item");
 // Adding/removing .item elements WILL update items2 automatically
 // This can cause unexpected bugs in loops!</code></pre>
                 <p>
-                  <strong>Rule:</strong> Prefer <code>querySelectorAll</code> —
+                  <strong>Rule:</strong> Prefer <code>querySelectorAll</code>  -- 
                   it returns a static snapshot that won't surprise you.
                 </p>
               </div>
@@ -646,7 +646,7 @@ const items2 = document.getElementsByClassName("item");
           <!-- COMPARISON TABLE -->
           <div class="sec" id="dom-compare">
             <div class="sec-label">Reference</div>
-            <h2>Selection Methods — Comparison</h2>
+            <h2>Selection Methods  --  Comparison</h2>
             <div class="bordered">
               <table>
                 <thead>
@@ -662,13 +662,13 @@ const items2 = document.getElementsByClassName("item");
                     <td><code>getElementById</code></td>
                     <td>1 element</td>
                     <td><code>HTMLElement | null</code></td>
-                    <td>—</td>
+                    <td> -- </td>
                   </tr>
                   <tr>
                     <td><code>querySelector</code></td>
                     <td>1st match</td>
                     <td><code>Element | null</code></td>
-                    <td>—</td>
+                    <td> -- </td>
                   </tr>
                   <tr>
                     <td><code>querySelectorAll</code></td>

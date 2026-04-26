@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Destructuring — TypeScript Learning Path</title>
+    <title>Destructuring  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript destructuring — arrays and objects. Extract values elegantly with defaults, renaming, nesting, and rest patterns."
+      content="Learn TypeScript destructuring  --  arrays and objects. Extract values elegantly with defaults, renaming, nesting, and rest patterns."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -65,7 +65,7 @@
             <h1>Destructuring</h1>
             <p>
               How to unpack values from arrays and properties from objects into
-              separate variables — in one elegant line. Used everywhere in
+              separate variables  --  in one elegant line. Used everywhere in
               modern TypeScript and JavaScript.
             </p>
             <div class="hero-stats">
@@ -96,7 +96,7 @@
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Imagine you order a
-                <strong>combo meal</strong> — it comes in one box with a burger,
+                <strong>combo meal</strong>  --  it comes in one box with a burger,
                 fries, and a drink. <strong>Destructuring</strong> is like
                 opening the box and putting each item on the table separately.
                 Instead of reaching into the box every time you want something,
@@ -105,19 +105,19 @@
             </div>
 
             <p>
-              <strong>Without destructuring</strong> — you access each value one
+              <strong>Without destructuring</strong>  --  you access each value one
               at a time:
             </p>
             <div class="card ph5-card">
               <div class="card-head">
                 <div class="card-num">!</div>
-                <div class="card-title">Old way — repetitive and verbose</div>
+                <div class="card-title">Old way  --  repetitive and verbose</div>
                 <span class="card-badge">❌ Verbose</span>
               </div>
               <div class="card-body">
                 <pre><code>const person = { name: "Alice", age: 25, city: "Mumbai" };
 
-// Old way — access one by one
+// Old way  --  access one by one
 const name = person.name;
 const age = person.age;
 const city = person.city;
@@ -129,14 +129,14 @@ const city = person.city;
               <div class="card-head">
                 <div class="card-num">✓</div>
                 <div class="card-title">
-                  New way — destructuring in ONE line
+                  New way  --  destructuring in ONE line
                 </div>
                 <span class="card-badge">✅ Clean</span>
               </div>
               <div class="card-body">
                 <pre><code>const person = { name: "Alice", age: 25, city: "Mumbai" };
 
-// Destructuring — extract all at once!
+// Destructuring  --  extract all at once!
 const { name, age, city } = person;
 console.log(name);  // "Alice"
 console.log(age);   // 25
@@ -161,11 +161,11 @@ console.log(city);  // "Mumbai"</code></pre>
           <!-- ARRAY DESTRUCTURING -->
           <div class="sec" id="ds-array">
             <div class="sec-label">Array Destructuring</div>
-            <h2>Array Destructuring — Extract by Position</h2>
+            <h2>Array Destructuring  --  Extract by Position</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>Real-Life Example:</strong> A train has seats in order —
+                <strong>Real-Life Example:</strong> A train has seats in order  -- 
                 seat 1, seat 2, seat 3. Array destructuring is like saying:
                 "Person A gets seat 1, Person B gets seat 2." The
                 <strong>position</strong> matters, not the name.
@@ -198,7 +198,7 @@ console.log(secondary); // "green"</code></pre>
                 <p class="fn">
                   Array destructuring uses <strong>square brackets</strong>
                   <code>[ ]</code> and extracts by
-                  <strong>position</strong> (index 0, 1, 2…).
+                  <strong>position</strong> (index 0, 1, 2...).
                 </p>
               </div>
             </div>
@@ -254,19 +254,19 @@ console.log(y);  // 10 ← Swapped!</code></pre>
               <div class="card-body">
                 <pre><code>const pair = [10];
 
-// Without default — b is undefined
+// Without default  --  b is undefined
 const [a, b] = pair;
 console.log(a);  // 10
 console.log(b);  // undefined 😬
 
-// ✅ With default — b gets fallback value
+// ✅ With default  --  b gets fallback value
 const [x, y = 0] = pair;
 console.log(x);  // 10
 console.log(y);  // 0 ← default used!
 
 // Default is ONLY used when value is undefined
 const [m, n = 99] = [5, 20];
-console.log(n);  // 20 (NOT 99 — actual value exists)</code></pre>
+console.log(n);  // 20 (NOT 99  --  actual value exists)</code></pre>
                 <p class="fn">
                   Default values kick in ONLY when the position is
                   <code>undefined</code>. If a value exists (even
@@ -279,12 +279,12 @@ console.log(n);  // 20 (NOT 99 — actual value exists)</code></pre>
           <!-- OBJECT DESTRUCTURING -->
           <div class="sec" id="ds-object">
             <div class="sec-label">Object Destructuring</div>
-            <h2>Object Destructuring — Extract by Name</h2>
+            <h2>Object Destructuring  --  Extract by Name</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> A hotel check-in form has
-                labeled fields — Name, Phone, Email. Object destructuring is
+                labeled fields  --  Name, Phone, Email. Object destructuring is
                 like saying: "Give me just the Name and Email fields." You pick
                 by <strong>label name</strong>, not by position.
               </p>
@@ -299,7 +299,7 @@ console.log(n);  // 20 (NOT 99 — actual value exists)</code></pre>
               <div class="card-body">
                 <pre><code>const user = { name: "Bob", age: 30, role: "admin" };
 
-// ✅ Destructuring — variable names MUST match property names
+// ✅ Destructuring  --  variable names MUST match property names
 const { name, age, role } = user;
 console.log(name);  // "Bob"
 console.log(age);   // 30
@@ -344,8 +344,8 @@ console.log(productName);  // "Laptop"
 console.log(cost);         // 50000
 
 // ⚠ After renaming, the ORIGINAL name doesn't work:
-// console.log(name);  // ❌ Error — 'name' was not created
-// console.log(price); // ❌ Error — 'price' was not created
+// console.log(name);  // ❌ Error  --  'name' was not created
+// console.log(price); // ❌ Error  --  'price' was not created
 
 // Rename + Default together:
 const { discount: disc = 0 } = product;
@@ -379,7 +379,7 @@ console.log(disc);  // 0 (product has no 'discount')</code></pre>
   }
 };
 
-// ✅ Nested destructuring — reach INSIDE the inner object
+// ✅ Nested destructuring  --  reach INSIDE the inner object
 const { name, address: { city, zip } } = employee;
 console.log(name);  // "Alice"
 console.log(city);  // "Mumbai"
@@ -419,19 +419,19 @@ console.log(c);        // "Mumbai"</code></pre>
                 <span class="card-badge">Clean APIs</span>
               </div>
               <div class="card-body">
-                <pre><code>// ❌ Old way — access properties inside function
+                <pre><code>// ❌ Old way  --  access properties inside function
 function greetOld(person: { name: string; age: number }) {
   console.log(`Hi ${person.name}, you are ${person.age}`);
 }
 
-// ✅ Destructured — extract in the parameter itself
+// ✅ Destructured  --  extract in the parameter itself
 function greet({ name, age }: { name: string; age: number }) {
   console.log(`Hi ${name}, you are ${age}`);
 }
 
 greet({ name: "Alice", age: 25 });  // "Hi Alice, you are 25"
 
-// With type alias — even cleaner:
+// With type alias  --  even cleaner:
 type Person = { name: string; age: number };
 
 function greetClean({ name, age }: Person) {
@@ -461,12 +461,12 @@ console.log(getFirst([10, 20, 30]));  // 10</code></pre>
                 <span class="card-badge">...rest</span>
               </div>
               <div class="card-body">
-                <pre><code>// Array rest — grab the first, collect the rest
+                <pre><code>// Array rest  --  grab the first, collect the rest
 const [winner, ...losers] = ["Gold", "Silver", "Bronze", "4th"];
 console.log(winner);  // "Gold"
 console.log(losers);  // ["Silver", "Bronze", "4th"]
 
-// Object rest — pick some, collect the rest
+// Object rest  --  pick some, collect the rest
 const user = { name: "Bob", age: 30, role: "admin", city: "Delhi" };
 const { name, ...remaining } = user;
 console.log(name);       // "Bob"
@@ -475,7 +475,7 @@ console.log(remaining);  // { age: 30, role: "admin", city: "Delhi" }
 // Great for removing a property:
 const { password, ...safeUser } = { name: "Alice", password: "secret", email: "a@b.com" };
 console.log(safeUser);  // { name: "Alice", email: "a@b.com" }
-// password is extracted and thrown away — safeUser is clean!</code></pre>
+// password is extracted and thrown away  --  safeUser is clean!</code></pre>
                 <p class="fn">
                   <code>...rest</code> must always be the
                   <strong>LAST</strong> item. You can't put anything after it.
@@ -494,22 +494,22 @@ console.log(safeUser);  // { name: "Alice", email: "a@b.com" }
               <div>
                 <strong
                   >Mistake 1: Destructuring <code>null</code> or
-                  <code>undefined</code> — crashes!</strong
+                  <code>undefined</code>  --  crashes!</strong
                 >
                 <p>
                   If the source is <code>null</code> or <code>undefined</code>,
                   destructuring throws a <strong>TypeError</strong>. Always
                   check first!
                 </p>
-                <pre><code>// ❌ CRASH — cannot destructure null
+                <pre><code>// ❌ CRASH  --  cannot destructure null
 const data = null;
 const { name } = data;  // TypeError: Cannot destructure property 'name' of null
 
-// ✅ SAFE — use default empty object
+// ✅ SAFE  --  use default empty object
 const { name = "unknown" } = data || {};
 console.log(name);  // "unknown"
 
-// ✅ In function parameters — default to empty object
+// ✅ In function parameters  --  default to empty object
 function process({ id, name }: any = {}) {
   console.log(id, name);
 }
@@ -532,15 +532,15 @@ process();  // undefined undefined (no crash!)</code></pre>
                 <p>
                   In object destructuring, the variable name must exactly match
                   the property name. If you misspell it, you get
-                  <code>undefined</code> — no error!
+                  <code>undefined</code>  --  no error!
                 </p>
                 <pre><code>const user = { name: "Alice", age: 25 };
 
-// ❌ WRONG — 'username' doesn't exist in user
+// ❌ WRONG  --  'username' doesn't exist in user
 const { username } = user;
 console.log(username);  // undefined (silent bug!)
 
-// ✅ CORRECT — name matches exactly
+// ✅ CORRECT  --  name matches exactly
 const { name } = user;
 console.log(name);  // "Alice"
 
@@ -573,7 +573,7 @@ const { name: fullName } = { name: "Alice" };
 const { name }: { name: string } = { name: "Alice" };
 // name = "Alice", with type string
 
-// ❌ WRONG — mixing them up:
+// ❌ WRONG  --  mixing them up:
 // const { name: string } = { name: "Alice" };
 // This RENAMES 'name' to 'string', doesn't set a type!</code></pre>
                 <p>
@@ -588,7 +588,7 @@ const { name }: { name: string } = { name: "Alice" };
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 4: Nested destructuring — parent variable is NOT
+                  >Mistake 4: Nested destructuring  --  parent variable is NOT
                   created</strong
                 >
                 <p>
@@ -598,7 +598,7 @@ const { name }: { name: string } = { name: "Alice" };
                 </p>
                 <pre><code>const config = { db: { host: "localhost", port: 5432 } };
 
-// ❌ WRONG — 'db' is NOT a variable here!
+// ❌ WRONG  --  'db' is NOT a variable here!
 const { db: { host, port } } = config;
 console.log(host);  // "localhost" ✓
 console.log(db);    // ❌ ReferenceError: db is not defined

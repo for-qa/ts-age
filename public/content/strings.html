@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Strings &amp; String Methods — TypeScript Learning Path</title>
+    <title>Strings &amp; String Methods  --  TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript strings — declaration, backtick templates, length, toUpperCase, toLowerCase, charAt, indexOf, substring, includes, startsWith, endsWith, replace, split, trim, concat, immutability."
+      content="Learn TypeScript strings  --  declaration, backtick templates, length, toUpperCase, toLowerCase, charAt, indexOf, substring, includes, startsWith, endsWith, replace, split, trim, concat, immutability."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -67,7 +67,7 @@
             </div>
             <h1>Strings &amp; String <span>Methods</span></h1>
             <p>
-              Everything about strings — declaration, template literals, 10+
+              Everything about strings  --  declaration, template literals, 10+
               essential methods, immutability, and multi-line strings.
             </p>
             <div class="hero-stats">
@@ -101,7 +101,7 @@
             </div>
 
             <p>
-              A string is a <strong>group of characters</strong> — letters,
+              A string is a <strong>group of characters</strong>  --  letters,
               numbers, symbols, spaces. Even numbers inside quotes become
               strings!
             </p>
@@ -126,7 +126,7 @@ let age: string = "25";  // This is a STRING, not a number</code></pre>
           <!-- BACK TICK -->
           <div class="sec" id="str-backtick">
             <div class="sec-label">Special</div>
-            <h2>Back Tick Operator — Template Literals</h2>
+            <h2>Back Tick Operator  --  Template Literals</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -151,11 +151,11 @@ let age: string = "25";  // This is a STRING, not a number</code></pre>
               <div class="card-body">
                 <pre><code>let num: number = 10;
 
-// ❌ Single/double quotes — prints literally "num", not 10
+// ❌ Single/double quotes  --  prints literally "num", not 10
 console.log("Number is num");     // "Number is num"
 console.log("Number is ${num}");  // "Number is ${num}"
 
-// ✅ Back tick — extracts the VALUE from the variable
+// ✅ Back tick  --  extracts the VALUE from the variable
 console.log(`Number is ${num}`);  // "Number is 10" ✅</code></pre>
                 <p class="fn">
                   The <code>${}</code> syntax ONLY works inside back ticks
@@ -169,13 +169,13 @@ console.log(`Number is ${num}`);  // "Number is 10" ✅</code></pre>
           <!-- LENGTH -->
           <div class="sec" id="str-length">
             <div class="sec-label">Property</div>
-            <h2>length — Count characters</h2>
+            <h2>length  --  Count characters</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>length</code> is like
                 counting <strong>beads on a necklace</strong>. Every bead counts
-                — including spacer beads (spaces) and decorative charms (special
+                 --  including spacer beads (spaces) and decorative charms (special
                 characters).
               </p>
             </div>
@@ -185,7 +185,7 @@ console.log(`Number is ${num}`);  // "Number is 10" ✅</code></pre>
 console.log(str.length);  // 18
 // Counts: letters + comma + space + exclamation = 18 total
 
-// ⚠ length is a PROPERTY, not a method — no parentheses!
+// ⚠ length is a PROPERTY, not a method  --  no parentheses!
 // ✅ str.length     (correct)
 // ❌ str.length()   (wrong)</code></pre>
           </div>
@@ -193,13 +193,13 @@ console.log(str.length);  // 18
           <!-- CASE -->
           <div class="sec" id="str-case">
             <div class="sec-label">Methods</div>
-            <h2>toUpperCase / toLowerCase — Change case</h2>
+            <h2>toUpperCase / toLowerCase  --  Change case</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Like switching between
                 <strong>SHOUTING (uppercase)</strong> and
-                <strong>whispering (lowercase)</strong> — same words, different
+                <strong>whispering (lowercase)</strong>  --  same words, different
                 volume.
               </p>
             </div>
@@ -209,14 +209,14 @@ console.log(str.length);  // 18
 console.log(str.toUpperCase());  // "HELLO, TYPESCRIPT!"
 console.log(str.toLowerCase());  // "hello, typescript!"
 
-// Both return a NEW string — original is unchanged!
+// Both return a NEW string  --  original is unchanged!
 console.log(str);  // still "Hello, TypeScript!"</code></pre>
           </div>
 
           <!-- CHARAT / INDEXOF -->
           <div class="sec" id="str-charat">
             <div class="sec-label">Methods</div>
-            <h2>charAt / indexOf — Opposites!</h2>
+            <h2>charAt / indexOf  --  Opposites!</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -255,17 +255,17 @@ console.log(str);  // still "Hello, TypeScript!"</code></pre>
 
             <pre><code>let str: string = "Hello, TypeScript!";
 
-// charAt — give index, get character
+// charAt  --  give index, get character
 console.log(str.charAt(4));   // "o"  (0:H 1:e 2:l 3:l 4:o)
 
-// indexOf — give string, get index
+// indexOf  --  give string, get index
 console.log(str.indexOf("Type"));  // 7  (Type starts at position 7)</code></pre>
           </div>
 
           <!-- SUBSTRING -->
           <div class="sec" id="str-substring">
             <div class="sec-label">Method</div>
-            <h2>substring — Extract a portion</h2>
+            <h2>substring  --  Extract a portion</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -278,7 +278,7 @@ console.log(str.indexOf("Type"));  // 7  (Type starts at position 7)</code></pre
 
             <pre><code>// substring(startIndex, endIndex)
 // startIndex → count from 0 (inclusive)
-// endIndex   → count from 1 (EXCLUSIVE — stops one before!)
+// endIndex   → count from 1 (EXCLUSIVE  --  stops one before!)
 
 let str: string = "Welcome";
 //  W  e  l  c  o  m  e
@@ -309,7 +309,7 @@ console.log(str.substring(7, 17));  // "TypeScript"
           <!-- INCLUDES -->
           <div class="sec" id="str-includes">
             <div class="sec-label">Method</div>
-            <h2>includes — "Is this inside the string?"</h2>
+            <h2>includes  --  "Is this inside the string?"</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -343,23 +343,23 @@ console.log(str.includes("TypeScript"));  // true ✅ (exact match)</code></pre>
           <!-- STARTSWITH / ENDSWITH -->
           <div class="sec" id="str-startend">
             <div class="sec-label">Methods</div>
-            <h2>startsWith / endsWith — Check boundaries</h2>
+            <h2>startsWith / endsWith  --  Check boundaries</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> Like checking a
-                <strong>phone number</strong> — "Does it START with +91?" or
+                <strong>phone number</strong>  --  "Does it START with +91?" or
                 "Does the file name END with .pdf?"
               </p>
             </div>
 
             <pre><code>let str: string = "Hello, TypeScript!";
 
-// startsWith — does it begin with this?
+// startsWith  --  does it begin with this?
 console.log(str.startsWith("Hello"));  // true ✅
 console.log(str.startsWith("ABC"));    // false ❌
 
-// endsWith — does it end with this?
+// endsWith  --  does it end with this?
 console.log(str.endsWith("!"));        // true ✅
 console.log(str.endsWith("ABC"));      // false ❌
 
@@ -369,7 +369,7 @@ console.log(str.endsWith("ABC"));      // false ❌
           <!-- REPLACE -->
           <div class="sec" id="str-replace">
             <div class="sec-label">Method</div>
-            <h2>replace — Swap one part for another</h2>
+            <h2>replace  --  Swap one part for another</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -392,13 +392,13 @@ console.log(str);      // "Hello, TypeScript!" ← original unchanged!</code></p
           <!-- SPLIT -->
           <div class="sec" id="str-split">
             <div class="sec-label">Method</div>
-            <h2>split — Break string into an array</h2>
+            <h2>split  --  Break string into an array</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>split</code> is like
                 <strong>tearing a perforated receipt</strong> along the dotted
-                lines. The dotted line is your delimiter — wherever it appears,
+                lines. The dotted line is your delimiter  --  wherever it appears,
                 the string breaks apart into separate pieces stored in an array.
               </p>
             </div>
@@ -439,26 +439,26 @@ let data = "a,b,c,d".split(",");   // ["a", "b", "c", "d"]</code></pre>
           <!-- TRIM -->
           <div class="sec" id="str-trim">
             <div class="sec-label">Methods</div>
-            <h2>trim / trimStart / trimEnd — Remove spaces</h2>
+            <h2>trim / trimStart / trimEnd  --  Remove spaces</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong> <code>trim</code> is like
                 <strong>cutting the crusts off bread</strong>. The bread
-                (content) stays the same — you just remove the unwanted edges
+                (content) stays the same  --  you just remove the unwanted edges
                 (spaces).
               </p>
             </div>
 
             <pre><code>let myString: string = "   Welcome to TypeScript   ";
 
-// trim — removes spaces from BOTH sides
+// trim  --  removes spaces from BOTH sides
 console.log(myString.trim());       // "Welcome to TypeScript"
 
-// trimStart — removes spaces from the BEGINNING only
+// trimStart  --  removes spaces from the BEGINNING only
 console.log(myString.trimStart());  // "Welcome to TypeScript   "
 
-// trimEnd — removes spaces from the END only
+// trimEnd  --  removes spaces from the END only
 console.log(myString.trimEnd());    // "   Welcome to TypeScript"</code></pre>
 
             <div class="bordered">
@@ -481,13 +481,13 @@ console.log(myString.trimEnd());    // "   Welcome to TypeScript"</code></pre>
                   <tr>
                     <td><code>trimStart()</code></td>
                     <td>Beginning</td>
-                    <td>—</td>
+                    <td> -- </td>
                     <td><code>lstrip()</code></td>
                   </tr>
                   <tr>
                     <td><code>trimEnd()</code></td>
                     <td>End</td>
-                    <td>—</td>
+                    <td> -- </td>
                     <td><code>rstrip()</code></td>
                   </tr>
                 </tbody>
@@ -498,7 +498,7 @@ console.log(myString.trimEnd());    // "   Welcome to TypeScript"</code></pre>
           <!-- CONCAT -->
           <div class="sec" id="str-concat">
             <div class="sec-label">Method</div>
-            <h2>concat — Join strings together</h2>
+            <h2>concat  --  Join strings together</h2>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
@@ -547,7 +547,7 @@ let direct = "Hello".concat(" World");  // "Hello World"</code></pre>
                 <strong>Real-Life Example:</strong> Strings are like a
                 <strong>printed photograph</strong>. You can make a copy and
                 edit the copy (crop, filter), but the original print stays
-                exactly the same. No string method can change the original —
+                exactly the same. No string method can change the original  -- 
                 they all return NEW strings.
               </p>
             </div>
@@ -576,12 +576,12 @@ str1.replace("W", "w"); // returns "welcome" but str1 is still "Welcome"</code><
                   <tr>
                     <td><strong>Immutable</strong></td>
                     <td>Cannot change the original value</td>
-                    <td>Strings — all methods return NEW strings</td>
+                    <td>Strings  --  all methods return NEW strings</td>
                   </tr>
                   <tr>
                     <td><strong>Mutable</strong></td>
                     <td>CAN change the original value</td>
-                    <td>Arrays — <code>push()</code> modifies the original</td>
+                    <td>Arrays  --  <code>push()</code> modifies the original</td>
                   </tr>
                 </tbody>
               </table>
@@ -593,11 +593,11 @@ str1.replace("W", "w"); // returns "welcome" but str1 is still "Welcome"</code><
             <div class="sec-label">Concept</div>
             <h2>Multi-line Strings</h2>
 
-            <pre><code>// ❌ Single/double quotes — NOT allowed across lines
+            <pre><code>// ❌ Single/double quotes  --  NOT allowed across lines
 let str = "Welcome
 to TypeScript";  // ERROR!
 
-// ✅ Back tick — multi-line IS allowed!
+// ✅ Back tick  --  multi-line IS allowed!
 let multiLine = `Welcome
 to TypeScript`;
 
@@ -626,7 +626,7 @@ console.log(multiLine);
               <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 1: <code>str.length()</code> with parentheses — it's
+                  >Mistake 1: <code>str.length()</code> with parentheses  --  it's
                   NOT a method!</strong
                 >
                 <p>
@@ -636,10 +636,10 @@ console.log(multiLine);
                 </p>
                 <pre><code>let name = "Alice";
 
-// ❌ WRONG — length is not a function!
+// ❌ WRONG  --  length is not a function!
 console.log(name.length()); // TypeError: name.length is not a function
 
-// ✅ CORRECT — no parentheses needed
+// ✅ CORRECT  --  no parentheses needed
 console.log(name.length);   // 5 ✓
 
 // How to remember:
@@ -667,15 +667,15 @@ console.log(name.length);   // 5 ✓
                 </p>
                 <pre><code>let greeting = "Hello World";
 
-// ❌ WRONG — case doesn't match!
+// ❌ WRONG  --  case doesn't match!
 console.log(greeting.includes("hello")); // false (lowercase h)
 console.log(greeting.includes("world")); // false (lowercase w)
 
-// ✅ CORRECT — exact case match
+// ✅ CORRECT  --  exact case match
 console.log(greeting.includes("Hello")); // true ✓
 console.log(greeting.includes("World")); // true ✓
 
-// ✅ TRICK — convert both to lowercase for case-insensitive search
+// ✅ TRICK  --  convert both to lowercase for case-insensitive search
 console.log(greeting.toLowerCase().includes("hello")); // true ✓</code></pre>
                 <p>
                   <strong>Rule:</strong> When searching strings, convert both
@@ -701,11 +701,11 @@ console.log(greeting.toLowerCase().includes("hello")); // true ✓</code></pre>
 //          T y p e S c r i p t
 // Index:   0 1 2 3 4 5 6 7 8 9
 
-// ❌ WRONG expectation — you expect 5 characters
+// ❌ WRONG expectation  --  you expect 5 characters
 console.log(text.substring(0, 4)); // "Type" (only 4 chars, not 5!)
-// It gives characters at index 0, 1, 2, 3 — stops BEFORE index 4
+// It gives characters at index 0, 1, 2, 3  --  stops BEFORE index 4
 
-// ✅ CORRECT — to get "TypeS" (5 chars), use end = 5
+// ✅ CORRECT  --  to get "TypeS" (5 chars), use end = 5
 console.log(text.substring(0, 5)); // "TypeS" ✓</code></pre>
                 <p>
                   <strong>Rule:</strong>
@@ -758,15 +758,15 @@ console.log(text.substring(0, 5)); // "TypeS" ✓</code></pre>
             <div class="note note-tip">
               <span class="note-i">✓</span>
               <p>
-                <strong>🧠 Memory Trick — Remember All String Methods
+                <strong>🧠 Memory Trick  --  Remember All String Methods
                 (2 parts):</strong><br /><br />
-                <strong>Part 1 — Read &amp; Check (7):</strong><br />
+                <strong>Part 1  --  Read &amp; Check (7):</strong><br />
                 "<strong>L</strong>arge <strong>U</strong>ploads <strong>L</strong>eave <strong>C</strong>omputers <strong>I</strong>n <strong>S</strong>erver <strong>I</strong>dle"<br />
                 → <strong>L</strong>ength, to<strong>U</strong>pperCase,
                 to<strong>L</strong>owerCase, <strong>C</strong>harAt,
                 <strong>I</strong>ndexOf, <strong>S</strong>ubstring,
                 <strong>I</strong>ncludes<br /><br />
-                <strong>Part 2 — Search &amp; Transform (6):</strong><br />
+                <strong>Part 2  --  Search &amp; Transform (6):</strong><br />
                 "<strong>S</strong>mart <strong>E</strong>lephants
                 <strong>R</strong>arely <strong>S</strong>lip,
                 <strong>T</strong>hey're <strong>C</strong>areful"<br />
@@ -862,7 +862,7 @@ let s3 = `backtick`;     // template literal (${} + multi-line)</code></pre>
             </div>
 
             <h3>Key rules</h3>
-            <pre><code>// ✅ Strings are IMMUTABLE — methods return new strings
+            <pre><code>// ✅ Strings are IMMUTABLE  --  methods return new strings
 // ✅ All string methods are CASE SENSITIVE
 // ✅ Back ticks for ${variable} embedding + multi-line
 // ✅ length is a PROPERTY (no parentheses)

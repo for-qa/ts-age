@@ -103,7 +103,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Which has block scope?",
       "options": [
         "var",
-        "<code>let &amp; const</code>",
+        "<code>let & const</code>",
         "only const",
         "none"
       ],
@@ -187,7 +187,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: using var in modern TS?",
       "options": [
         "It's fine",
-        "<b>Avoid â€” use let/const instead</b>",
+        "<b>Avoid  --  use let/const instead</b>",
         "Required",
         "Faster"
       ],
@@ -248,7 +248,7 @@ export const quizData: Record<string, Question[]> = {
       "section": "dt-union",
       "question": "How to create a union type?",
       "options": [
-        "<code>A &amp; B</code>",
+        "<code>A & B</code>",
         "<code>A + B</code>",
         "<code>A | B</code>",
         "<code>A : B</code>"
@@ -694,7 +694,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "at-approach1",
-      "question": "<code>let arr: number[] = []; arr.push('hi')</code> â€” what happens?",
+      "question": "<code>let arr: number[] = []; arr.push('hi')</code>  --  what happens?",
       "options": [
         "Works fine",
         "<b>Compile error</b>",
@@ -826,7 +826,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "at-arrfn",
-      "question": "Arrow function in forEach: <code>arr.forEach(x => ...)</code> â€” x is?",
+      "question": "Arrow function in forEach: <code>arr.forEach(x => ...)</code>  --  x is?",
       "options": [
         "Index",
         "<b>Each element</b>",
@@ -972,7 +972,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "am-splice",
-      "question": "<code>[1,2,3].splice(1,1)</code> â€” what's left in array?",
+      "question": "<code>[1,2,3].splice(1,1)</code>  --  what's left in array?",
       "options": [
         "[2]",
         "[1,2,3]",
@@ -1300,7 +1300,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "cs-if",
-      "question": "<code>let x = 5 > 3 ? 'yes' : 'no'</code> â€” x equals?",
+      "question": "<code>let x = 5 > 3 ? 'yes' : 'no'</code>  --  x equals?",
       "options": [
         "5",
         "true",
@@ -1556,7 +1556,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "fn-implicit",
-      "question": "<code>const add = (a:number) => a + 1</code> â€” this uses?",
+      "question": "<code>const add = (a:number) => a + 1</code>  --  this uses?",
       "options": [
         "Named fn",
         "<b>Implicit return</b>",
@@ -1580,7 +1580,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "fn-default",
-      "question": "<code>function greet(name = 'World')</code> â€” 'World' is?",
+      "question": "<code>function greet(name = 'World')</code>  --  'World' is?",
       "options": [
         "rest param",
         "optional",
@@ -1786,7 +1786,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "cb-ex1",
-      "question": "<code>setTimeout(fn, 1000)</code> â€” fn is a?",
+      "question": "<code>setTimeout(fn, 1000)</code>  --  fn is a?",
       "options": [
         "Promise",
         "Timer",
@@ -1798,7 +1798,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "cb-ex2",
-      "question": "<code>arr.map(x => x*2)</code> â€” the arrow function is?",
+      "question": "<code>arr.map(x => x*2)</code>  --  the arrow function is?",
       "options": [
         "Method",
         "<b>A callback</b>",
@@ -1982,7 +1982,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "it-inter",
-      "question": "<code>&amp;</code> (intersection) does what?",
+      "question": "<code>&</code> (intersection) does what?",
       "options": [
         "Union",
         "<b>Combines multiple types into one</b>",
@@ -2021,7 +2021,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Can type aliases use <code>extends</code>?",
       "options": [
         "Yes",
-        "<b>No, use &amp; instead</b>",
+        "<b>No, use & instead</b>",
         "Only with interfaces",
         "Only with classes"
       ],
@@ -2030,7 +2030,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "ut-literal",
-      "question": "<code>type Dir = 'up'|'down'</code> â€” what is 'up'?",
+      "question": "<code>type Dir = 'up'|'down'</code>  --  what is 'up'?",
       "options": [
         "String",
         "<code>Literal type</code>",
@@ -2042,7 +2042,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "it-inter",
-      "question": "<code>type A = {x:number}; type B = {y:string}; type C = A &amp; B</code> â€” C has?",
+      "question": "<code>type A = {x:number}; type B = {y:string}; type C = A & B</code>  --  C has?",
       "options": [
         "Only x",
         "Only y",
@@ -2062,7 +2062,7 @@ export const quizData: Record<string, Question[]> = {
         "interface is newer"
       ],
       "answerIndex": 1,
-      "explanation": "Interfaces are exclusively for defining the shape of Objects. Type Aliases are universally flexible—they can describe objects, but they can also describe primitives, unions, tuples, and functions!<code>type ID = string | number; // Only possible with type!</code>"
+      "explanation": "Interfaces are exclusively for defining the shape of Objects. Type Aliases are universally flexible -- they can describe objects, but they can also describe primitives, unions, tuples, and functions!<code>type ID = string | number; // Only possible with type!</code>"
     },
     {
       "section": "ut-literal",
@@ -2200,7 +2200,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "en-numeric",
-      "question": "<code>enum Dir {Up, Down, Left}</code> â€” <code>Dir.Left</code> equals?",
+      "question": "<code>enum Dir {Up, Down, Left}</code>  --  <code>Dir.Left</code> equals?",
       "options": [
         "0",
         "1",
@@ -2212,7 +2212,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "en-string",
-      "question": "<code>enum Color {Red='R', Blue='B'}</code> â€” this is a?",
+      "question": "<code>enum Color {Red='R', Blue='B'}</code>  --  this is a?",
       "options": [
         "Numeric enum",
         "<b>String enum</b>",
@@ -2236,7 +2236,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "en-custom",
-      "question": "<code>enum E {A=1, B, C}</code> â€” B equals?",
+      "question": "<code>enum E {A=1, B, C}</code>  --  B equals?",
       "options": [
         "0",
         "1",
@@ -2447,7 +2447,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Intersection type uses which symbol?",
       "options": [
         "|",
-        "<code>&amp;</code>",
+        "<code>&</code>",
         "+",
         "*"
       ],
@@ -2492,7 +2492,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "obj-access",
-      "question": "<code>obj.name</code> vs <code>obj['name']</code> â€” same result?",
+      "question": "<code>obj.name</code> vs <code>obj['name']</code>  --  same result?",
       "options": [
         "<b>Yes</b>",
         "No",
@@ -2504,7 +2504,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "obj-intersection",
-      "question": "<code>type A={x:1}; type B={y:2}; const c:A&amp;B={x:1,y:2}</code> â€” valid?",
+      "question": "<code>type A={x:1}; type B={y:2}; const c:A&B={x:1,y:2}</code>  --  valid?",
       "options": [
         "<b>Yes</b>",
         "No",
@@ -2528,7 +2528,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "obj-modify",
-      "question": "<code>const obj = {a:1}; obj.b = 2;</code> â€” what happens?",
+      "question": "<code>const obj = {a:1}; obj.b = 2;</code>  --  what happens?",
       "options": [
         "Works",
         "<b>Error (property 'b' doesn't exist)</b>",
@@ -2564,7 +2564,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "obj-alias",
-      "question": "<code>type Point = {x:number, y:number}</code> â€” Point is?",
+      "question": "<code>type Point = {x:number, y:number}</code>  --  Point is?",
       "options": [
         "Variable",
         "<b>Type alias for object shape</b>",
@@ -2662,7 +2662,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "cls-static",
-      "question": "<code>class C { static count = 0 }</code> â€” how to access?",
+      "question": "<code>class C { static count = 0 }</code>  --  how to access?",
       "options": [
         "this.count",
         "<code>C.count</code>",
@@ -2674,7 +2674,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "cls-readonly",
-      "question": "<code>class C { readonly id: number }</code> â€” can id change after constructor?",
+      "question": "<code>class C { readonly id: number }</code>  --  can id change after constructor?",
       "options": [
         "Yes",
         "<b>No</b>",
@@ -2698,7 +2698,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "cls-optional",
-      "question": "<code>class C { name?: string }</code> â€” <code>new C().name</code> is?",
+      "question": "<code>class C { name?: string }</code>  --  <code>new C().name</code> is?",
       "options": [
         "''",
         "null",
@@ -2832,7 +2832,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "inh-parent-var",
-      "question": "Parent variable holding child object â€” valid?",
+      "question": "Parent variable holding child object  --  valid?",
       "options": [
         "No",
         "<b>Yes (polymorphism)</b>",
@@ -2844,7 +2844,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "inh-extends",
-      "question": "<code>class Dog extends Animal</code> â€” Dog is the?",
+      "question": "<code>class Dog extends Animal</code>  --  Dog is the?",
       "options": [
         "Parent",
         "Base",
@@ -2938,7 +2938,7 @@ export const quizData: Record<string, Question[]> = {
         "Static keyword"
       ],
       "answerIndex": 2,
-      "explanation": "An Interface is a completely abstract 'contract'—it only describes the shape of data, never the actual implementation or logic. It compiles entirely away and leaves zero footprint in your final JavaScript.<code>interface Shape { area(): number; } // No {} logic!</code>"
+      "explanation": "An Interface is a completely abstract 'contract' -- it only describes the shape of data, never the actual implementation or logic. It compiles entirely away and leaves zero footprint in your final JavaScript.<code>interface Shape { area(): number; } // No {} logic!</code>"
     },
     {
       "section": "if-index",
@@ -2990,7 +2990,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "if-basic",
-      "question": "<code>interface A {x:number} interface A {y:string}</code> â€” what happens?",
+      "question": "<code>interface A {x:number} interface A {y:string}</code>  --  what happens?",
       "options": [
         "Error",
         "<b>Declaration merging (A has x AND y)</b>",
@@ -3014,7 +3014,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "if-abstract-class",
-      "question": "Interface vs abstract class â€” which has NO implementation?",
+      "question": "Interface vs abstract class  --  which has NO implementation?",
       "options": [
         "Abstract class",
         "<b>Interface</b>",
@@ -3112,7 +3112,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "gn-func",
-      "question": "<code>function id&lt;T&gt;(val:T):T</code> â€” what does this do?",
+      "question": "<code>function id&lt;T&gt;(val:T):T</code>  --  what does this do?",
       "options": [
         "Converts type",
         "<b>Returns same type as input</b>",
@@ -3172,7 +3172,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "gn-func",
-      "question": "<code>function first&lt;T&gt;(arr:T[]):T { return arr[0] }</code> â€” <code>first([1,2,3])</code> returns type?",
+      "question": "<code>function first&lt;T&gt;(arr:T[]):T { return arr[0] }</code>  --  <code>first([1,2,3])</code> returns type?",
       "options": [
         "any",
         "T",
@@ -3196,7 +3196,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "gn-class",
-      "question": "<code>class Box&lt;T&gt; {value:T}</code> â€” T is resolved when?",
+      "question": "<code>class Box&lt;T&gt; {value:T}</code>  --  T is resolved when?",
       "options": [
         "Compile time",
         "<b>When creating an instance</b>",
@@ -3208,7 +3208,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "gn-patterns",
-      "question": "<code>function identity&lt;T&gt;(x:T):T</code> â€” what is guaranteed?",
+      "question": "<code>function identity&lt;T&gt;(x:T):T</code>  --  what is guaranteed?",
       "options": [
         "T is string",
         "<b>Input and output are same type</b>",
@@ -3282,7 +3282,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "mod-default",
-      "question": "<code>export default</code> vs named â€” which needs braces on import?",
+      "question": "<code>export default</code> vs named  --  which needs braces on import?",
       "options": [
         "Default",
         "<b>Named</b>",
@@ -3330,7 +3330,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "mod-import",
-      "question": "<code>import './styles.css'</code> â€” this is?",
+      "question": "<code>import './styles.css'</code>  --  this is?",
       "options": [
         "Default import",
         "Named import",
@@ -3622,7 +3622,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "eh-unknown",
-      "question": "<code>unknown</code> vs <code>any</code> in catch â€” which is safer?",
+      "question": "<code>unknown</code> vs <code>any</code> in catch  --  which is safer?",
       "options": [
         "any",
         "<b>unknown (forces type checking)</b>",
@@ -3816,7 +3816,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "ds-array",
-      "question": "<code>const [a,b] = [1,2,3]</code> â€” valid?",
+      "question": "<code>const [a,b] = [1,2,3]</code>  --  valid?",
       "options": [
         "No",
         "<b>Yes (3 is ignored)</b>",
@@ -3852,7 +3852,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "ds-rest",
-      "question": "<code>const [a, ...rest] = [1,2,3,4]</code> â€” rest is?",
+      "question": "<code>const [a, ...rest] = [1,2,3,4]</code>  --  rest is?",
       "options": [
         "4",
         "[1,2,3,4]",
@@ -3922,7 +3922,7 @@ export const quizData: Record<string, Question[]> = {
         "Only for arrays"
       ],
       "answerIndex": 1,
-      "explanation": "Spreading an object or array creates a 'Shallow Copy'. It creates a brand new top-level object, but if there are nested objects inside, those nested objects are NOT cloned—they are shared by reference!<code>let clone = { ...original };</code>"
+      "explanation": "Spreading an object or array creates a 'Shallow Copy'. It creates a brand new top-level object, but if there are nested objects inside, those nested objects are NOT cloned -- they are shared by reference!<code>let clone = { ...original };</code>"
     },
     {
       "section": "sr-rest-fn",
@@ -3974,7 +3974,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "sr-rest-ds",
-      "question": "<code>const [first,...rest] = [1,2,3]</code> â€” rest is?",
+      "question": "<code>const [first,...rest] = [1,2,3]</code>  --  rest is?",
       "options": [
         "[1,2,3]",
         "3",
@@ -3994,7 +3994,7 @@ export const quizData: Record<string, Question[]> = {
         "error"
       ],
       "answerIndex": 2,
-      "explanation": "Many legacy functions (like Math.max) do not accept arrays—they only accept a comma-separated list of arguments. Spread perfectly bridges this gap by unspooling an array into loose arguments!<code>Math.max(...numbersArray);</code>"
+      "explanation": "Many legacy functions (like Math.max) do not accept arrays -- they only accept a comma-separated list of arguments. Spread perfectly bridges this gap by unspooling an array into loose arguments!<code>Math.max(...numbersArray);</code>"
     },
     {
       "section": "sr-copy",
@@ -4013,7 +4013,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: expecting deep copy from spread?",
       "options": [
         "Spread is deep",
-        "<b>Spread is shallow â€” nested objects are shared</b>",
+        "<b>Spread is shallow  --  nested objects are shared</b>",
         "Spread clones all",
         "No issue"
       ],
@@ -4096,7 +4096,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "pm-all",
-      "question": "<code>Promise.all([p1,p2])</code> â€” if p2 rejects?",
+      "question": "<code>Promise.all([p1,p2])</code>  --  if p2 rejects?",
       "options": [
         "p1 result only",
         "Partial results",
@@ -4108,7 +4108,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "pm-vs",
-      "question": "Promise vs Callback â€” which avoids nesting?",
+      "question": "Promise vs Callback  --  which avoids nesting?",
       "options": [
         "Callback",
         "<b>Promise (via chaining)</b>",
@@ -4212,7 +4212,7 @@ export const quizData: Record<string, Question[]> = {
         "Timers"
       ],
       "answerIndex": 1,
-      "explanation": "It is crucial to remember that async/await does not replace Promises—it IS Promises! It is merely a visually cleaner syntax for working with them. You are still interacting with Promises under the hood.<code>await fetch(); // Awaiting a Promise!</code>"
+      "explanation": "It is crucial to remember that async/await does not replace Promises -- it IS Promises! It is merely a visually cleaner syntax for working with them. You are still interacting with Promises under the hood.<code>await fetch(); // Awaiting a Promise!</code>"
     },
     {
       "section": "pm-mistakes",
@@ -4377,7 +4377,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: querying DOM before it loads?",
       "options": [
         "Always works",
-        "<b>Returns null â€” use DOMContentLoaded</b>",
+        "<b>Returns null  --  use DOMContentLoaded</b>",
         "Returns empty",
         "Throws error"
       ],
@@ -4436,7 +4436,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "json-pretty",
-      "question": "<code>JSON.stringify(obj, null, 2)</code> â€” the 2 means?",
+      "question": "<code>JSON.stringify(obj, null, 2)</code>  --  the 2 means?",
       "options": [
         "Max depth",
         "<b>Indent spaces for pretty print</b>",
@@ -4472,7 +4472,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "json-storage",
-      "question": "<code>localStorage.setItem('k', obj)</code> â€” correct?",
+      "question": "<code>localStorage.setItem('k', obj)</code>  --  correct?",
       "options": [
         "Yes",
         "<b>No (must stringify first)</b>",
@@ -4508,7 +4508,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "json-vs",
-      "question": "JSON keys vs JS object keys â€” difference?",
+      "question": "JSON keys vs JS object keys  --  difference?",
       "options": [
         "No difference",
         "<b>JSON requires double quotes</b>",
@@ -4602,7 +4602,7 @@ export const quizData: Record<string, Question[]> = {
         "Only with mutating callback"
       ],
       "answerIndex": 1,
-      "explanation": "The filter() method is 'pure'—it NEVER modifies the original array. Instead, it builds a completely new array in memory containing only the items that passed the test. Your original data is safely preserved.<code>let original = [1, 2]; let f = original.filter();</code>"
+      "explanation": "The filter() method is 'pure' -- it NEVER modifies the original array. Instead, it builds a completely new array in memory containing only the items that passed the test. Your original data is safely preserved.<code>let original = [1, 2]; let f = original.filter();</code>"
     },
     {
       "section": "mfr-map",
@@ -4958,7 +4958,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "this-arrow",
-      "question": "<code>const obj={name:'A',greet:()=>this.name}</code> â€” this.name is?",
+      "question": "<code>const obj={name:'A',greet:()=>this.name}</code>  --  this.name is?",
       "options": [
         "'A'",
         "<b>undefined (arrow inherits outer this)</b>",
@@ -4982,7 +4982,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "this-method",
-      "question": "<code>const fn=obj.method; fn()</code> â€” this is?",
+      "question": "<code>const fn=obj.method; fn()</code>  --  this is?",
       "options": [
         "obj",
         "<b>Global/undefined (lost context)</b>",
@@ -5009,7 +5009,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: using <code>this</code> in callback?",
       "options": [
         "Always works",
-        "<b>Loses context â€” use arrow function or bind</b>",
+        "<b>Loses context  --  use arrow function or bind</b>",
         "No issue",
         "Throws error"
       ],
@@ -5289,7 +5289,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common date mistake: months are 0-indexed?",
       "options": [
         "1-indexed",
-        "<b>Yes â€” January is 0, not 1</b>",
+        "<b>Yes  --  January is 0, not 1</b>",
         "Depends",
         "Only in JS"
       ],
@@ -5384,7 +5384,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "rx-flags",
-      "question": "<code>/hello/i</code> â€” the <code>i</code> flag means?",
+      "question": "<code>/hello/i</code>  --  the <code>i</code> flag means?",
       "options": [
         "Global",
         "<b>Case insensitive</b>",
@@ -5530,7 +5530,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "tg-custom",
-      "question": "<code>function isString(x: unknown): x is string</code> â€” <code>is</code> means?",
+      "question": "<code>function isString(x: unknown): x is string</code>  --  <code>is</code> means?",
       "options": [
         "Comparison",
         "Assignment",
@@ -5542,7 +5542,7 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "tg-assert",
-      "question": "<code>asserts value is string</code> â€” if false?",
+      "question": "<code>asserts value is string</code>  --  if false?",
       "options": [
         "Returns false",
         "<b>Throws an error</b>",
@@ -5569,7 +5569,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: not narrowing <code>unknown</code> before use?",
       "options": [
         "Works fine",
-        "<b>TypeScript error â€” must check type first</b>",
+        "<b>TypeScript error  --  must check type first</b>",
         "Returns any",
         "Auto-narrows"
       ],
@@ -5715,7 +5715,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: not checking <code>response.ok</code>?",
       "options": [
         "Auto-checked",
-        "<b>404/500 won't throw â€” must check manually</b>",
+        "<b>404/500 won't throw  --  must check manually</b>",
         "Always throws",
         "No issue"
       ],
@@ -6203,7 +6203,7 @@ export const quizData: Record<string, Question[]> = {
       "question": "Common mistake: testing implementation not behavior?",
       "options": [
         "Good practice",
-        "<b>Tests break when refactoring â€” test outcomes instead</b>",
+        "<b>Tests break when refactoring  --  test outcomes instead</b>",
         "Required",
         "Faster"
       ],
@@ -6282,7 +6282,7 @@ export const quizData: Record<string, Question[]> = {
         "Searching"
       ],
       "answerIndex": 1,
-      "explanation": "A Linked List stores data in nodes that point to the next node. Unlike Arrays, Linked Lists are incredibly fast at inserting or deleting items in the absolute middle of the list, because they don't have to shift any indexes—they just update the pointers!<code>// Node -> NextNode -> NextNode</code>"
+      "explanation": "A Linked List stores data in nodes that point to the next node. Unlike Arrays, Linked Lists are incredibly fast at inserting or deleting items in the absolute middle of the list, because they don't have to shift any indexes -- they just update the pointers!<code>// Node -> NextNode -> NextNode</code>"
     },
     {
       "section": "ds-stack",
