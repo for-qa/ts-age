@@ -24,7 +24,7 @@ A comprehensive, beginner-to-senior TypeScript curriculum built as a static site
 ```text
 ts-age/
 ├── public/                 # Static assets
-│   └── legacy_pages/       # Original HTML content served dynamically
+│   └── content/            # HTML topic content served dynamically
 ├── practice/               # Blank .ts files for hands-on coding
 ├── src/                    # React SPA Source Code
 │   ├── core/               # Domain Layer (Entities, Use Cases)

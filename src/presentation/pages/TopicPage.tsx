@@ -23,7 +23,7 @@ export function TopicPage() {
     
     if (!topicFile) return;
 
-    fetch(`/legacy_pages/${topicFile}`)
+    fetch(`/content/${topicFile}`)
       .then(res => res.text())
       .then(html => {
         const parser = new DOMParser();
