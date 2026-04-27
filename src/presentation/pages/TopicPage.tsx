@@ -23,7 +23,7 @@ export function TopicPage() {
     
     if (!topicFile) return;
 
-    fetch(`/content/${topicFile}`)
+    fetch(`${import.meta.env.BASE_URL}content/${topicFile}`)
       .then(res => res.text())
       .then(html => {
         const parser = new DOMParser();
