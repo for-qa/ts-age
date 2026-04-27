@@ -82,7 +82,7 @@ export function TopicPage() {
     return (
       <div>
         <div className="hero" style={{ position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '2rem', right: '2rem' }}>
+          <div className="hero-top-right">
             <ProgressTracker topicFile={topicFile} />
           </div>
           <div className="hero-tags">

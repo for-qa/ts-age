@@ -118,6 +118,7 @@ nav a:hover,nav a.on{color:#fff;border-left-color:var(--blue);background:#252523
 
 /* ── HERO ── */
 .hero{background:#1c1c1a;color:#fff;padding:4rem 3.5rem 3rem;position:relative;overflow:hidden}
+.hero-top-right {position:absolute;top:2rem;right:2rem;z-index:2}
 .hero::after{
   content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;
   background:radial-gradient(circle at center,rgba(29,78,216,.25) 0%,transparent 65%);
@@ -327,6 +328,7 @@ hr{border:none;border-top:1px solid var(--border);margin:1.75rem 0}
   .wrap{grid-template-columns:1fr}
   nav{display:none}
   .sec,.hero{padding:2rem 1.25rem}
+  .hero-top-right{position:static;margin-bottom:1.5rem}
   .pipe{flex-direction:column}
   .pipe-step{border-right:none;border-bottom:1px solid var(--border)}
   .pipe-step:last-child{border-bottom:none}
