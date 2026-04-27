@@ -152,7 +152,7 @@ dynamic.test("Hello Alice");  // true</code></pre>
 // *   = zero or more
 /\d*/.test("abc");         // true (0 digits is fine)
 
-// ?   = zero or one (optional)
+// -   = zero or one (optional)
 /colou?r/.test("color");   // true (u is optional)
 /colou?r/.test("colour");  // true
 
@@ -332,7 +332,7 @@ const numbers = "Price: ₹1,200 and ₹350".match(/\d+/g);
 \s  space     \S  not space     [^abc] not a,b,c
 
 // QUANTIFIERS
-+  one+    *  zero+    ?  optional
++  one+    *  zero+    -  optional
 {3}  exactly 3    {2,5}  2 to 5    {3,}  3+
 
 // ANCHORS

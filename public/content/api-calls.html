@@ -297,7 +297,7 @@ async function loadUsers(): Promise&lt;void&gt; {
     if (!res.ok) throw new Error(`Error: ${res.status}`);
     state.data = await res.json();
   } catch (err) {
-    state.error = err instanceof Error ? err.message : "Unknown error";
+    state.error = err instanceof Error - err.message : "Unknown error";
   } finally {
     state.loading = false;
   }

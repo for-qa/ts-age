@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Map, Filter, Reduce � TypeScript Learning Path</title>
+    <title>Map, Filter, Reduce - TypeScript Learning Path</title>
     <meta
       name="description"
       content="Master map, filter, reduce in TypeScript with 15 real-world practice problems, chaining patterns, and common mistakes."
@@ -23,7 +23,7 @@
           <div class="tb-brand-sub">Session Notes</div>
         </div>
       </div>
-      <a class="tb-back" href="../index.html">? Back to Index</a>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
       <div class="tb-topic-title">Map / Filter / Reduce</div>
     </div>
     <div class="page-wrap">
@@ -57,7 +57,7 @@
               ><span class="hero-tag">filter</span
               ><span class="hero-tag">reduce</span>
             </div>
-            <h1>Map, Filter, Reduce � Practice</h1>
+            <h1>Map, Filter, Reduce - Practice</h1>
             <p>
               15 real-world problems to drill the three most important array
               methods. If you can chain these confidently, you can handle any
@@ -68,7 +68,7 @@
               <p>
                 <strong>Builds on Topic 11:</strong> You learned map, filter,
                 and reduce in <em>Higher-Order Array Methods</em>. This page is
-                your <strong>PRACTICE GYM</strong> � 15 real-world problems,
+                your <strong>PRACTICE GYM</strong> - 15 real-world problems,
                 chaining patterns, and the 5 mistakes that trip up even
                 experienced devs.
               </p>
@@ -107,7 +107,7 @@
               <div class="pipe-step">
                 <div class="pipe-ph ph3-c">reduce</div>
                 <div class="pipe-name">Accumulate</div>
-                <div class="pipe-pts">Many ? one result</div>
+                <div class="pipe-pts">Many - one result</div>
               </div>
             </div>
             <div class="card ph1-card">
@@ -117,9 +117,9 @@
                 <span class="card-badge">Recap</span>
               </div>
               <div class="card-body">
-                <pre><code>arr.map(item => newItem)                    // [a,b,c] ? [A,B,C]
-arr.filter(item => condition)               // [a,b,c] ? [a,c]
-arr.reduce((acc, item) => newAcc, initial)  // [a,b,c] ? result</code></pre>
+                <pre><code>arr.map(item => newItem)                    // [a,b,c] - [A,B,C]
+arr.filter(item => condition)               // [a,b,c] - [a,c]
+arr.reduce((acc, item) => newAcc, initial)  // [a,b,c] - result</code></pre>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ const names = users.map(u => u.name);
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Convert prices USD ? INR</div>
+                <div class="card-title">Convert prices USD - INR</div>
                 <span class="card-badge">map</span>
               </div>
               <div class="card-body">
@@ -277,10 +277,10 @@ const affordable = products.filter(p => p.price >= 100 && p.price <= 1000);
               <div class="card-body">
                 <pre><code>const nums = [1, 2, 3, 2, 4, 1, 5, 3];
 const dupes = nums.filter((n, i) => nums.indexOf(n) !== i);
-// [2, 1, 3] � items that appear more than once
+// [2, 1, 3] - items that appear more than once
 
 const unique = nums.filter((n, i) => nums.indexOf(n) === i);
-// [1, 2, 3, 4, 5] � remove duplicates (or use [...new Set(nums)])</code></pre>
+// [1, 2, 3, 4, 5] - remove duplicates (or use [...new Set(nums)])</code></pre>
               </div>
             </div>
           </div>
@@ -378,7 +378,7 @@ const obj = pairs.reduce((acc, [key, val]) => {
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">!</div>
-                <div class="card-title">The real power � combine all three</div>
+                <div class="card-title">The real power - combine all three</div>
                 <span class="card-badge">Chain</span>
               </div>
               <div class="card-body">
@@ -423,7 +423,7 @@ const expensive = orders
                   <tr>
                     <td>Transform each item</td>
                     <td><span class="p p-blue">map()</span></td>
-                    <td>names from users, prices � tax</td>
+                    <td>names from users, prices - tax</td>
                   </tr>
                   <tr>
                     <td>Keep/remove items</td>
@@ -461,28 +461,28 @@ const expensive = orders
             <h2>? Common Beginner Mistakes</h2>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong
                   >Mistake 1: Using map() when you don't need the return
                   value</strong
                 >
-                <pre><code>// ? WRONG � map creates a new array, but you're ignoring it
+                <pre><code>// - WRONG - map creates a new array, but you're ignoring it
 users.map(u => console.log(u.name));
 
-// ? CORRECT � use forEach for side effects
+// - CORRECT - use forEach for side effects
 users.forEach(u => console.log(u.name));</code></pre>
               </div>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 2: Forgetting return in reduce()</strong>
-                <pre><code>// ? WRONG � accumulator becomes undefined!
+                <pre><code>// - WRONG - accumulator becomes undefined!
 const sum = nums.reduce((acc, n) => { acc + n; }, 0);
 
-// ? CORRECT � return the new accumulator
+// - CORRECT - return the new accumulator
 const sum2 = nums.reduce((acc, n) => { return acc + n; }, 0);
 // Or use arrow shorthand:
 const sum3 = nums.reduce((acc, n) => acc + n, 0);</code></pre>
@@ -490,13 +490,13 @@ const sum3 = nums.reduce((acc, n) => acc + n, 0);</code></pre>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 3: Wrong initial value in reduce()</strong>
-                <pre><code>// ? WRONG � initial value is a number, but you want an object!
+                <pre><code>// - WRONG - initial value is a number, but you want an object!
 // words.reduce((acc, w) => { acc[w] = 1; return acc; }, 0);
 
-// ? CORRECT � match initial value type to desired result
+// - CORRECT - match initial value type to desired result
 const freq = words.reduce((acc, w) => {
   acc[w] = (acc[w] || 0) + 1;
   return acc;
@@ -505,29 +505,29 @@ const freq = words.reduce((acc, w) => {
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 4: Mutating original array inside map()</strong>
-                <pre><code>// ? WRONG � mutating the original objects!
+                <pre><code>// - WRONG - mutating the original objects!
 const updated = users.map(u => { u.age += 1; return u; });
 // Original users are ALSO modified!
 
-// ? CORRECT � return NEW objects
+// - CORRECT - return NEW objects
 const updated2 = users.map(u => ({ ...u, age: u.age + 1 }));</code></pre>
               </div>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong
-                  >Mistake 5: filter() returns a NEW array � must use
+                  >Mistake 5: filter() returns a NEW array - must use
                   it!</strong
                 >
-                <pre><code>// ? WRONG � ignoring the returned array
+                <pre><code>// - WRONG - ignoring the returned array
 users.filter(u => u.age >= 18);  // result thrown away!
 
-// ? CORRECT � use the returned array
+// - CORRECT - use the returned array
 const adults = users.filter(u => u.age >= 18);</code></pre>
               </div>
             </div>
@@ -576,26 +576,26 @@ const adults = users.filter(u => u.age >= 18);</code></pre>
           <div class="sec" id="mfr-cheatsheet">
             <div class="sec-label">Reference</div>
             <h2>Cheatsheet</h2>
-            <pre><code>// MAP � transform each item
+            <pre><code>// MAP - transform each item
 arr.map(x => x * 2)                    // [2, 4, 6]
 arr.map(u => u.name)                   // extract field
 
-// FILTER � keep matching items
+// FILTER - keep matching items
 arr.filter(x => x > 2)                // remove small
 arr.filter((x): x is T => x != null)  // remove nulls (typed)
 
-// REDUCE � accumulate into one value
+// REDUCE - accumulate into one value
 arr.reduce((sum, n) => sum + n, 0)                // sum
 arr.reduce((acc, x) => ({ ...acc, [x]: 1 }), {})  // build object
 
-// CHAIN � combine for complex transforms
+// CHAIN - combine for complex transforms
 arr.filter(condition).map(transform).reduce(accumulate, init)</code></pre>
             <hr />
             <p
               style="font-size: 11.5px; color: var(--ink3); text-align: center"
             >
-              TypeScript Learning Path &nbsp;�&nbsp; Map/Filter/Reduce
-              &nbsp;�&nbsp; Phase 1 Complete!
+              TypeScript Learning Path &nbsp;-&nbsp; Map/Filter/Reduce
+              &nbsp;-&nbsp; Phase 1 Complete!
             </p>
           </div>
         </div>
