@@ -455,7 +455,7 @@ console.log(names[1]);             // Smith  - index 1</code></pre>
               <div class="card-body">
                 <pre><code>let mixedData: Array&lt;any&gt; = [42, "hello", true, null];</code></pre>
                 <div class="note note-warn" style="margin-top: 0.6rem">
-                  <span class="note-i">?</span>
+                  <span class="note-i">⚠</span>
                   <p>
                     Using <code>any</code> disables TypeScript's type checking
                     for that array. Prefer specific types or unions where
@@ -620,7 +620,7 @@ for (let i = 0; i &lt; empNames.length; i++) {
                   </table>
                 </div>
                 <div class="note note-warn" style="margin-top: 0.75rem">
-                  <span class="note-i">?</span>
+                  <span class="note-i">⚠</span>
                   <p>
                     <code>i &lt;= empNames.length</code> causes an off-by-one
                     error - the last iteration reads index 4 which doesn't
@@ -1230,7 +1230,7 @@ console.log(tp[1]);              // Peter</code></pre>
             <div class="note note-warn">
               <span class="note-i">⚠</span>
               <div>
-                <strong>? Array mutation - the silent surprise</strong>
+                <strong>⚠ Array mutation - the silent surprise</strong>
                 <pre><code>function addItem(list: string[]) {
   list.push("new item");  // Modifies the ORIGINAL array!
 }
