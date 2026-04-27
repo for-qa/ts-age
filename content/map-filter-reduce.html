@@ -461,7 +461,7 @@ const expensive = orders
             <h2>? Common Beginner Mistakes</h2>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">i</span>
               <div>
                 <strong
                   >Mistake 1: Using map() when you don't need the return
@@ -476,7 +476,7 @@ users.forEach(u => console.log(u.name));</code></pre>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 2: Forgetting return in reduce()</strong>
                 <pre><code>// ? WRONG - accumulator becomes undefined!
@@ -490,7 +490,7 @@ const sum3 = nums.reduce((acc, n) => acc + n, 0);</code></pre>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 3: Wrong initial value in reduce()</strong>
                 <pre><code>// ? WRONG - initial value is a number, but you want an object!
@@ -505,7 +505,7 @@ const freq = words.reduce((acc, w) => {
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 4: Mutating original array inside map()</strong>
                 <pre><code>// ? WRONG - mutating the original objects!
@@ -518,7 +518,7 @@ const updated2 = users.map(u => ({ ...u, age: u.age + 1 }));</code></pre>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">?</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong
                   >Mistake 5: filter() returns a NEW array - must use
