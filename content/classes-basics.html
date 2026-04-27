@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Classes (Basics)  --  TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript classes  --  readonly properties, optional properties, static variables and methods, constructor overloading, and method overloading with real-life analogies."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Classes (Basics)</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-classes">
+          <div class="nav-logo">
+            <div class="v">OOP</div>
+            <h2>Classes</h2>
+          </div>
+          <div class="nav-group">Properties</div>
+          <a href="#cls-readonly">readonly</a>
+          <a href="#cls-optional">Optional (?)</a>
+          <a href="#cls-static">static</a>
+          <div class="nav-group">Full Example</div>
+          <a href="#cls-student">Student Class</a>
+          <a href="#cls-shorthand">Parameter Shorthand</a>
+          <a href="#cls-usage">Creating Objects</a>
+          <div class="nav-group">Overloading</div>
+          <a href="#cls-ctor-overload">Constructor Overloading</a>
+          <a href="#cls-method-overload">Method Overloading</a>
+          <div class="nav-group">Reference</div>
+          <a href="#cls-compare">Comparison Table</a>
+          <a href="#cls-cheatsheet">Cheatsheet</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="cls-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Classes</span>
+              <span class="hero-tag">OOP</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Classes <span>(Basics)</span></h1>
+            <p>
+              Deep dive into class properties  --  readonly, optional, and static  -- 
+              plus constructor and method overloading inside classes.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Property Types</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Overloading Types</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">4</div>
+                <div class="stat-l">Key Rules</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- READONLY -->
+          <div class="sec" id="cls-readonly">
+            <div class="sec-label">Property Modifier</div>
+            <h2>readonly  --  Assign Once, Read Forever</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A
+                <code>readonly</code> property is like your
+                <strong>Aadhaar number</strong>. It's assigned to you once at
+                birth (constructor), and you can show it to anyone (read), but
+                you can NEVER change it.
+              </p>
+            </div>
+
+            <p>
+              A <code>readonly</code> property can be assigned a value
+              <strong>only once</strong>  --  inside the constructor. After that,
+              it can be read but never modified.
+            </p>
+
+            <pre><code>class Student {
+  readonly studentID: number;  // ← readonly keyword
+  name: string;
+
+  constructor(id: number, name: string) {
+    this.studentID = id;   // ✅ Assigning ONCE in constructor  --  allowed
+    this.name = name;
+  }
+}
+
+let s1 = new Student(101, "John");
+
+console.log(s1.studentID);  // ✅ Reading  --  allowed (101)
+s1.studentID = 999;         // ❌ ERROR: Cannot assign  --  it's readonly!
+s1.name = "Jane";           // ✅ Regular property  --  can be changed</code></pre>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Action</th>
+                    <th>readonly</th>
+                    <th>Regular</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Assign in constructor</td>
+                    <td>✅ Once only</td>
+                    <td>✅ Anytime</td>
+                  </tr>
+                  <tr>
+                    <td>Read from object</td>
+                    <td>✅ Unlimited</td>
+                    <td>✅ Unlimited</td>
+                  </tr>
+                  <tr>
+                    <td>Modify after creation</td>
+                    <td>❌ Never</td>
+                    <td>✅ Anytime</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- OPTIONAL -->
+          <div class="sec" id="cls-optional">
+            <div class="sec-label">Property Modifier</div>
+            <h2>Optional (?)  --  Value Not Required</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> An optional property is like
+                the <strong>"Middle Name" field</strong> on a form. Some people
+                have one, some don't. If left blank, it's just
+                <code>undefined</code>  --  and that's perfectly fine.
+              </p>
+            </div>
+
+            <p>
+              Add <code>?</code> after the property name. If no value is passed,
+              it defaults to <code>undefined</code>.
+            </p>
+
+            <pre><code>class Student {
+  readonly studentID: number;
+  name: string;
+  email?: string;  // ← optional (question mark)
+
+  constructor(id: number, name: string, email?: string) {
+    //                                    → must also be optional here!
+    this.studentID = id;
+    this.name = name;
+    this.email = email;
+  }
+}
+
+let s1 = new Student(101, "John");              // no email  --  OK!
+let s2 = new Student(102, "Bob", "b@mail.com"); // with email  --  OK!
+
+console.log(s1.email);  // undefined
+console.log(s2.email);  // "b@mail.com"</code></pre>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Two places!</strong> You must add <code>?</code> in BOTH
+                the property declaration AND the constructor parameter.
+                Otherwise, the constructor will still demand a value.
+              </p>
+            </div>
+          </div>
+
+          <!-- STATIC -->
+          <div class="sec" id="cls-static">
+            <div class="sec-label">Property &amp; Method Modifier</div>
+            <h2>static  --  Shared Across ALL Objects</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> <code>static</code> is like
+                the <strong>school name on a student ID card</strong>. Every
+                student at "Greenwood High" has the SAME school name. If the
+                school changes its name, EVERY student's card reflects the new
+                name. The school name isn't personal to one student  --  it's
+                shared.
+              </p>
+            </div>
+
+            <p>
+              A <code>static</code> property or method belongs to the
+              <strong>class itself</strong>, not to individual objects. It's
+              shared across ALL objects.
+            </p>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">Static property &amp; method</div>
+                <span class="card-badge">static</span>
+              </div>
+              <div class="card-body">
+                <pre><code>class Student {
+  name: string;
+  static schoolName: string = "Greenwood High";  // shared!
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  // Static method  --  changes the shared property
+  static changeSchoolName(newName: string): void {
+    Student.schoolName = newName;  // use CLASS name, not 'this'
+  }
+
+  displayInfo(): void {
+    console.log(`${this.name} - ${Student.schoolName}`);
+    //                          → access static via CLASS name
+  }
+}
+
+let s1 = new Student("John");
+let s2 = new Student("Bob");
+
+s1.displayInfo();  // "John - Greenwood High"
+s2.displayInfo();  // "Bob - Greenwood High"
+
+// Change school name  --  affects ALL objects!
+Student.changeSchoolName("Sunrise Academy");
+
+s1.displayInfo();  // "John - Sunrise Academy" ← changed!
+s2.displayInfo();  // "Bob - Sunrise Academy"  ← changed!</code></pre>
+              </div>
+            </div>
+
+            <h3>4 Key Rules for Static</h3>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Rule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      Static properties/methods are
+                      <strong>shared across all objects</strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>
+                      Access using <strong>class name</strong> directly:
+                      <code>Student.schoolName</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>
+                      <strong>Cannot</strong> use <code>this</code> keyword for
+                      static  --  use class name instead
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      <strong>Cannot</strong> access via object:
+                      <code>s1.schoolName</code> → ❌ Error in TypeScript
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>TypeScript vs Java:</strong> In Java, you CAN access
+                static members via objects. In TypeScript, you can ONLY access
+                them via the class name. <code>s1.schoolName</code> will throw
+                an error!
+              </p>
+            </div>
+          </div>
+
+          <!-- FULL STUDENT CLASS -->
+          <div class="sec" id="cls-student">
+            <div class="sec-label">Complete Example</div>
+            <h2>Student Class  --  All Property Types</h2>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">☑</div>
+                <div class="card-title">
+                  Full class with readonly, optional, static
+                </div>
+                <span class="card-badge">Complete</span>
+              </div>
+              <div class="card-body">
+                <pre><code>class Student {
+  readonly studentID: number;        // assign once only
+  name: string;                      // regular property
+  email?: string;                    // optional (can be undefined)
+  static schoolName: string = "Greenwood High";  // shared
+
+  constructor(sid: number, sName: string, email?: string) {
+    this.studentID = sid;
+    this.name = sName;
+    this.email = email;
+  }
+
+  displayInfo(): void {
+    console.log(`ID: ${this.studentID}`);
+    console.log(`Name: ${this.name}`);
+
+    // Handle optional property
+    if (this.email) {
+      console.log(`Email: ${this.email}`);
+    } else {
+      console.log("Email: Not provided");
+    }
+
+    // Access static via class name (NOT 'this')
+    console.log(`School: ${Student.schoolName}`);
+  }
+
+  static changeSchoolName(newName: string): void {
+    Student.schoolName = newName;
+  }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- PARAMETER PROPERTIES SHORTHAND -->
+          <div class="sec" id="cls-shorthand">
+            <div class="sec-label">TypeScript Shorthand</div>
+            <h2>Constructor Parameter Properties</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Instead of writing a
+                shopping list AND then putting each item on the shelf
+                separately, you just put items on the shelf as you write them
+                down. <strong>One step instead of two.</strong>
+              </p>
+            </div>
+
+            <p>
+              TypeScript lets you declare AND initialize properties
+              <strong>directly in the constructor parameters</strong> by adding
+              an access modifier (<code>public</code>, <code>private</code>,
+              <code>protected</code>, or <code>readonly</code>). This eliminates
+              the need to declare properties separately and assign them with
+              <code>this.x = x</code>.
+            </p>
+
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">
+                  Verbose way  --  declare + assign separately
+                </div>
+                <span class="card-badge">❌ Verbose</span>
+              </div>
+              <div class="card-body">
+                <pre><code>class Person {
+  public name: string;
+  private age: number;
+  readonly id: number;
+
+  constructor(name: string, age: number, id: number) {
+    this.name = name;  // line 1: declare
+    this.age = age;    // line 2: assign in constructor
+    this.id = id;      // line 3: 6 lines of boilerplate!
+  }
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">✓</div>
+                <div class="card-title">
+                  Shorthand  --  declare + assign in ONE line
+                </div>
+                <span class="card-badge">✅ Clean TS</span>
+              </div>
+              <div class="card-body">
+                <pre><code>class Person {
+  // No separate property declarations needed!
+  constructor(
+    public name: string,      // auto-creates this.name
+    private age: number,      // auto-creates this.age (private)
+    readonly id: number       // auto-creates this.id (readonly)
+  ) {
+    // No this.x = x assignments needed!
+    // TypeScript does it automatically.
+  }
+
+  greet(): string {
+    return `Hi, I'm ${this.name}, age ${this.age}, ID: ${this.id}`;
+  }
+}
+
+const p = new Person("Alice", 25, 101);
+console.log(p.name);    // "Alice" ✅ public  --  accessible
+// console.log(p.age);  // ❌ Error  --  private
+// p.id = 999;          // ❌ Error  --  readonly</code></pre>
+                <p class="fn">
+                  The modifier keyword (<code>public</code>,
+                  <code>private</code>, <code>protected</code>,
+                  <code>readonly</code>) in the constructor parameter is what
+                  triggers this behavior. Without it, the parameter is just a
+                  regular parameter  --  no property is created.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>When to use:</strong> Always prefer the shorthand for
+                simple classes. It's the
+                <strong>idiomatic TypeScript</strong> way and is used in every
+                professional codebase. The verbose way is only needed when you
+                need custom initialization logic beyond simple assignment.
+              </p>
+            </div>
+          </div>
+
+          <!-- USAGE -->
+          <div class="sec" id="cls-usage">
+            <div class="sec-label">Using the Class</div>
+            <h2>Creating Objects &amp; Testing Behavior</h2>
+
+            <pre><code>// Object 1  --  no email (optional skipped)
+let s1 = new Student(101, "John");
+
+// Object 2  --  email provided
+let s2 = new Student(102, "Bob", "bob@gmail.com");
+
+s1.displayInfo();
+// ID: 101
+// Name: John
+// Email: Not provided
+// School: Greenwood High
+
+s2.displayInfo();
+// ID: 102
+// Name: Bob
+// Email: bob@gmail.com
+// School: Greenwood High
+
+// ❌ Try to modify readonly
+s1.studentID = 999;  // ERROR: Cannot assign to readonly
+
+// ✅ Modify regular property
+s1.name = "Jane";    // Works fine
+
+// ✅ Change static  --  affects BOTH objects
+Student.changeSchoolName("Sunrise Academy");
+
+s1.displayInfo();  // School: Sunrise Academy
+s2.displayInfo();  // School: Sunrise Academy</code></pre>
+          </div>
+
+          <!-- CONSTRUCTOR OVERLOADING -->
+          <div class="sec" id="cls-ctor-overload">
+            <div class="sec-label">Overloading</div>
+            <h2>Constructor Overloading</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a
+                <strong>vending machine</strong> that accepts different inputs.
+                Insert 2 coins → get a small drink. Insert 3 coins → get a large
+                drink. Same machine (class), different inputs (constructor
+                signatures), one mechanism (implementation).
+              </p>
+            </div>
+
+            <p>
+              Multiple constructor <strong>signatures</strong>, but only
+              <strong>ONE implementation</strong>. The implementation must
+              satisfy all signatures using optional parameters.
+            </p>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">C</div>
+                <div class="card-title">
+                  Calculator with constructor overloading
+                </div>
+                <span class="card-badge">Overloading</span>
+              </div>
+              <div class="card-body">
+                <pre><code>class Calculator {
+  // Signature 1: no parameters (default constructor)
+  constructor();
+
+  // Signature 2: two parameters
+  constructor(a: number, b: number);
+
+  // ONE implementation  --  must match BOTH signatures
+  constructor(a?: number, b?: number) {
+    //         → optional    → optional
+    if (a !== undefined && b !== undefined) {
+      console.log(`Sum: ${a + b}`);
+    } else {
+      console.log("Default constructor called");
+    }
+  }
+}
+
+let calc1 = new Calculator();        // "Default constructor called"
+let calc2 = new Calculator(10, 20);  // "Sum: 30"</code></pre>
+                <p class="fn">
+                  The implementation uses <code>?</code> to make parameters
+                  optional, satisfying BOTH the no-param and two-param
+                  signatures.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>How it works:</strong> Signature 1 has 0 params →
+                implementation's optional params match. Signature 2 has 2 params
+                → implementation accepts 2 params. ONE body handles both cases
+                with an <code>if</code> check.
+              </p>
+            </div>
+          </div>
+
+          <!-- METHOD OVERLOADING -->
+          <div class="sec" id="cls-method-overload">
+            <div class="sec-label">Overloading</div>
+            <h2>Method Overloading</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a
+                <strong>calculator's add button</strong>. Press it with 2
+                numbers → adds 2. Press it with 3 numbers → adds 3. Same button
+                name, different number of inputs, one mechanism.
+              </p>
+            </div>
+
+            <p>
+              Same concept as function overloading  --  multiple
+              <strong>method signatures</strong>, one
+              <strong>implementation</strong>. Inside a class, it's called
+              method overloading instead of function overloading.
+            </p>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">M</div>
+                <div class="card-title">add() with 2 or 3 parameters</div>
+                <span class="card-badge">Overloading</span>
+              </div>
+              <div class="card-body">
+                <pre><code>class Calculator {
+  constructor() {}
+
+  // Signature 1: two numbers
+  add(a: number, b: number): number;
+
+  // Signature 2: three numbers
+  add(a: number, b: number, c: number): number;
+
+  // ONE implementation  --  satisfies both
+  add(a: number, b: number, c?: number): number {
+    if (c !== undefined) {
+      return a + b + c;  // 3 params → Signature 2
+    }
+    return a + b;          // 2 params → Signature 1
+  }
+}
+
+let calc = new Calculator();
+
+console.log(calc.add(10, 20));      // 30  (Signature 1)
+console.log(calc.add(10, 20, 30));  // 60  (Signature 2)</code></pre>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Term</th>
+                    <th>Where</th>
+                    <th>Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Overloading outside a class</td>
+                    <td>Standalone functions</td>
+                    <td><strong>Function overloading</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Overloading inside a class</td>
+                    <td>Class methods</td>
+                    <td><strong>Method overloading</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Overloading constructors</td>
+                    <td>Class constructors</td>
+                    <td><strong>Constructor overloading</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>TS vs Java overloading:</strong> In Java, each
+                overloaded method has its OWN body. In TypeScript, multiple
+                signatures share ONE implementation. The implementation uses
+                optional params + <code>if</code> checks to handle all cases.
+              </p>
+            </div>
+          </div>
+
+          <!-- COMPARISON TABLE -->
+          <div class="sec" id="cls-compare">
+            <div class="sec-label">Reference</div>
+            <h2>Property Modifiers  --  Compared</h2>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Modifier</th>
+                    <th>Keyword</th>
+                    <th>Assign</th>
+                    <th>Read</th>
+                    <th>Modify</th>
+                    <th>Shared?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Regular</strong></td>
+                    <td>(none)</td>
+                    <td>Anytime</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>No  --  per object</td>
+                  </tr>
+                  <tr>
+                    <td><strong>readonly</strong></td>
+                    <td><code>readonly</code></td>
+                    <td>Once (constructor)</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td>No  --  per object</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Optional</strong></td>
+                    <td><code>?</code></td>
+                    <td>Optional</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>No  --  per object</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Static</strong></td>
+                    <td><code>static</code></td>
+                    <td>Default or class</td>
+                    <td>✅ (via class)</td>
+                    <td>✅ (via class)</td>
+                    <td>Yes  --  ALL objects</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CHEATSHEET -->
+          <div class="sec" id="cls-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
+
+            <h3>Property modifiers</h3>
+            <pre><code>class Example {
+  readonly id: number;          // assign once in constructor
+  name: string;                 // regular  --  read/write anytime
+  email?: string;               // optional  --  can be undefined
+  static company: string = "X"; // shared across all objects
+}</code></pre>
+
+            <h3>Accessing static members</h3>
+            <pre><code>// ✅ Correct  --  use CLASS name
+Example.company;
+Example.staticMethod();
+
+// ❌ Wrong  --  cannot use object
+let obj = new Example();
+obj.company;          // ERROR in TypeScript!
+
+// ❌ Wrong  --  cannot use 'this'
+this.company;         // ERROR for static!</code></pre>
+
+            <h3>Constructor overloading</h3>
+            <pre><code>constructor();                        // Signature 1
+constructor(a: number, b: number);    // Signature 2
+constructor(a?: number, b?: number) { // Implementation
+  // handle both cases
+}</code></pre>
+
+            <h3>Method overloading</h3>
+            <pre><code>add(a: number, b: number): number;              // Sig 1
+add(a: number, b: number, c: number): number;    // Sig 2
+add(a: number, b: number, c?: number): number {  // Impl
+  return c !== undefined ? a + b + c : a + b;
+}</code></pre>
+
+            <h3>Key rules</h3>
+            <pre><code>// ✅ readonly = assign once in constructor, read forever
+// ✅ optional (?) = add in BOTH declaration AND constructor param
+// ✅ static = access via ClassName.prop, NOT this.prop
+// ✅ static = shared across all objects, change reflects everywhere
+// ✅ Overloading = multiple signatures, ONE implementation
+// ✅ Constructor keyword in TS (not class name like Java)</code></pre>
+
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Classes (Basics)
+              &nbsp;·&nbsp; readonly · optional · static · overloading
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-classes");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

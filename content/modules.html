@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Modules  --  TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript modules  --  export variables, functions, and classes from one file and import them into another for reusability. Understand the module concept for utility files."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Modules</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-modules">
+          <div class="nav-logo">
+            <div class="v">TS</div>
+            <h2>Modules</h2>
+          </div>
+          <div class="nav-group">Concept</div>
+          <a href="#mod-what">What is a Module?</a>
+          <a href="#mod-problem">The Problem</a>
+          <div class="nav-group">How-To</div>
+          <a href="#mod-export">export Keyword</a>
+          <a href="#mod-import">import Keyword</a>
+          <a href="#mod-full">Full Example</a>
+          <a href="#mod-default">Default Export</a>
+          <a href="#mod-type">Type-Only Imports</a>
+          <div class="nav-group">Reference</div>
+          <a href="#mod-rules">Key Rules</a>
+          <a href="#mod-cheatsheet">Cheatsheet</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="mod-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Modules</span>
+              <span class="hero-tag">export</span>
+              <span class="hero-tag">import</span>
+            </div>
+            <h1>Modules</h1>
+            <p>
+              Create reusable files with export and import  --  the foundation of
+              utility files in automation and development.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Keywords</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Exportable Types</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">↾</div>
+                <div class="stat-l">Reusability</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT IS A MODULE -->
+          <div class="sec" id="mod-what">
+            <div class="sec-label">Core Concept</div>
+            <h2>What is a Module?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A module is like a
+                <strong>toolbox in a workshop</strong>. Instead of carrying a
+                hammer, screwdriver, and wrench everywhere, you keep them in ONE
+                toolbox. Any worker (file) who needs a tool just opens the
+                toolbox (imports) and uses what they need.
+              </p>
+            </div>
+
+            <p>
+              A module is a
+              <strong>file that contains reusable components</strong>  -- 
+              variables, functions, classes  --  that can be shared across multiple
+              files using <code>export</code> and <code>import</code>.
+            </p>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>What can a module contain?</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Variables</td>
+                    <td><code>export let appName = "Calculator";</code></td>
+                  </tr>
+                  <tr>
+                    <td>Functions</td>
+                    <td>
+                      <code>export function add(a, b) { return a + b; }</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Classes</td>
+                    <td><code>export class Formatter { ... }</code></td>
+                  </tr>
+                  <tr>
+                    <td>Interfaces</td>
+                    <td><code>export interface Person { ... }</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Module ≠ Class.</strong> Don't compare them. A module is
+                a FILE containing reusable code. A class is a blueprint for
+                objects. A module can CONTAIN classes, functions, variables  -- 
+                anything.
+              </p>
+            </div>
+          </div>
+
+          <!-- THE PROBLEM -->
+          <div class="sec" id="mod-problem">
+            <div class="sec-label">Why Modules?</div>
+            <h2>The Problem Without Modules</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Imagine 3 classrooms all
+                need the same math formulas. Without modules, each teacher
+                writes the formulas on their own board (duplication!). With
+                modules, there's ONE reference sheet that all classrooms share.
+              </p>
+            </div>
+
+            <pre><code>// ❌ WITHOUT modules  --  duplication everywhere!
+
+// test1.ts
+function add(a: number, b: number) { return a + b; }  // duplicated!
+console.log(add(10, 20));
+
+// test2.ts
+function add(a: number, b: number) { return a + b; }  // duplicated!
+console.log(add(5, 15));
+
+// test3.ts
+function add(a: number, b: number) { return a + b; }  // duplicated!
+console.log(add(100, 200));</code></pre>
+
+            <p>
+              <strong>Problems:</strong> No reusability, code duplication,
+              increased file length, harder to maintain.
+            </p>
+
+            <pre><code>// ❌ Without export, other files CANNOT access your code!
+
+// module.ts
+let appName = "Calculator";
+
+// main.ts
+console.log(appName);  // ERROR: appName is not defined!</code></pre>
+          </div>
+
+          <!-- EXPORT -->
+          <div class="sec" id="mod-export">
+            <div class="sec-label">Step 1</div>
+            <h2><code>export</code>  --  Make Code Available to Other Files</h2>
+
+            <p>
+              Add the <code>export</code> keyword in front of any variable,
+              function, or class you want to share.
+            </p>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">module.ts  --  the reusable file</div>
+                <span class="card-badge">export</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Export a variable
+export let appName: string = "Calculator";
+
+// Export a function
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+// Export a class
+export class Formatter {
+  static toUpper(str: string): string {
+    return str.toUpperCase();
+  }
+}</code></pre>
+                <p class="fn">
+                  Each <code>export</code> keyword makes that item available for
+                  other files to import. Without <code>export</code>, the item
+                  stays private to this file.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>Every item needs <code>export</code>.</strong> You must
+                write <code>export</code> in front of EACH variable, function,
+                or class you want to share. There's no single "export all"
+                shortcut at the top.
+              </p>
+            </div>
+          </div>
+
+          <!-- IMPORT -->
+          <div class="sec" id="mod-import">
+            <div class="sec-label">Step 2</div>
+            <h2><code>import</code>  --  Use Code from Another File</h2>
+
+            <p>
+              In the file where you want to USE the module's code, write an
+              <code>import</code> statement at the top.
+            </p>
+
+            <pre><code>// Import individual items
+import { appName } from "./module";
+import { add } from "./module";
+import { Formatter } from "./module";
+
+// OR  --  import everything in ONE line!
+import { appName, add, Formatter } from "./module";
+//                                       → no .ts extension!</code></pre>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Import Rule</th>
+                    <th>Detail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Syntax</td>
+                    <td><code>import { name } from "./path"</code></td>
+                  </tr>
+                  <tr>
+                    <td>Path</td>
+                    <td>Relative path: <code>./</code> = same folder</td>
+                  </tr>
+                  <tr>
+                    <td>Extension</td>
+                    <td>Do NOT include <code>.ts</code>  --  just the filename</td>
+                  </tr>
+                  <tr>
+                    <td>Multiple items</td>
+                    <td>Comma-separated inside <code>{ }</code></td>
+                  </tr>
+                  <tr>
+                    <td>Position</td>
+                    <td>Must be at the TOP of the file</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- FULL EXAMPLE -->
+          <div class="sec" id="mod-full">
+            <div class="sec-label">Complete Example</div>
+            <h2>Full Module Workflow</h2>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">A</div>
+                <div class="card-title">module.ts  --  the reusable file</div>
+                <span class="card-badge">export</span>
+              </div>
+              <div class="card-body">
+                <pre><code>export let appName: string = "Calculator";
+
+export function add(a: number, b: number): number {
+  return a + b;
+}
+
+export class Formatter {
+  static toUpper(str: string): string {
+    return str.toUpperCase();
+  }
+}</code></pre>
+              </div>
+            </div>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">B</div>
+                <div class="card-title">main.ts  --  uses the module</div>
+                <span class="card-badge">import</span>
+              </div>
+              <div class="card-body">
+                <pre><code>import { appName, add, Formatter } from "./module";
+
+console.log(appName);               // "Calculator"
+console.log(add(10, 20));            // 30
+console.log(Formatter.toUpper("welcome"));  // "WELCOME"</code></pre>
+                <p class="fn">
+                  Run <code>main.ts</code>, NOT <code>module.ts</code>. The
+                  module is a utility file  --  it's not meant to be executed
+                  directly.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Execution rule:</strong> You execute the file that
+                IMPORTS (main.ts), not the file that exports (module.ts). The
+                module is just a library of reusable code.
+              </p>
+            </div>
+          </div>
+
+          <!-- KEY RULES -->
+          <div class="sec" id="mod-rules">
+            <div class="sec-label">Rules</div>
+            <h2>Key Rules for Modules</h2>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Rule</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      Add <code>export</code> in front of every item you want to
+                      share
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>
+                      Use <code>import { ... } from "./filename"</code> to bring
+                      items in
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>
+                      Do NOT include the <code>.ts</code> extension in the
+                      import path
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      Without <code>export</code>, code stays private to its
+                      file
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>
+                      Without <code>import</code>, you cannot use exported code
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Execute the importing file, not the module file</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>
+                      A module can contain variables, functions, classes,
+                      interfaces  --  anything
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- DEFAULT EXPORT -->
+          <div class="sec" id="mod-default">
+            <div class="sec-label">How-To</div>
+            <h2>Default Export  --  One Main Thing Per File</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life:</strong> A named export is like a store with
+                many labeled shelves. A <strong>default export</strong> is like
+                a store with ONE featured product in the window  --  you don't need
+                to know its name to grab it.
+              </p>
+            </div>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">D</div>
+                <div class="card-title">export default  --  one per file</div>
+                <span class="card-badge">Default</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// math.ts  --  default export
+export default function add(a: number, b: number): number {
+  return a + b;
+}
+
+// You can ALSO have named exports alongside:
+export const PI = 3.14;
+
+// app.ts  --  import default (no curly braces!)
+import add from "./math";       // name it whatever you want!
+import myAdd from "./math";    // same thing, different name
+import add, { PI } from "./math";  // default + named together
+
+console.log(add(2, 3));  // 5
+console.log(PI);         // 3.14</code></pre>
+                <p class="fn">
+                  <strong>Rule:</strong> Only ONE
+                  <code>export default</code> per file. Named exports can have
+                  many. Import default = no <code>{ }</code>. Import named =
+                  needs <code>{ }</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- TYPE-ONLY IMPORTS -->
+          <div class="sec" id="mod-type">
+            <div class="sec-label">How-To</div>
+            <h2>Type-Only Imports (TS 3.8+)</h2>
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                When you import a <strong>type or interface</strong> that only
+                exists at compile time, use <code>import type</code>. This tells
+                TypeScript "this import is only for type checking  --  don't
+                include it in the compiled JavaScript output."
+              </p>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">T</div>
+                <div class="card-title">import type  --  types only</div>
+                <span class="card-badge">Type-Only</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// types.ts
+export interface User {
+  name: string;
+  age: number;
+}
+export type Role = "admin" | "user" | "guest";
+
+// app.ts  --  type-only import
+import type { User, Role } from "./types";
+
+function greet(user: User): string {
+  return `Hello ${user.name}`;
+}
+
+// ✅ The import is erased from compiled JS  --  zero runtime cost
+// ✅ Prevents accidentally using a type as a value</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHEATSHEET -->
+          <div class="sec" id="mod-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
+
+            <h3>Export (in module file)</h3>
+            <pre><code>export let x = 10;
+export function doStuff() { ... }
+export class Helper { ... }
+export interface Config { ... }
+export default function main() { ... }  // one per file
+export type Role = "admin" | "user";     // type export</code></pre>
+
+            <h3>Import (in consuming file)</h3>
+            <pre><code>// Named imports
+import { x, doStuff, Helper } from "./module";
+
+// Default import (no curly braces)
+import main from "./module";
+
+// Default + named together
+import main, { x, doStuff } from "./module";
+
+// Type-only import (erased at compile time)
+import type { Config } from "./module";</code></pre>
+
+            <h3>Use case  --  Automation utility</h3>
+            <pre><code>// utils.ts (module)
+export function waitForElement(selector: string) { ... }
+export function takeScreenshot(name: string) { ... }
+export function login(user: string, pass: string) { ... }
+
+// test-login.ts (test file)
+import { login, takeScreenshot } from "./utils";
+login("admin", "pass123");
+takeScreenshot("dashboard");</code></pre>
+
+            <h3>Key rules</h3>
+            <pre><code>// ✅ export = make available to other files
+// ✅ import = bring in from another file
+// ✅ No .ts extension in import path
+// ✅ Module can contain anything (vars, functions, classes)
+// ✅ Execute the importing file, NOT the module
+// ❌ Without export → code is private to that file
+// ❌ Without import → cannot use exported code</code></pre>
+
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Modules &nbsp;·&nbsp;
+              export · import · reusability
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-modules");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

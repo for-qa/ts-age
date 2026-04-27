@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TypeScript Glossary  --  Learning Path</title>
+    <meta
+      name="description"
+      content="TypeScript glossary grouped by topic with simple definitions, real-life analogies, and code examples for every key term."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Glossary</div>
+    </div>
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-gl">
+          <div class="nav-logo">
+            <div class="v">AZ</div>
+            <h2>Glossary</h2>
+          </div>
+          <div class="nav-group">Variables</div>
+          <a href="#g-const">const</a>
+          <a href="#g-hoisting">Hoisting</a>
+          <a href="#g-let">let</a>
+          <a href="#g-scope">Scope</a>
+          <a href="#g-var">var</a>
+          <div class="nav-group">Data Types</div>
+          <a href="#g-any">any</a>
+          <a href="#g-bigint">bigint</a>
+          <a href="#g-immutable">Immutable</a>
+          <a href="#g-never">never</a>
+          <a href="#g-null">null / undefined</a>
+          <a href="#g-symbol">symbol</a>
+          <a href="#g-typeof">typeof</a>
+          <a href="#g-unknown">unknown</a>
+          <a href="#g-void">void</a>
+          <div class="nav-group">Strings &amp; Arrays</div>
+          <a href="#g-array">Array</a>
+          <a href="#g-destructuring">Destructuring</a>
+          <a href="#g-rest">Rest Parameters</a>
+          <a href="#g-spread">Spread</a>
+          <a href="#g-template">Template Literal</a>
+          <a href="#g-tuple">Tuple</a>
+          <div class="nav-group">Operators</div>
+          <a href="#g-ternary">Ternary</a>
+          <div class="nav-group">Functions</div>
+          <a href="#g-arrow">Arrow Function</a>
+          <a href="#g-callback">Callback</a>
+          <a href="#g-function">Function</a>
+          <a href="#g-optional">Optional (?)</a>
+          <a href="#g-overloading">Overloading</a>
+          <div class="nav-group">Type System</div>
+          <a href="#g-enum">Enum</a>
+          <a href="#g-generic">Generic</a>
+          <a href="#g-inference">Inference</a>
+          <a href="#g-intersection">Intersection</a>
+          <a href="#g-literal">Literal Type</a>
+          <a href="#g-narrowing">Narrowing</a>
+          <a href="#g-type">type (alias)</a>
+          <a href="#g-union">Union</a>
+          <a href="#g-utility">Utility Types</a>
+          <div class="nav-group">OOP</div>
+          <a href="#g-abstract">abstract</a>
+          <a href="#g-class">Class</a>
+          <a href="#g-constructor">Constructor</a>
+          <a href="#g-extends">extends</a>
+          <a href="#g-implements">implements</a>
+          <a href="#g-interface">Interface</a>
+          <a href="#g-method">Method</a>
+          <a href="#g-object">Object</a>
+          <a href="#g-readonly">readonly</a>
+          <a href="#g-static">static</a>
+          <a href="#g-super">super</a>
+          <div class="nav-group">Modules &amp; Async</div>
+          <a href="#g-async">async / await</a>
+          <a href="#g-export">export / import</a>
+          <a href="#g-module">Module</a>
+          <a href="#g-promise">Promise</a>
+        </nav>
+        <div class="content">
+          <div class="hero" id="g-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span
+              ><span class="hero-tag">Glossary</span
+              ><span class="hero-tag">A-Z Reference</span>
+            </div>
+            <h1>TypeScript Glossary</h1>
+            <p>
+              Every key term explained in plain English with a real-life analogy
+              and a code snippet. Grouped by topic, sorted A-Z within each
+              group.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">48</div>
+                <div class="stat-l">Terms</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">8</div>
+                <div class="stat-l">Topics</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ════════════ VARIABLES ════════════ -->
+          <div class="sec" id="g-const">
+            <div class="sec-label">Variables</div>
+            <h2>const</h2>
+            <p>
+              <strong>Real life:</strong> A name carved in stone  --  you can't
+              erase and write a new name.
+            </p>
+            <p>
+              Declares a variable that cannot be reassigned. Objects/arrays
+              declared with <code>const</code> can still have their contents
+              changed.
+            </p>
+            <pre><code>const PI = 3.14;
+// PI = 3.15; // Error! Cannot reassign
+const arr = [1, 2];
+arr.push(3); // OK  --  contents can change</code></pre>
+          </div>
+
+          <div class="sec" id="g-hoisting">
+            <h2>Hoisting</h2>
+            <p>
+              <strong>Real life:</strong> A student who raises their hand before
+              the teacher calls on them  --  JS moves <code>var</code> and
+              <code>function</code> declarations to the top.
+            </p>
+            <pre><code>console.log(x); // undefined (hoisted, but no value yet)
+var x = 10;
+
+// let/const are NOT hoisted  --  they throw ReferenceError</code></pre>
+          </div>
+
+          <div class="sec" id="g-let">
+            <h2>let</h2>
+            <p>
+              <strong>Real life:</strong> A notebook page  --  you can update it,
+              but it stays within its chapter (block scope).
+            </p>
+            <pre><code>let count = 0;
+count = 5;     // OK  --  can reassign
+// let count = 10; // Error! Cannot redeclare</code></pre>
+          </div>
+
+          <div class="sec" id="g-scope">
+            <h2>Scope</h2>
+            <p>
+              <strong>Real life:</strong> Rooms in a house  --  a variable in the
+              kitchen can't be seen from the bedroom.
+            </p>
+            <pre><code>if (true) {
+  let x = 10; // only visible inside this { }
+}
+// console.log(x); // Error! x is not defined here</code></pre>
+          </div>
+
+          <div class="sec" id="g-var">
+            <h2>var</h2>
+            <p>
+              <strong>Real life:</strong> An old whiteboard in a shared room  -- 
+              anyone can see and erase it. Avoid in modern code.
+            </p>
+            <pre><code>var x = 10;   // function-scoped, hoisted, can redeclare
+// Problems: leaks out of blocks, gets hoisted
+// Always use let or const instead</code></pre>
+          </div>
+
+          <!-- ════════════ DATA TYPES ════════════ -->
+          <div class="sec" id="g-any">
+            <div class="sec-label">Data Types</div>
+            <h2>any</h2>
+            <p>
+              <strong>Real life:</strong> A bag with no label  --  could be
+              anything, no safety checks.
+            </p>
+            <p>
+              <code>any</code> disables type checking. Use it sparingly; prefer
+              <code>unknown</code> for safety.
+            </p>
+            <pre><code>let x: any = "hello";
+x = 42;       // no error
+x.foo.bar();  // no error at compile  --  crashes at runtime!</code></pre>
+          </div>
+
+          <div class="sec" id="g-bigint">
+            <h2>bigint</h2>
+            <p>
+              <strong>Real life:</strong> A calculator with infinite digits  -- 
+              for numbers too large for <code>number</code> to handle precisely
+              (beyond 2⁵³).
+            </p>
+            <pre><code>const huge: bigint = 9007199254740993n; // note the 'n' suffix
+const also: bigint = BigInt("9007199254740993");
+// Cannot mix bigint and number in math:
+// huge + 1; // ❌ Error! Use huge + 1n instead</code></pre>
+          </div>
+
+          <div class="sec" id="g-immutable">
+            <h2>Immutable</h2>
+            <p>
+              <strong>Real life:</strong> A printed book  --  you can't change the
+              words. You can only buy a new edition.
+            </p>
+            <pre><code>let name = "hello";
+name.toUpperCase(); // returns "HELLO" but name is still "hello"
+// Strings, numbers, booleans are immutable</code></pre>
+          </div>
+
+          <div class="sec" id="g-never">
+            <h2>never</h2>
+            <p>
+              <strong>Real life:</strong> A black hole  --  nothing ever comes out.
+              Used for functions that never return (throw or infinite loop) and
+              exhaustive checks.
+            </p>
+            <pre><code>function throwError(msg: string): never {
+  throw new Error(msg); // never returns
+}
+
+// Exhaustive check  --  if you reach this, you missed a case
+type Shape = "circle" | "square";
+function area(s: Shape): number {
+  switch (s) {
+    case "circle": return 1;
+    case "square": return 2;
+    default:
+      const _exhaustive: never = s; // TS error if a case is missing
+      return _exhaustive;
+  }
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-null">
+            <h2>null / undefined</h2>
+            <p>
+              <strong>Real life:</strong> <code>undefined</code> = empty parking
+              spot (nobody parked). <code>null</code> = spot with "Reserved"
+              sign (intentionally empty).
+            </p>
+            <pre><code>let x;              // undefined  --  never assigned
+let y: string | null = null; // null  --  intentionally empty</code></pre>
+          </div>
+
+          <div class="sec" id="g-symbol">
+            <h2>symbol</h2>
+            <p>
+              <strong>Real life:</strong> A unique serial number stamped on each
+              item  --  even two symbols with the same description are never equal.
+            </p>
+            <pre><code>const id1: symbol = Symbol("id");
+const id2: symbol = Symbol("id");
+console.log(id1 === id2); // false  --  always unique!
+
+// Used as unique object keys:
+const KEY = Symbol("secret");
+const obj = { [KEY]: "hidden value" };
+console.log(obj[KEY]); // "hidden value"</code></pre>
+          </div>
+
+          <div class="sec" id="g-typeof">
+            <h2>typeof</h2>
+            <p>
+              <strong>Real life:</strong> Asking "what kind of animal is this?"
+              before deciding how to handle it.
+            </p>
+            <pre><code>let val: unknown = "hello";
+if (typeof val === "string") {
+  console.log(val.toUpperCase()); // safe!
+}
+// typeof returns: "string", "number", "bigint", "boolean",
+//                 "symbol", "undefined", "object", "function"</code></pre>
+          </div>
+
+          <div class="sec" id="g-unknown">
+            <h2>unknown</h2>
+            <p>
+              <strong>Real life:</strong> A new employee  --  must show ID before
+              accessing any room. Safer than <code>any</code>.
+            </p>
+            <pre><code>let val: unknown = "hello";
+// val.toUpperCase(); // Error! Must check type first
+if (typeof val === "string") {
+  val.toUpperCase(); // OK after check
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-void">
+            <h2>void</h2>
+            <p>
+              <strong>Real life:</strong> A doorbell  --  it does something (rings)
+              but doesn't give you anything back.
+            </p>
+            <pre><code>function logMessage(msg: string): void {
+  console.log(msg); // does something, returns nothing
+}</code></pre>
+          </div>
+
+          <!-- ════════════ STRINGS & ARRAYS ════════════ -->
+          <div class="sec" id="g-array">
+            <div class="sec-label">Strings &amp; Arrays</div>
+            <h2>Array</h2>
+            <p>
+              <strong>Real life:</strong> A grocery list  --  items in order, each
+              with a position number starting from 0.
+            </p>
+            <pre><code>let fruits: string[] = ["apple", "banana", "cherry"];
+console.log(fruits[0]); // "apple"
+fruits.push("date");    // add to end</code></pre>
+          </div>
+
+          <div class="sec" id="g-destructuring">
+            <h2>Destructuring</h2>
+            <p>
+              <strong>Real life:</strong> Unpacking a gift box  --  you pull out
+              each item and give it its own name.
+            </p>
+            <pre><code>const user = { name: "Alice", age: 25 };
+const { name, age } = user; // unpack!
+console.log(name); // "Alice"
+
+const [first, second] = [10, 20]; // array version</code></pre>
+          </div>
+
+          <div class="sec" id="g-rest">
+            <h2>Rest Parameters (...)</h2>
+            <p>
+              <strong>Real life:</strong> A buffet  --  take as many items as you
+              want; they all go on one plate (array).
+            </p>
+            <pre><code>function sum(...nums: number[]): number {
+  return nums.reduce((a, b) => a + b, 0);
+}
+sum(1, 2, 3, 4); // 10</code></pre>
+          </div>
+
+          <div class="sec" id="g-spread">
+            <h2>Spread Operator (...)</h2>
+            <p>
+              <strong>Real life:</strong> Pouring a box of LEGO onto the floor  -- 
+              all pieces spread out individually.
+            </p>
+            <pre><code>const a = [1, 2];
+const b = [...a, 3, 4]; // [1, 2, 3, 4]
+
+const obj = { x: 1 };
+const obj2 = { ...obj, y: 2 }; // { x: 1, y: 2 }</code></pre>
+          </div>
+
+          <div class="sec" id="g-template">
+            <h2>Template Literal</h2>
+            <p>
+              <strong>Real life:</strong> A fill-in-the-blank form  --  "Hello,
+              ____!" where you plug in the name.
+            </p>
+            <pre><code>const name = "Alice";
+console.log(`Hello, ${name}!`); // "Hello, Alice!"
+// Use backticks (`) not quotes</code></pre>
+          </div>
+
+          <div class="sec" id="g-tuple">
+            <h2>Tuple</h2>
+            <p>
+              <strong>Real life:</strong> A fixed meal combo  --  exactly 1 burger,
+              1 fries, 1 drink. No more, no less, in that order.
+            </p>
+            <pre><code>let meal: [string, number, boolean] = ["Burger", 299, true];
+// Position 0 = string, 1 = number, 2 = boolean</code></pre>
+          </div>
+
+          <!-- ════════════ OPERATORS ════════════ -->
+          <div class="sec" id="g-ternary">
+            <div class="sec-label">Operators</div>
+            <h2>Ternary Operator</h2>
+            <p>
+              <strong>Real life:</strong> A quick yes/no decision  --  "Is it
+              raining? Take umbrella : wear sunglasses."
+            </p>
+            <pre><code>const age = 20;
+const status = age >= 18 ? "adult" : "minor";
+// Same as: if (age >= 18) { ... } else { ... }</code></pre>
+          </div>
+
+          <!-- ════════════ FUNCTIONS ════════════ -->
+          <div class="sec" id="g-arrow">
+            <div class="sec-label">Functions</div>
+            <h2>Arrow Function</h2>
+            <p>
+              <strong>Real life:</strong> A sticky note  --  short, quick, borrows
+              context from its surroundings.
+            </p>
+            <pre><code>const add = (a: number, b: number) => a + b;
+// Same as: function add(a, b) { return a + b; }
+// Key difference: arrow inherits 'this' from parent</code></pre>
+          </div>
+
+          <div class="sec" id="g-callback">
+            <h2>Callback</h2>
+            <p>
+              <strong>Real life:</strong> Giving your phone number to a shop  -- 
+              "call me BACK when my order is ready."
+            </p>
+            <pre><code>function greet(name: string, done: () => void) {
+  console.log("Hi " + name);
+  done(); // call the callback
+}
+greet("Alice", () => console.log("Done!"));</code></pre>
+          </div>
+
+          <div class="sec" id="g-function">
+            <h2>Function</h2>
+            <p>
+              <strong>Real life:</strong> A coffee machine  --  put in ingredients
+              (parameters), get coffee (return value).
+            </p>
+            <pre><code>function greet(name: string): string {
+  return "Hello, " + name;
+}
+greet("Bob"); // "Hello, Bob"</code></pre>
+          </div>
+
+          <div class="sec" id="g-optional">
+            <h2>Optional (?)</h2>
+            <p>
+              <strong>Real life:</strong> A pizza order form  --  name is required,
+              but "extra toppings" is optional.
+            </p>
+            <pre><code>function greet(name: string, title?: string) {
+  console.log("Hi " + (title || "") + " " + name);
+}
+greet("Alice");          // OK
+greet("Alice", "Dr.");   // also OK</code></pre>
+          </div>
+
+          <div class="sec" id="g-overloading">
+            <h2>Overloading</h2>
+            <p>
+              <strong>Real life:</strong> A Swiss Army knife  --  one tool, many
+              uses depending on what you need.
+            </p>
+            <pre><code>function format(val: string): string;
+function format(val: number): string;
+function format(val: any): string {
+  return typeof val === "string" ? val.trim() : val.toFixed(2);
+}</code></pre>
+          </div>
+
+          <!-- ════════════ TYPE SYSTEM ════════════ -->
+          <div class="sec" id="g-enum">
+            <div class="sec-label">Type System</div>
+            <h2>Enum</h2>
+            <p>
+              <strong>Real life:</strong> A TV remote with fixed buttons  -- 
+              Power, Volume, Channel. Only these options exist.
+            </p>
+            <pre><code>enum Color { Red, Green, Blue }
+let fav: Color = Color.Green; // 1
+enum Status { Active = "ACTIVE", Inactive = "INACTIVE" }</code></pre>
+          </div>
+
+          <div class="sec" id="g-generic">
+            <h2>Generic &lt;T&gt;</h2>
+            <p>
+              <strong>Real life:</strong> A universal bottle  --  it works with
+              water, juice, or milk. You decide what goes in.
+            </p>
+            <pre><code>function wrap&lt;T&gt;(value: T): T[] {
+  return [value];
+}
+wrap("hi");  // string[]
+wrap(42);    // number[]</code></pre>
+          </div>
+
+          <div class="sec" id="g-inference">
+            <h2>Type Inference</h2>
+            <p>
+              <strong>Real life:</strong> A smart friend who guesses your order
+               --  "You always get coffee, so I ordered it for you."
+            </p>
+            <pre><code>let x = 10;       // TS infers: number
+let y = "hello";  // TS infers: string
+// No need to write: let x: number = 10;</code></pre>
+          </div>
+
+          <div class="sec" id="g-intersection">
+            <h2>Intersection Type (&amp;)</h2>
+            <p>
+              <strong>Real life:</strong> A person who is BOTH a doctor AND a
+              teacher  --  has skills of both.
+            </p>
+            <pre><code>type HasName = { name: string };
+type HasAge = { age: number };
+type Person = HasName &amp; HasAge; // must have BOTH
+const p: Person = { name: "Alice", age: 25 };</code></pre>
+          </div>
+
+          <div class="sec" id="g-literal">
+            <h2>Literal Type</h2>
+            <p>
+              <strong>Real life:</strong> A vending machine with only 3 buttons
+               --  you can ONLY pick from those exact options.
+            </p>
+            <pre><code>type Direction = "up" | "down" | "left" | "right";
+let d: Direction = "up"; // OK
+// let d2: Direction = "diagonal"; // Error!</code></pre>
+          </div>
+
+          <div class="sec" id="g-narrowing">
+            <h2>Narrowing</h2>
+            <p>
+              <strong>Real life:</strong> Airport security  --  checking your ID
+              narrows "unknown person" to "verified passenger."
+            </p>
+            <pre><code>function print(val: string | number) {
+  if (typeof val === "string") {
+    console.log(val.toUpperCase()); // TS knows it's string
+  } else {
+    console.log(val.toFixed(2));    // TS knows it's number
+  }
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-type">
+            <h2>type (alias)</h2>
+            <p>
+              <strong>Real life:</strong> A nickname  --  instead of saying "string
+              or number" every time, you say "ID".
+            </p>
+            <pre><code>type ID = string | number;
+type Point = { x: number; y: number };
+let userId: ID = "abc123";</code></pre>
+          </div>
+
+          <div class="sec" id="g-union">
+            <h2>Union Type (|)</h2>
+            <p>
+              <strong>Real life:</strong> A gift that can be a book OR a toy  -- 
+              one value, multiple possible types.
+            </p>
+            <pre><code>let id: string | number;
+id = "abc";  // OK
+id = 123;    // also OK
+// id = true; // Error! boolean not in the union</code></pre>
+          </div>
+
+          <div class="sec" id="g-utility">
+            <h2>Utility Types</h2>
+            <p>
+              <strong>Real life:</strong> Pre-made templates  --  instead of
+              building from scratch, use a ready-made form and customize.
+            </p>
+            <pre><code>interface User { name: string; age: number; email: string; }
+
+Partial&lt;User&gt;   // all fields optional
+Required&lt;User&gt;  // all fields required
+Pick&lt;User, "name" | "age"&gt;  // only name &amp; age
+Omit&lt;User, "email"&gt;         // everything except email
+Record&lt;string, number&gt;      // { [key: string]: number }</code></pre>
+          </div>
+
+          <!-- ════════════ OOP ════════════ -->
+          <div class="sec" id="g-abstract">
+            <div class="sec-label">OOP</div>
+            <h2>abstract</h2>
+            <p>
+              <strong>Real life:</strong> A recipe title with no instructions  -- 
+              someone else must write the steps.
+            </p>
+            <p>
+              An <code>abstract</code> class or method defines the shape but
+              cannot be used directly. Child classes must provide the actual
+              code.
+            </p>
+            <pre><code>abstract class Shape {
+  abstract area(): number; // no body  --  child MUST implement
+}
+class Circle extends Shape {
+  constructor(public r: number) { super(); }
+  area() { return Math.PI * this.r ** 2; }
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-class">
+            <h2>Class</h2>
+            <p>
+              <strong>Real life:</strong> A cookie cutter  --  one mold, many
+              cookies. The class is the blueprint, objects are the cookies.
+            </p>
+            <pre><code>class Car {
+  constructor(public brand: string, public speed: number) {}
+  drive() { console.log(this.brand + " goes vroom!"); }
+}
+const myCar = new Car("Toyota", 120);</code></pre>
+          </div>
+
+          <div class="sec" id="g-constructor">
+            <h2>Constructor</h2>
+            <p>
+              <strong>Real life:</strong> The factory assembly line  --  runs once
+              when a new product (object) is built.
+            </p>
+            <pre><code>class Student {
+  name: string;
+  constructor(name: string) {
+    this.name = name; // runs when you say "new Student()"
+  }
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-extends">
+            <h2>extends</h2>
+            <p>
+              <strong>Real life:</strong> A child inheriting traits from a
+              parent  --  you GET everything automatically.
+            </p>
+            <pre><code>class Animal { move() { console.log("moving"); } }
+class Dog extends Animal { bark() { console.log("woof!"); } }
+// Dog has BOTH move() and bark()</code></pre>
+          </div>
+
+          <div class="sec" id="g-implements">
+            <h2>implements</h2>
+            <p>
+              <strong>Real life:</strong> Signing a contract  --  you PROMISE to
+              provide everything listed.
+            </p>
+            <pre><code>interface Printable { print(): void; }
+class Report implements Printable {
+  print() { console.log("Printing report..."); } // MUST provide
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-interface">
+            <h2>Interface</h2>
+            <p>
+              <strong>Real life:</strong> A job description  --  it lists what
+              skills are needed but doesn't do the work itself.
+            </p>
+            <pre><code>interface User {
+  name: string;
+  age: number;
+  email?: string; // optional
+}
+const u: User = { name: "Alice", age: 25 };</code></pre>
+          </div>
+
+          <div class="sec" id="g-method">
+            <h2>Method</h2>
+            <p>
+              <strong>Real life:</strong> An action a person can do  --  a chef can
+              <em>cook()</em>, a driver can <em>drive()</em>.
+            </p>
+            <pre><code>class Dog {
+  bark() { console.log("Woof!"); } // method = function inside a class
+}
+new Dog().bark();</code></pre>
+          </div>
+
+          <div class="sec" id="g-object">
+            <h2>Object</h2>
+            <p>
+              <strong>Real life:</strong> A person's ID card  --  has properties
+              (name, age) and actions (walk, talk).
+            </p>
+            <pre><code>const user = {
+  name: "Alice",
+  age: 25,
+  greet() { console.log("Hi!"); }
+};</code></pre>
+          </div>
+
+          <div class="sec" id="g-readonly">
+            <h2>readonly</h2>
+            <p>
+              <strong>Real life:</strong> A museum exhibit  --  look but don't
+              touch. You can read the value but can't change it.
+            </p>
+            <pre><code>class User {
+  readonly id: number;
+  constructor(id: number) { this.id = id; }
+}
+const u = new User(1);
+// u.id = 2; // Error! readonly</code></pre>
+          </div>
+
+          <div class="sec" id="g-static">
+            <h2>static</h2>
+            <p>
+              <strong>Real life:</strong> A school's principal  --  belongs to the
+              school (class) itself, not to any single student (instance).
+            </p>
+            <pre><code>class MathHelper {
+  static PI = 3.14159;
+  static square(n: number) { return n * n; }
+}
+MathHelper.square(5); // 25  --  no "new" needed</code></pre>
+          </div>
+
+          <div class="sec" id="g-super">
+            <h2>super</h2>
+            <p>
+              <strong>Real life:</strong> Calling your parent for help  --  "Hey
+              Mom, I need your recipe before I add my twist."
+            </p>
+            <pre><code>class Animal {
+  constructor(public name: string) {}
+}
+class Dog extends Animal {
+  constructor(name: string, public breed: string) {
+    super(name); // calls parent's constructor FIRST
+  }
+}</code></pre>
+          </div>
+
+          <!-- ════════════ MODULES & ASYNC ════════════ -->
+          <div class="sec" id="g-async">
+            <div class="sec-label">Modules &amp; Async</div>
+            <h2>async / await</h2>
+            <p>
+              <strong>Real life:</strong> Ordering food at a restaurant  --  you
+              place the order (async), do other things, and the food arrives
+              later (await).
+            </p>
+            <pre><code>async function fetchUser(id: number) {
+  const res = await fetch(`/api/users/${id}`); // waits here
+  return await res.json(); // then continues
+}</code></pre>
+          </div>
+
+          <div class="sec" id="g-export">
+            <h2>export / import</h2>
+            <p>
+              <strong>Real life:</strong> A library lending system  --  the library
+              exports books, you import the ones you need.
+            </p>
+            <pre><code>// utils.ts
+export function add(a: number, b: number) { return a + b; }
+
+// app.ts
+import { add } from "./utils";
+console.log(add(2, 3)); // 5</code></pre>
+          </div>
+
+          <div class="sec" id="g-module">
+            <h2>Module</h2>
+            <p>
+              <strong>Real life:</strong> Separate LEGO boxes  --  each box has
+              specific pieces. You pick the box you need.
+            </p>
+            <p>
+              Any file with <code>export</code> or <code>import</code> is a
+              module. Keeps code organized and reusable.
+            </p>
+          </div>
+
+          <div class="sec" id="g-promise">
+            <h2>Promise</h2>
+            <p>
+              <strong>Real life:</strong> A food delivery order  --  pending
+              (cooking), fulfilled (delivered), or rejected (cancelled).
+            </p>
+            <pre><code>const p = new Promise&lt;string&gt;((resolve, reject) => {
+  setTimeout(() => resolve("Done!"), 1000);
+});
+p.then(msg => console.log(msg)); // "Done!" after 1 second</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const n = document.getElementById("nav-gl");
+        if (!n) {
+          return;
+        }
+        const l = n.querySelectorAll("a");
+        const o = new IntersectionObserver(
+          (e) => {
+            e.forEach((e) => {
+              if (e.isIntersecting) {
+                l.forEach((l) => l.classList.remove("on"));
+                const a = n.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document.querySelectorAll(".content [id]").forEach((s) => o.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

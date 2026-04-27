@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>🧠 Mnemonic Cheatsheet  --  TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="All 25 memory tricks from the TypeScript Learning Path in one printable page. Perfect for last-minute revision before interviews."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .mn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;margin:1.5rem 0}
+      .mn-card{border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.3rem;background:#fff;transition:border-color .12s,box-shadow .12s}
+      .mn-card:hover{border-color:#bbb;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+      .mn-num{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+      .mn-num span{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:var(--blue-bg);color:var(--blue)}
+      .mn-topic{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.5rem;line-height:1.35}
+      .mn-phrase{font-size:13px;color:var(--green);font-weight:600;margin-bottom:.35rem;line-height:1.5}
+      .mn-decode{font-size:12px;color:var(--ink2);line-height:1.6}
+      .mn-decode strong{color:var(--ink)}
+      .mn-cat{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);padding:1.5rem 0 .5rem;border-bottom:1px solid var(--border);margin-bottom:0}
+      @media print{
+        #topbar,nav{display:none!important}
+        .wrap{grid-template-columns:1fr!important}
+        .hero{padding:2rem!important;background:#1c1c1a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        .sec{padding:1.5rem!important;break-inside:avoid}
+        .mn-card{break-inside:avoid;border:1px solid #ccc!important}
+        .mn-grid{gap:.6rem}
+      }
+    </style>
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">🧠 Mnemonic Cheatsheet</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-mn">
+          <div class="nav-logo">
+            <div class="v">🧠</div>
+            <h2>Memory Tricks</h2>
+          </div>
+          <div class="nav-group">Categories</div>
+          <a href="#mn-fundamentals">Fundamentals</a>
+          <a href="#mn-logic">Logic & Flow</a>
+          <a href="#mn-data">Data Handling</a>
+          <a href="#mn-oop">OOP & Patterns</a>
+          <a href="#mn-advanced">Advanced TS</a>
+          <a href="#mn-async">Async & Errors</a>
+          <a href="#mn-web">Web & APIs</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="mn-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Memory Tricks</span>
+              <span class="hero-tag">Revision</span>
+              <span class="hero-tag">Print-Friendly</span>
+            </div>
+            <h1>🧠 Mnemonic <span>Cheatsheet</span></h1>
+            <p>
+              All 25 memory tricks from across the TypeScript Learning Path,
+              organized in one page. Perfect for last-minute revision  --  use
+              Ctrl+P to print.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">25</div>
+                <div class="stat-l">Memory Tricks</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">7</div>
+                <div class="stat-l">Categories</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">150+</div>
+                <div class="stat-l">Items Covered</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══════ FUNDAMENTALS ═══════ -->
+          <div class="sec" id="mn-fundamentals">
+            <div class="sec-label">Category 1</div>
+            <h2>Fundamentals</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>1</span> Variables & Keywords</div>
+                <div class="mn-topic">5 Key Differences (var vs let vs const)</div>
+                <div class="mn-phrase">"Smart Developers Rarely Repeat History"</div>
+                <div class="mn-decode">
+                  → <strong>S</strong>cope, <strong>D</strong>eclaration,
+                  <strong>R</strong>edeclaration, <strong>R</strong>eassignment,
+                  <strong>H</strong>oisting
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>2</span> Data Types</div>
+                <div class="mn-topic">19 TypeScript Data Types</div>
+                <div class="mn-phrase">"Always Fix Code Issues To Optimize Execution"</div>
+                <div class="mn-decode">
+                  Primitives: <strong>S</strong>tring, <strong>N</strong>umber,
+                  <strong>O</strong>bject, <strong>B</strong>oolean,
+                  <strong>N</strong>ull, <strong>U</strong>ndefined,
+                  <strong>V</strong>oid, <strong>A</strong>ny<br />
+                  Advanced: <strong>T</strong>uple, <strong>U</strong>nion,
+                  <strong>L</strong>iteral, <strong>L</strong>iterate(unknown),
+                  <strong>E</strong>num<br />
+                  Special: <strong>O</strong>bject, <strong>I</strong>ntersection,
+                  <strong>A</strong>rray, <strong>C</strong>lass,
+                  <strong>M</strong>apped, <strong>E</strong>xtract
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>6</span> Operators</div>
+                <div class="mn-topic">6 Operator Categories</div>
+                <div class="mn-phrase">"Advanced Applications Require Logical IT"</div>
+                <div class="mn-decode">
+                  → <strong>A</strong>rithmetic, <strong>A</strong>ssignment,
+                  <strong>C</strong>omparison, <strong>L</strong>ogical,
+                  <strong>T</strong>ernary, <strong>I</strong>ncrement/Decrement
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ═══════ LOGIC & FLOW ═══════ -->
+          <div class="sec" id="mn-logic">
+            <div class="sec-label">Category 2</div>
+            <h2>Logic & Flow</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>8</span> Loops</div>
+                <div class="mn-topic">5 Loop/Jump Concepts</div>
+                <div class="mn-phrase">"While Doing Frontend, Build Components"</div>
+                <div class="mn-decode">
+                  → <strong>W</strong>hile, <strong>D</strong>o-while,
+                  <strong>F</strong>or, <strong>B</strong>reak,
+                  <strong>C</strong>ontinue
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>9</span> Functions</div>
+                <div class="mn-topic">3 Types + 3 Parameter Styles</div>
+                <div class="mn-phrase">"Node Always Asynchronous  --  Run Optimizations Daily"</div>
+                <div class="mn-decode">
+                  Types: <strong>N</strong>amed, <strong>A</strong>nonymous,
+                  <strong>A</strong>rrow<br />
+                  Params: <strong>R</strong>est, <strong>O</strong>ptional,
+                  <strong>D</strong>efault
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>14</span> Type Narrowing</div>
+                <div class="mn-topic">7 Narrowing Techniques</div>
+                <div class="mn-phrase">"TypeScript Types Easily Identify Invalid Data Patterns"</div>
+                <div class="mn-decode">
+                  → <strong>T</strong>ypeof, <strong>I</strong>nstanceof,
+                  <strong>T</strong>ruthiness, <strong>D</strong>iscriminated unions,
+                  <strong>E</strong>quality, <strong>N</strong>arrowing with <code>in</code>,
+                  <strong>C</strong>ustom type predicates
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>14</span> Type Narrowing</div>
+                <div class="mn-topic">6 Falsy Values</div>
+                <div class="mn-phrase">"Frontend Zeros Easily Nullify UI Numbers"</div>
+                <div class="mn-decode">
+                  → <strong>0</strong>, <strong>f</strong>alse,
+                  <strong>n</strong>ull, <strong>u</strong>ndefined,
+                  <strong>""</strong> (empty string), <strong>NaN</strong>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ═══════ DATA HANDLING ═══════ -->
+          <div class="sec" id="mn-data">
+            <div class="sec-label">Category 3</div>
+            <h2>Data Handling</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>3</span> Strings</div>
+                <div class="mn-topic">13 String Methods (2-part)</div>
+                <div class="mn-phrase">"Large Uploads Leave Computers In Server Idle"</div>
+                <div class="mn-decode">
+                  Part 1: <strong>S</strong>plit, <strong>S</strong>tartsWith,
+                  <strong>S</strong>lice, <strong>S</strong>ubstring<br />
+                  Part 2: <strong>T</strong>rim, <strong>I</strong>ncludes,
+                  <strong>R</strong>eplace, <strong>C</strong>harAt,
+                  <strong>E</strong>ndsWith + <strong>P</strong>adStart,
+                  <strong>A</strong>t, <strong>L</strong>ength
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>5</span> Array Methods</div>
+                <div class="mn-topic">10 Array Methods</div>
+                <div class="mn-phrase">"People Prefer Sharing Unique Cute Snacks Sliced Into Small Treats"</div>
+                <div class="mn-decode">
+                  → <strong>P</strong>ush, <strong>P</strong>op,
+                  <strong>S</strong>hift, <strong>U</strong>nshift,
+                  <strong>C</strong>oncat, <strong>S</strong>lice,
+                  <strong>S</strong>plice, <strong>I</strong>ndexOf,
+                  <strong>i</strong>ncludes, <strong>T</strong>oString
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>11</span> Higher-Order Methods</div>
+                <div class="mn-topic">6 Higher-Order Array Methods</div>
+                <div class="mn-phrase">"Functions Make Filtering Records Super Easy"</div>
+                <div class="mn-decode">
+                  → <strong>F</strong>orEach, <strong>M</strong>ap,
+                  <strong>F</strong>ilter, <strong>R</strong>educe,
+                  <strong>S</strong>ome, <strong>E</strong>very
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>27</span> JSON</div>
+                <div class="mn-topic">6 Things That BREAK JSON</div>
+                <div class="mn-phrase">"Some Updates Trigger Critical UI Failures"</div>
+                <div class="mn-decode">
+                  → <strong>S</strong>ingle quotes ❌,
+                  <strong>U</strong>nquoted keys ❌,
+                  <strong>T</strong>railing commas ❌,
+                  <strong>C</strong>omments ❌,
+                  <strong>U</strong>ndefined ❌,
+                  <strong>F</strong>unctions ❌
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>32</span> Date & Time</div>
+                <div class="mn-topic">7 Date Getter Methods</div>
+                <div class="mn-phrase">"Yearly Meetings Demand Developers Have Multiple Skills"</div>
+                <div class="mn-decode">
+                  → get<strong>F</strong>ull<strong>Y</strong>ear,
+                  get<strong>M</strong>onth, get<strong>Da</strong>te,
+                  get<strong>D</strong>ay, get<strong>H</strong>ours,
+                  get<strong>M</strong>inutes, get<strong>S</strong>econds
+                  <br />⚠ Month & Day are 0-indexed!
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>40</span> Data Structures</div>
+                <div class="mn-topic">5 Data Structures</div>
+                <div class="mn-phrase">"Simple Queries Load Much Slower"</div>
+                <div class="mn-decode">
+                  → <strong>S</strong>tack, <strong>Q</strong>ueue,
+                  <strong>L</strong>inkedList, <strong>M</strong>ap,
+                  <strong>S</strong>et
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ═══════ OOP & PATTERNS ═══════ -->
+          <div class="sec" id="mn-oop">
+            <div class="sec-label">Category 4</div>
+            <h2>OOP & Patterns</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>15</span> Objects</div>
+                <div class="mn-topic">4 Ways to Create Objects</div>
+                <div class="mn-phrase">"Deployments Instantly Trigger CI"</div>
+                <div class="mn-decode">
+                  → <strong>D</strong>irect, <strong>I</strong>nline type,
+                  <strong>T</strong>ype alias, <strong>C</strong>lass ⭐
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>17</span> Classes (Inheritance)</div>
+                <div class="mn-topic">Access Modifiers</div>
+                <div class="mn-phrase">Name / Recipe / Diary analogy</div>
+                <div class="mn-decode">
+                  <strong>public</strong> = Your Name (everyone knows)<br />
+                  <strong>protected</strong> = Family Recipe (only family/children)<br />
+                  <strong>private</strong> = Personal Diary (only you)
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>36</span> Design Patterns</div>
+                <div class="mn-topic">4 Design Patterns</div>
+                <div class="mn-phrase">"Smart Factories Optimize Systems"</div>
+                <div class="mn-decode">
+                  → <strong>S</strong>ingleton, <strong>F</strong>actory,
+                  <strong>O</strong>bserver, <strong>S</strong>trategy
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ═══════ ADVANCED TS ═══════ -->
+          <div class="sec" id="mn-advanced">
+            <div class="sec-label">Category 5</div>
+            <h2>Advanced TypeScript</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>13</span> Enums</div>
+                <div class="mn-topic">4 Enum Types</div>
+                <div class="mn-phrase">"Network Servers Handle Clients"</div>
+                <div class="mn-decode">
+                  → <strong>N</strong>umeric, <strong>S</strong>tring,
+                  <strong>H</strong>eterogeneous, <strong>C</strong>onst
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>19</span> Generics</div>
+                <div class="mn-topic">4 Generic Letter Conventions</div>
+                <div class="mn-phrase">"Types Keep Values Everywhere"</div>
+                <div class="mn-decode">
+                  → <strong>T</strong> = Type, <strong>K</strong> = Key,
+                  <strong>V</strong> = Value, <strong>E</strong> = Element
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>31</span> Utility Types</div>
+                <div class="mn-topic">9 Utility Types</div>
+                <div class="mn-phrase">"Poorly Refactored Repos Produce Obvious Regressions  --  Evaluate Every Request"</div>
+                <div class="mn-decode">
+                  → <strong>P</strong>artial, <strong>R</strong>equired,
+                  <strong>R</strong>eadonly, <strong>P</strong>ick,
+                  <strong>O</strong>mit, <strong>R</strong>ecord,
+                  <strong>E</strong>xclude, <strong>E</strong>xtract,
+                  <strong>R</strong>eturnType
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>30</span> this Keyword</div>
+                <div class="mn-topic">5 <code>this</code> Contexts</div>
+                <div class="mn-phrase">"Global Rules Override All Classes"</div>
+                <div class="mn-decode">
+                  → <strong>G</strong>lobal, <strong>R</strong>egular function,
+                  <strong>O</strong>bject method, <strong>A</strong>rrow function,
+                  <strong>C</strong>lass<br />
+                  💡 <strong>BCA</strong>: Bind (new fn), Call (Comma), Apply (Array)
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>★</span> Comparisons</div>
+                <div class="mn-topic">6 Comparison Categories</div>
+                <div class="mn-phrase">"Valid Data Types Fix Old Applications"</div>
+                <div class="mn-decode">
+                  → <strong>V</strong>ariables & Scope,
+                  <strong>D</strong>ata Types,
+                  <strong>T</strong>ype System,
+                  <strong>F</strong>unctions,
+                  <strong>O</strong>OP,
+                  <strong>A</strong>sync
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ═══════ ASYNC & ERRORS ═══════ -->
+          <div class="sec" id="mn-async">
+            <div class="sec-label">Category 6</div>
+            <h2>Async & Error Handling</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>25</span> Promises</div>
+                <div class="mn-topic">4 Promise Static Methods</div>
+                <div class="mn-phrase">"Always Review Async Actions"</div>
+                <div class="mn-decode">
+                  → Promise.<strong>a</strong>ll, Promise.<strong>r</strong>ace,
+                  Promise.<strong>a</strong>llSettled, Promise.<strong>a</strong>ny
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>22</span> Error Handling</div>
+                <div class="mn-topic">5 Built-in Error Types</div>
+                <div class="mn-phrase">"Excellent Testers Report Rare Scenarios"</div>
+                <div class="mn-decode">
+                  → <strong>S</strong>yntaxError, <strong>R</strong>eferenceError,
+                  <strong>T</strong>ypeError, <strong>R</strong>angeError,
+                  <strong>URI</strong>Error
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ═══════ WEB & APIs ═══════ -->
+          <div class="sec" id="mn-web">
+            <div class="sec-label">Category 7</div>
+            <h2>Web & APIs</h2>
+            <div class="mn-grid">
+
+              <div class="mn-card">
+                <div class="mn-num"><span>26</span> DOM Manipulation</div>
+                <div class="mn-topic">9 Common DOM Events</div>
+                <div class="mn-phrase">"Clean Developers Make Maintainable Knowledge Keeping Systems Completely Intact"</div>
+                <div class="mn-decode">
+                  → <strong>C</strong>lick, <strong>K</strong>eydown,
+                  <strong>S</strong>ubmit, <strong>M</strong>ouseover,
+                  <strong>F</strong>ocus, <strong>S</strong>croll(input),
+                  <strong>L</strong>oad, <strong>S</strong>croll,
+                  <strong>C</strong>hange
+                </div>
+              </div>
+
+              <div class="mn-card">
+                <div class="mn-num"><span>33</span> Regex</div>
+                <div class="mn-topic">3 Classes + 3 Flags + 4 Methods</div>
+                <div class="mn-phrase">"Developers Write Scripts" + GIM + "Take My Red Shoes"</div>
+                <div class="mn-decode">
+                  Classes: <code>\d</code> (digit), <code>\w</code> (word),
+                  <code>\s</code> (space)  --  uppercase = NOT<br />
+                  Flags: <strong>G</strong>lobal, <strong>I</strong>nsensitive,
+                  <strong>M</strong>ultiline<br />
+                  Methods: <strong>T</strong>est, <strong>M</strong>atch,
+                  <strong>R</strong>eplace, <strong>S</strong>plit
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FOOTER -->
+          <div class="sec" style="text-align:center;padding:2rem 3.5rem">
+            <p style="font-size:11.5px;color:var(--ink3)">
+              TypeScript Learning Path &nbsp;·&nbsp; 🧠 Mnemonic Cheatsheet
+              &nbsp;·&nbsp; 25 Memory Tricks &nbsp;·&nbsp; Ctrl+P to Print
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-mn");
+        if (!nav) return;
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) a.classList.add("on");
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

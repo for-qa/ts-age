@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Interfaces  --  TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript interfaces  --  creating objects, optional and readonly properties, extending interfaces, implementing with classes, abstract methods, and class vs interface comparison."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Interfaces</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-iface">
+          <div class="nav-logo">
+            <div class="v">OOP</div>
+            <h2>Interfaces</h2>
+          </div>
+          <div class="nav-group">Basics</div>
+          <a href="#if-what">What is an Interface?</a>
+          <a href="#if-basic">Basic Interface</a>
+          <div class="nav-group">Property Types</div>
+          <a href="#if-optional">Optional Properties</a>
+          <a href="#if-readonly">Readonly Properties</a>
+          <a href="#if-abstract">Abstract Methods</a>
+          <div class="nav-group">Inheritance</div>
+          <a href="#if-extend">Extending Interfaces</a>
+          <a href="#if-implement">Class implements Interface</a>
+          <div class="nav-group">Theory</div>
+          <a href="#if-abstract-class">Abstract Class Concept</a>
+          <a href="#if-rules">Inheritance Rules</a>
+          <a href="#if-compare">Class vs Interface</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#if-mistakes">⚠ Common Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#if-index">Index Signatures</a>
+          <a href="#if-cheatsheet">Cheatsheet</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="if-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Interfaces</span>
+              <span class="hero-tag">OOP</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Interfaces</h1>
+            <p>
+              Define object structures, create abstract method contracts, extend
+              interfaces, and implement them with classes.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">3</div>
+                <div class="stat-l">Property Types</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Inheritance Modes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">6</div>
+                <div class="stat-l">Class vs Interface Diffs</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT IS AN INTERFACE -->
+          <div class="sec" id="if-what">
+            <div class="sec-label">Core Concept</div>
+            <h2>What is an Interface?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> An interface is like a
+                <strong>job application form template</strong>. It says "fill
+                in: Name, Age, Email"  --  it defines the STRUCTURE (what fields
+                exist), but it doesn't fill in any data or do any work. A class
+                is like the actual employee who fills in the form and starts
+                working.
+              </p>
+            </div>
+
+            <p>
+              An interface defines the <strong>structure</strong> of an object  -- 
+              what properties and methods it should have. It's a blueprint, just
+              like a class, but with key differences:
+            </p>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Class</th>
+                    <th>Interface</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Properties</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                  </tr>
+                  <tr>
+                    <td>Constructor</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Methods with body</td>
+                    <td>✅</td>
+                    <td>❌ (abstract only)</td>
+                  </tr>
+                  <tr>
+                    <td>Create objects</td>
+                    <td>✅ <code>new</code></td>
+                    <td>✅ (no <code>new</code>)</td>
+                  </tr>
+                  <tr>
+                    <td>Access modifiers</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <pre><code>// Syntax
+interface InterfaceName {
+  property1: type;
+  property2: type;
+  methodName(): returnType;  // abstract  --  signature only, no body!
+}</code></pre>
+          </div>
+
+          <!-- BASIC INTERFACE -->
+          <div class="sec" id="if-basic">
+            <div class="sec-label">Example 1</div>
+            <h2>Basic Interface  --  Creating Objects</h2>
+
+            <pre><code>interface Person {
+  name: string;
+  age: number;
+}
+
+// Create object  --  NO 'new' keyword needed!
+let student: Person = {
+  name: "John",
+  age: 25
+};
+
+console.log(student.name);  // "John"
+console.log(student.age);   // 25
+console.log(student);       // { name: "John", age: 25 }</code></pre>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>No <code>new</code> keyword!</strong> Unlike classes,
+                interfaces cannot be instantiated with <code>new</code>. You
+                create objects by directly assigning data that matches the
+                structure.
+              </p>
+            </div>
+          </div>
+
+          <!-- OPTIONAL PROPERTIES -->
+          <div class="sec" id="if-optional">
+            <div class="sec-label">Example 2</div>
+            <h2>Optional Properties  --  Value Not Required</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Like a registration form
+                where "Department" is optional. Some employees have one, some
+                don't. If left blank → <code>undefined</code>.
+              </p>
+            </div>
+
+            <pre><code>interface Employee {
+  eid: number;
+  ename: string;
+  edepartment?: string;  // ← optional (question mark)
+}
+
+// Object 1  --  skip optional field
+let emp: Employee = { eid: 101, ename: "John" };
+console.log(emp.edepartment);  // undefined
+
+// Object 2  --  include optional field
+let emp1: Employee = {
+  eid: 102,
+  ename: "Smith",
+  edepartment: "Accounts"
+};
+console.log(emp1.edepartment);  // "Accounts"</code></pre>
+          </div>
+
+          <!-- READONLY PROPERTIES -->
+          <div class="sec" id="if-readonly">
+            <div class="sec-label">Example 3</div>
+            <h2>Readonly Properties  --  Assign Once, Never Change</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A book's
+                <strong>ISBN number</strong>  --  once printed, it can NEVER be
+                changed. You can read it, but you can't modify it.
+              </p>
+            </div>
+
+            <pre><code>interface Book {
+  title: string;
+  readonly isbn: string;  // ← readonly keyword
+}
+
+let b1: Book = {
+  title: "Learn Playwright",
+  isbn: "123ABC"
+};
+
+// ✅ Regular property  --  can be changed
+b1.title = "Learn TypeScript";
+console.log(b1.title);  // "Learn TypeScript"
+
+// ❌ Readonly  --  cannot change!
+b1.isbn = "123XYZ";
+// ERROR: Cannot assign to 'isbn' because it is a read-only property</code></pre>
+          </div>
+
+          <!-- ABSTRACT METHODS -->
+          <div class="sec" id="if-abstract">
+            <div class="sec-label">Methods</div>
+            <h2>Abstract Methods  --  Signature Only, No Body</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> An abstract method is like a
+                <strong>blank check</strong>. The check template says "Amount:
+                ___" (signature), but the actual value (implementation) is
+                filled in later by whoever uses it.
+              </p>
+            </div>
+
+            <p>
+              Interface methods are <strong>abstract by default</strong>  --  they
+              have only a signature (name + params + return type). The body is
+              implemented when creating the object or in a class.
+            </p>
+
+            <pre><code>interface Book {
+  title: string;
+  readonly isbn: string;
+  display(): void;  // ← abstract method (no body!)
+}
+
+let b1: Book = {
+  title: "Learn Playwright",
+  isbn: "123ABC",
+
+  // Implement the abstract method HERE
+  display(): void {
+    console.log(b1.title + " | " + b1.isbn);
+  }
+};
+
+b1.display();  // "Learn Playwright | 123ABC"</code></pre>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>No <code>abstract</code> keyword needed!</strong> In
+                interfaces, methods are abstract by default. In abstract
+                classes, you must use the <code>abstract</code> keyword
+                explicitly.
+              </p>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>No <code>this</code> keyword!</strong> Inside interface
+                object methods, you cannot use <code>this</code> to access
+                properties. Use the object name directly:
+                <code>b1.title</code> instead of <code>this.title</code>. The
+                <code>this</code> keyword only works inside classes.
+              </p>
+            </div>
+          </div>
+
+          <!-- EXTENDING INTERFACES -->
+          <div class="sec" id="if-extend">
+            <div class="sec-label">Inheritance</div>
+            <h2>Extending Interfaces  --  Parent &amp; Child</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A generic "Animal" form has
+                a name field. A "Dog" form <strong>extends</strong> it by adding
+                a color field. The dog form inherits the name field AND adds its
+                own.
+              </p>
+            </div>
+
+            <p>
+              Just like classes, interfaces can extend other interfaces using
+              <code>extends</code>.
+            </p>
+
+            <pre><code>// Parent interface
+interface Animal {
+  name: string;
+}
+
+// Child interface  --  inherits 'name', adds 'color'
+interface Dog extends Animal {
+  color: string;
+}
+
+// Object uses BOTH properties
+let myDog: Dog = {
+  name: "Buddy",   // from Animal
+  color: "Black"   // from Dog
+};
+
+console.log(myDog.name);   // "Buddy"
+console.log(myDog.color);  // "Black"</code></pre>
+
+            <div class="note note-info">
+              <span class="note-i">i</span>
+              <p>
+                <strong>Multiple inheritance!</strong> Unlike classes (single
+                inheritance only), interfaces support extending MULTIPLE parent
+                interfaces: <code>interface C extends A, B { }</code>
+              </p>
+            </div>
+          </div>
+
+          <!-- CLASS IMPLEMENTS INTERFACE -->
+          <div class="sec" id="if-implement">
+            <div class="sec-label">Inheritance</div>
+            <h2>Class <code>implements</code> Interface</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> An interface is like a
+                <strong>contract</strong>: "You MUST have a name and MUST
+                implement the sound() method." A class that implements it says:
+                "OK, I'll fulfill the contract and provide the actual code."
+              </p>
+            </div>
+
+            <p>
+              A class can <strong>implement</strong> an interface. This means
+              the class MUST:
+            </p>
+            <ol>
+              <li><strong>Re-declare</strong> all interface properties</li>
+              <li><strong>Implement</strong> all abstract methods</li>
+            </ol>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">☑</div>
+                <div class="card-title">Interface → Class implementation</div>
+                <span class="card-badge">implements</span>
+              </div>
+              <div class="card-body">
+                <pre><code>interface Animal {
+  name: string;
+  sound(): void;   // abstract method
+}
+
+class Dog implements Animal {
+  name: string;      // MUST re-declare!
+  color: string;     // additional property (optional)
+
+  constructor(name: string, color: string) {
+    this.name = name;
+    this.color = color;
+  }
+
+  // MUST implement abstract method!
+  sound(): void {
+    console.log("Bark!");
+  }
+}
+
+let pet = new Dog("Buddy", "Black");
+console.log(pet.name);   // "Buddy"
+console.log(pet.color);  // "Black"
+pet.sound();              // "Bark!"</code></pre>
+                <p class="fn">
+                  The class can add extra properties (like <code>color</code>)
+                  and a constructor  --  things the interface cannot have.
+                </p>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>When implementing an interface</th>
+                    <th>Required?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Re-declare ALL interface properties in the class</td>
+                    <td>✅ Mandatory</td>
+                  </tr>
+                  <tr>
+                    <td>Implement ALL abstract methods</td>
+                    <td>✅ Mandatory</td>
+                  </tr>
+                  <tr>
+                    <td>Add a constructor</td>
+                    <td>Optional (but recommended)</td>
+                  </tr>
+                  <tr>
+                    <td>Add extra properties/methods</td>
+                    <td>Optional</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <p>
+                <strong>extends vs implements:</strong> Class
+                <code>extends</code> Class (properties auto-inherited). Class
+                <code>implements</code> Interface (properties must be
+                re-declared). Don't mix them up!
+              </p>
+            </div>
+          </div>
+
+          <!-- ABSTRACT CLASS -->
+          <div class="sec" id="if-abstract-class">
+            <div class="sec-label">Theory</div>
+            <h2>Normal Class vs Abstract Class vs Interface</h2>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Normal Class</th>
+                    <th>Abstract Class</th>
+                    <th>Interface</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Properties</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                  </tr>
+                  <tr>
+                    <td>Normal methods (with body)</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Abstract methods (no body)</td>
+                    <td>❌</td>
+                    <td>✅ (needs <code>abstract</code> keyword)</td>
+                    <td>✅ (default)</td>
+                  </tr>
+                  <tr>
+                    <td>Constructor</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                  </tr>
+                  <tr>
+                    <td>Instantiation (<code>new</code>)</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td>❌ (direct)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              Interface is the most "strict"  --  only abstract methods, no
+              implementation. Abstract class is in between. Normal class
+              requires full implementation.
+            </p>
+          </div>
+
+          <!-- INHERITANCE RULES -->
+          <div class="sec" id="if-rules">
+            <div class="sec-label">Theory</div>
+            <h2>Inheritance Rules  --  What Can Extend/Implement What?</h2>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Combination</th>
+                    <th>Keyword</th>
+                    <th>Possible?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Class → Class</td>
+                    <td><code>extends</code></td>
+                    <td>✅ (single only)</td>
+                  </tr>
+                  <tr>
+                    <td>Interface → Interface</td>
+                    <td><code>extends</code></td>
+                    <td>✅ (multiple OK)</td>
+                  </tr>
+                  <tr>
+                    <td>Class → Interface</td>
+                    <td><code>implements</code></td>
+                    <td>✅ (multiple OK)</td>
+                  </tr>
+                  <tr>
+                    <td>Interface → Class</td>
+                    <td> -- </td>
+                    <td>❌ Not possible</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <pre><code>// ✅ Class extends Class (single)
+class Honda extends Car { }
+
+// ✅ Interface extends Interface (multiple OK)
+interface Dog extends Animal, Pet { }
+
+// ✅ Class implements Interface (multiple OK)
+class Dog implements Animal, Pet { }
+
+// ❌ Interface cannot implement/extend a Class
+// Why? Class has implementation  --  interface doesn't allow it</code></pre>
+          </div>
+
+          <!-- CLASS VS INTERFACE -->
+          <div class="sec" id="if-compare">
+            <div class="sec-label">Comparison</div>
+            <h2>Class vs Interface  --  Full Comparison</h2>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Class</th>
+                    <th>Interface</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Definition</strong></td>
+                    <td>Blueprint with implementation</td>
+                    <td>Structure/type with NO implementation</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Contains</strong></td>
+                    <td>Properties + Constructor + Methods</td>
+                    <td>Properties + Abstract methods only</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Instantiation</strong></td>
+                    <td>✅ <code>new ClassName()</code></td>
+                    <td>❌ Cannot use <code>new</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Inheritance</strong></td>
+                    <td>Single only (<code>extends</code>)</td>
+                    <td>Multiple OK (<code>extends</code>)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Implementation</strong></td>
+                    <td>Can implement interfaces</td>
+                    <td>Cannot implement classes</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Access Modifiers</strong></td>
+                    <td>✅ public, protected, private</td>
+                    <td>❌ Not supported</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Static</strong></td>
+                    <td>✅ Supported</td>
+                    <td>❌ Not supported</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Constructor</strong></td>
+                    <td>✅ Supported</td>
+                    <td>❌ Not supported</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong><code>this</code> keyword</strong>
+                    </td>
+                    <td>✅ Works</td>
+                    <td>❌ Not inside object</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- COMMON MISTAKES -->
+          <div class="sec" id="if-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Beginner Mistakes</h2>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 1: Trying to create an object with
+                  <code>new Interface()</code></strong
+                >
+                <p>
+                  An interface is just a <em>blueprint on paper</em>  --  it
+                  describes a shape but has NO actual code inside. You cannot
+                  use <code>new</code> on it. Only <strong>classes</strong> can
+                  be instantiated with <code>new</code>.
+                </p>
+                <pre><code>interface Animal {
+  name: string;
+  sound(): string;
+}
+
+// ❌ WRONG  --  cannot instantiate an interface!
+let dog = new Animal();  // Error: 'Animal' only refers to a type
+
+// ✅ CORRECT  --  create a class that implements the interface
+class Dog implements Animal {
+  name: string;
+  constructor(name: string) { this.name = name; }
+  sound() { return "Woof!"; }
+}
+let dog = new Dog("Buddy"); // ✓ Works!</code></pre>
+                <p>
+                  <strong>Rule:</strong> Interfaces = blueprint (no
+                  <code>new</code>). Classes = factory (use <code>new</code>).
+                  Think: you can't build a house from just the architectural
+                  drawing  --  you need actual bricks (class)!
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: Forgetting to implement ALL required
+                  properties</strong
+                >
+                <p>
+                  When a class <code>implements</code> an interface, it MUST
+                  provide ALL required properties and methods. Missing even one
+                  gives a compile error!
+                </p>
+                <pre><code>interface Vehicle {
+  brand: string;
+  speed: number;
+  drive(): void;
+}
+
+// ❌ WRONG  --  missing 'speed' and 'drive()'
+class Car implements Vehicle {
+  brand = "Toyota";
+  // Error: Class 'Car' incorrectly implements interface 'Vehicle'
+  // Property 'speed' is missing
+  // Property 'drive' is missing
+}
+
+// ✅ CORRECT  --  all properties and methods implemented
+class CarFixed implements Vehicle {
+  brand = "Toyota";
+  speed = 120;
+  drive() { console.log("Driving!"); }
+}</code></pre>
+                <p>
+                  <strong>Rule:</strong> Check the interface like a checklist  -- 
+                  every non-optional property must be in your class. TypeScript
+                  will tell you exactly which ones are missing!
+                </p>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What you wrote</th>
+                    <th>What happens</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>new Interface()</code></td>
+                    <td><code>new Animal()</code></td>
+                    <td>Compile error</td>
+                    <td>Create a class, then <code>new Dog()</code></td>
+                  </tr>
+                  <tr>
+                    <td>Missing property</td>
+                    <td>Class missing required field</td>
+                    <td>Compile error</td>
+                    <td>Implement ALL interface properties</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- INDEX SIGNATURES -->
+          <div class="sec" id="if-index">
+            <div class="sec-label">Reference</div>
+            <h2>Index Signatures  --  Dynamic Keys</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life:</strong> An index signature is like a
+                <strong>dictionary</strong>  --  you don't know all the words in
+                advance, but you know every entry has a word (string key) and a
+                definition (value of a specific type).
+              </p>
+            </div>
+
+            <p>
+              When you don't know all property names ahead of time but know
+              their shape, use an <strong>index signature</strong>:
+            </p>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">I</div>
+                <div class="card-title">Dynamic keys with type safety</div>
+                <span class="card-badge">Index Signatures</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Index signature  --  any string key, number value
+interface ScoreBoard {
+  [playerName: string]: number;
+}
+
+const scores: ScoreBoard = {
+  Alice: 95,
+  Bob: 87,
+  Charlie: 92,
+};
+scores["Dave"] = 78;  // ✅ dynamic key works!
+
+// Mix fixed + dynamic keys
+interface ApiResponse {
+  status: number;          // fixed key  --  always present
+  message: string;         // fixed key  --  always present
+  [key: string]: unknown;  // any other key is allowed
+}
+
+const res: ApiResponse = {
+  status: 200,
+  message: "OK",
+  data: [1, 2, 3],     // ✅ allowed by index signature
+  timestamp: Date.now() // ✅ allowed by index signature
+};
+
+// Readonly index signature  --  can't add/modify after creation
+interface ReadonlyMap {
+  readonly [key: string]: string;
+}
+const config: ReadonlyMap = { theme: "dark", lang: "en" };
+// config.theme = "light";  // ❌ Error  --  readonly!</code></pre>
+                <p class="fn">
+                  <strong>Rule:</strong> The index signature value type must be
+                  compatible with ALL fixed property types. If
+                  <code>[key: string]: number</code>, then every property must
+                  be <code>number</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHEATSHEET -->
+          <div class="sec" id="if-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
+
+            <h3>Define an interface</h3>
+            <pre><code>interface Person {
+  name: string;           // regular
+  email?: string;         // optional
+  readonly id: number;    // readonly
+  greet(): void;          // abstract method
+}</code></pre>
+
+            <h3>Create object (no new keyword)</h3>
+            <pre><code>let p: Person = {
+  name: "John",
+  id: 101,
+  greet() { console.log("Hi!"); }
+};</code></pre>
+
+            <h3>Extend interface</h3>
+            <pre><code>interface Dog extends Animal { color: string; }</code></pre>
+
+            <h3>Implement interface with class</h3>
+            <pre><code>class Dog implements Animal {
+  name: string;  // must re-declare!
+  constructor(name: string) { this.name = name; }
+  sound() { console.log("Bark!"); }  // must implement!
+}</code></pre>
+
+            <h3>Key rules</h3>
+            <pre><code>// ✅ Interface = structure only, no implementation
+// ✅ Methods are abstract by default (no 'abstract' keyword needed)
+// ✅ No constructor, no access modifiers, no static
+// ✅ Cannot use 'new' to create objects
+// ✅ Cannot use 'this' inside interface objects
+// ✅ Interface extends Interface = OK (multiple OK)
+// ✅ Class implements Interface = OK (must re-declare + implement)
+// ❌ Interface cannot implement/extend a Class</code></pre>
+
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Interfaces &nbsp;·&nbsp;
+              abstract methods · extends · implements
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-iface");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

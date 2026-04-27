@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Destructuring  --  TypeScript Learning Path</title>
+    <meta
+      name="description"
+      content="Learn TypeScript destructuring  --  arrays and objects. Extract values elegantly with defaults, renaming, nesting, and rest patterns."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div id="topbar">
+      <div class="tb-brand">
+        <div class="tb-brand-icon">TS</div>
+        <div>
+          <div class="tb-brand-name">TypeScript Learning Path</div>
+          <div class="tb-brand-sub">Session Notes</div>
+        </div>
+      </div>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
+      <div class="tb-topic-title">Destructuring</div>
+    </div>
+
+    <div class="page-wrap">
+      <div class="wrap">
+        <nav id="nav-destructuring">
+          <div class="nav-logo">
+            <div class="v">Modern JS/TS</div>
+            <h2>Destructuring</h2>
+          </div>
+          <div class="nav-group">Basics</div>
+          <a href="#ds-what">What is Destructuring?</a>
+          <div class="nav-group">Array Destructuring</div>
+          <a href="#ds-array">Array Basics</a>
+          <a href="#ds-skip">Skipping Elements</a>
+          <a href="#ds-default">Default Values</a>
+          <div class="nav-group">Object Destructuring</div>
+          <a href="#ds-object">Object Basics</a>
+          <a href="#ds-rename">Renaming</a>
+          <a href="#ds-nested">Nested Destructuring</a>
+          <div class="nav-group">Advanced</div>
+          <a href="#ds-params">Function Parameters</a>
+          <a href="#ds-rest">With Rest Operator</a>
+          <div class="nav-group">Watch Out!</div>
+          <a href="#ds-mistakes">⚠ Common Mistakes</a>
+          <div class="nav-group">Reference</div>
+          <a href="#ds-compare">Comparison Table</a>
+          <a href="#ds-cheatsheet">Cheatsheet</a>
+        </nav>
+
+        <div class="content">
+          <div class="hero" id="ds-top">
+            <div class="hero-tags">
+              <span class="hero-tag">TypeScript</span>
+              <span class="hero-tag">Destructuring</span>
+              <span class="hero-tag">Arrays &amp; Objects</span>
+              <span class="hero-tag">Session Notes</span>
+            </div>
+            <h1>Destructuring</h1>
+            <p>
+              How to unpack values from arrays and properties from objects into
+              separate variables  --  in one elegant line. Used everywhere in
+              modern TypeScript and JavaScript.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <div class="stat-n">2</div>
+                <div class="stat-l">Types (Array / Object)</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">8</div>
+                <div class="stat-l">Patterns Covered</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">4</div>
+                <div class="stat-l">Common Mistakes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-n">12+</div>
+                <div class="stat-l">Code Examples</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WHAT IS DESTRUCTURING -->
+          <div class="sec" id="ds-what">
+            <div class="sec-label">Basics</div>
+            <h2>What is Destructuring?</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Imagine you order a
+                <strong>combo meal</strong>  --  it comes in one box with a burger,
+                fries, and a drink. <strong>Destructuring</strong> is like
+                opening the box and putting each item on the table separately.
+                Instead of reaching into the box every time you want something,
+                you lay everything out at once.
+              </p>
+            </div>
+
+            <p>
+              <strong>Without destructuring</strong>  --  you access each value one
+              at a time:
+            </p>
+            <div class="card ph5-card">
+              <div class="card-head">
+                <div class="card-num">!</div>
+                <div class="card-title">Old way  --  repetitive and verbose</div>
+                <span class="card-badge">❌ Verbose</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const person = { name: "Alice", age: 25, city: "Mumbai" };
+
+// Old way  --  access one by one
+const name = person.name;
+const age = person.age;
+const city = person.city;
+// Three lines for three values!</code></pre>
+              </div>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">✓</div>
+                <div class="card-title">
+                  New way  --  destructuring in ONE line
+                </div>
+                <span class="card-badge">✅ Clean</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const person = { name: "Alice", age: 25, city: "Mumbai" };
+
+// Destructuring  --  extract all at once!
+const { name, age, city } = person;
+console.log(name);  // "Alice"
+console.log(age);   // 25
+console.log(city);  // "Mumbai"</code></pre>
+              </div>
+            </div>
+
+            <div class="pipe">
+              <div class="pipe-step">
+                <div class="pipe-ph ph1-c">①</div>
+                <div class="pipe-name">Array Destructuring</div>
+                <div class="pipe-pts">Extract by POSITION</div>
+              </div>
+              <div class="pipe-step">
+                <div class="pipe-ph ph2-c">②</div>
+                <div class="pipe-name">Object Destructuring</div>
+                <div class="pipe-pts">Extract by NAME</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ARRAY DESTRUCTURING -->
+          <div class="sec" id="ds-array">
+            <div class="sec-label">Array Destructuring</div>
+            <h2>Array Destructuring  --  Extract by Position</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A train has seats in order  -- 
+                seat 1, seat 2, seat 3. Array destructuring is like saying:
+                "Person A gets seat 1, Person B gets seat 2." The
+                <strong>position</strong> matters, not the name.
+              </p>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Basic array destructuring</div>
+                <span class="card-badge">Position-based</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const colors = ["red", "green", "blue"];
+
+// Old way
+const first = colors[0];  // "red"
+const second = colors[1]; // "green"
+
+// ✅ Destructuring way
+const [a, b, c] = colors;
+console.log(a);  // "red"
+console.log(b);  // "green"
+console.log(c);  // "blue"
+
+// You can name variables anything:
+const [primary, secondary] = colors;
+console.log(primary);   // "red"
+console.log(secondary); // "green"</code></pre>
+                <p class="fn">
+                  Array destructuring uses <strong>square brackets</strong>
+                  <code>[ ]</code> and extracts by
+                  <strong>position</strong> (index 0, 1, 2...).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SKIPPING ELEMENTS -->
+          <div class="sec" id="ds-skip">
+            <div class="sec-label">Array Destructuring</div>
+            <h2>Skipping Elements</h2>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">Skip elements with empty commas</div>
+                <span class="card-badge">Skip trick</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const scores = [90, 85, 78, 92, 88];
+
+// Skip first two, get only the third
+const [, , third] = scores;
+console.log(third);  // 78
+
+// Get first and third, skip second
+const [gold, , bronze] = scores;
+console.log(gold);   // 90
+console.log(bronze); // 78
+
+// Swap two variables WITHOUT a temp variable!
+let x = 10, y = 20;
+[x, y] = [y, x];
+console.log(x);  // 20
+console.log(y);  // 10 ← Swapped!</code></pre>
+                <p class="fn">
+                  Each comma <code>,</code> skips one element. The
+                  <strong>swap trick</strong> is a classic interview question!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- DEFAULT VALUES -->
+          <div class="sec" id="ds-default">
+            <div class="sec-label">Array Destructuring</div>
+            <h2>Default Values</h2>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">3</div>
+                <div class="card-title">Defaults when array is too short</div>
+                <span class="card-badge">Fallback</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const pair = [10];
+
+// Without default  --  b is undefined
+const [a, b] = pair;
+console.log(a);  // 10
+console.log(b);  // undefined 😬
+
+// ✅ With default  --  b gets fallback value
+const [x, y = 0] = pair;
+console.log(x);  // 10
+console.log(y);  // 0 ← default used!
+
+// Default is ONLY used when value is undefined
+const [m, n = 99] = [5, 20];
+console.log(n);  // 20 (NOT 99  --  actual value exists)</code></pre>
+                <p class="fn">
+                  Default values kick in ONLY when the position is
+                  <code>undefined</code>. If a value exists (even
+                  <code>null</code> or <code>0</code>), the default is ignored.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- OBJECT DESTRUCTURING -->
+          <div class="sec" id="ds-object">
+            <div class="sec-label">Object Destructuring</div>
+            <h2>Object Destructuring  --  Extract by Name</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> A hotel check-in form has
+                labeled fields  --  Name, Phone, Email. Object destructuring is
+                like saying: "Give me just the Name and Email fields." You pick
+                by <strong>label name</strong>, not by position.
+              </p>
+            </div>
+
+            <div class="card ph2-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Basic object destructuring</div>
+                <span class="card-badge">Name-based</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const user = { name: "Bob", age: 30, role: "admin" };
+
+// ✅ Destructuring  --  variable names MUST match property names
+const { name, age, role } = user;
+console.log(name);  // "Bob"
+console.log(age);   // 30
+console.log(role);  // "admin"
+
+// You can pick only what you need:
+const { name: userName } = user;  // rename (see next section)
+const { role: r } = user;
+
+// With defaults (when property might not exist):
+const { email = "none" } = user;
+console.log(email);  // "none" (user has no email property)</code></pre>
+                <p class="fn">
+                  Object destructuring uses <strong>curly braces</strong>
+                  <code>{ }</code> and extracts by
+                  <strong>property name</strong>. Order doesn't matter!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RENAMING -->
+          <div class="sec" id="ds-rename">
+            <div class="sec-label">Object Destructuring</div>
+            <h2>Renaming While Destructuring</h2>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">2</div>
+                <div class="card-title">
+                  Give a different name with <code>:</code>
+                </div>
+                <span class="card-badge">Alias</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const product = { name: "Laptop", price: 50000 };
+
+// Problem: 'name' might conflict with another variable
+// Solution: rename with colon
+const { name: productName, price: cost } = product;
+console.log(productName);  // "Laptop"
+console.log(cost);         // 50000
+
+// ⚠ After renaming, the ORIGINAL name doesn't work:
+// console.log(name);  // ❌ Error  --  'name' was not created
+// console.log(price); // ❌ Error  --  'price' was not created
+
+// Rename + Default together:
+const { discount: disc = 0 } = product;
+console.log(disc);  // 0 (product has no 'discount')</code></pre>
+                <p class="fn">
+                  Syntax: <code>{ originalName: newName }</code>. The colon here
+                  means "take <code>originalName</code> and call it
+                  <code>newName</code>."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- NESTED DESTRUCTURING -->
+          <div class="sec" id="ds-nested">
+            <div class="sec-label">Object Destructuring</div>
+            <h2>Nested Destructuring</h2>
+
+            <div class="card ph3-card">
+              <div class="card-head">
+                <div class="card-num">3</div>
+                <div class="card-title">Destructure objects inside objects</div>
+                <span class="card-badge">Deep extract</span>
+              </div>
+              <div class="card-body">
+                <pre><code>const employee = {
+  name: "Alice",
+  address: {
+    city: "Mumbai",
+    zip: "400001"
+  }
+};
+
+// ✅ Nested destructuring  --  reach INSIDE the inner object
+const { name, address: { city, zip } } = employee;
+console.log(name);  // "Alice"
+console.log(city);  // "Mumbai"
+console.log(zip);   // "400001"
+
+// ⚠ 'address' itself is NOT available as a variable!
+// console.log(address);  // ❌ Error
+
+// If you want BOTH the nested values AND the parent:
+const { name: n, address } = employee;
+const { city: c } = address;
+console.log(n);        // "Alice"
+console.log(address);  // { city: "Mumbai", zip: "400001" }
+console.log(c);        // "Mumbai"</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- FUNCTION PARAMETERS -->
+          <div class="sec" id="ds-params">
+            <div class="sec-label">Advanced</div>
+            <h2>Destructuring in Function Parameters</h2>
+            <div class="note note-tip">
+              <span class="note-i">✓</span>
+              <p>
+                <strong>Real-Life Example:</strong> Instead of handing someone a
+                sealed envelope and saying "open it and read the name inside,"
+                you just hand them the name directly. Destructuring in
+                parameters unwraps the data before the function even starts!
+              </p>
+            </div>
+
+            <div class="card ph1-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">Destructure right in the parameter</div>
+                <span class="card-badge">Clean APIs</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// ❌ Old way  --  access properties inside function
+function greetOld(person: { name: string; age: number }) {
+  console.log(`Hi ${person.name}, you are ${person.age}`);
+}
+
+// ✅ Destructured  --  extract in the parameter itself
+function greet({ name, age }: { name: string; age: number }) {
+  console.log(`Hi ${name}, you are ${age}`);
+}
+
+greet({ name: "Alice", age: 25 });  // "Hi Alice, you are 25"
+
+// With type alias  --  even cleaner:
+type Person = { name: string; age: number };
+
+function greetClean({ name, age }: Person) {
+  console.log(`Hi ${name}, you are ${age}`);
+}
+
+// Works with arrays too:
+function getFirst([first, second]: number[]) {
+  return first;
+}
+console.log(getFirst([10, 20, 30]));  // 10</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- REST WITH DESTRUCTURING -->
+          <div class="sec" id="ds-rest">
+            <div class="sec-label">Advanced</div>
+            <h2>Destructuring with Rest (<code>...</code>)</h2>
+
+            <div class="card ph4-card">
+              <div class="card-head">
+                <div class="card-num">1</div>
+                <div class="card-title">
+                  Collect remaining items with <code>...</code>
+                </div>
+                <span class="card-badge">...rest</span>
+              </div>
+              <div class="card-body">
+                <pre><code>// Array rest  --  grab the first, collect the rest
+const [winner, ...losers] = ["Gold", "Silver", "Bronze", "4th"];
+console.log(winner);  // "Gold"
+console.log(losers);  // ["Silver", "Bronze", "4th"]
+
+// Object rest  --  pick some, collect the rest
+const user = { name: "Bob", age: 30, role: "admin", city: "Delhi" };
+const { name, ...remaining } = user;
+console.log(name);       // "Bob"
+console.log(remaining);  // { age: 30, role: "admin", city: "Delhi" }
+
+// Great for removing a property:
+const { password, ...safeUser } = { name: "Alice", password: "secret", email: "a@b.com" };
+console.log(safeUser);  // { name: "Alice", email: "a@b.com" }
+// password is extracted and thrown away  --  safeUser is clean!</code></pre>
+                <p class="fn">
+                  <code>...rest</code> must always be the
+                  <strong>LAST</strong> item. You can't put anything after it.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMMON MISTAKES -->
+          <div class="sec" id="ds-mistakes">
+            <div class="sec-label">Watch Out!</div>
+            <h2>⚠ Common Beginner Mistakes</h2>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 1: Destructuring <code>null</code> or
+                  <code>undefined</code>  --  crashes!</strong
+                >
+                <p>
+                  If the source is <code>null</code> or <code>undefined</code>,
+                  destructuring throws a <strong>TypeError</strong>. Always
+                  check first!
+                </p>
+                <pre><code>// ❌ CRASH  --  cannot destructure null
+const data = null;
+const { name } = data;  // TypeError: Cannot destructure property 'name' of null
+
+// ✅ SAFE  --  use default empty object
+const { name = "unknown" } = data || {};
+console.log(name);  // "unknown"
+
+// ✅ In function parameters  --  default to empty object
+function process({ id, name }: any = {}) {
+  console.log(id, name);
+}
+process();  // undefined undefined (no crash!)</code></pre>
+                <p>
+                  <strong>Rule:</strong> Always provide a fallback with
+                  <code>|| {}</code> or <code>= {}</code> when the source might
+                  be null/undefined.
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 2: Variable names MUST match property names
+                  (objects)</strong
+                >
+                <p>
+                  In object destructuring, the variable name must exactly match
+                  the property name. If you misspell it, you get
+                  <code>undefined</code>  --  no error!
+                </p>
+                <pre><code>const user = { name: "Alice", age: 25 };
+
+// ❌ WRONG  --  'username' doesn't exist in user
+const { username } = user;
+console.log(username);  // undefined (silent bug!)
+
+// ✅ CORRECT  --  name matches exactly
+const { name } = user;
+console.log(name);  // "Alice"
+
+// ✅ If you WANT a different name, use renaming:
+const { name: username2 } = user;
+console.log(username2);  // "Alice"</code></pre>
+                <p>
+                  <strong>Rule:</strong> Object destructuring matches by NAME,
+                  not position. Typos give <code>undefined</code>, not errors!
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 3: Confusing <code>:</code> for type vs
+                  rename</strong
+                >
+                <p>
+                  In TypeScript, <code>:</code> is used for BOTH type annotation
+                  AND renaming in destructuring. This confuses beginners!
+                </p>
+                <pre><code>// This is RENAMING (destructuring syntax):
+const { name: fullName } = { name: "Alice" };
+// fullName = "Alice", name doesn't exist
+
+// This is TYPE ANNOTATION (TypeScript syntax):
+const { name }: { name: string } = { name: "Alice" };
+// name = "Alice", with type string
+
+// ❌ WRONG  --  mixing them up:
+// const { name: string } = { name: "Alice" };
+// This RENAMES 'name' to 'string', doesn't set a type!</code></pre>
+                <p>
+                  <strong>Rule:</strong> <code>{ prop: newName }</code> =
+                  renaming. <code>{ prop }: { prop: Type }</code> = typing.
+                  Don't mix them!
+                </p>
+              </div>
+            </div>
+
+            <div class="note note-warn">
+              <span class="note-i">⚠</span>
+              <div>
+                <strong
+                  >Mistake 4: Nested destructuring  --  parent variable is NOT
+                  created</strong
+                >
+                <p>
+                  When you destructure nested properties, the parent object is
+                  NOT available as a variable unless you explicitly extract it
+                  too.
+                </p>
+                <pre><code>const config = { db: { host: "localhost", port: 5432 } };
+
+// ❌ WRONG  --  'db' is NOT a variable here!
+const { db: { host, port } } = config;
+console.log(host);  // "localhost" ✓
+console.log(db);    // ❌ ReferenceError: db is not defined
+
+// ✅ If you need 'db' too, destructure separately:
+const { db } = config;
+const { host: h, port: p } = db;
+console.log(db);    // { host: "localhost", port: 5432 } ✓
+console.log(h);     // "localhost" ✓</code></pre>
+                <p>
+                  <strong>Rule:</strong> In <code>{ parent: { child } }</code>,
+                  only <code>child</code> is created. <code>parent</code> is
+                  used as a path, not a variable.
+                </p>
+              </div>
+            </div>
+
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mistake</th>
+                    <th>What happens</th>
+                    <th>Fix</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Destructure <code>null</code></td>
+                    <td>TypeError crash</td>
+                    <td><code>data || {}</code> or <code>= {}</code></td>
+                  </tr>
+                  <tr>
+                    <td>Wrong property name</td>
+                    <td>Silent <code>undefined</code></td>
+                    <td>Match name exactly or use <code>:</code> rename</td>
+                  </tr>
+                  <tr>
+                    <td><code>:</code> confusion</td>
+                    <td>Renames instead of typing</td>
+                    <td>Use <code>}: { prop: Type }</code> for types</td>
+                  </tr>
+                  <tr>
+                    <td>Nested parent missing</td>
+                    <td><code>ReferenceError</code></td>
+                    <td>Extract parent separately</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- COMPARISON TABLE -->
+          <div class="sec" id="ds-compare">
+            <div class="sec-label">Reference</div>
+            <h2>Array vs Object Destructuring</h2>
+            <div class="bordered">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Array <code>[ ]</code></th>
+                    <th>Object <code>{ }</code></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Extracts by</td>
+                    <td><span class="p p-blue">Position</span></td>
+                    <td><span class="p p-green">Property name</span></td>
+                  </tr>
+                  <tr>
+                    <td>Order matters?</td>
+                    <td><span class="p p-red">Yes!</span></td>
+                    <td><span class="p p-green">No</span></td>
+                  </tr>
+                  <tr>
+                    <td>Variable names</td>
+                    <td>Any name you want</td>
+                    <td>Must match property (or rename)</td>
+                  </tr>
+                  <tr>
+                    <td>Skip items</td>
+                    <td>Empty commas <code>[, , x]</code></td>
+                    <td>Just don't list them</td>
+                  </tr>
+                  <tr>
+                    <td>Defaults</td>
+                    <td><code>[a = 10]</code></td>
+                    <td><code>{ x = 10 }</code></td>
+                  </tr>
+                  <tr>
+                    <td>Renaming</td>
+                    <td>Not needed (any name works)</td>
+                    <td><code>{ name: newName }</code></td>
+                  </tr>
+                  <tr>
+                    <td>Rest</td>
+                    <td><code>[first, ...rest]</code></td>
+                    <td><code>{ name, ...rest }</code></td>
+                  </tr>
+                  <tr>
+                    <td>Nesting</td>
+                    <td><code>[[a, b], [c, d]]</code></td>
+                    <td><code>{ a: { b } }</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CHEATSHEET -->
+          <div class="sec" id="ds-cheatsheet">
+            <div class="sec-label">Reference</div>
+            <h2>Quick Reference Cheatsheet</h2>
+
+            <h3>Array Destructuring</h3>
+            <pre><code>const [a, b, c] = [1, 2, 3];         // Basic
+const [x, , z] = [1, 2, 3];          // Skip second
+const [a, b = 0] = [1];              // Default value
+const [first, ...rest] = [1, 2, 3];  // Rest
+let [a, b] = [1, 2]; [a, b] = [b, a]; // Swap</code></pre>
+
+            <h3>Object Destructuring</h3>
+            <pre><code>const { name, age } = person;              // Basic
+const { name: fullName } = person;         // Rename
+const { email = "none" } = person;         // Default
+const { addr: { city } } = person;         // Nested
+const { name, ...rest } = person;          // Rest</code></pre>
+
+            <h3>In Function Parameters</h3>
+            <pre><code>function greet({ name, age }: Person) { }  // Object param
+function first([a]: number[]) { return a; } // Array param</code></pre>
+
+            <hr />
+            <p
+              style="font-size: 11.5px; color: var(--ink3); text-align: center"
+            >
+              TypeScript Learning Path &nbsp;·&nbsp; Destructuring &nbsp;·&nbsp;
+              Next: Spread &amp; Rest
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav-destructuring");
+        if (!nav) {
+          return;
+        }
+        const links = nav.querySelectorAll("a");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                links.forEach((l) => l.classList.remove("on"));
+                const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+                if (a) {
+                  a.classList.add("on");
+                }
+              }
+            });
+          },
+          { rootMargin: "-15% 0px -75% 0px" },
+        );
+        document
+          .querySelectorAll(".content [id]")
+          .forEach((s) => obs.observe(s));
+      })();
+    </script>
+      <script src="../quiz-data.js"></script>
+    <script src="../shared.js"></script>
+  </body>
+</html>

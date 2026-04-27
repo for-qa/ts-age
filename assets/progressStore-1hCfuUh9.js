@@ -1,0 +1,1 @@
+import{o as e,r as t,s as n}from"./jsx-runtime-BQQ2RTGg.js";var r=n(n=>({progress:t.getProgress(),toggleComplete:(r,i)=>{e.execute(r,i),n({progress:t.getProgress()})}}));export{r as t};
