@@ -53,7 +53,21 @@ export function Sidebar() {
             key={i}
             href={sec.href}
             className={activeHref === sec.href ? 'on' : ''}
-            onClick={() => setActiveHref(sec.href)}
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveHref(sec.href);
+              const targetId = sec.href.replace('#', '');
+              const el = document.getElementById(targetId);
+              if (el) {
+                const headerOffset = 60;
+                const elementPosition = el.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }}
           >
             {sec.label}
           </a>
