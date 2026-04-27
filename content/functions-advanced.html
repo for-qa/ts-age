@@ -25,7 +25,7 @@
           <div class="tb-brand-sub">Session Notes</div>
         </div>
       </div>
-      <a class="tb-back" href="../index.html">? Back to Index</a>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
       <div class="tb-topic-title">Callback &amp; Overloaded Functions</div>
     </div>
 
@@ -106,10 +106,10 @@
             </p>
 
             <h3>Normal call vs callback</h3>
-            <pre><code>// ? Normal - calling directly (immediate)
+            <pre><code>// - Normal - calling directly (immediate)
 showMessage("Hello!");  // executes RIGHT NOW
 
-// ? Callback - passing the function to someone else
+// - Callback - passing the function to someone else
 greet("John", showMessage);  // greet decides WHEN to call showMessage</code></pre>
 
             <div class="bordered">
@@ -160,7 +160,7 @@ function showMessage(message: string) {
 // Step 2: Create a function that ACCEPTS a callback
 function greet(
   name: string,
-  callback: (msg: string) => void   // ? callback type definition
+  callback: (msg: string) => void   // - callback type definition
 ) {
   console.log(name);        // do something first
   callback("Hello!");       // THEN call the callback
@@ -241,10 +241,10 @@ sum(10, 20, displayResult);
               <span class="note-i">✓</span>
               <p>
                 <strong>Real-Life Example:</strong><br />
-                ? <strong>Synchronous</strong> = A
+                - <strong>Synchronous</strong> = A
                 <strong>single checkout line</strong> - each person waits for
                 the one in front. Everything happens in order.<br />
-                ? <strong>Asynchronous</strong> = A
+                - <strong>Asynchronous</strong> = A
                 <strong>food court</strong> - you order, walk away, do other
                 things, and they call your number when food is ready. Tasks run
                 in parallel.
@@ -286,7 +286,7 @@ sum(10, 20, displayResult);
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">i</span>
+              <span class="note-i">⚠</span>
               <p>
                 <strong>JavaScript/TypeScript is asynchronous by nature</strong>
                 - this is its biggest challenge compared to languages like Java.
@@ -486,9 +486,9 @@ function processInput(num: number): number;
 // Implementation - union for both param and return
 function processInput(input: string | number): string | number {
   if (typeof input === "string") {
-    return input.toUpperCase();  // string ? uppercase
+    return input.toUpperCase();  // string - uppercase
   } else {
-    return input * input;        // number ? square
+    return input * input;        // number - square
   }
 }
 
@@ -518,7 +518,7 @@ function greet(value: string | number | boolean): string {
   } else if (typeof value === "number") {
     return `You are ${value} years old`;
   } else {
-    let result: string = value ? "Married" : "Single";
+    let result: string = value - "Married" : "Single";
     return `You are ${result}`;
   }
 }
@@ -543,25 +543,25 @@ console.log(greet(false));     // "You are Single"</code></pre>
                 <span class="card-badge">Errors</span>
               </div>
               <div class="card-body">
-                <pre><code>// ? 1. No implementation - just signatures
+                <pre><code>// - 1. No implementation - just signatures
 function test(a: number): string;
 function test(a: string): string;
 // ERROR: no function body!
 
-// ? 2. Wrong return type in implementation
+// - 2. Wrong return type in implementation
 function calc(a: number): number;
 function calc(a: string): string;
-function calc(a: number | string): boolean { } // ? boolean ? number|string
+function calc(a: number | string): boolean { } // - boolean - number|string
 
-// ? 3. Identical parameter types
+// - 3. Identical parameter types
 function fn(a: number): number;
-function fn(a: number): string;   // ? same param type!
+function fn(a: number): string;   // - same param type!
 // ERROR: "Cannot overload identical signatures"
 
-// ? 4. Incompatible return type
+// - 4. Incompatible return type
 function fetchData(url: string): string;
 function fetchData(id: number): string;
-function fetchData(url: string | number): number { } // ? should be string!</code></pre>
+function fetchData(url: string | number): number { } // - should be string!</code></pre>
               </div>
             </div>
 
@@ -639,13 +639,13 @@ fn(5);       // 10
 fn("hello"); // "HELLO"</code></pre>
 
             <h3>Key rules</h3>
-            <pre><code>// ? Callbacks = pass function as argument, executed later
-// ? Callback type: (param: type) => returnType
-// ? Overloading = same name, different params/returns
-// ? Only ONE implementation for ALL signatures
-// ? Use typeof to check param types in implementation
-// ? Use union types (|) in implementation to match all signatures
-// ? In automation: prefer async/await over callbacks</code></pre>
+            <pre><code>// - Callbacks = pass function as argument, executed later
+// - Callback type: (param: type) => returnType
+// - Overloading = same name, different params/returns
+// - Only ONE implementation for ALL signatures
+// - Use typeof to check param types in implementation
+// - Use union types (|) in implementation to match all signatures
+// - In automation: prefer async/await over callbacks</code></pre>
 
             <hr />
             <p

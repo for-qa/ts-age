@@ -143,10 +143,10 @@ type NullableUser = Nullable&lt;User&gt;;
                 <span class="card-badge">Under the Hood</span>
               </div>
               <div class="card-body">
-                <pre><code>// Partial  --  add ? to every property
+                <pre><code>// Partial  --  add - to every property
 type Partial&lt;T&gt; = { [K in keyof T]?: T[K] };
 
-// Required  --  remove ? from every property
+// Required  --  remove - from every property
 type Required&lt;T&gt; = { [K in keyof T]-?: T[K] };
 //                                    ^^ -? removes optional
 
@@ -179,28 +179,28 @@ type Record&lt;K extends string, V&gt; = { [P in K]: V };
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">3</div>
-                <div class="card-title">T extends U ? X : Y</div>
+                <div class="card-title">T extends U - X : Y</div>
                 <span class="card-badge">Conditional</span>
               </div>
               <div class="card-body">
-                <pre><code>// Syntax: T extends U ? TrueType : FalseType
+                <pre><code>// Syntax: T extends U - TrueType : FalseType
 
 // Is it a string?
-type IsString&lt;T&gt; = T extends string ? "yes" : "no";
+type IsString&lt;T&gt; = T extends string - "yes" : "no";
 type A = IsString&lt;string&gt;;   // "yes"
 type B = IsString&lt;number&gt;;   // "no"
 
 // Flatten arrays (if array, get element type)
-type Flatten&lt;T&gt; = T extends Array&lt;infer U&gt; ? U : T;
+type Flatten&lt;T&gt; = T extends Array&lt;infer U&gt; - U : T;
 type C = Flatten&lt;string[]&gt;;  // string
 type D = Flatten&lt;number&gt;;    // number (not an array, return as-is)
 
 // Extract non-nullable
-type NonNull&lt;T&gt; = T extends null | undefined ? never : T;
+type NonNull&lt;T&gt; = T extends null | undefined - never : T;
 type E = NonNull&lt;string | null | undefined&gt;;  // string
 
 // This is how Exclude works!
-type Exclude&lt;T, U&gt; = T extends U ? never : T;
+type Exclude&lt;T, U&gt; = T extends U - never : T;
 type F = Exclude&lt;"a" | "b" | "c", "a"&gt;;  // "b" | "c"</code></pre>
               </div>
             </div>
@@ -222,7 +222,7 @@ type F = Exclude&lt;"a" | "b" | "c", "a"&gt;;  // "b" | "c"</code></pre>
                 <pre><code>// infer = "figure out this type for me"
 
 // Get return type of a function
-type MyReturnType&lt;T&gt; = T extends (...args: any[]) => infer R ? R : never;
+type MyReturnType&lt;T&gt; = T extends (...args: any[]) => infer R - R : never;
 //                                                   ^^^^^^^ "infer R"
 // "If T is a function, extract its return type as R"
 
@@ -230,11 +230,11 @@ type X = MyReturnType&lt;() => string&gt;;           // string
 type Y = MyReturnType&lt;(a: number) => boolean&gt;; // boolean
 
 // Get element type of array
-type ElementOf&lt;T&gt; = T extends (infer E)[] ? E : never;
+type ElementOf&lt;T&gt; = T extends (infer E)[] - E : never;
 type Z = ElementOf&lt;number[]&gt;;  // number
 
 // Get promise value
-type Unwrap&lt;T&gt; = T extends Promise&lt;infer V&gt; ? V : T;
+type Unwrap&lt;T&gt; = T extends Promise&lt;infer V&gt; - V : T;
 type W = Unwrap&lt;Promise&lt;string&gt;&gt;;  // string
 type Q = Unwrap&lt;number&gt;;           // number</code></pre>
               </div>
@@ -256,12 +256,12 @@ type Q = Unwrap&lt;number&gt;;           // number</code></pre>
               <div class="card-body">
                 <pre><code>// 1. Make only string properties optional
 type OptionalStrings&lt;T&gt; = {
-  [K in keyof T]: T[K] extends string ? T[K] | undefined : T[K];
+  [K in keyof T]: T[K] extends string - T[K] | undefined : T[K];
 };
 
 // 2. Deep Readonly (recursive!)
 type DeepReadonly&lt;T&gt; = {
-  readonly [K in keyof T]: T[K] extends object ? DeepReadonly&lt;T[K]&gt; : T[K];
+  readonly [K in keyof T]: T[K] extends object - DeepReadonly&lt;T[K]&gt; : T[K];
 };
 
 // 3. Make specific keys required, rest optional
@@ -294,7 +294,7 @@ type Bad&lt;T&gt; = { [K in keyof T]: Bad&lt;T[K]&gt; };  // infinite!
 
 // ✅ Add a base case
 type Good&lt;T&gt; = {
-  [K in keyof T]: T[K] extends object ? Good&lt;T[K]&gt; : T[K];
+  [K in keyof T]: T[K] extends object - Good&lt;T[K]&gt; : T[K];
 };</code></pre>
               </div>
             </div>
@@ -333,12 +333,12 @@ type X = Exclude&lt;"a" | "b" | "c", "a"&gt;;
 { [K in keyof T]-?: T[K] }        // remove optional (Required)
 
 // CONDITIONAL  --  if/else for types
-T extends U ? X : Y
+T extends U - X : Y
 
 // INFER  --  extract inner type
-T extends Array&lt;infer E&gt; ? E : never    // array element
-T extends (...args: any[]) => infer R ? R : never  // return type
-T extends Promise&lt;infer V&gt; ? V : T      // unwrap promise</code></pre>
+T extends Array&lt;infer E&gt; - E : never    // array element
+T extends (...args: any[]) => infer R - R : never  // return type
+T extends Promise&lt;infer V&gt; - V : T      // unwrap promise</code></pre>
             <hr />
             <p
               style="font-size: 11.5px; color: var(--ink3); text-align: center"

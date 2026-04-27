@@ -1032,7 +1032,7 @@ console.log(x);       // 11 ← same, already incremented</code></pre>
             </p>
 
             <h3>Syntax</h3>
-            <pre><code>condition ? valueIfTrue : valueIfFalse</code></pre>
+            <pre><code>condition - valueIfTrue : valueIfFalse</code></pre>
 
             <div class="card ph1-card">
               <div class="card-head">
@@ -1045,7 +1045,7 @@ console.log(x);       // 11 ← same, already incremented</code></pre>
               <div class="card-body">
                 <pre><code>let a: number = 100, b: number = 200;
 
-let result: number = a > b ? a : b;
+let result: number = a > b - a : b;
 //                    ^^^^   ^   ^
 //                 condition ‚   """ if false: use b
 //                           """ if true: use a
@@ -1066,7 +1066,7 @@ console.log(result);  // 200
               <div class="card-body">
                 <pre><code>let personAge: number = 30;
 
-let status: string = personAge >= 18 ? "Adult" : "Minor";
+let status: string = personAge >= 18 - "Adult" : "Minor";
 //                    ^^^^^^^^^^^^^     ^^^^^^^   ^^^^^^^
 //                    condition         if true   if false
 
@@ -1331,8 +1331,8 @@ x--    // post-decrement: use old value, then subtract 1
 --x    // pre-decrement:  subtract 1 first, then use new value</code></pre>
 
             <h3>Ternary</h3>
-            <pre><code>// condition ? ifTrue : ifFalse
-let result = age >= 18 ? "Adult" : "Minor";</code></pre>
+            <pre><code>// condition - ifTrue : ifFalse
+let result = age >= 18 - "Adult" : "Minor";</code></pre>
 
             <hr />
             <p

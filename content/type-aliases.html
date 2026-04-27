@@ -23,7 +23,7 @@
           <div class="tb-brand-sub">Session Notes</div>
         </div>
       </div>
-      <a class="tb-back" href="../index.html">? Back to Index</a>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
       <div class="tb-topic-title">Type Aliases &amp; Union Types</div>
     </div>
 
@@ -119,7 +119,7 @@ type StringOrNumber = string | number;
 
 let value1: StringOrNumber = "hello";  // ?
 let value2: StringOrNumber = 42;       // ?
-let value3: StringOrNumber = true;     // ? ERROR</code></pre>
+let value3: StringOrNumber = true;     // - ERROR</code></pre>
 
             <div class="note note-info">
               <span class="note-i">i</span>
@@ -173,7 +173,7 @@ console.log(emp2.salary);       // 75000
 console.log(emp1.salary);       // undefined (not provided)</code></pre>
 
             <div class="note note-warn">
-              <span class="note-i">i</span>
+              <span class="note-i">⚠</span>
               <p>
                 <strong>type vs interface for objects:</strong> Both can define
                 object shapes. Use <code>type</code> when you need unions,
@@ -245,9 +245,9 @@ processData("user-info", (msg) => console.log(msg));
             <pre><code>// Variable can be string OR number
 let id: string | number;
 
-id = "ABC123";  // ? string
-id = 42;        // ? number
-id = true;      // ? ERROR - boolean not allowed
+id = "ABC123";  // - string
+id = 42;        // - number
+id = true;      // - ERROR - boolean not allowed
 
 // Function accepting union type
 function printId(id: string | number): void {
@@ -256,14 +256,14 @@ function printId(id: string | number): void {
 
 printId("ABC");   // ?
 printId(101);     // ?
-printId(true);    // ? ERROR</code></pre>
+printId(true);    // - ERROR</code></pre>
 
             <pre><code>// Combine with type alias for reusability
 type Status = "active" | "inactive" | "suspended";
 type Response = { data: string } | { error: string };
 
 let userStatus: Status = "active";     // ?
-let userStatus2: Status = "deleted";   // ? ERROR</code></pre>
+let userStatus2: Status = "deleted";   // - ERROR</code></pre>
           </div>
 
           <!-- NARROWING UNIONS -->
@@ -288,14 +288,14 @@ let userStatus2: Status = "deleted";   // ? ERROR</code></pre>
             </p>
 
             <pre><code>function processValue(value: string | number): void {
-  // ? Cannot call .toUpperCase() directly - might be a number!
+  // - Cannot call .toUpperCase() directly - might be a number!
 
   if (typeof value === "string") {
     // TypeScript KNOWS it's a string here
-    console.log(value.toUpperCase());  // ? string methods work
+    console.log(value.toUpperCase());  // - string methods work
   } else {
     // TypeScript KNOWS it's a number here
-    console.log(value.toFixed(2));     // ? number methods work
+    console.log(value.toFixed(2));     // - number methods work
   }
 }
 
@@ -357,10 +357,10 @@ type DiceRoll = 1 | 2 | 3 | 4 | 5 | 6;
 type Toggle = true | false;
 
 let move: Direction = "up";     // ?
-let move2: Direction = "back";  // ? ERROR
+let move2: Direction = "back";  // - ERROR
 
 let roll: DiceRoll = 3;        // ?
-let roll2: DiceRoll = 7;       // ? ERROR
+let roll2: DiceRoll = 7;       // - ERROR
 
 // Perfect for function parameters
 function setTheme(theme: "light" | "dark"): void {
@@ -368,7 +368,7 @@ function setTheme(theme: "light" | "dark"): void {
 }
 
 setTheme("dark");     // ?
-setTheme("blue");     // ? ERROR</code></pre>
+setTheme("blue");     // - ERROR</code></pre>
           </div>
 
           <!-- INTERSECTION TYPES -->
@@ -409,7 +409,7 @@ let member: Staff = {
   employeeId: 101,
   department: "Engineering"
 };
-// Missing any property ? ERROR!</code></pre>
+// Missing any property - ERROR!</code></pre>
 
             <div class="bordered">
               <table>
@@ -448,7 +448,7 @@ let member: Staff = {
               <p>
                 <strong>Real-Life Example:</strong> Like a
                 <strong>delivery package</strong> with a label. If the label
-                says "fragile" ? handle with care. If it says "heavy" ? use a
+                says "fragile" - handle with care. If it says "heavy" - use a
                 forklift. The label (discriminant) tells you how to handle it.
               </p>
             </div>
@@ -460,9 +460,9 @@ type Response = Success | Failure;
 function handleResponse(res: Response): void {
   // The 'status' field is the discriminant
   if (res.status === "success") {
-    console.log(`Data: ${res.data}`);      // ? TS knows 'data' exists
+    console.log(`Data: ${res.data}`);      // - TS knows 'data' exists
   } else {
-    console.log(`Error: ${res.message}`);  // ? TS knows 'message' exists
+    console.log(`Error: ${res.message}`);  // - TS knows 'message' exists
   }
 }
 
@@ -558,12 +558,12 @@ if (x instanceof MyClass) { }              // class check
 if ("prop" in x) { }                       // property check</code></pre>
 
             <h3>Key rules</h3>
-            <pre><code>// ? type = gives a new NAME to any type
-// ? | (union) = value can be ONE of the listed types
-// ? & (intersection) = value must satisfy ALL types
-// ? Literal types = restrict to exact values
-// ? Always narrow union types before using type-specific methods
-// ? Use type for unions/intersections, interface for class contracts</code></pre>
+            <pre><code>// - type = gives a new NAME to any type
+// - | (union) = value can be ONE of the listed types
+// - & (intersection) = value must satisfy ALL types
+// - Literal types = restrict to exact values
+// - Always narrow union types before using type-specific methods
+// - Use type for unions/intersections, interface for class contracts</code></pre>
 
             <hr />
             <p

@@ -23,7 +23,7 @@
           <div class="tb-brand-sub">Session Notes</div>
         </div>
       </div>
-      <a class="tb-back" href="../index.html">? Back to Index</a>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
       <div class="tb-topic-title">Map / Filter / Reduce</div>
     </div>
     <div class="page-wrap">
@@ -107,7 +107,7 @@
               <div class="pipe-step">
                 <div class="pipe-ph ph3-c">reduce</div>
                 <div class="pipe-name">Accumulate</div>
-                <div class="pipe-pts">Many ? one result</div>
+                <div class="pipe-pts">Many - one result</div>
               </div>
             </div>
             <div class="card ph1-card">
@@ -117,9 +117,9 @@
                 <span class="card-badge">Recap</span>
               </div>
               <div class="card-body">
-                <pre><code>arr.map(item => newItem)                    // [a,b,c] ? [A,B,C]
-arr.filter(item => condition)               // [a,b,c] ? [a,c]
-arr.reduce((acc, item) => newAcc, initial)  // [a,b,c] ? result</code></pre>
+                <pre><code>arr.map(item => newItem)                    // [a,b,c] - [A,B,C]
+arr.filter(item => condition)               // [a,b,c] - [a,c]
+arr.reduce((acc, item) => newAcc, initial)  // [a,b,c] - result</code></pre>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ const names = users.map(u => u.name);
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">Convert prices USD ? INR</div>
+                <div class="card-title">Convert prices USD - INR</div>
                 <span class="card-badge">map</span>
               </div>
               <div class="card-body">
@@ -461,16 +461,16 @@ const expensive = orders
             <h2>? Common Beginner Mistakes</h2>
 
             <div class="note note-warn">
-              <span class="note-i">i</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong
                   >Mistake 1: Using map() when you don't need the return
                   value</strong
                 >
-                <pre><code>// ? WRONG - map creates a new array, but you're ignoring it
+                <pre><code>// - WRONG - map creates a new array, but you're ignoring it
 users.map(u => console.log(u.name));
 
-// ? CORRECT - use forEach for side effects
+// - CORRECT - use forEach for side effects
 users.forEach(u => console.log(u.name));</code></pre>
               </div>
             </div>
@@ -479,10 +479,10 @@ users.forEach(u => console.log(u.name));</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 2: Forgetting return in reduce()</strong>
-                <pre><code>// ? WRONG - accumulator becomes undefined!
+                <pre><code>// - WRONG - accumulator becomes undefined!
 const sum = nums.reduce((acc, n) => { acc + n; }, 0);
 
-// ? CORRECT - return the new accumulator
+// - CORRECT - return the new accumulator
 const sum2 = nums.reduce((acc, n) => { return acc + n; }, 0);
 // Or use arrow shorthand:
 const sum3 = nums.reduce((acc, n) => acc + n, 0);</code></pre>
@@ -493,10 +493,10 @@ const sum3 = nums.reduce((acc, n) => acc + n, 0);</code></pre>
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 3: Wrong initial value in reduce()</strong>
-                <pre><code>// ? WRONG - initial value is a number, but you want an object!
+                <pre><code>// - WRONG - initial value is a number, but you want an object!
 // words.reduce((acc, w) => { acc[w] = 1; return acc; }, 0);
 
-// ? CORRECT - match initial value type to desired result
+// - CORRECT - match initial value type to desired result
 const freq = words.reduce((acc, w) => {
   acc[w] = (acc[w] || 0) + 1;
   return acc;
@@ -508,11 +508,11 @@ const freq = words.reduce((acc, w) => {
               <span class="note-i">⚠</span>
               <div>
                 <strong>Mistake 4: Mutating original array inside map()</strong>
-                <pre><code>// ? WRONG - mutating the original objects!
+                <pre><code>// - WRONG - mutating the original objects!
 const updated = users.map(u => { u.age += 1; return u; });
 // Original users are ALSO modified!
 
-// ? CORRECT - return NEW objects
+// - CORRECT - return NEW objects
 const updated2 = users.map(u => ({ ...u, age: u.age + 1 }));</code></pre>
               </div>
             </div>
@@ -524,10 +524,10 @@ const updated2 = users.map(u => ({ ...u, age: u.age + 1 }));</code></pre>
                   >Mistake 5: filter() returns a NEW array - must use
                   it!</strong
                 >
-                <pre><code>// ? WRONG - ignoring the returned array
+                <pre><code>// - WRONG - ignoring the returned array
 users.filter(u => u.age >= 18);  // result thrown away!
 
-// ? CORRECT - use the returned array
+// - CORRECT - use the returned array
 const adults = users.filter(u => u.age >= 18);</code></pre>
               </div>
             </div>

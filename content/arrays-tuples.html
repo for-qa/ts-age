@@ -23,7 +23,7 @@
           <div class="tb-brand-sub">Session Notes</div>
         </div>
       </div>
-      <a class="tb-back" href="../index.html">? Back to Index</a>
+      <a class="tb-back" href="../index.html">← Back to Index</a>
       <div class="tb-topic-title">Arrays &amp; Tuples</div>
     </div>
 
@@ -214,7 +214,7 @@
               </table>
             </div>
             <div class="note note-warn">
-              <span class="note-i">i</span>
+              <span class="note-i">⚠</span>
               <p>
                 Accessing index <code>n</code> (equal to the length) is out of
                 bounds. In Java this throws
@@ -231,7 +231,7 @@
               <code>i &lt;= arr.length - 1</code>).
             </p>
             <pre><code>let names: string[] = ["John", "Smith", "Peter", "Scott"];
-console.log(names.length); // 4  ? count of elements, NOT the last index</code></pre>
+console.log(names.length); // 4  - count of elements, NOT the last index</code></pre>
             <h3>Concept flow</h3>
             <div class="pipe">
               <div class="pipe-step">
@@ -376,7 +376,7 @@ console.log(names);                // [ 'John', 'Smith', 'Peter', 'Scott' ]</cod
                 <pre><code>let names: string[] = ["John", "Smith", "Peter", "Scott"];
 
 console.log(names);                // [ 'John', 'Smith', 'Peter', 'Scott' ]
-console.log(names[1]);             // Smith  ? index 1</code></pre>
+console.log(names[1]);             // Smith  - index 1</code></pre>
                 <p class="fn">
                   Values are auto-indexed 0, 1, 2, 3 - without needing to write
                   the index explicitly.
@@ -602,7 +602,7 @@ for (let i = 0; i &lt; empNames.length; i++) {
                         <td><code>i &lt; empNames.length</code></td>
                         <td>
                           Run while index is within bounds.
-                          <code>length</code> = 4, last index = 3 ? use
+                          <code>length</code> = 4, last index = 3 - use
                           <code>&lt;</code> not <code>&lt;=</code>
                         </td>
                       </tr>
@@ -620,7 +620,7 @@ for (let i = 0; i &lt; empNames.length; i++) {
                   </table>
                 </div>
                 <div class="note note-warn" style="margin-top: 0.75rem">
-                  <span class="note-i">i</span>
+                  <span class="note-i">?</span>
                   <p>
                     <code>i &lt;= empNames.length</code> causes an off-by-one
                     error - the last iteration reads index 4 which doesn't
@@ -1228,7 +1228,7 @@ console.log(tp[1]);              // Peter</code></pre>
             </div>
 
             <div class="note note-warn">
-              <span class="note-i">i</span>
+              <span class="note-i">⚠</span>
               <div>
                 <strong>? Array mutation - the silent surprise</strong>
                 <pre><code>function addItem(list: string[]) {
@@ -1237,9 +1237,9 @@ console.log(tp[1]);              // Peter</code></pre>
 
 const fruits = ["apple", "banana"];
 addItem(fruits);
-console.log(fruits); // ["apple", "banana", "new item"] ? changed!
+console.log(fruits); // ["apple", "banana", "new item"] - changed!
 
-// ? To avoid this, copy first:
+// - To avoid this, copy first:
 function addItemSafe(list: string[]) {
   const copy = [...list];  // Spread = shallow copy
   copy.push("new item");
