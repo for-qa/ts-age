@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { PageLayout } from './presentation/components/layout/PageLayout';
 import { SidebarProvider } from './presentation/store/sidebarContext';
 
@@ -8,7 +8,7 @@ const TopicPage = lazy(() => import('./presentation/pages/TopicPage').then(m => 
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <SidebarProvider>
         <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '14px', color: 'var(--ink3)' }}>Loading...</div>}>
           <Routes>
@@ -22,6 +22,6 @@ export default function App() {
           </Routes>
         </Suspense>
       </SidebarProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

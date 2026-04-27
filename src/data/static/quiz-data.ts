@@ -28,15 +28,15 @@ export const quizData: Record<string, Question[]> = {
     },
     {
       "section": "vc-hoisting",
-      "question": "Which keyword is hoisted but NOT initialized (TDZ)?",
+      "question": "Which keyword is hoisted AND auto-initialized to <code>undefined</code>?",
       "options": [
-        "var",
-        "<code>let</code>",
+        "<code>var</code>",
+        "let",
         "const",
         "function"
       ],
-      "answerIndex": 1,
-      "explanation": "Both 'let' and 'const' are hoisted to the top of the block, but they are kept in a Temporal Dead Zone (TDZ). You cannot access them before their declaration line.<code>console.log(x); // ReferenceError\nlet x = 5;</code>"
+      "answerIndex": 0,
+      "explanation": "Only 'var' is both hoisted AND initialized with 'undefined'. In contrast, 'let' and 'const' are hoisted but stay in a Temporal Dead Zone (TDZ) — you cannot access them before their declaration line.<code>console.log(x); // undefined\nvar x = 5;</code>"
     },
     {
       "section": "vc-redeclaration",
@@ -3642,7 +3642,7 @@ export const quizData: Record<string, Question[]> = {
         "File name"
       ],
       "answerIndex": 2,
-      "explanation": "err.stack // \"Error: msg\\n at func (file:line)\""
+      "explanation": String.raw`err.stack // "Error: msg\n at func (file:line)"`
     },
     {
       "section": "eh-result",
@@ -5308,7 +5308,7 @@ export const quizData: Record<string, Question[]> = {
         "Word chars"
       ],
       "answerIndex": 1,
-      "explanation": "\\d=digit \\w=word \\s=space .=any"
+      "explanation": String.raw`\d=digit \w=word \s=space .=any`
     },
     {
       "section": "rx-flags",
@@ -5320,7 +5320,7 @@ export const quizData: Record<string, Question[]> = {
         "Greedy"
       ],
       "answerIndex": 1,
-      "explanation": "Regular Expressions (Regex) rely on 'Character Classes' for matching. '\\d' strictly matches any single digit (0-9). '\\w' matches any 'word character' (letters, numbers, and underscores). '\\s' matches any whitespace (spaces, tabs, newlines).<code>const hasNum = /\\d/.test('user1'); // true</code>"
+      "explanation": String.raw`Regular Expressions (Regex) rely on 'Character Classes' for matching. '\d' strictly matches any single digit (0-9). '\w' matches any 'word character' (letters, numbers, and underscores). '\s' matches any whitespace (spaces, tabs, newlines).<code>const hasNum = /\d/.test('user1'); // true</code>`
     },
     {
       "section": "rx-methods",
@@ -5356,7 +5356,7 @@ export const quizData: Record<string, Question[]> = {
         "Line break"
       ],
       "answerIndex": 1,
-      "explanation": "^start | end$ | \\b boundary"
+      "explanation": String.raw`^start | end$ | \b boundary`
     },
     {
       "section": "rx-chars",
@@ -5368,7 +5368,7 @@ export const quizData: Record<string, Question[]> = {
         "Any char"
       ],
       "answerIndex": 2,
-      "explanation": "\\d=digit \\w=word \\s=space .=any"
+      "explanation": String.raw`\d=digit \w=word \s=space .=any`
     },
     {
       "section": "rx-chars",
@@ -5380,7 +5380,7 @@ export const quizData: Record<string, Question[]> = {
         "Special char"
       ],
       "answerIndex": 1,
-      "explanation": "\\d=digit \\w=word \\s=space .=any"
+      "explanation": String.raw`\d=digit \w=word \s=space .=any`
     },
     {
       "section": "rx-flags",
@@ -5404,7 +5404,7 @@ export const quizData: Record<string, Question[]> = {
         "6"
       ],
       "answerIndex": 2,
-      "explanation": "'abc123'.match(/\\d+/) // ['123']"
+      "explanation": String.raw`'abc123'.match(/\d+/) // ['123']`
     },
     {
       "section": "rx-chars",
@@ -5416,7 +5416,7 @@ export const quizData: Record<string, Question[]> = {
         "Double"
       ],
       "answerIndex": 1,
-      "explanation": "\\D matches any NON-digit: letters, spaces, symbols"
+      "explanation": String.raw`\D matches any NON-digit: letters, spaces, symbols`
     },
     {
       "section": "rx-what",
@@ -5440,7 +5440,7 @@ export const quizData: Record<string, Question[]> = {
         "String.regex()"
       ],
       "answerIndex": 0,
-      "explanation": "The period (.) is the wild card of Regex. It literally matches ANY single character in existence, except for line breaks. If you actually want to match a literal period, you must escape it with a backslash (\\.).<code>/h.t/.test('hat'); // true</code>"
+      "explanation": String.raw`The period (.) is the wild card of Regex. It literally matches ANY single character in existence, except for line breaks. If you actually want to match a literal period, you must escape it with a backslash (\.).<code>/h.t/.test('hat'); // true</code>`
     },
     {
       "section": "rx-patterns",
