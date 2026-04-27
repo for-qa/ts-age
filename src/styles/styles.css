@@ -323,8 +323,12 @@ hr{border:none;border-top:1px solid var(--border);margin:1.75rem 0}
 [data-theme="dark"] .quiz-exp-text code{background:#0a0a0a}
 
 @media(max-width:768px){
-  #topbar{height:auto;flex-wrap:wrap}
-  .tb-brand{min-width:auto;padding:.6rem 1rem}
+  #topbar{position:static;height:auto;flex-direction:column;align-items:flex-start;padding:1rem 0;gap:0.6rem}
+  .tb-brand{flex-direction:column;align-items:flex-start;min-width:auto;padding:0 1.25rem;border-right:none;gap:0.4rem}
+  .tb-brand-icon{margin-bottom:0.2rem}
+  .tb-back{margin-left:0;padding:0 1.25rem}
+  .tb-topic-title{margin-left:0;padding:0 1.25rem;margin-bottom:0.2rem}
+  .page-wrap{padding-top:0}
   .wrap{grid-template-columns:1fr}
   nav{display:none}
   .sec,.hero{padding:2rem 1.25rem}
