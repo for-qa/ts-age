@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Type Aliases & Union Types � TypeScript Learning Path</title>
+    <title>Type Aliases & Union Types - TypeScript Learning Path</title>
     <meta
       name="description"
-      content="Learn TypeScript type aliases and union types � creating custom types with the type keyword, union types with the pipe operator, literal types, intersection types, and discriminated unions."
+      content="Learn TypeScript type aliases and union types - creating custom types with the type keyword, union types with the pipe operator, literal types, intersection types, and discriminated unions."
     />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
@@ -100,12 +100,12 @@
               reusable and readable.
             </p>
 
-            <pre><code>// Without alias � repeating the type everywhere
+            <pre><code>// Without alias - repeating the type everywhere
 let age: number = 25;
 let price: number = 99.99;
 let score: number = 85;
 
-// With alias � give it a meaningful name
+// With alias - give it a meaningful name
 type Age = number;
 type Price = number;
 type Score = number;
@@ -114,7 +114,7 @@ let age: Age = 25;
 let price: Price = 99.99;
 let score: Score = 85;</code></pre>
 
-            <pre><code>// More useful � alias for complex types
+            <pre><code>// More useful - alias for complex types
 type StringOrNumber = string | number;
 
 let value1: StringOrNumber = "hello";  // ?
@@ -125,8 +125,8 @@ let value3: StringOrNumber = true;     // ? ERROR</code></pre>
               <span class="note-i">i</span>
               <p>
                 <strong>Syntax:</strong>
-                <code>type AliasName = existingType;</code> � always starts with
-                uppercase by convention. The alias is just a shortcut � it
+                <code>type AliasName = existingType;</code> - always starts with
+                uppercase by convention. The alias is just a shortcut - it
                 doesn't create a new type, just a new name.
               </p>
             </div>
@@ -135,7 +135,7 @@ let value3: StringOrNumber = true;     // ? ERROR</code></pre>
           <!-- OBJECT TYPE ALIAS -->
           <div class="sec" id="ta-object">
             <div class="sec-label">Object Aliases</div>
-            <h2>Object Type Alias � Reusable Object Shapes</h2>
+            <h2>Object Type Alias - Reusable Object Shapes</h2>
             <div class="note note-tip">
               <span class="note-i">?</span>
               <p>
@@ -165,7 +165,7 @@ let emp2: Employee = {
   id: 102,
   name: "Alice",
   department: "Marketing",
-  salary: 75000           // optional � included here
+  salary: 75000           // optional - included here
 };
 
 console.log(emp1.name);         // "John"
@@ -187,12 +187,12 @@ console.log(emp1.salary);       // undefined (not provided)</code></pre>
           <!-- FUNCTION TYPE ALIAS -->
           <div class="sec" id="ta-function">
             <div class="sec-label">Function Aliases</div>
-            <h2>Function Type Alias � Reusable Function Signatures</h2>
+            <h2>Function Type Alias - Reusable Function Signatures</h2>
             <div class="note note-tip">
               <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>job description</strong> � "Must accept two numbers and
+                <strong>job description</strong> - "Must accept two numbers and
                 return one number." Multiple people (functions) can fit this
                 description, but they all follow the same contract.
               </p>
@@ -230,7 +230,7 @@ processData("user-info", (msg) => console.log(msg));
               <p>
                 <strong>Real-Life Example:</strong> A union type is like a
                 <strong>parking spot that accepts cars OR bikes</strong>. The
-                spot doesn't care which one you park � but you can only park one
+                spot doesn't care which one you park - but you can only park one
                 at a time, and you must check which one is there before
                 interacting with it.
               </p>
@@ -247,7 +247,7 @@ let id: string | number;
 
 id = "ABC123";  // ? string
 id = 42;        // ? number
-id = true;      // ? ERROR � boolean not allowed
+id = true;      // ? ERROR - boolean not allowed
 
 // Function accepting union type
 function printId(id: string | number): void {
@@ -269,7 +269,7 @@ let userStatus2: Status = "deleted";   // ? ERROR</code></pre>
           <!-- NARROWING UNIONS -->
           <div class="sec" id="ut-narrowing">
             <div class="sec-label">Working with Unions</div>
-            <h2>Narrowing Unions � Checking Types at Runtime</h2>
+            <h2>Narrowing Unions - Checking Types at Runtime</h2>
             <div class="note note-tip">
               <span class="note-i">?</span>
               <p>
@@ -288,7 +288,7 @@ let userStatus2: Status = "deleted";   // ? ERROR</code></pre>
             </p>
 
             <pre><code>function processValue(value: string | number): void {
-  // ? Cannot call .toUpperCase() directly � might be a number!
+  // ? Cannot call .toUpperCase() directly - might be a number!
 
   if (typeof value === "string") {
     // TypeScript KNOWS it's a string here
@@ -340,12 +340,12 @@ processValue(42.567);   // "42.57"</code></pre>
           <!-- LITERAL TYPES -->
           <div class="sec" id="ut-literal">
             <div class="sec-label">Literal Types</div>
-            <h2>Literal Types � Exact Values Only</h2>
+            <h2>Literal Types - Exact Values Only</h2>
             <div class="note note-tip">
               <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Like a
-                <strong>traffic signal</strong> � it can ONLY be "red",
+                <strong>traffic signal</strong> - it can ONLY be "red",
                 "yellow", or "green". Not "blue", not "purple". Literal types
                 restrict a variable to specific exact values.
               </p>
@@ -374,7 +374,7 @@ setTheme("blue");     // ? ERROR</code></pre>
           <!-- INTERSECTION TYPES -->
           <div class="sec" id="it-inter">
             <div class="sec-label">Advanced</div>
-            <h2>Intersection Types � Combine Multiple Types</h2>
+            <h2>Intersection Types - Combine Multiple Types</h2>
             <div class="note note-tip">
               <span class="note-i">?</span>
               <p>
@@ -387,7 +387,7 @@ setTheme("blue");     // ? ERROR</code></pre>
 
             <p>
               The <code>&amp;</code> operator <strong>merges</strong> multiple
-              types � the result must satisfy ALL types.
+              types - the result must satisfy ALL types.
             </p>
 
             <pre><code>type Person = {
@@ -442,7 +442,7 @@ let member: Staff = {
           <!-- DISCRIMINATED UNIONS -->
           <div class="sec" id="dt-discrim">
             <div class="sec-label">Advanced</div>
-            <h2>Discriminated Unions � Tagged Choices</h2>
+            <h2>Discriminated Unions - Tagged Choices</h2>
             <div class="note note-tip">
               <span class="note-i">?</span>
               <p>
@@ -569,8 +569,8 @@ if ("prop" in x) { }                       // property check</code></pre>
             <p
               style="font-size: 11.5px; color: var(--ink3); text-align: center"
             >
-              TypeScript Learning Path &nbsp;�&nbsp; Type Aliases & Union Types
-              &nbsp;�&nbsp; type � union � intersection � literal
+              TypeScript Learning Path &nbsp;-&nbsp; Type Aliases & Union Types
+              &nbsp;-&nbsp; type - union - intersection - literal
             </p>
           </div>
         </div>

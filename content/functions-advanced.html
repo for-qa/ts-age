@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>
-      Callback &amp; Overloaded Functions � TypeScript Learning Path
+      Callback &amp; Overloaded Functions - TypeScript Learning Path
     </title>
     <meta
       name="description"
@@ -62,7 +62,7 @@
             </div>
             <h1>Callback &amp; Overloaded <span>Functions</span></h1>
             <p>
-              Advanced function concepts � passing functions as arguments
+              Advanced function concepts - passing functions as arguments
               (callbacks) and creating multiple versions of the same function
               (overloading).
             </p>
@@ -92,7 +92,7 @@
                 <strong>Real-Life Example:</strong> A callback is like
                 <strong>leaving your phone number with a restaurant</strong>.
                 You say "Call me when my table is ready." You don't wait at the
-                door � you go do other things, and THEY call YOU back when it's
+                door - you go do other things, and THEY call YOU back when it's
                 time. The restaurant (main function) calls your number
                 (callback) when it's ready.
               </p>
@@ -101,15 +101,15 @@
             <p>
               A callback function is a
               <strong>function passed as an argument</strong> to another
-              function, which gets <strong>executed later</strong> � not
+              function, which gets <strong>executed later</strong> - not
               immediately.
             </p>
 
             <h3>Normal call vs callback</h3>
-            <pre><code>// ? Normal � calling directly (immediate)
+            <pre><code>// ? Normal - calling directly (immediate)
 showMessage("Hello!");  // executes RIGHT NOW
 
-// ? Callback � passing the function to someone else
+// ? Callback - passing the function to someone else
 greet("John", showMessage);  // greet decides WHEN to call showMessage</code></pre>
 
             <div class="bordered">
@@ -143,7 +143,7 @@ greet("John", showMessage);  // greet decides WHEN to call showMessage</code></p
           <!-- CALLBACK EXAMPLE 1 -->
           <div class="sec" id="cb-ex1">
             <div class="sec-label">Example</div>
-            <h2>Callback Example � Greeting</h2>
+            <h2>Callback Example - Greeting</h2>
 
             <div class="card ph1-card">
               <div class="card-head">
@@ -173,7 +173,7 @@ greet("John", showMessage);
 // John
 // Hello!</code></pre>
                 <p class="fn">
-                  We didn't call <code>showMessage</code> directly � we passed
+                  We didn't call <code>showMessage</code> directly - we passed
                   it INTO <code>greet</code>, and <code>greet</code> decided
                   when to call it.
                 </p>
@@ -194,7 +194,7 @@ greet("John", showMessage);
           <!-- CALLBACK EXAMPLE 2 -->
           <div class="sec" id="cb-ex2">
             <div class="sec-label">Example</div>
-            <h2>Callback Example � Sum with Display</h2>
+            <h2>Callback Example - Sum with Display</h2>
 
             <div class="card ph2-card">
               <div class="card-head">
@@ -205,12 +205,12 @@ greet("John", showMessage);
                 <span class="card-badge">Callback</span>
               </div>
               <div class="card-body">
-                <pre><code>// Callback function � just displays the result
+                <pre><code>// Callback function - just displays the result
 function displayResult(result: number) {
   console.log("Result:", result);
 }
 
-// Main function � does calculation, then calls the callback
+// Main function - does calculation, then calls the callback
 function sum(
   a: number,
   b: number,
@@ -220,7 +220,7 @@ function sum(
   callback(result);          // THEN pass result to callback
 }
 
-// Call it � passing displayResult as the callback
+// Call it - passing displayResult as the callback
 sum(10, 20, displayResult);
 
 // Output: Result: 30</code></pre>
@@ -242,10 +242,10 @@ sum(10, 20, displayResult);
               <p>
                 <strong>Real-Life Example:</strong><br />
                 ? <strong>Synchronous</strong> = A
-                <strong>single checkout line</strong> � each person waits for
+                <strong>single checkout line</strong> - each person waits for
                 the one in front. Everything happens in order.<br />
                 ? <strong>Asynchronous</strong> = A
-                <strong>food court</strong> � you order, walk away, do other
+                <strong>food court</strong> - you order, walk away, do other
                 things, and they call your number when food is ready. Tasks run
                 in parallel.
               </p>
@@ -269,7 +269,7 @@ sum(10, 20, displayResult);
                   <tr>
                     <td>Waiting</td>
                     <td>Each step waits for the previous</td>
-                    <td>Doesn't wait � moves to next task</td>
+                    <td>Doesn't wait - moves to next task</td>
                   </tr>
                   <tr>
                     <td>Problem</td>
@@ -278,7 +278,7 @@ sum(10, 20, displayResult);
                   </tr>
                   <tr>
                     <td>Solution</td>
-                    <td>�</td>
+                    <td>-</td>
                     <td>Callbacks, async/await, Promises</td>
                   </tr>
                 </tbody>
@@ -289,10 +289,10 @@ sum(10, 20, displayResult);
               <span class="note-i">?</span>
               <p>
                 <strong>JavaScript/TypeScript is asynchronous by nature</strong>
-                � this is its biggest challenge compared to languages like Java.
+                - this is its biggest challenge compared to languages like Java.
                 Callbacks help enforce execution order when needed. In
                 automation (Playwright), we use <code>async/await</code> instead
-                � a cleaner alternative covered later.
+                - a cleaner alternative covered later.
               </p>
             </div>
           </div>
@@ -305,7 +305,7 @@ sum(10, 20, displayResult);
               <span class="note-i">?</span>
               <p>
                 <strong>Real-Life Example:</strong> Overloading is like a
-                <strong>Swiss Army knife</strong> � ONE tool with MANY versions.
+                <strong>Swiss Army knife</strong> - ONE tool with MANY versions.
                 The same knife (function name) can be a blade, scissors, or
                 screwdriver depending on what you pull out (parameters). One
                 name, multiple behaviors.
@@ -377,7 +377,7 @@ sum(10, 20, displayResult);
                 <div class="pipe-ph ph3-c">?</div>
                 <div class="pipe-name">Call the Function</div>
                 <div class="pipe-pts">
-                  Pass different params � the matching signature activates
+                  Pass different params - the matching signature activates
                 </div>
               </div>
             </div>
@@ -396,16 +396,16 @@ sum(10, 20, displayResult);
           <!-- DIFFERENT TYPES -->
           <div class="sec" id="ol-types">
             <div class="sec-label">Example 1</div>
-            <h2>Overloading � Different Parameter Types</h2>
+            <h2>Overloading - Different Parameter Types</h2>
 
             <div class="card ph1-card">
               <div class="card-head">
                 <div class="card-num">1</div>
-                <div class="card-title">getInfo � accepts number OR string</div>
+                <div class="card-title">getInfo - accepts number OR string</div>
                 <span class="card-badge">Overload</span>
               </div>
               <div class="card-body">
-                <pre><code>// Step 1: SIGNATURES (no body � just semicolons!)
+                <pre><code>// Step 1: SIGNATURES (no body - just semicolons!)
 function getInfo(id: number): string;
 function getInfo(name: string): string;
 
@@ -433,12 +433,12 @@ console.log(getInfo("John"));  // "Username is John"</code></pre>
           <!-- DIFFERENT # OF PARAMS -->
           <div class="sec" id="ol-params">
             <div class="sec-label">Example 2</div>
-            <h2>Overloading � Different Number of Parameters</h2>
+            <h2>Overloading - Different Number of Parameters</h2>
 
             <div class="card ph3-card">
               <div class="card-head">
                 <div class="card-num">2</div>
-                <div class="card-title">add � 2 or 3 numbers</div>
+                <div class="card-title">add - 2 or 3 numbers</div>
                 <span class="card-badge">Optional param</span>
               </div>
               <div class="card-body">
@@ -446,7 +446,7 @@ console.log(getInfo("John"));  // "Username is John"</code></pre>
 function add(a: number, b: number): number;
 function add(a: number, b: number, c: number): number;
 
-// Implementation � c is OPTIONAL to satisfy both
+// Implementation - c is OPTIONAL to satisfy both
 function add(a: number, b: number, c?: number): number {
   if (c !== undefined) {
     return a + b + c;    // 3 params passed
@@ -468,22 +468,22 @@ console.log(add(10, 20, 30));   // 60</code></pre>
           <!-- DIFFERENT RETURN TYPES -->
           <div class="sec" id="ol-return">
             <div class="sec-label">Example 3</div>
-            <h2>Overloading � Different Return Types</h2>
+            <h2>Overloading - Different Return Types</h2>
 
             <div class="card ph4-card">
               <div class="card-head">
                 <div class="card-num">3</div>
                 <div class="card-title">
-                  processInput � returns string OR number
+                  processInput - returns string OR number
                 </div>
                 <span class="card-badge">Union return</span>
               </div>
               <div class="card-body">
-                <pre><code>// Signatures � different param types AND return types!
+                <pre><code>// Signatures - different param types AND return types!
 function processInput(str: string): string;
 function processInput(num: number): number;
 
-// Implementation � union for both param and return
+// Implementation - union for both param and return
 function processInput(input: string | number): string | number {
   if (typeof input === "string") {
     return input.toUpperCase();  // string ? uppercase
@@ -501,7 +501,7 @@ console.log(processInput(5));        // 25</code></pre>
               <div class="card-head">
                 <div class="card-num">4</div>
                 <div class="card-title">
-                  greet � string, number, or boolean!
+                  greet - string, number, or boolean!
                 </div>
                 <span class="card-badge">3 signatures</span>
               </div>
@@ -534,7 +534,7 @@ console.log(greet(false));     // "You are Single"</code></pre>
           <!-- INVALID SCENARIOS -->
           <div class="sec" id="ol-invalid">
             <div class="sec-label">Watch Out!</div>
-            <h2>Invalid Overloading � Common Mistakes</h2>
+            <h2>Invalid Overloading - Common Mistakes</h2>
 
             <div class="card ph5-card">
               <div class="card-head">
@@ -543,7 +543,7 @@ console.log(greet(false));     // "You are Single"</code></pre>
                 <span class="card-badge">Errors</span>
               </div>
               <div class="card-body">
-                <pre><code>// ? 1. No implementation � just signatures
+                <pre><code>// ? 1. No implementation - just signatures
 function test(a: number): string;
 function test(a: string): string;
 // ERROR: no function body!
@@ -651,7 +651,7 @@ fn("hello"); // "HELLO"</code></pre>
             <p
               style="font-size: 11.5px; color: var(--ink3); text-align: center"
             >
-              TypeScript Learning Path &nbsp;�&nbsp; Callback &amp; Overloaded
+              TypeScript Learning Path &nbsp;-&nbsp; Callback &amp; Overloaded
               Functions
             </p>
           </div>
